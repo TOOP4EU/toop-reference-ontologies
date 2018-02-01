@@ -1,0 +1,147 @@
+# baseURI: http://example.register.nl/nationaalhandelsregister
+# imports: http://www.w3.org/ns/adms.rdf
+# imports: https://www.w3.org/2009/08/skos-reference/skos.rdf
+# prefix: nhr
+
+@prefix : <http://example.register.nl/nationaalhandelsregister#> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix nhr: <http://example.register.nl/nationaalhandelsregister#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.register.nl/nationaalhandelsregister>
+  rdf:type owl:Ontology ;
+  owl:imports <http://www.w3.org/ns/adms.rdf> ;
+  owl:imports <https://www.w3.org/2009/08/skos-reference/skos.rdf> ;
+  owl:versionInfo "Created with TopBraid Composer" ;
+.
+nhr:KvK-nummer
+  rdf:type rdfs:Class ;
+  rdfs:comment "The unique official company identifier_"@nl ;
+  rdfs:label "Kvk-nummer _"@nl ;
+  rdfs:subClassOf adms:Identifier ;
+  skos:prefLabel "Kvk-nummer" ;
+.
+nhr:MaatschappelijkeActiviteit
+  rdf:type owl:Class ;
+  rdfs:comment "Een MaatschappelijkeActiviteit is een organisatie zonder winstoogmerk maar met een missie die gericht is op het verbeteren of instandhouden van aktiviteiten of bezit met maatschappelijk karakter. "@nl ;
+  rdfs:label "Maatschappelijke activiteit_"@nl ;
+  rdfs:subClassOf skos:Concept ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange nhr:KvK-nummer ;
+      owl:onProperty nhr:kvk-nummer ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+nhr:Onderneming
+  rdf:type owl:Class ;
+  rdfs:comment "Een Onderderming is een organisatie met winstoogmerk. "@nl ;
+  rdfs:label "Onderneming_"@nl ;
+  rdfs:subClassOf skos:Concept ;
+.
+nhr:Rechtsvorm
+  rdf:type owl:Class ;
+  rdfs:comment "De vorm die u kiest voor de uitoefening van uw onderneming, heet rechtsvorm. De rechtsvorm is niet alleen van belang voor aansprakelijkheid, maar is ook van invloed op uw belastingverplichtingen. Zo is een rechtspersoon de eigenaar van de onderneming en daarmee belastingplichtig voor de winst uit onderneming."@nl ;
+  rdfs:label "Rechtsvorm_"@nl ;
+  rdfs:subClassOf skos:Concept ;
+  skos:prefLabel "Rechtsvorm" ;
+.
+nhr:Status
+  rdf:type owl:Class ;
+  rdfs:comment "De status van de organisatie. "@nl ;
+  rdfs:label "Status_"@nl ;
+  rdfs:subClassOf skos:Concept ;
+  skos:prefLabel "Status" ;
+.
+nhr:actief
+  rdf:type nhr:Status ;
+  rdfs:comment "De organisatie bestaat en is actief. "@nl ;
+  rdfs:label "actief_"@nl ;
+  skos:prefLabel "actief" ;
+.
+nhr:besloten_vennootschap
+  rdf:type nhr:Rechtsvorm ;
+  rdfs:comment "Een bv kunt u alleen of samen met anderen oprichten. Voor de oprichting schakelt u een notaris in. In de notariële akte wordt onder meer vastgelegd hoeveel aandelen elk van de oprichters in de bv krijgt."@nl ;
+  rdfs:label "bv_"@nl ;
+  skos:prefLabel "bv" ;
+.
+nhr:beëindigd
+  rdf:type nhr:Status ;
+  rdfs:comment "De organisatievorm is opgehouden te bestaan. "@nl ;
+  rdfs:label "beëindigd_"@nl ;
+  skos:prefLabel "beëindigd" ;
+.
+nhr:commanditaire_vennootschap
+  rdf:type nhr:Rechtsvorm ;
+  rdfs:comment "Voor een cv gelden grotendeels dezelfde regels als voor een vof. Het verschil is dat een cv behalve de gewone vennoten (de 'beherende' vennoten) ook nog zogenoemde stille vennoten heeft. De stille vennoten brengen geld in de cv in, maar bemoeien zich niet met de verdere gang van zaken van de onderneming. Elke beherende vennoot die aan de eisen voldoet, geldt voor de inkomstenbelasting als ondernemer. Als hij voldoet aan het urencriterium, kan hij dus gebruikmaken van de speciale regelingen voor ondernemers."@nl ;
+  rdfs:label "cv_"@nl ;
+  skos:prefLabel "cv" ;
+.
+nhr:eenmanszaak
+  rdf:type nhr:Rechtsvorm ;
+  rdfs:comment "Bij een eenmanszaak drijft u de onderneming alleen. Dat is het geval als u een zelfstandig beroep uitoefent (bijvoorbeeld notaris of huisarts) of als u de enige eigenaar van uw bedrijf bent. U kunt dus ook een eenmanszaak hebben als u personeel in dienst hebt. "@nl ;
+  rdfs:label "eenmanszaak_"@nl ;
+  skos:prefLabel "eenmanszaak" ;
+.
+nhr:handelsnaam
+  rdf:type rdf:Property ;
+  rdfs:comment "if the company is a business for which holds Handelsnaam.volgnr = 1"@nl ;
+  rdfs:domain nhr:MaatschappelijkeActiviteit ;
+  rdfs:domain nhr:Onderneming ;
+  rdfs:label "handelsnaam_"@nl ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf rdf:predicate ;
+  skos:prefLabel "handelsnaam" ;
+.
+nhr:heeftStatus
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "De huidige formele status van de organisatie. "@nl ;
+  rdfs:domain nhr:MaatschappelijkeActiviteit ;
+  rdfs:domain nhr:Onderneming ;
+  rdfs:label "heeft status_"@nl ;
+  rdfs:range nhr:Status ;
+  rdfs:subPropertyOf rdf:predicate ;
+  skos:prefLabel "heeft status" ;
+.
+nhr:kvk-nummer
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Alle bedrijven krijgen bij inschrijving bij de Kamer van Koophandel een KvK-nummer. Bij een bedrijfsoverdracht krijgen ondernemingen een nieuw KvK-nummer, zodat het duidelijk is dat er sprake is van een nieuwe eigenaar. U moet het nieuwe KvK-nummer vermelden op uw bedrijfscorrespondentie, zoals brieven, orders, facturen en offertes. "@nl ;
+  rdfs:domain nhr:MaatschappelijkeActiviteit ;
+  rdfs:domain nhr:Onderneming ;
+  rdfs:label "kvk-nummer_"@nl ;
+  rdfs:range nhr:KvK-nummer ;
+  rdfs:subPropertyOf skos:notation ;
+  skos:prefLabel "kvk-nummer"@nl ;
+.
+nhr:maatschap
+  rdf:type nhr:Rechtsvorm ;
+  rdfs:comment "In het geval van een maatschap oefent u een beroep uit in samenwerking met anderen (uw 'maten'), bijvoorbeeld in een artsenpraktijk of een tolkencentrum. U kunt zelf een samenwerkingscontract opstellen of u kunt een deskundige inschakelen."@nl ;
+  rdfs:label "maatschap_"@nl ;
+  skos:prefLabel "maatschap" ;
+.
+nhr:naam
+  rdf:type rdf:Property ;
+  rdfs:comment "if the company is a \"non-natural person\" or a \"societal activity\" for which holds NaamVolgorde.volgorde = 1"@nl ;
+  rdfs:domain nhr:MaatschappelijkeActiviteit ;
+  rdfs:domain nhr:Onderneming ;
+  rdfs:label "naam_"@nl ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf rdf:predicate ;
+  skos:prefLabel "naam" ;
+.
+nhr:stichting_of_vereniging
+  rdf:type nhr:Rechtsvorm ;
+  rdfs:comment "Stichtingen en verenigingen worden in bepaalde gevallen ook als onderneming beschouwd. Uw stichting of vereniging betaalt dan over de winst vennootschapsbelasting. "@nl ;
+  rdfs:label "stichting of vereniging_"@nl ;
+  skos:prefLabel "stichting of vereniging" ;
+.
+nhr:vennootschap_onder_firma_VOF
+  rdf:type nhr:Rechtsvorm ;
+  rdfs:comment "Van een vennootschap onder firma (vof) is sprake als u samen met anderen (de firmanten of vennoten) een onderneming begint. U kunt zelf een samenwerkingscontract opstellen of u kunt een deskundige inschakelen. Elke vennoot die aan de eisen voor ondernemerschap voldoet, geldt voor de inkomstenbelasting als ondernemer. En kan hij gebruikmaken van de ondernemersregelingen. "@nl ;
+  rdfs:label "vof_"@nl ;
+  skos:prefLabel "vof" ;
+.
