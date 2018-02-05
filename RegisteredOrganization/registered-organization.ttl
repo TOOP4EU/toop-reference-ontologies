@@ -50,6 +50,60 @@ toop:Address_card1
 .
 toop:CompanyCode
   rdf:type owl:Class ;
+  spin:query [
+      rdf:type sp:Select ;
+      sp:resultVariables (
+          [
+            sp:varName "s" ;
+          ]
+          [
+            sp:varName "p" ;
+          ]
+          [
+            sp:varName "o" ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "o" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:eq ;
+                sp:arg1 [
+                    sp:varName "p" ;
+                  ] ;
+                sp:arg2 owl:equivalentClass ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:eq ;
+                sp:arg1 [
+                    rdf:type sp:str ;
+                    sp:arg1 [
+                        sp:varName "s" ;
+                      ] ;
+                  ] ;
+                sp:arg2 [
+                    rdf:type sp:concat ;
+                    sp:arg1 "http://toop.tno.nl/organization#" ;
+                    sp:arg2 "CompanyCode" ;
+                  ] ;
+              ] ;
+          ]
+        ) ;
+    ] ;
   rdfs:comment "The unique official company identifier_ "@en ;
   rdfs:label "Company code_"@en ;
   rdfs:subClassOf adms:Identifier ;
@@ -227,13 +281,18 @@ toop:RegisteredOrganization
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty toop:registrationDate ;
+      owl:onProperty toop:companyCode ;
+      owl:someValuesFrom toop:CompanyCode ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:onProperty toop:companyCode ;
-      owl:someValuesFrom toop:CompanyCode ;
+      owl:onProperty toop:hasMainSite ;
+      owl:someValuesFrom toop:Site ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty toop:hasRegistration ;
+      owl:someValuesFrom toop:Registration ;
     ] ;
 .
 toop:Registration
@@ -316,6 +375,14 @@ toop:hasMainSite
   rdfs:range toop:Site ;
   rdfs:subPropertyOf <http://www.w3.org/ns/org#hasPrimarySite> ;
   skos:prefLabel "has main site" ;
+.
+toop:hasRegistration
+  rdf:type rdf:Property ;
+  rdfs:comment "This is the property that makes the link between a registered organization and the registration event." ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:label "has registration"@en ;
+  rdfs:range toop:Registration ;
+  skos:prefLabel "has registration"@en ;
 .
 toop:legalStatusEffectiveDate
   rdf:type rdf:Property ;
