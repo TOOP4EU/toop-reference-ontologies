@@ -335,7 +335,9 @@ toop:activityDeclaration
 toop:companyCode
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The description of the main code of the company as unique identifier recorded in the registry. This tag should be used to give an identifier of the company in the local language. This should be used in conjunction with the CompanyNaceCode"@en ;
+  rdfs:domain toop:RegisteredOrganization ;
   rdfs:label "company code"@en ;
+  rdfs:range toop:CompanyCode ;
   skos:prefLabel "company code" ;
 .
 toop:companyNaceCode
