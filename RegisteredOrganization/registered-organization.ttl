@@ -3,6 +3,7 @@
 # imports: http://example.register.nl/nationaalhandelsregister
 # imports: http://spinrdf.org/spin
 # imports: http://www.w3.org/2006/vcard/ns
+# imports: http://www.w3.org/ns/org.ttl
 # imports: http://www.w3.org/ns/prov-o
 # imports: https://www.w3.org/2009/08/skos-reference/skos.rdf
 # imports: https://www.w3.org/ns/adms.rdf
@@ -13,6 +14,7 @@
 @prefix adms: <http://www.w3.org/ns/adms#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix org: <http://www.w3.org/ns/org#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -34,6 +36,7 @@
   owl:imports <http://example.register.nl/nationaalhandelsregister> ;
   owl:imports <http://spinrdf.org/spin> ;
   owl:imports <http://www.w3.org/2006/vcard/ns> ;
+  owl:imports <http://www.w3.org/ns/org.ttl> ;
   owl:imports <http://www.w3.org/ns/prov-o> ;
   owl:imports <https://www.w3.org/2009/08/skos-reference/skos.rdf> ;
   owl:imports <https://www.w3.org/ns/adms.rdf> ;
@@ -115,8 +118,16 @@ toop:Foundation
   rdf:type owl:Class ;
   rdfs:comment "Represents the event that resulted in the foundation of the organization "@en ;
   rdfs:label "Foundation"@en ;
-  rdfs:subClassOf <http://www.w3.org/ns/org#ChangeEvent> ;
+  rdfs:subClassOf org:ChangeEvent ;
   skos:prefLabel "Foundation" ;
+.
+toop:MainSite
+  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  rdfs:comment "Represents the main an office and/or premise at which the organization is located. Many organizations are spread across multiple sites and many sites will host multiple locations."@en ;
+  rdfs:label "Site"@en ;
+  rdfs:subClassOf org:Site ;
+  skos:prefLabel "Site" ;
 .
 toop:MyCompCode-Id123456
   rdf:type adms:Identifier ;
@@ -127,7 +138,7 @@ toop:MyCompCode-Id123456
   adms:schemeAgency "NL-KvK Kamer van Koophandel"@nl ;
 .
 toop:MyHasMainSite
-  rdf:type toop:Site ;
+  rdf:type toop:MainSite ;
   rdfs:comment "" ;
   rdfs:label "MyHasMainSite"@nl ;
   skos:prefLabel "MyHasMainSite" ;
@@ -287,7 +298,7 @@ toop:RegisteredOrganization
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:onProperty toop:hasMainSite ;
-      owl:someValuesFrom toop:Site ;
+      owl:someValuesFrom toop:MainSite ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -300,7 +311,7 @@ toop:Registration
   rdf:type owl:Class ;
   rdfs:comment "Represents the event that resulted in the registration of the organization."@en ;
   rdfs:label "Registration"@en ;
-  rdfs:subClassOf <http://www.w3.org/ns/org#ChangeEvent> ;
+  rdfs:subClassOf org:ChangeEvent ;
   skos:prefLabel "Registration" ;
 .
 toop:SSNumber
@@ -309,14 +320,6 @@ toop:SSNumber
   rdfs:label "SSNumber"@en ;
   rdfs:subClassOf adms:Identifier ;
   skos:prefLabel "SSNumber" ;
-.
-toop:Site
-  rdf:type rdfs:Class ;
-  rdf:type owl:Class ;
-  rdfs:comment "Represents an office or other premise at which the organization is located. Many organizations are spread across multiple sites and many sites will host multiple locations."@en ;
-  rdfs:label "Site"@en ;
-  rdfs:subClassOf <http://www.w3.org/ns/org#Site> ;
-  skos:prefLabel "Site" ;
 .
 toop:VATNumber
   rdf:type rdfs:Class ;
@@ -331,6 +334,14 @@ toop:activityDeclaration
   rdfs:label "activity declaration"@en ;
   rdfs:subPropertyOf dcterms:description ;
   skos:prefLabel "activity declaration" ;
+.
+toop:companyAddress
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The postal address and the visiting address of the company"@en ;
+  rdfs:domain toop:MainSite ;
+  rdfs:label "company address_"@en ;
+  rdfs:range vcard:Organization ;
+  rdfs:subPropertyOf org:siteAddress ;
 .
 toop:companyCode
   rdf:type owl:ObjectProperty ;
@@ -371,11 +382,12 @@ toop:foundationDate
 .
 toop:hasMainSite
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "The main site of the company or legal person."@en ;
+  rdfs:comment "The main site of the company."@en ;
   rdfs:domain toop:RegisteredOrganization ;
   rdfs:label "has main site"@nl ;
-  rdfs:range toop:Site ;
-  rdfs:subPropertyOf <http://www.w3.org/ns/org#hasPrimarySite> ;
+  rdfs:range toop:MainSite ;
+  owl:equivalentProperty org:hasPrimarySite ;
+  owl:inverseOf toop:siteOf ;
   skos:prefLabel "has main site" ;
 .
 toop:hasRegistration
@@ -415,31 +427,37 @@ toop:registrationNumber
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "The number of the company as recorded on the register. In some jurisdictions, the number on the register may be different from the official company number. This field must be populated in all service requests even when the RegistrationNumber is the same as the CompanyCode "@en ;
   rdfs:label "registration number"@en ;
-  owl:equivalentProperty <http://www.w3.org/ns/org#identifier> ;
+  owl:equivalentProperty org:identifier ;
   skos:prefLabel "registration number" ;
 .
 toop:siteAddress
   rdf:type owl:ObjectProperty ;
   rdfs:comment "Represents the postal address and the visiting address of the company. "@en ;
-  rdfs:domain toop:Site ;
+  rdfs:domain toop:MainSite ;
   rdfs:label "siteAddress"@en ;
   rdfs:range vcard:Organization ;
-  rdfs:subPropertyOf <http://www.w3.org/ns/org#siteAddress> ;
+  rdfs:subPropertyOf org:siteAddress ;
   skos:prefLabel "siteAddress" ;
+.
+toop:siteOf
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "A virtual or physical site is the site of a registered organization"@en ;
+  rdfs:label "site of_"@en ;
+  owl:equivalentProperty org:siteOf ;
 .
 toop:websiteURL
   rdf:type owl:ObjectProperty ;
   rdfs:comment "ISSUE: currently, TBC's local import for vcard seems incomplete - vcard:has* are missing"@en ;
   rdfs:comment "Represents the website URL of the company."@en ;
   rdfs:comment "Represents the website address of the company."@en ;
-  rdfs:domain toop:Site ;
+  rdfs:domain toop:MainSite ;
   rdfs:label "websiteAddress"@en ;
   rdfs:label "websiteURL"@en ;
   rdfs:range dcterms:URI ;
-  rdfs:subPropertyOf <http://www.w3.org/ns/org#siteAddress> ;
+  rdfs:subPropertyOf org:siteAddress ;
   skos:prefLabel "websiteAddress" ;
   skos:prefLabel "websiteURL" ;
 .
 rov:legalName
-  rdfs:domain <http://www.w3.org/ns/org#FormalOrganization> ;
+  rdfs:domain org:FormalOrganization ;
 .
