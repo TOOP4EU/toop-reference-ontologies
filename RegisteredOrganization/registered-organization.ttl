@@ -1,7 +1,7 @@
 # baseURI: http://toop.tno.nl/organization
 # imports: http://dublincore.org/2012/06/14/dcterms.rdf
-# imports: http://example.register.nl/nationaalhandelsregister
 # imports: http://spinrdf.org/spin
+# imports: http://www.w3.org/2004/02/skos/core
 # imports: http://www.w3.org/2006/vcard/ns
 # imports: http://www.w3.org/ns/org.ttl
 # imports: http://www.w3.org/ns/prov-o
@@ -11,6 +11,7 @@
 # imports: https://www.w3.org/ns/regorg.rdf
 # prefix: toop
 
+@prefix : <http://toop.tno.nl/organization#> .
 @prefix adms: <http://www.w3.org/ns/adms#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
@@ -33,8 +34,8 @@
   spin:imports <http://topbraid.org/spin/skosspin> ;
   spin:imports <http://topbraid.org/spin/spinowl> ;
   owl:imports <http://dublincore.org/2012/06/14/dcterms.rdf> ;
-  owl:imports <http://example.register.nl/nationaalhandelsregister> ;
   owl:imports <http://spinrdf.org/spin> ;
+  owl:imports <http://www.w3.org/2004/02/skos/core> ;
   owl:imports <http://www.w3.org/2006/vcard/ns> ;
   owl:imports <http://www.w3.org/ns/org.ttl> ;
   owl:imports <http://www.w3.org/ns/prov-o> ;
@@ -112,6 +113,14 @@ toop:CompanyCode
   rdfs:subClassOf adms:Identifier ;
   owl:equivalentClass <http://example.register.nl/nationaalhandelsregister#KvK-nummer> ;
   skos:prefLabel "Company code" ;
+.
+toop:CompanyTypeScheme
+  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  rdfs:comment "Represents the member states' recognized company types, expressed in a consistent manner in a SKOS Concept Scheme"@en ;
+  rdfs:label "CompanyTypeScheme"@en ;
+  owl:equivalentClass skos:ConceptScheme ;
+  skos:prefLabel "CompanyTypeScheme" ;
 .
 toop:Foundation
   rdf:type rdfs:Class ;
@@ -368,7 +377,13 @@ toop:companyType
   rdf:type rdf:Property ;
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The legal type of the company_"@en ;
+  rdfs:domain toop:RegisteredOrganization ;
   rdfs:label "company type"@en ;
+  rdfs:range [
+      rdf:type owl:Restriction ;
+      owl:onProperty skos:inScheme ;
+      owl:someValuesFrom toop:CompanyTypeScheme ;
+    ] ;
   owl:equivalentProperty rov:orgType ;
   skos:prefLabel "company type" ;
 .
