@@ -133,7 +133,7 @@ toop:Foundation
 toop:MainSite
   rdf:type rdfs:Class ;
   rdf:type owl:Class ;
-  rdfs:comment "Represents the main an office and/or premise at which the organization is located. Many organizations are spread across multiple sites and many sites will host multiple locations."@en ;
+  rdfs:comment "Represents the main office and/or premise at which the organization is located. Many organizations are spread across multiple sites and many sites will host multiple locations."@en ;
   rdfs:label "Site"@en ;
   rdfs:subClassOf org:Site ;
   skos:prefLabel "Site" ;
