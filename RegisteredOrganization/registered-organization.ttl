@@ -1,5 +1,7 @@
 # baseURI: http://toop.tno.nl/organization
 # imports: http://dublincore.org/2012/06/14/dcterms.rdf
+# imports: http://example.register.elo/elonia-business-register
+# imports: http://example.register.nl/nationaalhandelsregister
 # imports: http://spinrdf.org/spin
 # imports: http://www.w3.org/2004/02/skos/core
 # imports: http://www.w3.org/2006/vcard/ns
@@ -15,6 +17,7 @@
 @prefix adms: <http://www.w3.org/ns/adms#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix nhr: <http://example.register.nl/nationaalhandelsregister#> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -34,6 +37,8 @@
   spin:imports <http://topbraid.org/spin/skosspin> ;
   spin:imports <http://topbraid.org/spin/spinowl> ;
   owl:imports <http://dublincore.org/2012/06/14/dcterms.rdf> ;
+  owl:imports <http://example.register.elo/elonia-business-register> ;
+  owl:imports <http://example.register.nl/nationaalhandelsregister> ;
   owl:imports <http://spinrdf.org/spin> ;
   owl:imports <http://www.w3.org/2004/02/skos/core> ;
   owl:imports <http://www.w3.org/2006/vcard/ns> ;
@@ -111,7 +116,8 @@ toop:CompanyCode
   rdfs:comment "The unique official company identifier_ "@en ;
   rdfs:label "Company code_"@en ;
   rdfs:subClassOf adms:Identifier ;
-  owl:equivalentClass <http://example.register.nl/nationaalhandelsregister#KvK-nummer> ;
+  owl:equivalentClass <http://example.register.elo/elonia-business-register#EloniaBusinessCode> ;
+  owl:equivalentClass nhr:KvK-nummer ;
   skos:prefLabel "Company code" ;
 .
 toop:CompanyTypeScheme
