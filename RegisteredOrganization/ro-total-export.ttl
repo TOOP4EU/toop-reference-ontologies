@@ -1,15 +1,18 @@
 # baseURI: http://toop.tno.nl/organization
+# imports: http://spinrdf.org/spin
 # imports: https://www.w3.org/2009/08/skos-reference/skos.rdf
 # prefix: toop
 
+@prefix : <http://toop.tno.nl/organization#> .
 @prefix adms: <http://www.w3.org/ns/adms#> .
-@prefix arg: <http://spinrdf.org/arg#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcam: <http://purl.org/dc/dcam/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix elobr: <http://example.register.elo/elonia-business-register#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix freebr: <http://example.register.fre/freedonia-business-register#> .
 @prefix gr: <http://purl.org/goodrelations/v1#> .
 @prefix nhr: <http://example.register.nl/nationaalhandelsregister#> .
 @prefix org: <http://www.w3.org/ns/org#> .
@@ -23,7 +26,6 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix sp: <http://spinrdf.org/sp#> .
 @prefix spin: <http://spinrdf.org/spin#> .
-@prefix spl: <http://spinrdf.org/spl#> .
 @prefix toop: <http://toop.tno.nl/organization#> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
@@ -32,6 +34,68 @@
 @prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+<http://example.register.elo/elonia-business-register>
+  owl:versionInfo "Created with TopBraid Composer" ;
+.
+elobr:Company
+  rdf:type owl:Class ;
+  rdfs:comment "A company is an organisation with a business character with a goal to make profit by producing products or providing services."@en ;
+  rdfs:label "Company"@en ;
+  rdfs:subClassOf skos:Concept ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange elobr:EloniaBusinessCode ;
+      owl:onProperty elobr:hasBusinessCode ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+elobr:EloniaBusinessCode
+  rdf:type rdfs:Class ;
+  rdfs:comment "The unique official company identifier_"@en ;
+  rdfs:label "Elonia business code"@en ;
+  rdfs:subClassOf adms:Identifier ;
+  skos:prefLabel "Elonia business code" ;
+.
+elobr:hasBusinessCode
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "All companies get an Elonia Business Code uponregistration at the Elonia business register." ;
+  rdfs:domain elobr:Company ;
+  rdfs:label "has business code"@en ;
+  rdfs:range elobr:EloniaBusinessCode ;
+  rdfs:subPropertyOf skos:notation ;
+  skos:prefLabel "has business code"@en ;
+.
+<http://example.register.fre/freedonia-business-register>
+  owl:versionInfo "Created with TopBraid Composer" ;
+.
+freebr:Company
+  rdf:type owl:Class ;
+  rdfs:comment "A company is an organisation with a business character with a goal to make profit by producing products or providing services."@en ;
+  rdfs:label "Company"@en ;
+  rdfs:subClassOf skos:Concept ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange freebr:FreedoniaBusinessCode ;
+      owl:onProperty freebr:hasBusinessCode ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+freebr:FreedoniaBusinessCode
+  rdf:type rdfs:Class ;
+  rdfs:comment "The unique official company identifier_"@en ;
+  rdfs:label "Elonia business code"@en ;
+  rdfs:subClassOf adms:Identifier ;
+  skos:prefLabel "Freedonia business code" ;
+.
+freebr:hasBusinessCode
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "All companies get an Freedonia Business Code uponregistration at the Freedonia business register." ;
+  rdfs:domain freebr:Company ;
+  rdfs:label "has business code"@en ;
+  rdfs:range freebr:FreedoniaBusinessCode ;
+  rdfs:subPropertyOf skos:notation ;
+  skos:prefLabel "has business code"@en ;
+.
 <http://example.register.nl/nationaalhandelsregister>
   owl:versionInfo "Created with TopBraid Composer" ;
 .
@@ -80,29 +144,11 @@ nhr:actief
   rdfs:label "actief_"@nl ;
   skos:prefLabel "actief" ;
 .
-nhr:besloten_vennootschap
-  rdf:type nhr:Rechtsvorm ;
-  rdfs:comment "Een bv kunt u alleen of samen met anderen oprichten. Voor de oprichting schakelt u een notaris in. In de notariële akte wordt onder meer vastgelegd hoeveel aandelen elk van de oprichters in de bv krijgt."@nl ;
-  rdfs:label "bv_"@nl ;
-  skos:prefLabel "bv" ;
-.
 nhr:beëindigd
   rdf:type nhr:Status ;
   rdfs:comment "De organisatievorm is opgehouden te bestaan. "@nl ;
   rdfs:label "beëindigd_"@nl ;
   skos:prefLabel "beëindigd" ;
-.
-nhr:commanditaire_vennootschap
-  rdf:type nhr:Rechtsvorm ;
-  rdfs:comment "Voor een cv gelden grotendeels dezelfde regels als voor een vof. Het verschil is dat een cv behalve de gewone vennoten (de 'beherende' vennoten) ook nog zogenoemde stille vennoten heeft. De stille vennoten brengen geld in de cv in, maar bemoeien zich niet met de verdere gang van zaken van de onderneming. Elke beherende vennoot die aan de eisen voldoet, geldt voor de inkomstenbelasting als ondernemer. Als hij voldoet aan het urencriterium, kan hij dus gebruikmaken van de speciale regelingen voor ondernemers."@nl ;
-  rdfs:label "cv_"@nl ;
-  skos:prefLabel "cv" ;
-.
-nhr:eenmanszaak
-  rdf:type nhr:Rechtsvorm ;
-  rdfs:comment "Bij een eenmanszaak drijft u de onderneming alleen. Dat is het geval als u een zelfstandig beroep uitoefent (bijvoorbeeld notaris of huisarts) of als u de enige eigenaar van uw bedrijf bent. U kunt dus ook een eenmanszaak hebben als u personeel in dienst hebt. "@nl ;
-  rdfs:label "eenmanszaak_"@nl ;
-  skos:prefLabel "eenmanszaak" ;
 .
 nhr:handelsnaam
   rdf:type rdf:Property ;
@@ -134,12 +180,6 @@ nhr:kvk-nummer
   rdfs:subPropertyOf skos:notation ;
   skos:prefLabel "kvk-nummer"@nl ;
 .
-nhr:maatschap
-  rdf:type nhr:Rechtsvorm ;
-  rdfs:comment "In het geval van een maatschap oefent u een beroep uit in samenwerking met anderen (uw 'maten'), bijvoorbeeld in een artsenpraktijk of een tolkencentrum. U kunt zelf een samenwerkingscontract opstellen of u kunt een deskundige inschakelen."@nl ;
-  rdfs:label "maatschap_"@nl ;
-  skos:prefLabel "maatschap" ;
-.
 nhr:naam
   rdf:type rdf:Property ;
   rdfs:comment "if the company is a \"non-natural person\" or a \"societal activity\" for which holds NaamVolgorde.volgorde = 1"@nl ;
@@ -149,18 +189,6 @@ nhr:naam
   rdfs:range xsd:string ;
   rdfs:subPropertyOf rdf:predicate ;
   skos:prefLabel "naam" ;
-.
-nhr:stichting_of_vereniging
-  rdf:type nhr:Rechtsvorm ;
-  rdfs:comment "Stichtingen en verenigingen worden in bepaalde gevallen ook als onderneming beschouwd. Uw stichting of vereniging betaalt dan over de winst vennootschapsbelasting. "@nl ;
-  rdfs:label "stichting of vereniging_"@nl ;
-  skos:prefLabel "stichting of vereniging" ;
-.
-nhr:vennootschap_onder_firma_VOF
-  rdf:type nhr:Rechtsvorm ;
-  rdfs:comment "Van een vennootschap onder firma (vof) is sprake als u samen met anderen (de firmanten of vennoten) een onderneming begint. U kunt zelf een samenwerkingscontract opstellen of u kunt een deskundige inschakelen. Elke vennoot die aan de eisen voor ondernemerschap voldoet, geldt voor de inkomstenbelasting als ondernemer. En kan hij gebruikmaken van de ondernemersregelingen. "@nl ;
-  rdfs:label "vof_"@nl ;
-  skos:prefLabel "vof" ;
 .
 dc:contributor
   rdf:type owl:AnnotationProperty ;
@@ -191,7 +219,6 @@ dcterms:Agent
   rdfs:comment "A resource that acts or has the power to act."@en ;
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "Agent"@en ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:AgentClass
   rdf:type rdfs:Class ;
@@ -211,7 +238,6 @@ dcterms:BibliographicResource
   rdfs:comment "A book, article, or other documentary resource."@en ;
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "Bibliographic Resource"@en ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:Box
   rdf:type rdfs:Datatype ;
@@ -222,7 +248,6 @@ dcterms:Box
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "DCMI Box"@en ;
   rdfs:seeAlso <http://dublincore.org/documents/dcmi-box/> ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:DCMIType
   rdf:type dcam:VocabularyEncodingScheme ;
@@ -261,7 +286,6 @@ dcterms:Frequency
   rdfs:comment "A rate at which something recurs."@en ;
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "Frequency"@en ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:IMT
   rdf:type dcam:VocabularyEncodingScheme ;
@@ -282,7 +306,6 @@ dcterms:ISO3166
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "ISO 3166"@en ;
   rdfs:seeAlso <http://www.iso.org/iso/en/prods-services/iso3166ma/02iso-3166-code-lists/list-en1.html> ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:ISO639-2
   rdf:type rdfs:Datatype ;
@@ -293,7 +316,6 @@ dcterms:ISO639-2
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "ISO 639-2"@en ;
   rdfs:seeAlso <http://lcweb.loc.gov/standards/iso639-2/langhome.html> ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:ISO639-3
   rdf:type rdfs:Datatype ;
@@ -303,7 +325,6 @@ dcterms:ISO639-3
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "ISO 639-3"@en ;
   rdfs:seeAlso <http://www.sil.org/iso639-3/> ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:Jurisdiction
   rdf:type rdfs:Class ;
@@ -350,7 +371,6 @@ dcterms:LinguisticSystem
   rdfs:comment "A system of signs, symbols, sounds, gestures, or rules used in communication."@en ;
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "Linguistic System"@en ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:Location
   rdf:type rdfs:Class ;
@@ -368,7 +388,6 @@ dcterms:LocationPeriodOrJurisdiction
   rdfs:comment "A location, period of time, or jurisdiction."@en ;
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "Location, Period, or Jurisdiction"@en ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:MESH
   rdf:type dcam:VocabularyEncodingScheme ;
@@ -396,7 +415,6 @@ dcterms:MediaTypeOrExtent
   rdfs:comment "A media type or extent."@en ;
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "Media Type or Extent"@en ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:MethodOfAccrual
   rdf:type rdfs:Class ;
@@ -405,7 +423,6 @@ dcterms:MethodOfAccrual
   rdfs:comment "A method by which resources are added to a collection."@en ;
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "Method of Accrual"@en ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:MethodOfInstruction
   rdf:type rdfs:Class ;
@@ -414,7 +431,6 @@ dcterms:MethodOfInstruction
   rdfs:comment "A process that is used to engender knowledge, attitudes, and skills."@en ;
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "Method of Instruction"@en ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:NLM
   rdf:type dcam:VocabularyEncodingScheme ;
@@ -435,7 +451,6 @@ dcterms:Period
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "DCMI Period"@en ;
   rdfs:seeAlso <http://dublincore.org/documents/dcmi-period/> ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:PeriodOfTime
   rdf:type rdfs:Class ;
@@ -463,7 +478,6 @@ dcterms:PhysicalResource
   rdfs:comment "A material thing."@en ;
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "Physical Resource"@en ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:Point
   rdf:type rdfs:Datatype ;
@@ -474,7 +488,6 @@ dcterms:Point
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "DCMI Point"@en ;
   rdfs:seeAlso <http://dublincore.org/documents/dcmi-point/> ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:Policy
   rdf:type rdfs:Class ;
@@ -483,7 +496,6 @@ dcterms:Policy
   rdfs:comment "A plan or course of action by an authority, intended to influence and determine decisions, actions, and other matters."@en ;
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "Policy"@en ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:ProvenanceStatement
   rdf:type rdfs:Class ;
@@ -492,7 +504,6 @@ dcterms:ProvenanceStatement
   rdfs:comment "A statement of any changes in ownership and custody of a resource since its creation that are significant for its authenticity, integrity, and interpretation."@en ;
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "Provenance Statement"@en ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:RFC1766
   rdf:type rdfs:Datatype ;
@@ -503,7 +514,6 @@ dcterms:RFC1766
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "RFC 1766"@en ;
   rdfs:seeAlso <http://www.ietf.org/rfc/rfc1766.txt> ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:RFC3066
   rdf:type rdfs:Datatype ;
@@ -515,7 +525,6 @@ dcterms:RFC3066
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "RFC 3066"@en ;
   rdfs:seeAlso <http://www.ietf.org/rfc/rfc3066.txt> ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:RFC4646
   rdf:type rdfs:Datatype ;
@@ -526,7 +535,6 @@ dcterms:RFC4646
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "RFC 4646"@en ;
   rdfs:seeAlso <http://www.ietf.org/rfc/rfc4646.txt> ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:RFC5646
   rdf:type rdfs:Datatype ;
@@ -537,7 +545,6 @@ dcterms:RFC5646
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "RFC 5646"@en ;
   rdfs:seeAlso <http://www.ietf.org/rfc/rfc5646.txt> ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:RightsStatement
   rdf:type rdfs:Class ;
@@ -546,7 +553,6 @@ dcterms:RightsStatement
   rdfs:comment "A statement about the intellectual property rights (IPR) held in or over a Resource, a legal document giving official permission to do something with a resource, or a statement about access rights."@en ;
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "Rights Statement"@en ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:SizeOrDuration
   rdf:type rdfs:Class ;
@@ -565,7 +571,6 @@ dcterms:Standard
   rdfs:comment "A basis for comparison; a reference point against which other things can be evaluated."@en ;
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "Standard"@en ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:TGN
   rdf:type dcam:VocabularyEncodingScheme ;
@@ -596,7 +601,6 @@ dcterms:URI
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "URI"@en ;
   rdfs:seeAlso <http://www.ietf.org/rfc/rfc3986.txt> ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:W3CDTF
   rdf:type rdfs:Datatype ;
@@ -607,7 +611,6 @@ dcterms:W3CDTF
   rdfs:isDefinedBy dcterms: ;
   rdfs:label "W3C-DTF"@en ;
   rdfs:seeAlso <http://www.w3.org/TR/NOTE-datetime> ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 dcterms:abstract
   rdf:type rdf:Property ;
@@ -1269,1329 +1272,13 @@ dcterms:valid
 gr:BusinessEntity
   rdfs:subClassOf org:FormalOrganization ;
 .
-<http://spinrdf.org/sp>
-  rdfs:comment "An RDF schema to syntactically represent SPARQL queries and update commands as RDF triples." ;
-  rdfs:label "SPIN SPARQL Syntax" ;
-  owl:versionInfo "1.5.0" ;
-.
-sp:Aggregation
-  rdf:type rdfs:Class ;
-  rdfs:comment "Base class of aggregation types (not part of the SPARQL 1.0 standard but supported by ARQ and other engines)." ;
-  rdfs:label "Aggregation" ;
-  rdfs:subClassOf sp:SystemClass ;
-.
-sp:AltPath
-  rdf:type rdfs:Class ;
-  rdfs:comment "An alternative path with the union of sp:path1 and sp:path2." ;
-  rdfs:label "Alt path" ;
-  rdfs:subClassOf sp:Path ;
-.
-sp:Asc
-  rdf:type rdfs:Class ;
-  rdfs:comment "Marker to indicate ascending order." ;
-  rdfs:label "Asc" ;
-  rdfs:subClassOf sp:OrderByCondition ;
-.
-sp:Ask
-  rdf:type rdfs:Class ;
-  rdfs:comment "An ASK query that returns true if the condition in the body is met by at least one result set." ;
-  rdfs:label "Ask" ;
-  rdfs:subClassOf sp:Query ;
-.
-sp:Avg
-  rdf:type rdfs:Class ;
-  rdfs:comment "Represents AVG aggregations." ;
-  rdfs:label "AVG" ;
-  rdfs:subClassOf sp:Aggregation ;
-.
-sp:Bind
-  rdf:type rdfs:Class ;
-  rdfs:comment "A BIND element." ;
-  rdfs:label "Bind" ;
-  rdfs:subClassOf sp:Element ;
-.
-sp:Clear
-  rdf:type rdfs:Class ;
-  rdfs:comment "An Update operation that removes all triples from a specified graph. Must specify the graph using sp:graphIRI, or sp:default, sp:named or sp:all. May have the SILENT flag, encoded using sp:silent." ;
-  rdfs:label "Clear" ;
-  rdfs:subClassOf sp:Update ;
-.
-sp:Command
-  rdf:type rdfs:Class ;
-  rdfs:comment "A shared superclass for sp:Query and sp:Update that can be used to specify that the range of property can be either one." ;
-  rdfs:label "Command" ;
-  rdfs:subClassOf sp:SystemClass ;
-.
-sp:Construct
-  rdf:type rdfs:Class ;
-  rdfs:comment "A CONSTRUCT-type query that can be used to construct new triples from template triples (head) that use variable bindings from the match patterns (body)." ;
-  rdfs:label "Construct" ;
-  rdfs:subClassOf sp:Query ;
-  rdfs:subClassOf spin:Rule ;
-.
-sp:Count
-  rdf:type rdfs:Class ;
-  rdfs:comment "Counts the number of times a variable is used. The variable is stored in the variable property. This might be left blank to indicate COUNT(*)." ;
-  rdfs:label "COUNT" ;
-  rdfs:subClassOf sp:Aggregation ;
-.
-sp:Create
-  rdf:type rdfs:Class ;
-  rdfs:comment "An Update operation that creates a new empty graph with a name specified by sp:graphIRI. May have sp:silent set to true." ;
-  rdfs:label "Create" ;
-  rdfs:subClassOf sp:Update ;
-.
-sp:Delete
-  rdf:type rdfs:Class ;
-  rdf:type owl:DeprecatedClass ;
-  rdfs:comment """Deprecated - use sp:Modify instead.
-
-Represents a DELETE FROM (part of SPARQL UPDATE language). The graph IRIs are stored in sp:graphIRI. The template patterns to delete are stored in sp:deletePattern. The WHERE clause is represented using sp:where.""" ;
-  rdfs:label "Delete" ;
-  rdfs:subClassOf sp:Modify ;
-.
-sp:DeleteData
-  rdf:type rdfs:Class ;
-  rdfs:comment "An Update operation to delete specific triples. The graph triples are represented using sp:data, which points to an rdf:List of sp:Triples or sp:NamedGraphs." ;
-  rdfs:label "Delete data" ;
-  rdfs:subClassOf sp:Update ;
-.
-sp:DeleteWhere
-  rdf:type rdfs:Class ;
-  rdfs:comment "An Update operation where the triples matched by the WHERE clause (sp:where) will be the triples deleted." ;
-  rdfs:label "Delete where" ;
-  rdfs:subClassOf sp:Update ;
-  rdfs:subClassOf spin:Rule ;
-.
-sp:Desc
-  rdf:type rdfs:Class ;
-  rdfs:comment "Marker to indicate descending order." ;
-  rdfs:label "Desc" ;
-  rdfs:subClassOf sp:OrderByCondition ;
-.
-sp:Describe
-  rdf:type rdfs:Class ;
-  rdfs:comment "A DESCRIBE-type Query." ;
-  rdfs:label "Describe" ;
-  rdfs:subClassOf sp:Query ;
-.
-sp:Drop
-  rdf:type rdfs:Class ;
-  rdfs:comment "An Update operation that removes a specified graph from the Graph Store. Must specify the graph using sp:graphIRI, or sp:default, sp:named or sp:all. May have the SILENT flag, encoded using sp:silent." ;
-  rdfs:label "Drop" ;
-  rdfs:subClassOf sp:Update ;
-.
-sp:Element
-  rdf:type rdfs:Class ;
-  rdfs:comment "An abstract base class for all pattern elements." ;
-  rdfs:label "Element" ;
-  rdfs:subClassOf sp:SystemClass ;
-.
-sp:ElementGroup
-  rdf:type rdfs:Class ;
-  rdfs:comment "Abstract base class of group patterns." ;
-  rdfs:label "Element group" ;
-  rdfs:subClassOf sp:Element ;
-.
-sp:ElementList
-  rdf:type rdfs:Class ;
-  rdfs:comment "A list of Elements. This class is never instantiated directly as SPIN will use plain rdf:Lists to store element lists." ;
-  rdfs:label "Element list" ;
-  rdfs:subClassOf sp:ElementGroup ;
-  rdfs:subClassOf rdf:List ;
-.
-sp:Exists
-  rdf:type rdfs:Class ;
-  rdfs:comment "An EXISTS element group." ;
-  rdfs:label "Exists" ;
-  rdfs:subClassOf sp:ElementGroup ;
-.
-sp:Filter
-  rdf:type rdfs:Class ;
-  rdfs:comment "A constraint element that evaluates a given expression to true or false." ;
-  rdfs:label "Filter" ;
-  rdfs:subClassOf sp:Element ;
-.
-sp:GroupConcat
-  rdf:type rdfs:Class ;
-  rdfs:comment "Represents GROUP_CONCAT aggregations." ;
-  rdfs:label "GROUP_CONCAT" ;
-  rdfs:subClassOf sp:Aggregation ;
-.
-sp:Insert
-  rdf:type rdfs:Class ;
-  rdf:type owl:DeprecatedClass ;
-  rdfs:comment """Deprecated - use sp:Modify instead.
-
-Represents a INSERT INTO (part of SPARQL UPDATE language). The graph IRIs are stored in sp:graphIRI. The template patterns to delete are stored in sp:insertPattern. The WHERE clause is represented using sp:where.""" ;
-  rdfs:label "Insert" ;
-  rdfs:subClassOf sp:Modify ;
-.
-sp:InsertData
-  rdf:type rdfs:Class ;
-  rdfs:comment "An Update operation to insert specific triples. The graph triples are represented using sp:data, which points to an rdf:List of sp:Triples or sp:NamedGraphs." ;
-  rdfs:label "Insert data" ;
-  rdfs:subClassOf sp:Update ;
-.
-sp:Let
-  rdf:type rdfs:Class ;
-  rdf:type owl:DeprecatedClass ;
-  rdfs:comment """Deprecated: use sp:Bind instead.
-
-A variable assignment (LET (?<varName> := <expression>)). Not part of the SPARQL 1.0 standard, but (for example) ARQ.""" ;
-  rdfs:label "Let" ;
-  rdfs:subClassOf sp:Bind ;
-.
-sp:Load
-  rdf:type rdfs:Class ;
-  rdfs:comment "A LOAD Update operation. The document to load is specified using sp:document, and the (optional) target graph using sp:into." ;
-  rdfs:label "Load" ;
-  rdfs:subClassOf sp:Update ;
-.
-sp:Max
-  rdf:type rdfs:Class ;
-  rdfs:comment "Represents MAX aggregations." ;
-  rdfs:label "MAX" ;
-  rdfs:subClassOf sp:Aggregation ;
-.
-sp:Min
-  rdf:type rdfs:Class ;
-  rdfs:comment "Represents MIN aggregations." ;
-  rdfs:label "MIN" ;
-  rdfs:subClassOf sp:Aggregation ;
-.
-sp:Minus
-  rdf:type rdfs:Class ;
-  rdfs:comment "A MINUS element group." ;
-  rdfs:label "Minus" ;
-  rdfs:subClassOf sp:ElementGroup ;
-.
-sp:ModPath
-  rdf:type rdfs:Class ;
-  rdfs:comment "A modified path such as rdfs:subClassOf*." ;
-  rdfs:label "Mod path" ;
-  rdfs:subClassOf sp:Path ;
-.
-sp:Modify
-  rdf:type rdfs:Class ;
-  rdfs:comment "Represents a MODIFY (part of SPARQL UPDATE language). The graph IRIs are stored in sp:graphIRI. The template patterns are stored in sp:deletePattern and sp:insertPattern. The WHERE clause is represented using sp:where." ;
-  rdfs:label "Modify" ;
-  rdfs:subClassOf sp:Update ;
-  rdfs:subClassOf spin:Rule ;
-.
-sp:NamedGraph
-  rdf:type rdfs:Class ;
-  rdfs:comment "A named Graph element such as GRAPH <uri> {...}." ;
-  rdfs:label "Named graph" ;
-  rdfs:subClassOf sp:ElementGroup ;
-.
-sp:NotExists
-  rdf:type rdfs:Class ;
-  rdfs:comment "A NOT EXISTS element group." ;
-  rdfs:label "Not exists" ;
-  rdfs:subClassOf sp:ElementGroup ;
-.
-sp:Optional
-  rdf:type rdfs:Class ;
-  rdfs:comment "An optional element in a query." ;
-  rdfs:label "Optional" ;
-  rdfs:subClassOf sp:ElementGroup ;
-.
-sp:OrderByCondition
-  rdf:type rdfs:Class ;
-  rdfs:comment "An abstract base class for ascending or descending order conditions. Instances of this class (typically bnodes) must have a value for expression to point to the actual values." ;
-  rdfs:label "Order by condition" ;
-  rdfs:subClassOf sp:SystemClass ;
-.
-sp:Path
-  rdf:type rdfs:Class ;
-  rdfs:comment "The base class of SPARQL property path expressions. Paths are used by sp:TriplePath triple paths." ;
-  rdfs:label "Path" ;
-  rdfs:subClassOf sp:SystemClass ;
-.
-sp:Query
-  rdf:type rdfs:Class ;
-  rdfs:comment "Abstract base class of the various types of supported queries. Common to all types of queries is that they can have a body (\"WHERE clause\")." ;
-  rdfs:label "Query" ;
-  rdfs:subClassOf sp:Command ;
-.
-sp:ReverseLinkPath
-  rdf:type rdfs:Class ;
-  rdfs:label "Reverse link path" ;
-  rdfs:subClassOf sp:Path ;
-.
-sp:ReversePath
-  rdf:type rdfs:Class ;
-  rdfs:comment "A path with reversed direction." ;
-  rdfs:label "Reverse path" ;
-  rdfs:subClassOf sp:Path ;
-.
-sp:Sample
-  rdf:type rdfs:Class ;
-  rdfs:comment "Represents SAMPLE aggregations" ;
-  rdfs:label "SAMPLE" ;
-  rdfs:subClassOf sp:Aggregation ;
-.
-sp:Select
-  rdf:type rdfs:Class ;
-  rdfs:comment "A SELECT-type query that returns variable bindings as its result." ;
-  rdfs:label "Select query" ;
-  rdfs:subClassOf sp:Query ;
-.
-sp:SeqPath
-  rdf:type rdfs:Class ;
-  rdfs:comment "A sequence of multiple paths." ;
-  rdfs:label "Seq path" ;
-  rdfs:subClassOf sp:Path ;
-.
-sp:Service
-  rdf:type rdfs:Class ;
-  rdfs:comment "A SERVICE call that matches a nested sub-pattern against a SPARQL end point specified by a URI." ;
-  rdfs:label "Service" ;
-  rdfs:subClassOf sp:ElementGroup ;
-.
-sp:SubQuery
-  rdf:type rdfs:Class ;
-  rdfs:comment "A nested SELECT query inside of an element list. The query is stored in sp:query." ;
-  rdfs:label "Sub query" ;
-  rdfs:subClassOf sp:Element ;
-.
-sp:Sum
-  rdf:type rdfs:Class ;
-  rdfs:comment "Represents sum aggregations, e.g. SELECT SUM(?varName)..." ;
-  rdfs:label "SUM" ;
-  rdfs:subClassOf sp:Aggregation ;
-.
-sp:SystemClass
-  rdf:type rdfs:Class ;
-  rdfs:comment "An \"artificial\" root class that groups all SP classes. This makes them look much less overwhelming in UI tools. Typical end users don't need to see those classes anyway." ;
-  rdfs:label "SP System class" ;
-  rdfs:subClassOf rdfs:Resource ;
-.
-sp:Triple
-  rdf:type rdfs:Class ;
-  rdfs:comment "A base class for TriplePattern and TripleTemplate. This basically specifies that subject, predicate and object must be present." ;
-  rdfs:label "Triple" ;
-  rdfs:subClassOf sp:Tuple ;
-.
-sp:TriplePath
-  rdf:type rdfs:Class ;
-  rdfs:comment "Similar to a TriplePattern, but with a path expression as its predicate. For example, this can be used to express transitive sub-class relationships (?subClass rdfs:subClassOf* ?superClass)." ;
-  rdfs:label "Triple path" ;
-  rdfs:subClassOf sp:Element ;
-  rdfs:subClassOf sp:Tuple ;
-.
-sp:TriplePattern
-  rdf:type rdfs:Class ;
-  rdfs:comment "A triple pattern used in the body of a query." ;
-  rdfs:label "Triple pattern" ;
-  rdfs:subClassOf sp:Element ;
-  rdfs:subClassOf sp:Triple ;
-.
-sp:TripleTemplate
-  rdf:type rdfs:Class ;
-  rdfs:comment "A prototypical triple used as template in the head of a Construct query. May contain variables." ;
-  rdfs:label "Triple template" ;
-  rdfs:subClassOf sp:Triple ;
-.
-sp:Tuple
-  rdf:type rdfs:Class ;
-  rdfs:comment "Abstract base class for things that have subject and object." ;
-  rdfs:label "Tuple" ;
-  rdfs:subClassOf sp:SystemClass ;
-.
-sp:Union
-  rdf:type rdfs:Class ;
-  rdfs:comment "A UNION group." ;
-  rdfs:label "Union" ;
-  rdfs:subClassOf sp:ElementGroup ;
-.
-sp:Update
-  rdf:type rdfs:Class ;
-  rdfs:comment "Abstract base class to group the various SPARQL UPDATE commands." ;
-  rdfs:label "Update" ;
-  rdfs:subClassOf sp:Command ;
-.
-sp:Values
-  rdf:type rdfs:Class ;
-  rdfs:comment "A VALUES element. sp:varNames points to an rdf:List of strings for the variables, sp:values to an rdf:List of rdf:Lists with nodes for each variable, in the order defined by the variables list." ;
-  rdfs:label "Values" ;
-  rdfs:subClassOf sp:Element ;
-.
-sp:Variable
-  rdf:type rdfs:Class ;
-  rdfs:comment "A variable mentioned in a Triple or expression. Variables are often blank nodes with the variable name stored in ts:name. Variables can also be supplied with a URI in which case the system will attempt to reuse the same variable instance across multiple query definitions." ;
-  rdfs:label "Variable" ;
-  rdfs:subClassOf sp:SystemClass ;
-.
-sp:all
-  rdf:type rdf:Property ;
-  rdfs:comment "Used in DROP and CLEAR." ;
-  rdfs:label "all" ;
-  rdfs:range xsd:boolean ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:arg
-  rdf:type rdf:Property ;
-  rdfs:comment "Abstract superproperty for the enumerated arg1, arg2 etc." ;
-  rdfs:label "arg" ;
-.
-sp:arg1
-  rdf:type rdf:Property ;
-  rdfs:comment "The first argument of a function call." ;
-  rdfs:label "arg1" ;
-  rdfs:subPropertyOf sp:arg ;
-.
-sp:arg2
-  rdf:type rdf:Property ;
-  rdfs:comment "The second argument of a function call." ;
-  rdfs:label "arg2" ;
-  rdfs:subPropertyOf sp:arg ;
-.
-sp:arg3
-  rdf:type rdf:Property ;
-  rdfs:comment "The third argument of a function call." ;
-  rdfs:label "arg3" ;
-  rdfs:subPropertyOf sp:arg ;
-.
-sp:arg4
-  rdf:type rdf:Property ;
-  rdfs:comment "The forth argument of a function call." ;
-  rdfs:label "arg4" ;
-  rdfs:subPropertyOf sp:arg ;
-.
-sp:arg5
-  rdf:type rdf:Property ;
-  rdfs:comment "The fifth argument of a function call. Further arguments are not common in SPARQL, therefore no sp:arg6, etc are defined here. However, they can be created if needed." ;
-  rdfs:label "arg5" ;
-  rdfs:subPropertyOf sp:arg ;
-.
-sp:as
-  rdf:type rdf:Property ;
-  rdfs:comment "Points to a Variable used in an AS statement such as COUNT aggregates." ;
-  rdfs:label "as" ;
-  rdfs:range sp:Variable ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:bindings
-  rdf:type rdf:Property ;
-  rdfs:comment "The actual bindings of a sp:Values element." ;
-  rdfs:domain sp:Values ;
-  rdfs:label "bindings" ;
-  rdfs:range rdf:List ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:default
-  rdf:type rdf:Property ;
-  rdfs:comment "Used in DROP and CLEAR." ;
-  rdfs:label "default" ;
-  rdfs:range xsd:boolean ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:deletePattern
-  rdf:type rdf:Property ;
-  rdfs:comment "Points to a list of sp:TripleTemplates and sp:NamedGraphs in a modify operation." ;
-  rdfs:domain sp:Update ;
-  rdfs:label "delete pattern" ;
-  rdfs:range rdf:List ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:distinct
-  rdf:type rdf:Property ;
-  rdfs:comment "A marker property to indicate that a Select query is of type SELECT DISTINCT." ;
-  rdfs:domain sp:Select ;
-  rdfs:label "distinct" ;
-  rdfs:range xsd:boolean ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:document
-  rdf:type rdf:Property ;
-  rdfs:comment "The URI of the document to load using a LOAD Update operation." ;
-  rdfs:domain sp:Load ;
-  rdfs:label "document" ;
-  rdfs:range rdfs:Resource ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:elements
-  rdf:type rdf:Property ;
-  rdfs:comment "Points to an ElementList, for example in an Optional element." ;
-  rdfs:label "elements" ;
-  rdfs:range sp:ElementList ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:expression
-  rdf:type rdf:Property ;
-  rdfs:comment "Points to an expression, for example in a Filter or Assignment." ;
-  rdfs:label "expression" ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:from
-  rdf:type rdf:Property ;
-  rdfs:comment "Specifies an RDF Dataset used by a Query (FROM syntax in SPARQL). Values of this property must be URI resources." ;
-  rdfs:domain sp:Query ;
-  rdfs:label "from" ;
-  rdfs:range rdfs:Resource ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:fromNamed
-  rdf:type rdf:Property ;
-  rdfs:comment "Specifies a named RDF Dataset used by a Query (FROM NAMED syntax in SPARQL). Values of this property must be URI resources." ;
-  rdfs:domain sp:Query ;
-  rdfs:label "from named" ;
-  rdfs:range rdfs:Resource ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:graphIRI
-  rdf:type rdf:Property ;
-  rdfs:comment "Points to graph names (IRIs) in various sp:Update operations." ;
-  rdfs:label "graph IRI" ;
-  rdfs:range rdfs:Resource ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:graphNameNode
-  rdf:type rdf:Property ;
-  rdfs:comment "The name (URI or Variable) of a NamedGraph." ;
-  rdfs:domain sp:NamedGraph ;
-  rdfs:label "graph name node" ;
-  rdfs:range rdfs:Resource ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:groupBy
-  rdf:type rdf:Property ;
-  rdfs:comment "Points from a Query to the list of GROUP BY expressions." ;
-  rdfs:domain sp:Select ;
-  rdfs:label "group by" ;
-  rdfs:range rdf:List ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:having
-  rdf:type rdf:Property ;
-  rdfs:comment "Points from a SELECT query to a list of HAVING expressions." ;
-  rdfs:domain sp:Select ;
-  rdfs:label "having" ;
-  rdfs:range rdf:List ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:insertPattern
-  rdf:type rdf:Property ;
-  rdfs:comment "Points to a list of sp:TripleTemplates or sp:NamedGraphs in a modify command." ;
-  rdfs:domain sp:Modify ;
-  rdfs:label "insert pattern" ;
-  rdfs:range rdf:List ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:into
-  rdf:type rdf:Property ;
-  rdfs:comment "The (optional) target of a LOAD Update operation." ;
-  rdfs:domain sp:Load ;
-  rdfs:label "into" ;
-  rdfs:range rdfs:Resource ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:limit
-  rdf:type rdf:Property ;
-  rdfs:comment "The LIMIT solution modifier of a Query." ;
-  rdfs:domain sp:Query ;
-  rdfs:label "limit" ;
-  rdfs:range xsd:long ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:modMax
-  rdf:type rdf:Property ;
-  rdfs:domain sp:ModPath ;
-  rdfs:label "mod max" ;
-  rdfs:range xsd:integer ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:modMin
-  rdf:type rdf:Property ;
-  rdfs:domain sp:ModPath ;
-  rdfs:label "mod min" ;
-  rdfs:range xsd:integer ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:named
-  rdf:type rdf:Property ;
-  rdfs:comment "Used in DROP and CLEAR." ;
-  rdfs:label "named" ;
-  rdfs:range xsd:boolean ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:node
-  rdf:type rdf:Property ;
-  rdfs:domain sp:ReverseLinkPath ;
-  rdfs:label "node" ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:object
-  rdf:type rdf:Property ;
-  rdfs:comment "An RDF Node or Variable describing the object of a triple." ;
-  rdfs:domain sp:Tuple ;
-  rdfs:label "object" ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:offset
-  rdf:type rdf:Property ;
-  rdfs:comment "The OFFSET solution modifier of a Query." ;
-  rdfs:domain sp:Query ;
-  rdfs:label "offset" ;
-  rdfs:range xsd:long ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:orderBy
-  rdf:type rdf:Property ;
-  rdfs:comment "Links a query with an ORDER BY clause where the values are rdf:List containing OrderByConditions or expressions. While the domain of this property is sp:Query, only Describe and Select queries can have values of it." ;
-  rdfs:domain sp:Query ;
-  rdfs:label "order by" ;
-  rdfs:range rdf:List ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:path
-  rdf:type rdf:Property ;
-  rdfs:comment "Points from a TriplePath to its path." ;
-  rdfs:domain sp:TriplePath ;
-  rdfs:label "path" ;
-  rdfs:range sp:Path ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:path1
-  rdf:type rdf:Property ;
-  rdfs:comment "The first child path of a property path. Used by sp:AltPath and sp:SeqPath." ;
-  rdfs:label "path1" ;
-  rdfs:range sp:Path ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:path2
-  rdf:type rdf:Property ;
-  rdfs:comment "The second child path of a property path. Used by sp:AltPath and sp:SeqPath." ;
-  rdfs:label "path2" ;
-  rdfs:range sp:Path ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:predicate
-  rdf:type rdf:Property ;
-  rdfs:comment "A resource or Variable describing the predicate of a triple." ;
-  rdfs:domain sp:Triple ;
-  rdfs:label "predicate" ;
-  rdfs:range rdfs:Resource ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:query
-  rdf:type rdf:Property ;
-  rdfs:comment "Links a SubQuery resource with the nested Query." ;
-  rdfs:domain sp:SubQuery ;
-  rdfs:label "query" ;
-  rdfs:range sp:Query ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:reduced
-  rdf:type rdf:Property ;
-  rdfs:comment "A property with true to indicate that a Select query has a REDUCED flag." ;
-  rdfs:domain sp:Select ;
-  rdfs:label "reduced" ;
-  rdfs:range xsd:boolean ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:resultNodes
-  rdf:type rdf:Property ;
-  rdfs:comment "Contains the result nodes (URI resources or Variables) of a Describe query." ;
-  rdfs:domain sp:Describe ;
-  rdfs:label "result nodes" ;
-  rdfs:range rdf:List ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:resultVariables
-  rdf:type rdf:Property ;
-  rdfs:comment "An rdf:List of variables that are returned by a Select query." ;
-  rdfs:domain sp:Select ;
-  rdfs:label "result variables" ;
-  rdfs:range rdf:List ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:separator
-  rdf:type rdf:Property ;
-  rdfs:comment "Stores the separator=\"...\" value of a GROUP_CONCAT (sp:GroupConcat) aggregation." ;
-  rdfs:domain sp:GroupConcat ;
-  rdfs:label "separator" ;
-  rdfs:range xsd:string ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:serviceURI
-  rdf:type rdf:Property ;
-  rdfs:comment "Used by sp:Service to specify the URI of the SPARQL end point to invoke. Must point to a URI node." ;
-  rdfs:domain sp:Service ;
-  rdfs:label "service URI" ;
-  rdfs:range rdfs:Resource ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:silent
-  rdf:type rdf:Property ;
-  rdfs:label "silent" ;
-  rdfs:range xsd:boolean ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:subPath
-  rdf:type rdf:Property ;
-  rdfs:comment "The child path of a property path expression. This is used by ReversePath and ModPath." ;
-  rdfs:label "sub path" ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:subject
-  rdf:type rdf:Property ;
-  rdfs:comment "A resource or Variable describing the subject of a triple." ;
-  rdfs:domain sp:Tuple ;
-  rdfs:label "subject" ;
-  rdfs:range rdfs:Resource ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:systemProperty
-  rdf:type rdf:Property ;
-  rdfs:comment "An abstract base proprerty that groups together the SP system properties. Users typically don't need to see them anyway." ;
-  rdfs:label "SP system property" ;
-.
-sp:templates
-  rdf:type rdf:Property ;
-  rdfs:comment "Points to a list of TripleTemplates that form the head of a Construct query." ;
-  rdfs:domain sp:Construct ;
-  rdfs:label "templates" ;
-  rdfs:range rdf:List ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:text
-  rdf:type rdf:Property ;
-  rdfs:comment "Can be attached to sp:Queries to store a textual representation of the query. This can be useful for tools that do not have a complete SPIN Syntax parser available." ;
-  rdfs:label "text" ;
-  rdfs:range xsd:string ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:using
-  rdf:type rdf:Property ;
-  rdfs:domain sp:Modify ;
-  rdfs:label "using" ;
-  rdfs:range rdfs:Resource ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:usingNamed
-  rdf:type rdf:Property ;
-  rdfs:domain sp:Modify ;
-  rdfs:label "using named" ;
-  rdfs:range rdfs:Resource ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:values
-  rdf:type rdf:Property ;
-  rdfs:comment "The VALUES block at the end of a query. The object may just be an untyped blank node, i.e. the sp:Values type triple is optional." ;
-  rdfs:domain sp:Query ;
-  rdfs:label "values" ;
-  rdfs:range sp:Values ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:varName
-  rdf:type rdf:Property ;
-  rdfs:comment "The name of a Variable." ;
-  rdfs:domain sp:Variable ;
-  rdfs:label "varName" ;
-  rdfs:range xsd:string ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:varNames
-  rdf:type rdf:Property ;
-  rdfs:comment "The names of the variables (xsd:strings) of the variables declared for a VALUES element." ;
-  rdfs:domain sp:Values ;
-  rdfs:label "var names" ;
-  rdfs:range rdf:List ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:variable
-  rdf:type rdf:Property ;
-  rdfs:comment "The variable of a Bind element." ;
-  rdfs:domain sp:Bind ;
-  rdfs:label "variable" ;
-  rdfs:range sp:Variable ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:where
-  rdf:type rdf:Property ;
-  rdfs:comment "The WHERE clause of a Query." ;
-  rdfs:label "where" ;
-  rdfs:range sp:ElementList ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-sp:with
-  rdf:type rdf:Property ;
-  rdfs:domain sp:Modify ;
-  rdfs:label "with" ;
-  rdfs:range rdfs:Resource ;
-  rdfs:subPropertyOf sp:systemProperty ;
-.
-<http://spinrdf.org/spin>
-  rdfs:comment "An RDF Schema that can be used to attach constraints and rules to RDFS classes, and to encapsulate reusable SPARQL queries into functions and templates." ;
-  rdfs:label "SPIN Modeling Vocabulary" ;
-  owl:versionInfo "1.4" ;
-.
-spin:AskTemplate
-  rdf:type rdfs:Class ;
-  spin:constraint [
-      rdf:type spl:Attribute ;
-      spl:maxCount 1 ;
-      spl:minCount 0 ;
-      spl:predicate spin:body ;
-      spl:valueType sp:Ask ;
-      rdfs:comment "The ASK query wrapped by this template." ;
-    ] ;
-  rdfs:comment "A SPIN template that wraps an ASK query." ;
-  rdfs:label "Ask template" ;
-  rdfs:subClassOf spin:Template ;
-.
-spin:AskTemplates
-  rdf:type spin:AskTemplate ;
-  spin:abstract "true"^^xsd:boolean ;
-  rdfs:comment "Suggested abstract base class for all AskTemplates." ;
-  rdfs:label "Ask templates" ;
-  rdfs:subClassOf spin:Templates ;
-.
-spin:Column
-  rdf:type rdfs:Class ;
-  rdfs:comment "Provides metadata about a column in the result set of a (SPARQL) query, for example of the body queries of SPIN templates. Columns can define human-readable labels that serve as column titles, using rdfs:label." ;
-  rdfs:label "Column" ;
-  rdfs:subClassOf rdfs:Resource ;
-.
-spin:ConstraintViolation
-  rdf:type rdfs:Class ;
-  rdfs:comment "An object that can be created by spin:constraints to provide information about a constraint violation." ;
-  rdfs:label "Constraint violation" ;
-  rdfs:subClassOf rdfs:Resource ;
-.
-spin:ConstraintViolationLevel
-  rdf:type rdfs:Class ;
-  rdfs:comment "The type of the supported levels of constraint violations, including spin:Error and spin:Warning." ;
-  rdfs:label "Constraint violation level" ;
-  rdfs:subClassOf rdfs:Resource ;
-.
-spin:ConstructTemplate
-  rdf:type rdfs:Class ;
-  spin:constraint [
-      rdf:type spl:Attribute ;
-      spl:maxCount 1 ;
-      spl:minCount 0 ;
-      spl:predicate spin:body ;
-      spl:valueType sp:Construct ;
-      rdfs:comment "The CONSTRUCT query wrapped by this template." ;
-    ] ;
-  rdfs:label "Construct template" ;
-  rdfs:subClassOf spin:Template ;
-.
-spin:ConstructTemplates
-  rdf:type spin:ConstructTemplate ;
-  spin:abstract "true"^^xsd:boolean ;
-  rdfs:comment "Suggested abstract base class for all ConstructTemplates." ;
-  rdfs:label "Construct templates" ;
-  rdfs:subClassOf spin:Templates ;
-.
-spin:Error
-  rdf:type spin:ConstraintViolationLevel ;
-  rdfs:comment "Indicates that the associated constraint violation is an error that should be fixed." ;
-  rdfs:label "Error" ;
-.
-spin:Fatal
-  rdf:type spin:ConstraintViolationLevel ;
-  rdfs:comment "Indicates that the associated constraint violation is a severe error that must be fixed. Constraint checking engines may decide to stop further evaluation once a fatal error has been detected." ;
-  rdfs:label "Fatal" ;
-.
-spin:Function
-  rdf:type rdfs:Class ;
-  spin:constraint [
-      rdf:type spl:Attribute ;
-      spl:maxCount 1 ;
-      spl:minCount 0 ;
-      spl:predicate spin:body ;
-      rdfs:comment "the body of the function" ;
-    ] ;
-  rdfs:comment "Metaclass for functions that can be used in SPARQL expressions (e.g. FILTER or BIND). The function themselves are classes that are instances of this metaclass. Function calls are instances of the function classes, with property values for the arguments." ;
-  rdfs:label "Function" ;
-  rdfs:subClassOf spin:Module ;
-.
-spin:Functions
-  rdf:type spin:Function ;
-  spin:abstract "true"^^xsd:boolean ;
-  rdfs:comment "An abstract base class for all defined functions. This class mainly serves as a shared root so that the various instances of the Function metaclass are grouped together." ;
-  rdfs:label "Functions" ;
-  rdfs:subClassOf spin:Modules ;
-.
-spin:Info
-  rdf:type spin:ConstraintViolationLevel ;
-  rdfs:comment "Indicates that the associated constraint violation is a not a problem. This level can be used for diagnostic and debugging purposes." ;
-  rdfs:label "Info" ;
-.
-spin:LibraryOntology
-  rdf:type rdfs:Class ;
-  rdfs:comment "A marker class that can be attached to base URIs (ontologies) to instruct SPIN engines that this ontology only contains a library of SPIN declarations. Library Ontologies should be ignored by SPIN inference engines even if they have been imported by a domain model. For example, a SPIN version of OWL RL may contain all the OWL RL axioms, attached to owl:Thing, but nothing else. However, when executed, these axioms should not be executed over themselves, because we don't want the system to reason about the SPIN triples to speed up things." ;
-  rdfs:label "Library ontology" ;
-  rdfs:subClassOf owl:Ontology ;
-.
-spin:MagicProperties
-  rdf:type spin:MagicProperty ;
-  spin:abstract "true"^^xsd:boolean ;
-  rdfs:comment "An abstract superclass that can be used to group all spin:MagicProperty instances under a single parent class." ;
-  rdfs:label "Magic properties" ;
-  rdfs:subClassOf spin:Functions ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
-spin:MagicProperty
-  rdf:type rdfs:Class ;
-  rdfs:label "Magic property" ;
-  rdfs:subClassOf spin:Function ;
-  rdfs:subClassOf rdf:Property ;
-.
-spin:Module
-  rdf:type rdfs:Class ;
-  rdfs:comment "An abstract building block of a SPARQL system. A Module can take Arguments as input and applies them on an input RDF Graph. The Arguments should be declared as spin:constraints." ;
-  rdfs:label "Module" ;
-  rdfs:subClassOf rdfs:Class ;
-.
-spin:Modules
-  rdf:type rdfs:Class ;
-  spin:constructor [
-      rdf:type spl:ConstructDefaultValues ;
-    ] ;
-  rdfs:comment "An \"artificial\" parent class for all Functions and Templates." ;
-  rdfs:label "Modules" ;
-  rdfs:subClassOf rdfs:Resource ;
-.
-spin:Rule
-  rdf:type rdfs:Class ;
-  rdfs:comment "Groups together the kinds of SPARQL commands that can appear as SPIN rules and constructors: CONSTRUCT, DELETE WHERE and DELETE/INSERT. This class is never to be instantiated directly." ;
-  rdfs:label "Rule" ;
-  rdfs:subClassOf sp:Command ;
-.
-spin:RuleProperty
-  rdf:type rdfs:Class ;
-  rdfs:comment "The metaclass of spin:rule and its subproperties. spin:RuleProperties can have additional metadata attached to them." ;
-  rdfs:label "Rule property" ;
-  rdfs:subClassOf rdf:Property ;
-.
-spin:SelectTemplate
-  rdf:type rdfs:Class ;
-  spin:constraint [
-      rdf:type spl:Attribute ;
-      spl:maxCount 1 ;
-      spl:minCount 0 ;
-      spl:predicate spin:body ;
-      spl:valueType sp:Select ;
-      rdfs:comment "The SELECT query wrapped by this template." ;
-    ] ;
-  rdfs:comment "A SPIN template that wraps a SELECT query." ;
-  rdfs:label "Select template" ;
-  rdfs:subClassOf spin:TableDataProvider ;
-  rdfs:subClassOf spin:Template ;
-.
-spin:SelectTemplates
-  rdf:type spin:SelectTemplate ;
-  spin:abstract "true"^^xsd:boolean ;
-  rdfs:comment "Suggested abstract base class for all SelectTemplates." ;
-  rdfs:label "Select templates" ;
-  rdfs:subClassOf spin:Templates ;
-.
-spin:TableDataProvider
-  rdf:type rdfs:Class ;
-  rdfs:comment """An abstraction of objects that can produce tabular data. This serves as a base class of spin:SelectTemplate, because SELECT queries can produce tables with columns for each result variable. However, other types of TableDataProviders are conceivable by other frameworks, and this class may prove as a useful shared foundation.
-
-TableDataProviders can link to definitions of columns via spin:column, and these definitions can inform rendering engines.""" ;
-  rdfs:label "Table data provider" ;
-  rdfs:subClassOf rdfs:Class ;
-.
-spin:Template
-  rdf:type rdfs:Class ;
-  spin:constraint [
-      rdf:type spl:Attribute ;
-      spl:maxCount 1 ;
-      spl:minCount 0 ;
-      spl:predicate spin:body ;
-      rdfs:comment "the body of the Template" ;
-    ] ;
-  rdfs:comment "The metaclass of SPIN templates. Templates are classes that are instances of this class. A template represents a reusable SPARQL query or update request that can be parameterized with arguments. Templates can be instantiated in places where normally a SPARQL query or update request is used, in particular as spin:rules and spin:constraints." ;
-  rdfs:label "Template" ;
-  rdfs:subClassOf spin:Module ;
-.
-spin:Templates
-  rdf:type spin:Template ;
-  spin:abstract "true"^^xsd:boolean ;
-  rdfs:comment "Suggested abstract base class for all Templates." ;
-  rdfs:label "Templates" ;
-  rdfs:subClassOf spin:Modules ;
-.
-spin:UpdateTemplate
-  rdf:type rdfs:Class ;
-  spin:constraint [
-      rdf:type spl:Attribute ;
-      spl:maxCount 1 ;
-      spl:minCount 0 ;
-      spl:predicate spin:body ;
-      spl:valueType sp:Update ;
-      rdfs:comment "The UPDATE command wrapped by this template." ;
-    ] ;
-  rdfs:comment "A SPIN template that has an UPDATE command as its body." ;
-  rdfs:label "Update template" ;
-  rdfs:subClassOf spin:Template ;
-.
-spin:UpdateTemplates
-  rdf:type spin:UpdateTemplate ;
-  spin:abstract "true"^^xsd:boolean ;
-  rdfs:comment "Suggested abstract base class for all UpdateTemplates." ;
-  rdfs:label "Update templates" ;
-  rdfs:subClassOf spin:Templates ;
-.
-spin:Warning
-  rdf:type spin:ConstraintViolationLevel ;
-  rdfs:comment "Indicates that the associated constraint violation is a problem that may not have to be fixed but may lead to issues in the future." ;
-  rdfs:label "Warning" ;
-.
-spin:_arg1
-  rdf:type sp:Variable ;
-  sp:varName "arg1" ;
-.
-spin:_arg2
-  rdf:type sp:Variable ;
-  sp:varName "arg2" ;
-.
-spin:_arg3
-  rdf:type sp:Variable ;
-  sp:varName "arg3" ;
-.
-spin:_arg4
-  rdf:type sp:Variable ;
-  sp:varName "arg4" ;
-.
-spin:_arg5
-  rdf:type sp:Variable ;
-  sp:varName "arg5" ;
-.
-spin:_this
-  rdf:type sp:Variable ;
-  sp:varName "this" ;
-  rdfs:comment "A system variable representing the current context instance in a rule or constraint." ;
-  rdfs:label "_this" ;
-.
-spin:abstract
-  rdf:type rdf:Property ;
-  rdfs:comment "Can be set to true to indicate that this module shall not be instantiated. Abstract modules are only there to organize other modules into hierarchies." ;
-  rdfs:domain spin:Module ;
-  rdfs:label "abstract" ;
-  rdfs:range xsd:boolean ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
-spin:ask
-  rdf:type spin:Function ;
-  rdfs:comment """Executes a given ASK query and returns its boolean result. The first argument must point to an sp:Ask or a SPIN template call that has an ASK query as its body. All subsequent argument can come in pairs, with the first one being a variable name and the second its binding.
-
-Example:
-
-    BIND (spin:ask(?query, \"this\", owl:Thing) AS ?result) .
-
-will execute the sp:Ask behind ?query with the variable ?this pre-bound to owl:Thing.""" ;
-  rdfs:label "ask" ;
-  rdfs:subClassOf spin:Functions ;
-.
-spin:body
-  rdf:type rdf:Property ;
-  rdfs:comment "The body of a Function or Template. This points to a Query instance. For Functions, this is limited to either ASK or SELECT type queries. If the body is the ASK function then the return value is xsd:boolean. Otherwise, the SELECT query must have a single return variable. The first binding of this SELECT query will be returned as result of the function call." ;
-  rdfs:label "body" ;
-  rdfs:range sp:Command ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
-spin:cachable
-  rdf:type rdf:Property ;
-  rdfs:comment "Can be set to true to instruct the SPIN engine that it may cache the results of all calls to the associated function. Functions should only be marked as cachable if the same combination of input arguments always returns the same result. Functions that query a graph or other background data that may change over time should not be cached. Caching can significantly improve performance of frequently needed functions." ;
-  rdfs:domain spin:Function ;
-  rdfs:label "cachable" ;
-  rdfs:range xsd:boolean ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
-spin:column
-  rdf:type rdf:Property ;
-  rdfs:comment "Can link a TableDataProvider (esp. SelectTemplate) with one or more columns that provide metadata for rendering purposes. Columns can be sorted by their spin:columnIndex (which must align with the ordering of variables in the SELECT query starting with 0). Not all result variables of the underlying query need to have a matching spin:Column." ;
-  rdfs:domain spin:TableDataProvider ;
-  rdfs:label "column" ;
-  rdfs:range spin:Column ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
-spin:columnIndex
-  rdf:type rdf:Property ;
-  rdfs:comment "The index of a column (from left to right) starting at 0." ;
-  rdfs:domain spin:Column ;
-  rdfs:label "column index" ;
-  rdfs:range xsd:integer ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
-spin:columnType
-  rdf:type rdf:Property ;
-  rdfs:comment "The datatype or resource type of a spin:Column. For example this is useful as metadata to inform a rendering engine that numeric columns (e.g. xsd:float) need to be right-aligned." ;
-  rdfs:domain spin:Column ;
-  rdfs:label "column type" ;
-  rdfs:range rdfs:Class ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
-spin:columnWidth
-  rdf:type rdf:Property ;
-  rdfs:comment "The preferred width of the associated Column, for display purposes. Values in pixels (rendering engines may multiply the values depending on resolution)." ;
-  rdfs:domain spin:Column ;
-  rdfs:label "column width" ;
-  rdfs:range xsd:integer ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
-spin:command
-  rdf:type rdf:Property ;
-  rdfs:comment "Can be used to link a resource with a SPARQL query or update request (sp:Command)." ;
-  rdfs:label "command" ;
-  rdfs:range sp:Command ;
-.
-spin:constraint
-  rdf:type rdf:Property ;
-  rdfs:comment "Links a class with constraints on its instances. The values of this property are \"axioms\" expressed as CONSTRUCT or ASK queries where the variable ?this refers to the instances of the surrounding class. ASK queries must evaluate to false for each member of this class - returning true means that the instance ?this violates the constraint. CONSTRUCT queries must create instances of spin:ConstraintViolation to provide details on the reason for the violation." ;
-  rdfs:domain rdfs:Class ;
-  rdfs:label "constraint" ;
-  rdfs:subPropertyOf spin:query ;
-.
-spin:construct
-  rdf:type spin:MagicProperty ;
-  rdfs:comment """Evaluates a given sp:Construct or SPIN template call (first argument on the left hand side) and binds the resulting triples to the variables on the right hand side.
-
-Example:
-
-    (?query \"this\" owl:Thing) spin:construct (?s ?p ?o)
-
-will execute the sp:Construct ?query using the binding of owl:Thing to ?this. The resulting triples will be bound to ?s, ?p and ?o. If any of ?s ?p ?o are bound, it will only return the matching triples.""" ;
-  rdfs:label "construct" ;
-  rdfs:subClassOf spin:MagicProperties ;
-.
-spin:constructViolations
-  rdf:type spin:MagicProperty ;
-  spin:constraint [
-      rdf:type spl:Argument ;
-      spl:predicate sp:arg1 ;
-      spl:valueType rdfs:Resource ;
-      rdfs:comment "The instance to check." ;
-    ] ;
-  spin:constraint [
-      rdf:type spl:Argument ;
-      spl:predicate sp:arg2 ;
-      spl:valueType rdfs:Class ;
-      rdfs:comment "The class that this type is validated against." ;
-    ] ;
-  rdfs:comment """Takes an instance (?arg1) and a class definition (?arg2) and returns all constraint violations for that instance as triples. This magic property basically runs its own constraint checker for defining meta-constraints, and can also be used to classify instances.
-
-Example:
-
-    CONSTRUCT {
-        ?s ?p ?o .
-    }
-    WHERE {
-        (my:Person my:OldPerson) spin:constructViolations (?s ?p ?o) .
-    }""" ;
-  rdfs:label "construct violations" ;
-  rdfs:subClassOf spin:MagicProperties ;
-.
-spin:constructor
-  rdf:type rdf:Property ;
-  rdfs:comment "Can be used to attach a \"constructor\" to a class. A constructor is a SPARQL CONSTRUCT query or INSERT/DELETE Update operation that can add initial values to the current instance. At execution time, the variable ?this is bound to the current instance. Tools can call constructors of a class and its superclasses when an instance of a class has been created. Constructors will also be used to initialize resources that have received a new rdf:type triple as a result of spin:rules firing." ;
-  rdfs:domain rdfs:Class ;
-  rdfs:label "constructor" ;
-  rdfs:range spin:Rule ;
-  rdfs:subPropertyOf spin:command ;
-.
-spin:eval
-  rdf:type spin:Function ;
-  rdfs:comment "Evaluates a given SPIN expression or SELECT or ASK query, and returns its result. The first argument must be the expression in SPIN RDF syntax. All other arguments must come in pairs: first a property name, and then a value. These name/value pairs will be pre-bound variables for the execution of the expression." ;
-  rdfs:label "eval" ;
-  rdfs:subClassOf spin:Functions ;
-.
-spin:evalInGraph
-  rdf:type spin:Function ;
-  rdfs:comment "Evaluates a given SPIN expression or SELECT or ASK query, and returns its result. The first argument must be the expression in SPIN RDF syntax. This RDF representation of this expression is expected to be in the currently active query graph. The second argument is the URI of a graph that the actual query shall be evaluated against. All other arguments must come in pairs: first a property name, and then a value. These name/value pairs will be pre-bound variables for the execution of the expression." ;
-  rdfs:label "eval in graph" ;
-  rdfs:subClassOf spin:Functions ;
-.
-spin:fix
-  rdf:type rdf:Property ;
-  rdfs:comment "Can be used to link a ConstraintViolation with one or more UPDATE Templates that would help fix the violation." ;
-  rdfs:domain spin:ConstraintViolation ;
-  rdfs:label "fix" ;
-  rdfs:range spin:UpdateTemplate ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
-spin:imports
-  rdf:type owl:OntologyProperty ;
-  rdfs:comment "Can be used to link an RDF graph (usually the instance of owl:Ontology) with a SPIN library to define constraints. SPIN-aware tools should include the definitions from those libraries for constraint checking. Using such libraries is a simpler alternative than explicitly importing them using owl:imports, because it does not force all the SPIN triples into the RDF model." ;
-  rdfs:domain owl:Ontology ;
-  rdfs:label "imports" ;
-  rdfs:range owl:Ontology ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
-spin:inverseBody
-  rdf:type rdf:Property ;
-  rdfs:comment "The inverse body of a magic property - used to provide a more optimized query if there is one result variable (on the right). The values must be instances of Select and must return SELECT ?arg1 etc. The WHERE clause can access the variable ?object to refer to the provided value on the right hand side of the magic property." ;
-  rdfs:domain spin:MagicProperty ;
-  rdfs:label "inverse body" ;
-  rdfs:range sp:Select ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
-spin:labelTemplate
-  rdf:type rdf:Property ;
-  rdfs:comment "A template string for displaying instantiations of a module in human-readable form. The template may contain the argument variable names in curly braces to support substitution. For example, \"The number of values of the {?arg1} property.\"" ;
-  rdfs:domain spin:Template ;
-  rdfs:label "label template" ;
-  rdfs:range xsd:string ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
-spin:nextRuleProperty
-  rdf:type rdf:Property ;
-  rdfs:comment "Can be used to link two sub-properties of spin:rule (or spin:rule itself) to instruct the SPIN engine to execute one set of rules before another one. The values of the subject property will be executed before those of the object property." ;
-  rdfs:domain spin:RuleProperty ;
-  rdfs:label "next rule property" ;
-  rdfs:range spin:RuleProperty ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
-spin:private
-  rdf:type rdf:Property ;
-  rdfs:comment "Can be set to true to indicate that a SPIN function or template is only meant to be used as a helper of other modules, but not directly. Among others, this allows user interfaces to filter out private modules. Furthermore, it tells potential users of this module that they should avoid using this module, as it may not be stable." ;
-  rdfs:domain spin:Module ;
-  rdfs:label "private" ;
-  rdfs:range xsd:boolean ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
-spin:query
-  rdf:type rdf:Property ;
-  rdfs:comment "Can be used to point from any resource to a Query." ;
-  rdfs:label "query" ;
-  rdfs:range sp:Query ;
-  rdfs:subPropertyOf spin:command ;
-.
-spin:returnType
-  rdf:type rdf:Property ;
-  rdfs:comment "The return type of a Function, e.g. xsd:string." ;
-  rdfs:domain spin:Function ;
-  rdfs:label "return type" ;
-  rdfs:range rdfs:Class ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
-spin:rule
-  rdf:type spin:RuleProperty ;
-  rdfs:comment "An inferencing rule attached to a class. Rules are expressed as CONSTRUCT queries or INSERT/DELETE operations where the variable ?this will be bound to the current instance of the class. These inferences can be used to derive new values from existing values at the instance." ;
-  rdfs:domain rdfs:Class ;
-  rdfs:label "rule" ;
-  rdfs:range spin:Rule ;
-  rdfs:subPropertyOf spin:command ;
-.
-spin:rulePropertyMaxIterationCount
-  rdf:type rdf:Property ;
-  rdfs:comment "Can be attached to spin:rule (or subclasses thereof) to instruct a SPIN rules engine that it shall only execute the rules max times. If no value is specified, then the rules will be executed with no specific limit." ;
-  rdfs:domain spin:RuleProperty ;
-  rdfs:label "rule property max iteration count" ;
-  rdfs:range xsd:integer ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
-spin:select
-  rdf:type spin:MagicProperty ;
-  rdfs:comment """Executes a given SELECT or ASK query (or a corresponding SPIN template call) and binds its result rows to the variables specified on the right hand side. May also pre-bind variables for the query execution, using name-value pairs on the left hand side.
-
-Example:
-
-    (?query \"this\" owl:Thing) spin:select (?a ?b)
-
-will execute the sp:Select or sp:Ask that ?query points to and pre-bind ?this with the value of owl:Thing for the execution of the query. The first result variable of the query's result set will be bound to ?a, the second to ?b etc. If the nodes on the right are bound (or constants) then it will match with the values from the result set.
-
-Note that the first argument on the left hand side can be an instance of a SPIN template (but not the template itself). If you need to execute a template, retrieve its spin:body first.""" ;
-  rdfs:label "select" ;
-  rdfs:subClassOf spin:MagicProperties ;
-.
-spin:symbol
-  rdf:type rdf:Property ;
-  rdfs:comment "The symbol of a function, e.g. \"=\" for the eq function." ;
-  rdfs:domain spin:Function ;
-  rdfs:label "symbol" ;
-  rdfs:range xsd:string ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
-spin:systemProperty
-  rdf:type rdf:Property ;
-  rdfs:comment "An \"abstract\" base property that groups together those system properties that the user will hardly ever need to see in property trees. This property may be dropped in future versions of this ontology - right now it's mainly here for convenience." ;
-  rdfs:label "system property" ;
-.
-spin:thisUnbound
-  rdf:type rdf:Property ;
-  rdfs:comment "Can be set to true for SPIN rules and constraints that do not require pre-binding the variable ?this with all members of the associated class. This flag should only be set to true if the WHERE clause is sufficiently strong to only bind instances of the associated class, or its subclasses. In those cases, the engine can greatly improve performance of query execution, because it does not need to add clauses to narrow down the WHERE clause." ;
-  rdfs:domain sp:Construct ;
-  rdfs:label "this unbound" ;
-  rdfs:range xsd:boolean ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
-spin:update
-  rdf:type rdf:Property ;
-  rdfs:comment "Can be used to point from any resource to an Update." ;
-  rdfs:label "update" ;
-  rdfs:range sp:Update ;
-  rdfs:subPropertyOf spin:command ;
-.
-spin:violatesConstraints
-  rdf:type spin:Function ;
-  spin:returnType xsd:boolean ;
-  rdfs:comment "Checks whether a given instance (?arg1) violates any of the constraints defined for a given class (?arg2)." ;
-  rdfs:label "violates constraints" ;
-  rdfs:subClassOf spin:Functions ;
-.
-spin:violationDetail
-  rdf:type rdf:Property ;
-  rdfs:comment "Links a (parent) spin:ConstraintViolation with one or more (child) spin:ConstraintViolations that provide details on the parent violation. This is commonly used in conjunction with spin:constructViolations to indicate that certain violations have triggered the parent violation." ;
-  rdfs:domain spin:ConstraintViolation ;
-  rdfs:label "violation detail" ;
-  rdfs:range spin:ConstraintViolation ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
-spin:violationLevel
-  rdf:type rdf:Property ;
-  rdfs:comment "An optional attribute of ConstraintViolations to point at a violation level (such as Error and Warning). Defaults to spin:Error." ;
-  rdfs:domain spin:ConstraintViolation ;
-  rdfs:label "violation level" ;
-  rdfs:range spin:ConstraintViolationLevel ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
-spin:violationPath
-  rdf:type rdf:Property ;
-  rdfs:comment "An optional attribute of ConstraintViolations to provide a path expression from the root resource to the value that is invalid. If this is a URI then the path represents the predicate of a subject/predicate combination. Otherwise it should be a blank node of type sp:Path." ;
-  rdfs:domain spin:ConstraintViolation ;
-  rdfs:label "violation path" ;
-  rdfs:range rdfs:Resource ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
-spin:violationRoot
-  rdf:type rdf:Property ;
-  rdfs:comment "The root resource of the violation (often ?this in the constraint body)." ;
-  rdfs:domain spin:ConstraintViolation ;
-  rdfs:label "violation root" ;
-  rdfs:range rdfs:Resource ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
-spin:violationSource
-  rdf:type rdf:Property ;
-  rdfs:comment "Can be used to link a spin:ConstraintViolation with the query or template call that caused it. This property is typically filled in automatically by the constraint checking engine and does not need to be set manually. However, it can be useful to learn more about the origin of a violation." ;
-  rdfs:domain spin:ConstraintViolation ;
-  rdfs:label "violation source" ;
-  rdfs:range rdfs:Resource ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
-spin:violationValue
-  rdf:type rdf:Property ;
-  rdfs:comment "An optional attribute of ConstraintViolations to point at a specific RDF node that caused the violation. Should be accessible from the root via the violationPath." ;
-  rdfs:domain spin:ConstraintViolation ;
-  rdfs:label "violation value" ;
-  rdfs:subPropertyOf spin:systemProperty ;
-.
 <http://toop.tno.nl/organization>
   rdf:type owl:Ontology ;
   spin:imports <http://topbraid.org/spin/owlrl-all> ;
   spin:imports <http://topbraid.org/spin/rdfsplus> ;
   spin:imports <http://topbraid.org/spin/skosspin> ;
   spin:imports <http://topbraid.org/spin/spinowl> ;
+  owl:imports <http://spinrdf.org/spin> ;
   owl:imports <https://www.w3.org/2009/08/skos-reference/skos.rdf> ;
   owl:versionIRI <http://ec.toop.org/ns/2017/12/organization> ;
   owl:versionInfo "$Date: 2017/12/27 16:31:41$" ;
@@ -2604,11 +1291,75 @@ toop:Address_card1
 .
 toop:CompanyCode
   rdf:type owl:Class ;
+  spin:query [
+      rdf:type sp:Select ;
+      sp:resultVariables (
+          [
+            sp:varName "s" ;
+          ]
+          [
+            sp:varName "p" ;
+          ]
+          [
+            sp:varName "o" ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "o" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:eq ;
+                sp:arg1 [
+                    sp:varName "p" ;
+                  ] ;
+                sp:arg2 owl:equivalentClass ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:eq ;
+                sp:arg1 [
+                    rdf:type sp:str ;
+                    sp:arg1 [
+                        sp:varName "s" ;
+                      ] ;
+                  ] ;
+                sp:arg2 [
+                    rdf:type sp:concat ;
+                    sp:arg1 "http://toop.tno.nl/organization#" ;
+                    sp:arg2 "CompanyCode" ;
+                  ] ;
+              ] ;
+          ]
+        ) ;
+    ] ;
   rdfs:comment "The unique official company identifier_ "@en ;
   rdfs:label "Company code_"@en ;
   rdfs:subClassOf adms:Identifier ;
+  owl:equivalentClass elobr:EloniaBusinessCode ;
+  owl:equivalentClass freebr:FreedoniaBusinessCode ;
   owl:equivalentClass nhr:KvK-nummer ;
   skos:prefLabel "Company code" ;
+.
+toop:CompanyTypeScheme
+  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  rdfs:comment "Represents the member states' recognized company types, expressed in a consistent manner in a SKOS Concept Scheme"@en ;
+  rdfs:label "CompanyTypeScheme"@en ;
+  owl:equivalentClass skos:ConceptScheme ;
+  skos:prefLabel "CompanyTypeScheme" ;
 .
 toop:Foundation
   rdf:type rdfs:Class ;
@@ -2617,6 +1368,14 @@ toop:Foundation
   rdfs:label "Foundation"@en ;
   rdfs:subClassOf org:ChangeEvent ;
   skos:prefLabel "Foundation" ;
+.
+toop:MainSite
+  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  rdfs:comment "Represents the main office and/or premise at which the organization is located. Many organizations are spread across multiple sites and many sites will host multiple locations."@en ;
+  rdfs:label "Site"@en ;
+  rdfs:subClassOf org:Site ;
+  skos:prefLabel "Site" ;
 .
 toop:MyCompCode-Id123456
   rdf:type adms:Identifier ;
@@ -2627,7 +1386,7 @@ toop:MyCompCode-Id123456
   adms:schemeAgency "NL-KvK Kamer van Koophandel"@nl ;
 .
 toop:MyHasMainSite
-  rdf:type toop:Site ;
+  rdf:type toop:MainSite ;
   rdfs:comment "" ;
   rdfs:label "MyHasMainSite"@nl ;
   skos:prefLabel "MyHasMainSite" ;
@@ -2781,13 +1540,18 @@ toop:RegisteredOrganization
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty toop:registrationDate ;
+      owl:onProperty toop:companyCode ;
+      owl:someValuesFrom toop:CompanyCode ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:onProperty toop:companyCode ;
-      owl:someValuesFrom toop:CompanyCode ;
+      owl:onProperty toop:hasMainSite ;
+      owl:someValuesFrom toop:MainSite ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty toop:hasRegistration ;
+      owl:someValuesFrom toop:Registration ;
     ] ;
 .
 toop:Registration
@@ -2805,14 +1569,6 @@ toop:SSNumber
   rdfs:subClassOf adms:Identifier ;
   skos:prefLabel "SSNumber" ;
 .
-toop:Site
-  rdf:type rdfs:Class ;
-  rdf:type owl:Class ;
-  rdfs:comment "Represents an office or other premise at which the organization is located. Many organizations are spread across multiple sites and many sites will host multiple locations."@en ;
-  rdfs:label "Site"@en ;
-  rdfs:subClassOf org:Site ;
-  skos:prefLabel "Site" ;
-.
 toop:VATNumber
   rdf:type rdfs:Class ;
   rdfs:comment "The value added tax number of the company"@en ;
@@ -2827,10 +1583,20 @@ toop:activityDeclaration
   rdfs:subPropertyOf dcterms:description ;
   skos:prefLabel "activity declaration" ;
 .
+toop:companyAddress
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The postal address and the visiting address of the company"@en ;
+  rdfs:domain toop:MainSite ;
+  rdfs:label "company address_"@en ;
+  rdfs:range vcard:Organization ;
+  rdfs:subPropertyOf org:siteAddress ;
+.
 toop:companyCode
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The description of the main code of the company as unique identifier recorded in the registry. This tag should be used to give an identifier of the company in the local language. This should be used in conjunction with the CompanyNaceCode"@en ;
+  rdfs:domain toop:RegisteredOrganization ;
   rdfs:label "company code"@en ;
+  rdfs:range toop:CompanyCode ;
   skos:prefLabel "company code" ;
 .
 toop:companyNaceCode
@@ -2850,7 +1616,13 @@ toop:companyType
   rdf:type rdf:Property ;
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The legal type of the company_"@en ;
+  rdfs:domain toop:RegisteredOrganization ;
   rdfs:label "company type"@en ;
+  rdfs:range [
+      rdf:type owl:Restriction ;
+      owl:onProperty skos:inScheme ;
+      owl:someValuesFrom toop:CompanyTypeScheme ;
+    ] ;
   owl:equivalentProperty rov:orgType ;
   skos:prefLabel "company type" ;
 .
@@ -2864,12 +1636,21 @@ toop:foundationDate
 .
 toop:hasMainSite
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "The main site of the company or legal person."@en ;
+  rdfs:comment "The main site of the company."@en ;
   rdfs:domain toop:RegisteredOrganization ;
   rdfs:label "has main site"@nl ;
-  rdfs:range toop:Site ;
-  rdfs:subPropertyOf org:hasPrimarySite ;
+  rdfs:range toop:MainSite ;
+  owl:equivalentProperty org:hasPrimarySite ;
+  owl:inverseOf toop:siteOf ;
   skos:prefLabel "has main site" ;
+.
+toop:hasRegistration
+  rdf:type rdf:Property ;
+  rdfs:comment "This is the property that makes the link between a registered organization and the registration event." ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:label "has registration"@en ;
+  rdfs:range toop:Registration ;
+  skos:prefLabel "has registration"@en ;
 .
 toop:legalStatusEffectiveDate
   rdf:type rdf:Property ;
@@ -2906,18 +1687,24 @@ toop:registrationNumber
 toop:siteAddress
   rdf:type owl:ObjectProperty ;
   rdfs:comment "Represents the postal address and the visiting address of the company. "@en ;
-  rdfs:domain toop:Site ;
+  rdfs:domain toop:MainSite ;
   rdfs:label "siteAddress"@en ;
   rdfs:range vcard:Organization ;
   rdfs:subPropertyOf org:siteAddress ;
   skos:prefLabel "siteAddress" ;
+.
+toop:siteOf
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "A virtual or physical site is the site of a registered organization"@en ;
+  rdfs:label "site of_"@en ;
+  owl:equivalentProperty org:siteOf ;
 .
 toop:websiteURL
   rdf:type owl:ObjectProperty ;
   rdfs:comment "ISSUE: currently, TBC's local import for vcard seems incomplete - vcard:has* are missing"@en ;
   rdfs:comment "Represents the website URL of the company."@en ;
   rdfs:comment "Represents the website address of the company."@en ;
-  rdfs:domain toop:Site ;
+  rdfs:domain toop:MainSite ;
   rdfs:label "websiteAddress"@en ;
   rdfs:label "websiteURL"@en ;
   rdfs:range dcterms:URI ;
@@ -3287,7 +2074,6 @@ vcard:Address
   rdf:type owl:Class ;
   rdfs:comment "Resources that are vCard Addresses" ;
   rdfs:label "vCard Address Class" ;
-  rdfs:subClassOf owl:Thing ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:onProperty vcard:country-name ;
@@ -3349,7 +2135,6 @@ vcard:Dom
   rdf:type owl:Class ;
   rdfs:comment "Information related to a Domestic Address or Label" ;
   rdfs:label "Domestic" ;
-  rdfs:subClassOf owl:Thing ;
   rdfs:subClassOf [
       rdf:type owl:Class ;
       owl:unionOf (
@@ -3362,7 +2147,6 @@ vcard:Email
   rdf:type owl:Class ;
   rdfs:comment "Resources that are vCard Email Addresses" ;
   rdfs:label "Email" ;
-  rdfs:subClassOf owl:Thing ;
   owl:disjointWith vcard:Label ;
   owl:disjointWith vcard:Tel ;
 .
@@ -3376,7 +2160,6 @@ vcard:Home
   rdf:type owl:Class ;
   rdfs:comment "Information related to a Home Address, Label, or Telephone" ;
   rdfs:label "Home" ;
-  rdfs:subClassOf owl:Thing ;
   rdfs:subClassOf [
       rdf:type owl:Class ;
       owl:unionOf (
@@ -3402,7 +2185,6 @@ vcard:Intl
   rdf:type owl:Class ;
   rdfs:comment "Information related to an International Address or Label" ;
   rdfs:label "International" ;
-  rdfs:subClassOf owl:Thing ;
   rdfs:subClassOf [
       rdf:type owl:Class ;
       owl:unionOf (
@@ -3415,14 +2197,12 @@ vcard:Label
   rdf:type owl:Class ;
   rdfs:comment "Resources that are vCard Labels" ;
   rdfs:label "Label" ;
-  rdfs:subClassOf owl:Thing ;
   owl:disjointWith vcard:Tel ;
 .
 vcard:Location
   rdf:type owl:Class ;
   rdfs:comment "Resources that are vCard geographic locations" ;
   rdfs:label "vCard Geographic Location Class" ;
-  rdfs:subClassOf owl:Thing ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:onProperty vcard:latitude ;
@@ -3450,7 +2230,6 @@ vcard:Name
   rdf:type owl:Class ;
   rdfs:comment "Resources that are vCard personal names" ;
   rdfs:label "vCard Name Class" ;
-  rdfs:subClassOf owl:Thing ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:onProperty vcard:additional-name ;
@@ -3481,7 +2260,6 @@ vcard:Organization
   rdf:type owl:Class ;
   rdfs:comment "Resources that are vCard organizations" ;
   rdfs:label "vCard Organization Class" ;
-  rdfs:subClassOf owl:Thing ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:onProperty vcard:organization-name ;
@@ -3509,7 +2287,6 @@ vcard:Parcel
   rdf:type owl:Class ;
   rdfs:comment "Information related to a Parcel Address or Label" ;
   rdfs:label "Parcel" ;
-  rdfs:subClassOf owl:Thing ;
   rdfs:subClassOf [
       rdf:type owl:Class ;
       owl:unionOf (
@@ -3522,7 +2299,6 @@ vcard:Postal
   rdf:type owl:Class ;
   rdfs:comment "Information related to a Postal Address or Label" ;
   rdfs:label "Postal" ;
-  rdfs:subClassOf owl:Thing ;
   rdfs:subClassOf [
       rdf:type owl:Class ;
       owl:unionOf (
@@ -3535,7 +2311,6 @@ vcard:Pref
   rdf:type owl:Class ;
   rdfs:comment "Information related to a Preferred Address, Email, Label, or Telephone" ;
   rdfs:label "Preferred" ;
-  rdfs:subClassOf owl:Thing ;
   rdfs:subClassOf [
       rdf:type owl:Class ;
       owl:unionOf (
@@ -3550,13 +2325,11 @@ vcard:Tel
   rdf:type owl:Class ;
   rdfs:comment "Resources that are vCard Telephony communication mechanisms" ;
   rdfs:comment "Telephone" ;
-  rdfs:subClassOf owl:Thing ;
 .
 vcard:VCard
   rdf:type owl:Class ;
   rdfs:comment "Resources that are vCards and the URIs that denote these vCards can also be the same URIs that denote people/orgs" ;
   rdfs:label "vCard Class" ;
-  rdfs:subClassOf owl:Thing ;
 .
 vcard:Video
   rdf:type owl:Class ;
@@ -3574,7 +2347,6 @@ vcard:Work
   rdf:type owl:Class ;
   rdfs:comment "Information related to a Work Address, Label, or Telephone" ;
   rdfs:label "Work" ;
-  rdfs:subClassOf owl:Thing ;
   rdfs:subClassOf [
       rdf:type owl:Class ;
       owl:unionOf (
@@ -3964,7 +2736,6 @@ adms:Asset
   rdfs:comment "An Asset is an abstract entity that reflects the intellectual content of the asset and represents those characteristics of the asset that are independent of its physical embodiment. This abstract entity combines the FRBR entities work (a distinct intellectual or artistic creation) and expression (the intellectual or artistic realization of a work). Assets can be versioned. Every time the intellectual content of an asset changes, the result is considered to be a new asset that can be linked to previous and next versions of the Asset. The physical embodiment of an Asset is called an Asset Distribution. A particular Asset may have zero or more Asset Distributions."@en ;
   rdfs:isDefinedBy <http://www.w3.org/TR/vocab-adms/> ;
   rdfs:label "Asset"@en ;
-  rdfs:subClassOf rdfs:Resource ;
   rdfs:subClassOf dcat:Dataset ;
 .
 adms:AssetDistribution
@@ -3973,7 +2744,6 @@ adms:AssetDistribution
   rdfs:comment "An Asset Distribution represents a particular physical embodiment of an Asset, which is an example of the FRBR entity manifestation (the physical embodiment of an expression of a work). An Asset Distribution is typically a downloadable computer file (but in principle it could also be a paper document) that implements the intellectual content of an Asset. A particular Asset Distribution is associated with one and only one Asset, while all Distributions of an Asset share the same intellectual content in different physical formats. Asset Distributions themselves are not versioned."@en ;
   rdfs:isDefinedBy <http://www.w3.org/TR/vocab-adms/> ;
   rdfs:label "Asset Distribution"@en ;
-  rdfs:subClassOf rdfs:Resource ;
   rdfs:subClassOf dcat:Distribution ;
 .
 adms:AssetRepository
@@ -3982,7 +2752,6 @@ adms:AssetRepository
   rdfs:comment "An Asset Repository is a system or service that provides facilities for storage and maintenance of descriptions of Assets and Asset Distributions, and functionality that allows users to search and access these descriptions. An Asset Repository will typically contain descriptions of several Assets and related Asset Distributions."@en ;
   rdfs:isDefinedBy <http://www.w3.org/TR/vocab-adms/> ;
   rdfs:label "Asset Repository"@en ;
-  rdfs:subClassOf rdfs:Resource ;
   rdfs:subClassOf dcat:Catalog ;
 .
 adms:Identifier
@@ -3997,7 +2766,6 @@ adms:Identifier
     dcterms:created to provide the date on which the identifier was issued."""^^rdf:XMLLiteral ;
   rdfs:isDefinedBy <http://www.w3.org/TR/vocab-adms/> ;
   rdfs:label "Identifier"@en ;
-  rdfs:subClassOf rdfs:Resource ;
 .
 adms:identifier
   rdf:type rdf:Property ;
@@ -4130,8 +2898,20 @@ org:
       foaf:name "Shuji Kamitsuna" ;
     ] ;
   dcterms:contributor [
+      foaf:homepage <http://www.asahi-net.or.jp/~ax2s-kmtn/> ;
+      foaf:name "Shuji Kamitsuna" ;
+    ] ;
+  dcterms:contributor [
       foaf:mbox "antonio.maccioni@agid.gov.it" ;
       foaf:name "Antonio Maccioni" ;
+    ] ;
+  dcterms:contributor [
+      foaf:mbox "antonio.maccioni@agid.gov.it" ;
+      foaf:name "Antonio Maccioni" ;
+    ] ;
+  dcterms:contributor [
+      foaf:mbox "dave@epimorphics.com" ;
+      foaf:name "Dave Reynolds" ;
     ] ;
   dcterms:contributor [
       foaf:mbox "dave@epimorphics.com" ;
@@ -4142,8 +2922,20 @@ org:
       foaf:name "Dominique Guardiola" ;
     ] ;
   dcterms:contributor [
+      foaf:mbox "dguardiola@quinode.fr" ;
+      foaf:name "Dominique Guardiola" ;
+    ] ;
+  dcterms:contributor [
       foaf:mbox "emontiel@fi.upm.es" ;
       foaf:name "Elena Montiel Ponsoda" ;
+    ] ;
+  dcterms:contributor [
+      foaf:mbox "emontiel@fi.upm.es" ;
+      foaf:name "Elena Montiel Ponsoda" ;
+    ] ;
+  dcterms:contributor [
+      foaf:mbox "giorgia.lodi@agid.gov.it" ;
+      foaf:name "Giorgia Lodi" ;
     ] ;
   dcterms:contributor [
       foaf:mbox "giorgia.lodi@agid.gov.it" ;
@@ -4154,8 +2946,20 @@ org:
       foaf:name "Guadalupe Aguado de Cea" ;
     ] ;
   dcterms:contributor [
+      foaf:mbox "lupe@fi.upm.es" ;
+      foaf:name "Guadalupe Aguado de Cea" ;
+    ] ;
+  dcterms:contributor [
       foaf:mbox "mpoveda@fi.upm.es" ;
       foaf:name "María Poveda Villalón" ;
+    ] ;
+  dcterms:contributor [
+      foaf:mbox "mpoveda@fi.upm.es" ;
+      foaf:name "María Poveda Villalón" ;
+    ] ;
+  dcterms:contributor [
+      foaf:mbox "ogiraldo@fi.upm.es" ;
+      foaf:name "Olga Ximena Giraldo" ;
     ] ;
   dcterms:contributor [
       foaf:mbox "ogiraldo@fi.upm.es" ;
@@ -4248,7 +3052,6 @@ org:Membership
   rdfs:label "Engagement"@fr ;
   rdfs:label "Membership"@en ;
   rdfs:label "membresía"@es ;
-  rdfs:subClassOf owl:Thing ;
   owl:disjointWith org:ChangeEvent ;
   owl:disjointWith org:Site ;
 .
@@ -4265,13 +3068,15 @@ org:Organization
   rdfs:label "Organization"@en ;
   rdfs:label "Organizzazione"@it ;
   rdfs:label "organización"@es ;
-  rdfs:subClassOf owl:Thing ;
   rdfs:subClassOf foaf:Agent ;
   owl:disjointWith org:ChangeEvent ;
   owl:disjointWith org:Membership ;
   owl:disjointWith org:Role ;
   owl:disjointWith org:Site ;
   owl:equivalentClass foaf:Organization ;
+  owl:hasKey (
+      org:identifier
+    ) ;
   owl:hasKey (
       org:identifier
     ) ;
@@ -4290,6 +3095,17 @@ org:OrganizationalCollaboration
   rdfs:label "Partenariat"@fr ;
   rdfs:label "proyecto de cooperación empresarial"@es ;
   rdfs:subClassOf org:Organization ;
+  owl:equivalentClass [
+      rdf:type owl:Class ;
+      owl:intersectionOf (
+          org:Organization
+          [
+            rdf:type owl:Restriction ;
+            owl:allValuesFrom org:Organization ;
+            owl:onProperty org:hasMember ;
+          ]
+        ) ;
+    ] ;
   owl:equivalentClass [
       rdf:type owl:Class ;
       owl:intersectionOf (
@@ -4330,7 +3146,6 @@ org:Post
   rdfs:label "Post"@en ;
   rdfs:label "Poste"@fr ;
   rdfs:label "puesto"@es ;
-  rdfs:subClassOf owl:Thing ;
 .
 org:Role
   rdf:type rdfs:Class ;
@@ -4363,7 +3178,6 @@ org:Site
   rdfs:label "Site"@en ;
   rdfs:label "Site"@fr ;
   rdfs:label "sede"@es ;
-  rdfs:subClassOf owl:Thing ;
   owl:disjointWith org:ChangeEvent ;
 .
 org:basedAt
@@ -4800,11 +3614,25 @@ org:reportsTo
           org:Post
         ) ;
     ] ;
+  rdfs:domain [
+      rdf:type owl:Class ;
+      owl:unionOf (
+          foaf:Agent
+          org:Post
+        ) ;
+    ] ;
   rdfs:isDefinedBy <http://www.w3.org/ns/org> ;
   rdfs:label "est subordonné à"@fr ;
   rdfs:label "reports to"@en ;
   rdfs:label "responde ante"@es ;
   rdfs:label "riporta a"@it ;
+  rdfs:range [
+      rdf:type owl:Class ;
+      owl:unionOf (
+          foaf:Agent
+          org:Post
+        ) ;
+    ] ;
   rdfs:range [
       rdf:type owl:Class ;
       owl:unionOf (
@@ -4856,6 +3684,13 @@ org:role
   rdfs:comment "Indicates the Role that the Agent plays in a Membership relationship with an Organization."@en ;
   rdfs:comment "Indique le Rôle de l'Agent dans son Engagement avec l'Organisation."@fr ;
   rdfs:comment "エージェントが組織との構成員関係において担う役割を示します。ポストの保持者が担う役割を示すためにorg:Postで用いることもできます。"@ja ;
+  rdfs:domain [
+      rdf:type owl:Class ;
+      owl:unionOf (
+          org:Membership
+          org:Post
+        ) ;
+    ] ;
   rdfs:domain [
       rdf:type owl:Class ;
       owl:unionOf (
@@ -4976,7 +3811,6 @@ prov:Activity
   rdf:type owl:Class ;
   rdfs:isDefinedBy <http://www.w3.org/ns/prov-o#> ;
   rdfs:label "Activity" ;
-  rdfs:subClassOf owl:Thing ;
   owl:disjointWith prov:Entity ;
   prov:category "starting-point" ;
   prov:component "entities-activities" ;
@@ -5006,7 +3840,6 @@ prov:Agent
   rdf:type owl:Class ;
   rdfs:isDefinedBy <http://www.w3.org/ns/prov-o#> ;
   rdfs:label "Agent" ;
-  rdfs:subClassOf owl:Thing ;
   owl:disjointWith prov:InstantaneousEvent ;
   prov:category "starting-point" ;
   prov:component "agents-responsibility" ;
@@ -5148,7 +3981,6 @@ prov:Entity
   rdf:type owl:Class ;
   rdfs:isDefinedBy <http://www.w3.org/ns/prov-o#> ;
   rdfs:label "Entity" ;
-  rdfs:subClassOf owl:Thing ;
   owl:disjointWith prov:InstantaneousEvent ;
   prov:category "starting-point" ;
   prov:component "entities-activities" ;
@@ -5189,7 +4021,6 @@ prov:Influence
   rdfs:comment "Because prov:Influence is a broad relation, its most specific subclasses (e.g. prov:Communication, prov:Delegation, prov:End, prov:Revision, etc.) should be used when applicable."@en ;
   rdfs:isDefinedBy <http://www.w3.org/ns/prov-o#> ;
   rdfs:label "Influence" ;
-  rdfs:subClassOf owl:Thing ;
   prov:category "qualified" ;
   prov:component "derivations" ;
   prov:definition "Influence is the capacity of an entity, activity, or agent to have an effect on the character, development, or behavior of another by means of usage, start, end, generation, invalidation, communication, derivation, attribution, association, or delegation."@en ;
@@ -5202,7 +4033,6 @@ prov:InstantaneousEvent
   rdfs:comment "An instantaneous event, or event for short, happens in the world and marks a change in the world, in its activities and in its entities. The term 'event' is commonly used in process algebra with a similar meaning. Events represent communications or interactions; they are assumed to be atomic and instantaneous."@en ;
   rdfs:isDefinedBy <http://www.w3.org/ns/prov-o#> ;
   rdfs:label "InstantaneousEvent" ;
-  rdfs:subClassOf owl:Thing ;
   prov:category "qualified" ;
   prov:component "entities-activities" ;
   prov:constraints "http://www.w3.org/TR/2013/REC-prov-constraints-20130430/#dfn-event"^^xsd:anyURI ;
@@ -5228,7 +4058,6 @@ prov:Location
   rdfs:isDefinedBy <http://www.w3.org/ns/prov-o#> ;
   rdfs:label "Location" ;
   rdfs:seeAlso prov:atLocation ;
-  rdfs:subClassOf owl:Thing ;
   prov:category "expanded" ;
   prov:definition "A location can be an identifiable geographic place (ISO 19112), but it can also be a non-geographic place such as a directory, row, or column. As such, there are numerous ways in which location can be expressed, such as by a coordinate, address, landmark, and so forth."@en ;
   prov:dm "http://www.w3.org/TR/2013/REC-prov-dm-20130430/#term-attribute-location"^^xsd:anyURI ;
@@ -5317,7 +4146,6 @@ prov:Role
   rdfs:isDefinedBy <http://www.w3.org/ns/prov-o#> ;
   rdfs:label "Role" ;
   rdfs:seeAlso prov:hadRole ;
-  rdfs:subClassOf owl:Thing ;
   prov:category "qualified" ;
   prov:component "agents-responsibility" ;
   prov:definition "A role is the function of an entity or agent with respect to an activity, in the context of a usage, generation, invalidation, association, start, and end."@en ;
@@ -6075,6 +4903,10 @@ prov:wasDerivedFrom
   rdfs:label "wasDerivedFrom" ;
   rdfs:range prov:Entity ;
   rdfs:subPropertyOf prov:wasInfluencedBy ;
+  owl:propertyChainAxiom (
+      org:resultedFrom
+      org:originalOrganization
+    ) ;
   owl:propertyChainAxiom (
       org:resultedFrom
       org:originalOrganization
