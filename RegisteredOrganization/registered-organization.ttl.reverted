@@ -1,0 +1,445 @@
+# baseURI: http://toop.tno.nl/organization
+# imports: http://dublincore.org/2012/06/14/dcterms.rdf
+# imports: http://example.register.nl/nationaalhandelsregister
+# imports: http://spinrdf.org/spin
+# imports: http://www.w3.org/2006/vcard/ns
+# imports: http://www.w3.org/ns/prov-o
+# imports: https://www.w3.org/2009/08/skos-reference/skos.rdf
+# imports: https://www.w3.org/ns/adms.rdf
+# imports: https://www.w3.org/ns/org.rdf
+# imports: https://www.w3.org/ns/regorg.rdf
+# prefix: toop
+
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rov: <http://www.w3.org/ns/regorg#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sp: <http://spinrdf.org/sp#> .
+@prefix spin: <http://spinrdf.org/spin#> .
+@prefix toop: <http://toop.tno.nl/organization#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://toop.tno.nl/organization>
+  rdf:type owl:Ontology ;
+  spin:imports <http://topbraid.org/spin/owlrl-all> ;
+  spin:imports <http://topbraid.org/spin/rdfsplus> ;
+  spin:imports <http://topbraid.org/spin/skosspin> ;
+  spin:imports <http://topbraid.org/spin/spinowl> ;
+  owl:imports <http://dublincore.org/2012/06/14/dcterms.rdf> ;
+  owl:imports <http://example.register.nl/nationaalhandelsregister> ;
+  owl:imports <http://spinrdf.org/spin> ;
+  owl:imports <http://www.w3.org/2006/vcard/ns> ;
+  owl:imports <http://www.w3.org/ns/prov-o> ;
+  owl:imports <https://www.w3.org/2009/08/skos-reference/skos.rdf> ;
+  owl:imports <https://www.w3.org/ns/adms.rdf> ;
+  owl:imports <https://www.w3.org/ns/org.rdf> ;
+  owl:imports <https://www.w3.org/ns/regorg.rdf> ;
+  owl:versionIRI <http://ec.toop.org/ns/2017/12/organization> ;
+  owl:versionInfo "$Date: 2017/12/27 16:31:41$" ;
+.
+toop:Address_card1
+  rdf:type vcard:Address ;
+  rdfs:comment "" ;
+  rdfs:label "Address card1_"@nl ;
+  skos:prefLabel "Address card1" ;
+.
+toop:CompanyCode
+  rdf:type owl:Class ;
+  spin:query [
+      rdf:type sp:Select ;
+      sp:resultVariables (
+          [
+            sp:varName "s" ;
+          ]
+          [
+            sp:varName "p" ;
+          ]
+          [
+            sp:varName "o" ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "o" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:eq ;
+                sp:arg1 [
+                    sp:varName "p" ;
+                  ] ;
+                sp:arg2 owl:equivalentClass ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:eq ;
+                sp:arg1 [
+                    rdf:type sp:str ;
+                    sp:arg1 [
+                        sp:varName "s" ;
+                      ] ;
+                  ] ;
+                sp:arg2 [
+                    rdf:type sp:concat ;
+                    sp:arg1 "http://toop.tno.nl/organization#" ;
+                    sp:arg2 "CompanyCode" ;
+                  ] ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  rdfs:comment "The unique official company identifier_ "@en ;
+  rdfs:label "Company code_"@en ;
+  rdfs:subClassOf adms:Identifier ;
+  owl:equivalentClass <http://example.register.nl/nationaalhandelsregister#KvK-nummer> ;
+  skos:prefLabel "Company code" ;
+.
+toop:Foundation
+  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  rdfs:comment "Represents the event that resulted in the foundation of the organization "@en ;
+  rdfs:label "Foundation"@en ;
+  rdfs:subClassOf <http://www.w3.org/ns/org#ChangeEvent> ;
+  skos:prefLabel "Foundation" ;
+.
+toop:MyCompCode-Id123456
+  rdf:type adms:Identifier ;
+  toop:legalStatusEffectiveDate "2017-10-23"^^xsd:date ;
+  toop:registrationAuthority toop:NL-KvK ;
+  rdfs:comment "My company code, as instance of toop:CompanyCode class, representing the unique official company identifier as laid down by the registration authority_"@en ;
+  rdfs:label "MyCompCode-Id123456_"@en ;
+  adms:schemeAgency "NL-KvK Kamer van Koophandel"@nl ;
+.
+toop:MyHasMainSite
+  rdf:type toop:Site ;
+  rdfs:comment "" ;
+  rdfs:label "MyHasMainSite"@nl ;
+  skos:prefLabel "MyHasMainSite" ;
+.
+toop:MyOrganization_0
+  rdf:type vcard:Organization ;
+  rdfs:comment "The vCard describing the main site of the company or legal person."@en ;
+  rdfs:label "Mijn Organization_0"@nl ;
+  skos:prefLabel "MyOrganization_0" ;
+.
+toop:MyOrganization_1
+  rdf:type vcard:Organization ;
+  rdfs:comment "" ;
+  rdfs:label "MijnOrganization 1_"@nl ;
+  skos:prefLabel "My Organization 1" ;
+.
+toop:MyOrganization_2
+  rdf:type vcard:Organization ;
+  rdfs:comment "" ;
+  rdfs:label "Mijn Organization 2_"@nl ;
+  skos:prefLabel "My Organization 2" ;
+.
+toop:MyRegOrg_1
+  rdf:type toop:RegisteredOrganization ;
+  toop:companyName "My Own Company (legal name)" ;
+  toop:hasMainSite toop:MyHasMainSite ;
+  rdfs:comment "My organization as instance from the toop:RegisteredOrganization Class" ;
+  rdfs:label "Mijn reg org klas 1_"@nl ;
+  skos:prefLabel "My organization as instance from the toop:RegisteredOrganization Class" ;
+.
+toop:NL-KvK
+  rdf:type dcterms:Agent ;
+  rdfs:comment "De Kamer van Koophandel is de autoriteit voor Nederland voor het registreren van ondermeer bedrijven"@nl ;
+  rdfs:comment "The Dutch Chamber of Commerce, acting as registration authority for The Netherlands"@en ;
+  rdfs:label "NL-Kv k_"@en ;
+.
+toop:RegisteredOrganization
+  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  spin:query [
+      rdf:type sp:Select ;
+      sp:resultVariables (
+          [
+            sp:varName "s" ;
+          ]
+          [
+            sp:varName "p" ;
+          ]
+          [
+            sp:varName "v" ;
+          ]
+        ) ;
+      sp:where (
+          [
+            rdf:type sp:Union ;
+            sp:elements (
+                (
+                  [
+                    sp:object [
+                        sp:varName "o" ;
+                      ] ;
+                    sp:predicate rdfs:subClassOf ;
+                    sp:subject [
+                        sp:varName "s" ;
+                      ] ;
+                  ]
+                  [
+                    rdf:type sp:Filter ;
+                    sp:expression [
+                        rdf:type sp:eq ;
+                        sp:arg1 [
+                            sp:varName "s" ;
+                          ] ;
+                        sp:arg2 toop:RegisteredOrganization ;
+                      ] ;
+                  ]
+                  [
+                    sp:object [
+                        sp:varName "p" ;
+                      ] ;
+                    sp:predicate owl:onProperty ;
+                    sp:subject [
+                        sp:varName "o" ;
+                      ] ;
+                  ]
+                  [
+                    sp:object [
+                        sp:varName "v" ;
+                      ] ;
+                    sp:predicate owl:someValuesFrom ;
+                    sp:subject [
+                        sp:varName "o" ;
+                      ] ;
+                  ]
+                )
+                (
+                  [
+                    sp:object [
+                        sp:varName "o" ;
+                      ] ;
+                    sp:predicate rdfs:subClassOf ;
+                    sp:subject [
+                        sp:varName "s" ;
+                      ] ;
+                  ]
+                  [
+                    rdf:type sp:Filter ;
+                    sp:expression [
+                        rdf:type sp:eq ;
+                        sp:arg1 [
+                            sp:varName "s" ;
+                          ] ;
+                        sp:arg2 toop:RegisteredOrganization ;
+                      ] ;
+                  ]
+                  [
+                    sp:object [
+                        sp:varName "p" ;
+                      ] ;
+                    sp:predicate owl:onProperty ;
+                    sp:subject [
+                        sp:varName "o" ;
+                      ] ;
+                  ]
+                  [
+                    sp:object [
+                        sp:varName "v" ;
+                      ] ;
+                    sp:predicate owl:cardinality ;
+                    sp:subject [
+                        sp:varName "o" ;
+                      ] ;
+                  ]
+                )
+              ) ;
+          ]
+        ) ;
+    ] ;
+  rdfs:comment "The TOOP Registered Orginization class represents an organization that has gained legal status by one of the European member states. It is a direct subclass of the rov:RegisteredOrganization class."@en ;
+  rdfs:label "Registered organization"@en ;
+  rdfs:subClassOf rov:RegisteredOrganization ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty toop:companyName ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty toop:companyType ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty toop:companyCode ;
+      owl:someValuesFrom toop:CompanyCode ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty toop:hasMainSite ;
+      owl:someValuesFrom toop:Site ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty toop:hasRegistration ;
+      owl:someValuesFrom toop:Registration ;
+    ] ;
+.
+toop:Registration
+  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  rdfs:comment "Represents the event that resulted in the registration of the organization."@en ;
+  rdfs:label "Registration"@en ;
+  rdfs:subClassOf <http://www.w3.org/ns/org#ChangeEvent> ;
+  skos:prefLabel "Registration" ;
+.
+toop:SSNumber
+  rdf:type rdfs:Class ;
+  rdfs:comment "The social security number of the company_"@en ;
+  rdfs:label "SSNumber"@en ;
+  rdfs:subClassOf adms:Identifier ;
+  skos:prefLabel "SSNumber" ;
+.
+toop:Site
+  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  rdfs:comment "Represents an office or other premise at which the organization is located. Many organizations are spread across multiple sites and many sites will host multiple locations."@en ;
+  rdfs:label "Site"@en ;
+  rdfs:subClassOf <http://www.w3.org/ns/org#Site> ;
+  skos:prefLabel "Site" ;
+.
+toop:VATNumber
+  rdf:type rdfs:Class ;
+  rdfs:comment "The value added tax number of the company"@en ;
+  rdfs:label "VATNumber"@en ;
+  rdfs:subClassOf adms:Identifier ;
+  skos:prefLabel "VATNumber" ;
+.
+toop:activityDeclaration
+  rdf:type rdf:Property ;
+  rdfs:comment "The description of the main activity of the company as free text description recorded on the registry. This tag should be used to give a description of the company activity in the local language. This should be used in conjunction with the CompanyNaceCode."@en ;
+  rdfs:label "activity declaration"@en ;
+  rdfs:subPropertyOf dcterms:description ;
+  skos:prefLabel "activity declaration" ;
+.
+toop:companyCode
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The description of the main code of the company as unique identifier recorded in the registry. This tag should be used to give an identifier of the company in the local language. This should be used in conjunction with the CompanyNaceCode"@en ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:label "company code"@en ;
+  rdfs:range toop:CompanyCode ;
+  skos:prefLabel "company code" ;
+.
+toop:companyNaceCode
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The description of the main activity of the company as free text description recorded on the registry. This tag should be used to give a description of the company activity in the local language. This should be used in conjunction with the CompanyNaceCode"@en ;
+  rdfs:label "company NACE code"@en ;
+  rdfs:subPropertyOf rov:orgActivity ;
+  skos:prefLabel "company NACE code" ;
+.
+toop:companyName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The official current company name as stored in the business register_"@en ;
+  rdfs:label "company name" ;
+  owl:equivalentProperty rov:legalName ;
+.
+toop:companyType
+  rdf:type rdf:Property ;
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The legal type of the company_"@en ;
+  rdfs:label "company type"@en ;
+  owl:equivalentProperty rov:orgType ;
+  skos:prefLabel "company type" ;
+.
+toop:foundationDate
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Represents the date at which the company started. "@en ;
+  rdfs:domain toop:Foundation ;
+  rdfs:label "foundation date"@en ;
+  rdfs:subPropertyOf <http://www.w3.org/ns/prov#startedAtTime> ;
+  skos:prefLabel "foundation date" ;
+.
+toop:hasMainSite
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The main site of the company or legal person."@en ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:label "has main site"@nl ;
+  rdfs:range toop:Site ;
+  rdfs:subPropertyOf <http://www.w3.org/ns/org#hasPrimarySite> ;
+  skos:prefLabel "has main site" ;
+.
+toop:hasRegistration
+  rdf:type rdf:Property ;
+  rdfs:comment "This is the property that makes the link between a registered organization and the registration event." ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:label "has registration"@en ;
+  rdfs:range toop:Registration ;
+  skos:prefLabel "has registration"@en ;
+.
+toop:legalStatusEffectiveDate
+  rdf:type rdf:Property ;
+  rdfs:comment "The date at which the current legal status became effective_"@en ;
+  rdfs:domain toop:CompanyCode ;
+  rdfs:label "legal status effective date"@en ;
+  rdfs:subPropertyOf dcterms:issued ;
+  skos:prefLabel "legal status effective date" ;
+.
+toop:registrationAuthority
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The reference to the official register that has registered the company"@en ;
+  rdfs:domain toop:CompanyCode ;
+  rdfs:label "registration authority"@en ;
+  owl:equivalentProperty dcterms:creator ;
+  skos:prefLabel "registration authority" ;
+.
+toop:registrationDate
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Represents the date at which the company started. "@en ;
+  rdfs:domain toop:Registration ;
+  rdfs:label "registration date"@en ;
+  rdfs:range xsd:date ;
+  rdfs:subPropertyOf <http://www.w3.org/ns/prov#startedAtTime> ;
+  skos:prefLabel "registration date" ;
+.
+toop:registrationNumber
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The number of the company as recorded on the register. In some jurisdictions, the number on the register may be different from the official company number. This field must be populated in all service requests even when the RegistrationNumber is the same as the CompanyCode "@en ;
+  rdfs:label "registration number"@en ;
+  owl:equivalentProperty <http://www.w3.org/ns/org#identifier> ;
+  skos:prefLabel "registration number" ;
+.
+toop:siteAddress
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Represents the postal address and the visiting address of the company. "@en ;
+  rdfs:domain toop:Site ;
+  rdfs:label "siteAddress"@en ;
+  rdfs:range vcard:Organization ;
+  rdfs:subPropertyOf <http://www.w3.org/ns/org#siteAddress> ;
+  skos:prefLabel "siteAddress" ;
+.
+toop:websiteURL
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "ISSUE: currently, TBC's local import for vcard seems incomplete - vcard:has* are missing"@en ;
+  rdfs:comment "Represents the website URL of the company."@en ;
+  rdfs:comment "Represents the website address of the company."@en ;
+  rdfs:domain toop:Site ;
+  rdfs:label "websiteAddress"@en ;
+  rdfs:label "websiteURL"@en ;
+  rdfs:range dcterms:URI ;
+  rdfs:subPropertyOf <http://www.w3.org/ns/org#siteAddress> ;
+  skos:prefLabel "websiteAddress" ;
+  skos:prefLabel "websiteURL" ;
+.
+rov:legalName
+  rdfs:domain <http://www.w3.org/ns/org#FormalOrganization> ;
+.

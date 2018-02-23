@@ -63,29 +63,11 @@ nhr:actief
   rdfs:label "actief_"@nl ;
   skos:prefLabel "actief" ;
 .
-nhr:besloten_vennootschap
-  rdf:type nhr:Rechtsvorm ;
-  rdfs:comment "Een bv kunt u alleen of samen met anderen oprichten. Voor de oprichting schakelt u een notaris in. In de notariële akte wordt onder meer vastgelegd hoeveel aandelen elk van de oprichters in de bv krijgt."@nl ;
-  rdfs:label "bv_"@nl ;
-  skos:prefLabel "bv" ;
-.
 nhr:beëindigd
   rdf:type nhr:Status ;
   rdfs:comment "De organisatievorm is opgehouden te bestaan. "@nl ;
   rdfs:label "beëindigd_"@nl ;
   skos:prefLabel "beëindigd" ;
-.
-nhr:commanditaire_vennootschap
-  rdf:type nhr:Rechtsvorm ;
-  rdfs:comment "Voor een cv gelden grotendeels dezelfde regels als voor een vof. Het verschil is dat een cv behalve de gewone vennoten (de 'beherende' vennoten) ook nog zogenoemde stille vennoten heeft. De stille vennoten brengen geld in de cv in, maar bemoeien zich niet met de verdere gang van zaken van de onderneming. Elke beherende vennoot die aan de eisen voldoet, geldt voor de inkomstenbelasting als ondernemer. Als hij voldoet aan het urencriterium, kan hij dus gebruikmaken van de speciale regelingen voor ondernemers."@nl ;
-  rdfs:label "cv_"@nl ;
-  skos:prefLabel "cv" ;
-.
-nhr:eenmanszaak
-  rdf:type nhr:Rechtsvorm ;
-  rdfs:comment "Bij een eenmanszaak drijft u de onderneming alleen. Dat is het geval als u een zelfstandig beroep uitoefent (bijvoorbeeld notaris of huisarts) of als u de enige eigenaar van uw bedrijf bent. U kunt dus ook een eenmanszaak hebben als u personeel in dienst hebt. "@nl ;
-  rdfs:label "eenmanszaak_"@nl ;
-  skos:prefLabel "eenmanszaak" ;
 .
 nhr:handelsnaam
   rdf:type rdf:Property ;
@@ -117,12 +99,6 @@ nhr:kvk-nummer
   rdfs:subPropertyOf skos:notation ;
   skos:prefLabel "kvk-nummer"@nl ;
 .
-nhr:maatschap
-  rdf:type nhr:Rechtsvorm ;
-  rdfs:comment "In het geval van een maatschap oefent u een beroep uit in samenwerking met anderen (uw 'maten'), bijvoorbeeld in een artsenpraktijk of een tolkencentrum. U kunt zelf een samenwerkingscontract opstellen of u kunt een deskundige inschakelen."@nl ;
-  rdfs:label "maatschap_"@nl ;
-  skos:prefLabel "maatschap" ;
-.
 nhr:naam
   rdf:type rdf:Property ;
   rdfs:comment "if the company is a \"non-natural person\" or a \"societal activity\" for which holds NaamVolgorde.volgorde = 1"@nl ;
@@ -132,16 +108,4 @@ nhr:naam
   rdfs:range xsd:string ;
   rdfs:subPropertyOf rdf:predicate ;
   skos:prefLabel "naam" ;
-.
-nhr:stichting_of_vereniging
-  rdf:type nhr:Rechtsvorm ;
-  rdfs:comment "Stichtingen en verenigingen worden in bepaalde gevallen ook als onderneming beschouwd. Uw stichting of vereniging betaalt dan over de winst vennootschapsbelasting. "@nl ;
-  rdfs:label "stichting of vereniging_"@nl ;
-  skos:prefLabel "stichting of vereniging" ;
-.
-nhr:vennootschap_onder_firma_VOF
-  rdf:type nhr:Rechtsvorm ;
-  rdfs:comment "Van een vennootschap onder firma (vof) is sprake als u samen met anderen (de firmanten of vennoten) een onderneming begint. U kunt zelf een samenwerkingscontract opstellen of u kunt een deskundige inschakelen. Elke vennoot die aan de eisen voor ondernemerschap voldoet, geldt voor de inkomstenbelasting als ondernemer. En kan hij gebruikmaken van de ondernemersregelingen. "@nl ;
-  rdfs:label "vof_"@nl ;
-  skos:prefLabel "vof" ;
 .
