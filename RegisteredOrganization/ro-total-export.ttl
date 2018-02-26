@@ -1,9 +1,8 @@
-# baseURI: http://toop.tno.nl/organization
+# baseURI: http://toop.eu/organization
 # imports: http://spinrdf.org/spin
 # imports: https://www.w3.org/2009/08/skos-reference/skos.rdf
 # prefix: toop
 
-@prefix : <http://toop.tno.nl/organization#> .
 @prefix adms: <http://www.w3.org/ns/adms#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcam: <http://purl.org/dc/dcam/> .
@@ -26,7 +25,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix sp: <http://spinrdf.org/sp#> .
 @prefix spin: <http://spinrdf.org/spin#> .
-@prefix toop: <http://toop.tno.nl/organization#> .
+@prefix toop: <http://toop.eu/organization#> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
@@ -1272,7 +1271,7 @@ dcterms:valid
 gr:BusinessEntity
   rdfs:subClassOf org:FormalOrganization ;
 .
-<http://toop.tno.nl/organization>
+<http://toop.eu/organization>
   rdf:type owl:Ontology ;
   spin:imports <http://topbraid.org/spin/owlrl-all> ;
   spin:imports <http://topbraid.org/spin/rdfsplus> ;
@@ -1338,7 +1337,7 @@ toop:CompanyCode
                   ] ;
                 sp:arg2 [
                     rdf:type sp:concat ;
-                    sp:arg1 "http://toop.tno.nl/organization#" ;
+                    sp:arg1 "http://toop.eu/organization#" ;
                     sp:arg2 "CompanyCode" ;
                   ] ;
               ] ;
