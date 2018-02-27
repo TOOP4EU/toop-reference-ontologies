@@ -1,0 +1,47 @@
+# baseURI: http://example.register.fre/freedonia-business-register
+# imports: http://www.w3.org/ns/adms.rdf
+# imports: https://www.w3.org/2009/08/skos-reference/skos.rdf
+# prefix: freebr
+
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix freebr: <http://example.register.fre/freedonia-business-register#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.register.fre/freedonia-business-register>
+  rdf:type owl:Ontology ;
+  owl:imports <http://www.w3.org/ns/adms.rdf> ;
+  owl:imports <https://www.w3.org/2009/08/skos-reference/skos.rdf> ;
+  owl:versionInfo "Created with TopBraid Composer" ;
+.
+freebr:Company
+  rdf:type owl:Class ;
+  rdfs:comment "A company is an organisation with a business character with a goal to make profit by producing products or providing services."@en ;
+  rdfs:label "Company"@en ;
+  rdfs:subClassOf skos:Concept ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange freebr:FreedoniaBusinessCode ;
+      owl:onProperty freebr:hasBusinessCode ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+freebr:FreedoniaBusinessCode
+  rdf:type rdfs:Class ;
+  rdfs:comment "The unique official company identifier_"@en ;
+  rdfs:label "Elonia business code"@en ;
+  rdfs:subClassOf adms:Identifier ;
+  skos:prefLabel "Freedonia business code" ;
+.
+freebr:hasBusinessCode
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "All companies get an Freedonia Business Code uponregistration at the Freedonia business register." ;
+  rdfs:domain freebr:Company ;
+  rdfs:label "has business code"@en ;
+  rdfs:range freebr:FreedoniaBusinessCode ;
+  rdfs:subPropertyOf skos:notation ;
+  skos:prefLabel "has business code"@en ;
+.
