@@ -52,6 +52,13 @@
   owl:versionIRI <http://ec.toop.org/ns/2017/12/organization> ;
   owl:versionInfo "$Date: 2017/12/27 16:31:41$" ;
 .
+toop:Address
+  rdf:type owl:Class ;
+  rdfs:comment "The postal address and/or the visiting address of a physical site of the company, or, an virtual address, i.e., an URL."@en ;
+  rdfs:label "Physical or virtual address_"@en ;
+  owl:equivalentClass <http://example.register.elo/elonia-business-register#Address> ;
+  owl:equivalentClass vcard:Address ;
+.
 toop:Address_card1
   rdf:type vcard:Address ;
   rdfs:comment "" ;
@@ -65,9 +72,6 @@ toop:CompanyCode
       sp:resultVariables (
           [
             sp:varName "s" ;
-          ]
-          [
-            sp:varName "p" ;
           ]
           [
             sp:varName "o" ;
@@ -88,28 +92,47 @@ toop:CompanyCode
           [
             rdf:type sp:Filter ;
             sp:expression [
-                rdf:type sp:eq ;
+                rdf:type sp:or ;
                 sp:arg1 [
-                    sp:varName "p" ;
+                    rdf:type sp:eq ;
+                    sp:arg1 [
+                        sp:varName "p" ;
+                      ] ;
+                    sp:arg2 owl:equivalentClass ;
                   ] ;
-                sp:arg2 owl:equivalentClass ;
+                sp:arg2 [
+                    rdf:type sp:eq ;
+                    sp:arg1 [
+                        sp:varName "p" ;
+                      ] ;
+                    sp:arg2 owl:equivalentProperty ;
+                  ] ;
               ] ;
           ]
           [
             rdf:type sp:Filter ;
             sp:expression [
-                rdf:type sp:eq ;
+                rdf:type sp:strstarts ;
                 sp:arg1 [
                     rdf:type sp:str ;
                     sp:arg1 [
                         sp:varName "s" ;
                       ] ;
                   ] ;
-                sp:arg2 [
-                    rdf:type sp:concat ;
-                    sp:arg1 "http://toop.eu/organization#" ;
-                    sp:arg2 "CompanyCode" ;
+                sp:arg2 "http://toop.eu/organization#" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:strstarts ;
+                sp:arg1 [
+                    rdf:type sp:str ;
+                    sp:arg1 [
+                        sp:varName "o" ;
+                      ] ;
                   ] ;
+                sp:arg2 "http://example.register.elo/elonia-business-register#" ;
               ] ;
           ]
         ) ;
@@ -352,14 +375,6 @@ toop:activityDeclaration
   rdfs:subPropertyOf dcterms:description ;
   skos:prefLabel "activity declaration" ;
 .
-toop:companyAddress
-  rdf:type owl:ObjectProperty ;
-  rdfs:comment "The postal address and the visiting address of the company"@en ;
-  rdfs:domain toop:MainSite ;
-  rdfs:label "company address_"@en ;
-  rdfs:range vcard:Organization ;
-  rdfs:subPropertyOf org:siteAddress ;
-.
 toop:companyCode
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The description of the main code of the company as unique identifier recorded in the registry. This tag should be used to give an identifier of the company in the local language. This should be used in conjunction with the CompanyNaceCode"@en ;
@@ -379,6 +394,7 @@ toop:companyName
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "The official current company name as stored in the business register_"@en ;
   rdfs:label "company name" ;
+  owl:equivalentProperty <http://example.register.elo/elonia-business-register#CompanyName> ;
   owl:equivalentProperty rov:legalName ;
 .
 toop:companyType
@@ -402,6 +418,15 @@ toop:foundationDate
   rdfs:label "foundation date"@en ;
   rdfs:subPropertyOf <http://www.w3.org/ns/prov#startedAtTime> ;
   skos:prefLabel "foundation date" ;
+.
+toop:hasAddress
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Represents a pointer to physical or virtual address of the company."@en ;
+  rdfs:domain org:Site ;
+  rdfs:label "has address_"@en ;
+  rdfs:range toop:Address ;
+  rdfs:subPropertyOf org:siteAddress ;
+  skos:prefLabel "has address" ;
 .
 toop:hasMainSite
   rdf:type owl:ObjectProperty ;
@@ -452,15 +477,6 @@ toop:registrationNumber
   rdfs:label "registration number"@en ;
   owl:equivalentProperty org:identifier ;
   skos:prefLabel "registration number" ;
-.
-toop:siteAddress
-  rdf:type owl:ObjectProperty ;
-  rdfs:comment "Represents the postal address and the visiting address of the company. "@en ;
-  rdfs:domain toop:MainSite ;
-  rdfs:label "siteAddress"@en ;
-  rdfs:range vcard:Organization ;
-  rdfs:subPropertyOf org:siteAddress ;
-  skos:prefLabel "siteAddress" ;
 .
 toop:siteOf
   rdf:type owl:ObjectProperty ;
