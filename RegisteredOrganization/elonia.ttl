@@ -29,12 +29,27 @@ elobr:Company
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
 .
+elobr:CompanyName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "All companies have to provide an Elonia company name upon registration at the Elonia business register." ;
+  rdfs:domain elobr:Company ;
+  rdfs:label "has company name"@en ;
+  rdfs:range elobr:EloniaCompanyName ;
+  rdfs:subPropertyOf skos:notation ;
+  skos:prefLabel "has company name"@en ;
+.
 elobr:EloniaBusinessCode
   rdf:type rdfs:Class ;
   rdfs:comment "The unique official company identifier_"@en ;
   rdfs:label "Elonia business code"@en ;
   rdfs:subClassOf adms:Identifier ;
   skos:prefLabel "Elonia business code" ;
+.
+elobr:EloniaCompanyName
+  rdf:type rdfs:Class ;
+  rdfs:comment "The official company name"@en ;
+  rdfs:label "Elonia company name"@en ;
+  skos:prefLabel "Elonia company name" ;
 .
 elobr:hasBusinessCode
   rdf:type owl:DatatypeProperty ;
