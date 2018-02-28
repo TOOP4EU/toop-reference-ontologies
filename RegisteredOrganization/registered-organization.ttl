@@ -56,6 +56,7 @@ toop:Address
   rdf:type owl:Class ;
   rdfs:comment "The postal address and/or the visiting address of a physical site of the company, or, an virtual address, i.e., an URL."@en ;
   rdfs:label "Physical or virtual address_"@en ;
+  owl:equivalentClass <http://example.register.elo/elonia-business-register#Address> ;
   owl:equivalentClass vcard:Address ;
 .
 toop:Address_card1
