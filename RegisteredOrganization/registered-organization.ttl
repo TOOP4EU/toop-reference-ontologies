@@ -157,6 +157,12 @@ toop:CompanyTypeScheme
   owl:equivalentClass skos:ConceptScheme ;
   skos:prefLabel "CompanyTypeScheme" ;
 .
+toop:DocumentType
+  rdf:type owl:Class ;
+  rdfs:comment "The document type represents a grouping of concepts into a single document, e.g. company registration document, birth certificate document, mandate evidence document etc." ;
+  rdfs:label "Document type" ;
+  rdfs:subClassOf owl:Thing ;
+.
 toop:Foundation
   rdf:type rdfs:Class ;
   rdf:type owl:Class ;
