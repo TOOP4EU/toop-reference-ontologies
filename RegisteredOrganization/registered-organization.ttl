@@ -417,7 +417,9 @@ toop:companyType
 .
 toop:countryName
   rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The country name associated with the address of the organization."@en ;
   rdfs:domain toop:Address ;
+  rdfs:label "country name" ;
   owl:equivalentProperty vcard:country-name ;
 .
 toop:foundationDate
@@ -465,17 +467,23 @@ toop:legalStatusEffectiveDate
 .
 toop:locality
   rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The locality (e.g. city or town) associated with the address of the organization."@en ;
   rdfs:domain toop:Address ;
+  rdfs:label "locality" ;
   owl:equivalentProperty vcard:locality ;
 .
 toop:postalCode
   rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The postal code associated with the address of the organization."@en ;
   rdfs:domain toop:Address ;
+  rdfs:label "postal code" ;
   owl:equivalentProperty vcard:postal-code ;
 .
 toop:region
   rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The region (e.g. state or province) associated with the address of the organization."@en ;
   rdfs:domain toop:Address ;
+  rdfs:label "region" ;
   owl:equivalentProperty vcard:region ;
 .
 toop:registrationAuthority
@@ -510,7 +518,9 @@ toop:siteOf
 .
 toop:streetAddress
   rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The street address associated with the address of the organization."@en ;
   rdfs:domain toop:Address ;
+  rdfs:label "street address" ;
   owl:equivalentProperty vcard:street-address ;
 .
 toop:websiteURL
