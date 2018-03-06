@@ -59,6 +59,10 @@ toop:Address
   owl:equivalentClass <http://example.register.elo/elonia-business-register#Address> ;
   owl:equivalentClass vcard:Address ;
 .
+toop:Address_1
+  rdf:type toop:Address ;
+  toop:countryName "Nederland" ;
+.
 toop:Address_card1
   rdf:type vcard:Address ;
   rdfs:comment "" ;
@@ -411,6 +415,11 @@ toop:companyType
   owl:equivalentProperty rov:orgType ;
   skos:prefLabel "company type" ;
 .
+toop:countryName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain toop:Address ;
+  owl:equivalentProperty vcard:country-name ;
+.
 toop:foundationDate
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "Represents the date at which the company started. "@en ;
@@ -454,6 +463,21 @@ toop:legalStatusEffectiveDate
   rdfs:subPropertyOf dcterms:issued ;
   skos:prefLabel "legal status effective date" ;
 .
+toop:locality
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain toop:Address ;
+  owl:equivalentProperty vcard:locality ;
+.
+toop:postalCode
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain toop:Address ;
+  owl:equivalentProperty vcard:postal-code ;
+.
+toop:region
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain toop:Address ;
+  owl:equivalentProperty vcard:region ;
+.
 toop:registrationAuthority
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The reference to the official register that has registered the company"@en ;
@@ -483,6 +507,11 @@ toop:siteOf
   rdfs:comment "A virtual or physical site is the site of a registered organization"@en ;
   rdfs:label "site of_"@en ;
   owl:equivalentProperty org:siteOf ;
+.
+toop:streetAddress
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain toop:Address ;
+  owl:equivalentProperty vcard:street-address ;
 .
 toop:websiteURL
   rdf:type owl:ObjectProperty ;
