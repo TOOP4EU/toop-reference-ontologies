@@ -8,6 +8,7 @@
 # imports: http://www.w3.org/2006/vcard/ns
 # imports: http://www.w3.org/ns/org.ttl
 # imports: http://www.w3.org/ns/prov-o
+# imports: http://xmlns.com/foaf/0.1/
 # imports: https://www.w3.org/2009/08/skos-reference/skos.rdf
 # imports: https://www.w3.org/ns/adms.rdf
 # imports: https://www.w3.org/ns/org.rdf
@@ -45,6 +46,7 @@
   owl:imports <http://www.w3.org/2006/vcard/ns> ;
   owl:imports <http://www.w3.org/ns/org.ttl> ;
   owl:imports <http://www.w3.org/ns/prov-o> ;
+  owl:imports <http://xmlns.com/foaf/0.1/> ;
   owl:imports <https://www.w3.org/2009/08/skos-reference/skos.rdf> ;
   owl:imports <https://www.w3.org/ns/adms.rdf> ;
   owl:imports <https://www.w3.org/ns/org.rdf> ;
