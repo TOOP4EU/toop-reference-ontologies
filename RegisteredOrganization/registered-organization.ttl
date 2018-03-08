@@ -8,6 +8,7 @@
 # imports: http://www.w3.org/2006/vcard/ns
 # imports: http://www.w3.org/ns/org.ttl
 # imports: http://www.w3.org/ns/prov-o
+# imports: http://xmlns.com/foaf/0.1/
 # imports: https://www.w3.org/2009/08/skos-reference/skos.rdf
 # imports: https://www.w3.org/ns/adms.rdf
 # imports: https://www.w3.org/ns/org.rdf
@@ -45,6 +46,7 @@
   owl:imports <http://www.w3.org/2006/vcard/ns> ;
   owl:imports <http://www.w3.org/ns/org.ttl> ;
   owl:imports <http://www.w3.org/ns/prov-o> ;
+  owl:imports <http://xmlns.com/foaf/0.1/> ;
   owl:imports <https://www.w3.org/2009/08/skos-reference/skos.rdf> ;
   owl:imports <https://www.w3.org/ns/adms.rdf> ;
   owl:imports <https://www.w3.org/ns/org.rdf> ;
@@ -225,6 +227,11 @@ toop:NL-KvK
   rdfs:comment "The Dutch Chamber of Commerce, acting as registration authority for The Netherlands"@en ;
   rdfs:label "NL-Kv k_"@en ;
 .
+toop:Person
+  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  owl:equivalentClass <http://xmlns.com/foaf/0.1/Person> ;
+.
 toop:RegisteredOrganization
   rdf:type rdfs:Class ;
   rdf:type owl:Class ;
@@ -342,7 +349,7 @@ toop:RegisteredOrganization
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:onProperty toop:hasCompanyCode ;
+      owl:onProperty toop:companyCode ;
       owl:someValuesFrom toop:CompanyCode ;
     ] ;
   rdfs:subClassOf [
@@ -385,6 +392,14 @@ toop:activityDeclaration
   rdfs:subPropertyOf dcterms:description ;
   skos:prefLabel "activity declaration" ;
 .
+toop:companyCode
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The description of the main code of the company as unique identifier recorded in the registry. This tag should be used to give an identifier of the company in the local language. This should be used in conjunction with the CompanyNaceCode"@en ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:label "company code"@en ;
+  rdfs:range toop:CompanyCode ;
+  skos:prefLabel "company code" ;
+.
 toop:companyNaceCode
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The description of the main activity of the company as free text description recorded on the registry. This tag should be used to give a description of the company activity in the local language. This should be used in conjunction with the CompanyNaceCode"@en ;
@@ -395,7 +410,6 @@ toop:companyNaceCode
 toop:companyName
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "The official current company name as stored in the business register_"@en ;
-  rdfs:domain toop:RegisteredOrganization ;
   rdfs:label "company name" ;
   owl:equivalentProperty <http://example.register.elo/elonia-business-register#CompanyName> ;
   owl:equivalentProperty rov:legalName ;
@@ -421,6 +435,11 @@ toop:countryName
   rdfs:label "country name" ;
   owl:equivalentProperty vcard:country-name ;
 .
+toop:familyName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain toop:Person ;
+  owl:equivalentProperty <http://xmlns.com/foaf/0.1/familyName> ;
+.
 toop:foundationDate
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "Represents the date at which the company started. "@en ;
@@ -428,6 +447,11 @@ toop:foundationDate
   rdfs:label "foundation date"@en ;
   rdfs:subPropertyOf <http://www.w3.org/ns/prov#startedAtTime> ;
   skos:prefLabel "foundation date" ;
+.
+toop:givenName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain toop:Person ;
+  owl:equivalentProperty <http://xmlns.com/foaf/0.1/givenName> ;
 .
 toop:hasAddress
   rdf:type owl:ObjectProperty ;
@@ -437,14 +461,6 @@ toop:hasAddress
   rdfs:range toop:Address ;
   rdfs:subPropertyOf org:siteAddress ;
   skos:prefLabel "has address" ;
-.
-toop:hasCompanyCode
-  rdf:type owl:ObjectProperty ;
-  rdfs:comment "The description of the main code of the company as unique identifier recorded in the registry. This tag should be used to give an identifier of the company in the local language. This should be used in conjunction with the CompanyNaceCode"@en ;
-  rdfs:domain toop:RegisteredOrganization ;
-  rdfs:label "company code"@en ;
-  rdfs:range toop:CompanyCode ;
-  skos:prefLabel "company code" ;
 .
 toop:hasMainSite
   rdf:type owl:ObjectProperty ;
@@ -463,6 +479,12 @@ toop:hasRegistration
   rdfs:label "has registration"@en ;
   rdfs:range toop:Registration ;
   skos:prefLabel "has registration"@en ;
+.
+toop:legalRepresentativeOf
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain toop:Person ;
+  rdfs:range toop:RegisteredOrganization ;
+  rdfs:subPropertyOf org:memberOf ;
 .
 toop:legalStatusEffectiveDate
   rdf:type rdf:Property ;
