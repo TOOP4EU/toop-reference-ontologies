@@ -227,6 +227,11 @@ toop:NL-KvK
   rdfs:comment "The Dutch Chamber of Commerce, acting as registration authority for The Netherlands"@en ;
   rdfs:label "NL-Kv k_"@en ;
 .
+toop:Person
+  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  owl:equivalentClass <http://xmlns.com/foaf/0.1/Person> ;
+.
 toop:RegisteredOrganization
   rdf:type rdfs:Class ;
   rdf:type owl:Class ;
@@ -464,6 +469,12 @@ toop:hasRegistration
   rdfs:label "has registration"@en ;
   rdfs:range toop:Registration ;
   skos:prefLabel "has registration"@en ;
+.
+toop:legalRepresentativeOf
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain toop:Person ;
+  rdfs:range toop:RegisteredOrganization ;
+  rdfs:subPropertyOf org:memberOf ;
 .
 toop:legalStatusEffectiveDate
   rdf:type rdf:Property ;
