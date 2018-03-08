@@ -435,6 +435,11 @@ toop:countryName
   rdfs:label "country name" ;
   owl:equivalentProperty vcard:country-name ;
 .
+toop:familyName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain toop:Person ;
+  owl:equivalentProperty <http://xmlns.com/foaf/0.1/familyName> ;
+.
 toop:foundationDate
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "Represents the date at which the company started. "@en ;
@@ -442,6 +447,11 @@ toop:foundationDate
   rdfs:label "foundation date"@en ;
   rdfs:subPropertyOf <http://www.w3.org/ns/prov#startedAtTime> ;
   skos:prefLabel "foundation date" ;
+.
+toop:givenName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain toop:Person ;
+  owl:equivalentProperty <http://xmlns.com/foaf/0.1/givenName> ;
 .
 toop:hasAddress
   rdf:type owl:ObjectProperty ;
