@@ -392,16 +392,6 @@ toop:activityDeclaration
   rdfs:subPropertyOf dcterms:description ;
   skos:prefLabel "activity declaration" ;
 .
-toop:age
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain toop:Person ;
-  owl:equivalentProperty <http://xmlns.com/foaf/0.1/age> ;
-.
-toop:birthday
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain toop:Person ;
-  owl:equivalentProperty <http://xmlns.com/foaf/0.1/birthday> ;
-.
 toop:companyCode
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The description of the main code of the company as unique identifier recorded in the registry. This tag should be used to give an identifier of the company in the local language. This should be used in conjunction with the CompanyNaceCode"@en ;
