@@ -44,6 +44,12 @@ freebr:FreedoniaBusinessCode
   rdfs:subClassOf adms:Identifier ;
   skos:prefLabel "Freedonia business code" ;
 .
+freebr:companyType
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The legal type of the company_"@en ;
+  rdfs:domain freebr:Company ;
+  rdfs:label "company type"@en ;
+.
 freebr:hasBusinessCode
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "All companies get an Freedonia Business Code uponregistration at the Freedonia business register." ;

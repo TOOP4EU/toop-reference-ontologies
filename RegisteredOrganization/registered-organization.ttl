@@ -436,6 +436,8 @@ toop:companyType
       owl:onProperty skos:inScheme ;
       owl:someValuesFrom toop:CompanyTypeScheme ;
     ] ;
+  owl:equivalentProperty <http://example.register.elo/elonia-business-register#companyType> ;
+  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#companyType> ;
   owl:equivalentProperty rov:orgType ;
   skos:prefLabel "company type" ;
 .

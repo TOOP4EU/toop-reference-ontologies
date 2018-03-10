@@ -50,6 +50,12 @@ elobr:EloniaBusinessCode
   rdfs:subClassOf adms:Identifier ;
   skos:prefLabel "Elonia business code" ;
 .
+elobr:companyType
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The legal type of the company_"@en ;
+  rdfs:domain elobr:Company ;
+  rdfs:label "company type"@en ;
+.
 elobr:hasBusinessCode
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "All companies get an Elonia Business Code uponregistration at the Elonia business register." ;
