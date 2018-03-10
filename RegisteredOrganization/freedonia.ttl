@@ -53,3 +53,9 @@ freebr:hasBusinessCode
   rdfs:subPropertyOf skos:notation ;
   skos:prefLabel "has business code"@en ;
 .
+freebr:registrationAuthority
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The reference to the official register that has registered the company"@en ;
+  rdfs:domain freebr:FreedoniaBusinessCode ;
+  rdfs:label "registration authority"@en ;
+.

@@ -73,76 +73,6 @@ toop:Address_card1
 .
 toop:CompanyCode
   rdf:type owl:Class ;
-  spin:query [
-      rdf:type sp:Select ;
-      sp:resultVariables (
-          [
-            sp:varName "s" ;
-          ]
-          [
-            sp:varName "o" ;
-          ]
-        ) ;
-      sp:where (
-          [
-            sp:object [
-                sp:varName "o" ;
-              ] ;
-            sp:predicate [
-                sp:varName "p" ;
-              ] ;
-            sp:subject [
-                sp:varName "s" ;
-              ] ;
-          ]
-          [
-            rdf:type sp:Filter ;
-            sp:expression [
-                rdf:type sp:or ;
-                sp:arg1 [
-                    rdf:type sp:eq ;
-                    sp:arg1 [
-                        sp:varName "p" ;
-                      ] ;
-                    sp:arg2 owl:equivalentClass ;
-                  ] ;
-                sp:arg2 [
-                    rdf:type sp:eq ;
-                    sp:arg1 [
-                        sp:varName "p" ;
-                      ] ;
-                    sp:arg2 owl:equivalentProperty ;
-                  ] ;
-              ] ;
-          ]
-          [
-            rdf:type sp:Filter ;
-            sp:expression [
-                rdf:type sp:strstarts ;
-                sp:arg1 [
-                    rdf:type sp:str ;
-                    sp:arg1 [
-                        sp:varName "s" ;
-                      ] ;
-                  ] ;
-                sp:arg2 "http://toop.eu/organization#" ;
-              ] ;
-          ]
-          [
-            rdf:type sp:Filter ;
-            sp:expression [
-                rdf:type sp:strstarts ;
-                sp:arg1 [
-                    rdf:type sp:str ;
-                    sp:arg1 [
-                        sp:varName "o" ;
-                      ] ;
-                  ] ;
-                sp:arg2 "http://example.register.elo/elonia-business-register#" ;
-              ] ;
-          ]
-        ) ;
-    ] ;
   rdfs:comment "The unique official company identifier_ "@en ;
   rdfs:label "Company code_"@en ;
   rdfs:subClassOf adms:Identifier ;
@@ -235,6 +165,76 @@ toop:Person
 toop:RegisteredOrganization
   rdf:type rdfs:Class ;
   rdf:type owl:Class ;
+  spin:query [
+      rdf:type sp:Select ;
+      sp:resultVariables (
+          [
+            sp:varName "s" ;
+          ]
+          [
+            sp:varName "o" ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "o" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:or ;
+                sp:arg1 [
+                    rdf:type sp:eq ;
+                    sp:arg1 [
+                        sp:varName "p" ;
+                      ] ;
+                    sp:arg2 owl:equivalentClass ;
+                  ] ;
+                sp:arg2 [
+                    rdf:type sp:eq ;
+                    sp:arg1 [
+                        sp:varName "p" ;
+                      ] ;
+                    sp:arg2 owl:equivalentProperty ;
+                  ] ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:strstarts ;
+                sp:arg1 [
+                    rdf:type sp:str ;
+                    sp:arg1 [
+                        sp:varName "s" ;
+                      ] ;
+                  ] ;
+                sp:arg2 "http://toop.eu/organization#" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:strstarts ;
+                sp:arg1 [
+                    rdf:type sp:str ;
+                    sp:arg1 [
+                        sp:varName "o" ;
+                      ] ;
+                  ] ;
+                sp:arg2 "http://example.register.elo/elonia-business-register#" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
   spin:query [
       rdf:type sp:Select ;
       sp:resultVariables (
@@ -531,6 +531,8 @@ toop:registrationAuthority
   rdfs:comment "The reference to the official register that has registered the company"@en ;
   rdfs:domain toop:CompanyCode ;
   rdfs:label "registration authority"@en ;
+  owl:equivalentProperty <http://example.register.elo/elonia-business-register#registrationAuthority> ;
+  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#registrationAuthority> ;
   owl:equivalentProperty dcterms:creator ;
   skos:prefLabel "registration authority" ;
 .

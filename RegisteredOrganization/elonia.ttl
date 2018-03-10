@@ -59,3 +59,9 @@ elobr:hasBusinessCode
   rdfs:subPropertyOf skos:notation ;
   skos:prefLabel "has business code"@en ;
 .
+elobr:registrationAuthority
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The reference to the official register that has registered the company"@en ;
+  rdfs:domain elobr:EloniaBusinessCode ;
+  rdfs:label "registration authority"@en ;
+.
