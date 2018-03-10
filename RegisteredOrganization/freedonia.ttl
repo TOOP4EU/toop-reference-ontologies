@@ -29,6 +29,14 @@ freebr:Company
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
 .
+freebr:CompanyName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "All companies have to provide an Freedonia company name upon registration at the Frreedonia business register." ;
+  rdfs:domain freebr:Company ;
+  rdfs:label "company name"@en ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf skos:notation ;
+.
 freebr:FreedoniaBusinessCode
   rdf:type rdfs:Class ;
   rdfs:comment "The unique official company identifier_"@en ;

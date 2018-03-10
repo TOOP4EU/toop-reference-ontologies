@@ -422,6 +422,7 @@ toop:companyName
   rdfs:comment "The official current company name as stored in the business register_"@en ;
   rdfs:label "company name" ;
   owl:equivalentProperty <http://example.register.elo/elonia-business-register#CompanyName> ;
+  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#CompanyName> ;
   owl:equivalentProperty rov:legalName ;
 .
 toop:companyType

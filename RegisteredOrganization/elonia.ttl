@@ -38,10 +38,10 @@ elobr:CompanyName
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "All companies have to provide an Elonia company name upon registration at the Elonia business register." ;
   rdfs:domain elobr:Company ;
-  rdfs:label "has company name"@en ;
+  rdfs:label "company name"@en ;
   rdfs:range xsd:string ;
   rdfs:subPropertyOf skos:notation ;
-  skos:prefLabel "has company name"@en ;
+  skos:prefLabel "company name"@en ;
 .
 elobr:EloniaBusinessCode
   rdf:type rdfs:Class ;
