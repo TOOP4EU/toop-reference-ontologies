@@ -29,6 +29,17 @@ freebr:Company
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
 .
+freebr:FreedoniaActivityDeclaration
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The description of the main activity of the company as free text description recorded on the registry. This tag should be used to give a description of the company activity in the local language. This should be used in conjunction with the CompanyNaceCode."@en ;
+  rdfs:label "Freedonia activity declaration"@en ;
+.
+freebr:FreedoniaAddress
+  rdf:type owl:Class ;
+  rdfs:comment "The postal address and/or the visiting address of a physical site of the company, or, an virtual address, i.e., an URL."@en ;
+  rdfs:label "Company address"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
 freebr:FreedoniaBusinessCode
   rdf:type rdfs:Class ;
   rdfs:comment "The unique official company identifier_"@en ;
@@ -55,6 +66,17 @@ freebr:FreedoniaRegistrationAuthority
   rdfs:comment "The reference to the official register that has registered the company"@en ;
   rdfs:domain freebr:FreedoniaBusinessCode ;
   rdfs:label "registration authority"@en ;
+.
+freebr:FreedoniaRegistrationDate
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Represents the date at which the company started."@en ;
+  rdfs:label "Freedonia registration date"@en ;
+  rdfs:range xsd:date ;
+.
+freebr:FreeodinaRegistrationNumber
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The number of the company as recorded on the register. In some jurisdictions, the number on the register may be different from the official company number. This field must be populated in all service requests even when the RegistrationNumber is the same as the CompanyCode"@en ;
+  rdfs:label "Freeodina registration number"@en ;
 .
 freebr:hasBusinessCode
   rdf:type owl:DatatypeProperty ;
