@@ -58,7 +58,7 @@ toop:Address
   rdf:type owl:Class ;
   rdfs:comment "The postal address and/or the visiting address of a physical site of the company, or, an virtual address, i.e., an URL."@en ;
   rdfs:label "Physical or virtual address_"@en ;
-  owl:equivalentClass <http://example.register.elo/elonia-business-register#Address> ;
+  owl:equivalentClass <http://example.register.elo/elonia-business-register#EloniaAddress> ;
   owl:equivalentClass vcard:Address ;
 .
 toop:Address_1
@@ -421,8 +421,8 @@ toop:companyName
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "The official current company name as stored in the business register_"@en ;
   rdfs:label "company name" ;
-  owl:equivalentProperty <http://example.register.elo/elonia-business-register#CompanyName> ;
-  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#CompanyName> ;
+  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaCompanyName> ;
+  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaCompanyName> ;
   owl:equivalentProperty rov:legalName ;
 .
 toop:companyType
@@ -436,8 +436,8 @@ toop:companyType
       owl:onProperty skos:inScheme ;
       owl:someValuesFrom toop:CompanyTypeScheme ;
     ] ;
-  owl:equivalentProperty <http://example.register.elo/elonia-business-register#companyType> ;
-  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#companyType> ;
+  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaCompanyType> ;
+  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaCompanyType> ;
   owl:equivalentProperty rov:orgType ;
   skos:prefLabel "company type" ;
 .
@@ -533,8 +533,8 @@ toop:registrationAuthority
   rdfs:comment "The reference to the official register that has registered the company"@en ;
   rdfs:domain toop:CompanyCode ;
   rdfs:label "registration authority"@en ;
-  owl:equivalentProperty <http://example.register.elo/elonia-business-register#registrationAuthority> ;
-  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#registrationAuthority> ;
+  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaRegistrationAuthority> ;
+  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaRegistrationAuthority> ;
   owl:equivalentProperty dcterms:creator ;
   skos:prefLabel "registration authority" ;
 .

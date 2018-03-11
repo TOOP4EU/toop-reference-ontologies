@@ -29,14 +29,6 @@ freebr:Company
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
 .
-freebr:CompanyName
-  rdf:type owl:DatatypeProperty ;
-  rdfs:comment "All companies have to provide an Freedonia company name upon registration at the Frreedonia business register." ;
-  rdfs:domain freebr:Company ;
-  rdfs:label "company name"@en ;
-  rdfs:range xsd:string ;
-  rdfs:subPropertyOf skos:notation ;
-.
 freebr:FreedoniaBusinessCode
   rdf:type rdfs:Class ;
   rdfs:comment "The unique official company identifier_"@en ;
@@ -44,11 +36,25 @@ freebr:FreedoniaBusinessCode
   rdfs:subClassOf adms:Identifier ;
   skos:prefLabel "Freedonia business code" ;
 .
-freebr:companyType
+freebr:FreedoniaCompanyName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "All companies have to provide an Freedonia company name upon registration at the Frreedonia business register." ;
+  rdfs:domain freebr:Company ;
+  rdfs:label "company name"@en ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf skos:notation ;
+.
+freebr:FreedoniaCompanyType
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The legal type of the company_"@en ;
   rdfs:domain freebr:Company ;
   rdfs:label "company type"@en ;
+.
+freebr:FreedoniaRegistrationAuthority
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The reference to the official register that has registered the company"@en ;
+  rdfs:domain freebr:FreedoniaBusinessCode ;
+  rdfs:label "registration authority"@en ;
 .
 freebr:hasBusinessCode
   rdf:type owl:DatatypeProperty ;
@@ -58,10 +64,4 @@ freebr:hasBusinessCode
   rdfs:range freebr:FreedoniaBusinessCode ;
   rdfs:subPropertyOf skos:notation ;
   skos:prefLabel "has business code"@en ;
-.
-freebr:registrationAuthority
-  rdf:type owl:ObjectProperty ;
-  rdfs:comment "The reference to the official register that has registered the company"@en ;
-  rdfs:domain freebr:FreedoniaBusinessCode ;
-  rdfs:label "registration authority"@en ;
 .
