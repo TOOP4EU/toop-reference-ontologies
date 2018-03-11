@@ -377,6 +377,8 @@ toop:SSNumber
   rdfs:comment "The social security number of the company_"@en ;
   rdfs:label "SSNumber"@en ;
   rdfs:subClassOf adms:Identifier ;
+  owl:equivalentClass <http://example.register.elo/elonia-business-register#SSNumber> ;
+  owl:equivalentClass <http://example.register.fre/freedonia-business-register#SSNumber> ;
   skos:prefLabel "SSNumber" ;
 .
 toop:VATNumber
@@ -384,6 +386,8 @@ toop:VATNumber
   rdfs:comment "The value added tax number of the company"@en ;
   rdfs:label "VATNumber"@en ;
   rdfs:subClassOf adms:Identifier ;
+  owl:equivalentClass <http://example.register.elo/elonia-business-register#VATNumber> ;
+  owl:equivalentClass <http://example.register.fre/freedonia-business-register#VATNumber> ;
   skos:prefLabel "VATNumber" ;
 .
 toop:activityDeclaration
@@ -418,6 +422,8 @@ toop:companyNaceCode
   rdfs:comment "The description of the main activity of the company as free text description recorded on the registry. This tag should be used to give a description of the company activity in the local language. This should be used in conjunction with the CompanyNaceCode"@en ;
   rdfs:label "company NACE code"@en ;
   rdfs:subPropertyOf rov:orgActivity ;
+  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaCompanyNaceCode> ;
+  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaCompanyNaceCode> ;
   skos:prefLabel "company NACE code" ;
 .
 toop:companyName

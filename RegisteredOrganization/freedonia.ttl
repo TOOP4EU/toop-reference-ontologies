@@ -47,6 +47,11 @@ freebr:FreedoniaBusinessCode
   rdfs:subClassOf adms:Identifier ;
   skos:prefLabel "Freedonia business code" ;
 .
+freebr:FreedoniaCompanyNaceCode
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The description of the main activity of the company as free text description recorded on the registry. This tag should be used to give a description of the company activity in the local language. This should be used in conjunction with the CompanyNaceCode"@en ;
+  rdfs:label "Freedonia company NACE code"@en ;
+.
 freebr:FreedoniaCompanyName
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "All companies have to provide an Freedonia company name upon registration at the Frreedonia business register." ;
@@ -77,6 +82,16 @@ freebr:FreeodinaRegistrationNumber
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "The number of the company as recorded on the register. In some jurisdictions, the number on the register may be different from the official company number. This field must be populated in all service requests even when the RegistrationNumber is the same as the CompanyCode"@en ;
   rdfs:label "Freeodina registration number"@en ;
+.
+freebr:SSNumber
+  rdf:type rdfs:Class ;
+  rdfs:comment "The social security number of the company_"@en ;
+  rdfs:label "Social security number"@en ;
+.
+freebr:VATNumber
+  rdf:type rdfs:Class ;
+  rdfs:comment "The value added tax number of the company"@en ;
+  rdfs:label "VAT number"@en ;
 .
 freebr:hasBusinessCode
   rdf:type owl:DatatypeProperty ;
