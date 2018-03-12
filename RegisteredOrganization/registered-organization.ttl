@@ -161,6 +161,7 @@ toop:NL-KvK
 toop:Person
   rdf:type rdfs:Class ;
   rdf:type owl:Class ;
+  rdfs:comment "This is the person" ;
   owl:equivalentClass <http://xmlns.com/foaf/0.1/Person> ;
 .
 toop:RegisteredOrganization
