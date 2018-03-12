@@ -31,6 +31,15 @@
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+nhr:Adres
+  rdfs:subClassOf toop:Address ;
+.
+nhr:SETU_Standaarden
+  nhr:kvkNummer "34279048" ;
+.
+nhr:wordtGeleidVanuit
+  rdfs:subPropertyOf toop:hasMainSite ;
+.
 <http://toop.eu/organization>
   rdf:type owl:Ontology ;
   spin:imports <http://topbraid.org/spin/owlrl-all> ;
@@ -79,7 +88,6 @@ toop:CompanyCode
   rdfs:subClassOf adms:Identifier ;
   owl:equivalentClass <http://example.register.elo/elonia-business-register#EloniaBusinessCode> ;
   owl:equivalentClass <http://example.register.fre/freedonia-business-register#FreedoniaBusinessCode> ;
-  owl:equivalentClass nhr:KvK-nummer ;
   skos:prefLabel "Company code" ;
 .
 toop:CompanyTypeScheme

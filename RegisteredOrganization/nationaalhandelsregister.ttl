@@ -44,7 +44,6 @@ nhr:Adres
   rdfs:comment "Het adres van een locatie."@nl ;
   rdfs:label "Adres"@nl ;
   rdfs:subClassOf skos:Concept ;
-  rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#Address> ;
   skos:prefLabel "Adres"@nl ;
 .
 nhr:BeslotenVennootschap
@@ -331,20 +330,6 @@ nhr:Kerkgenootschap
   skos:inScheme nhr:RechtsvormRechtspersoon ;
   skos:prefLabel "Kerkgenootschap"@nl ;
 .
-nhr:KvK_34279048
-  rdf:type nhr:KvkNummer ;
-  rdfs:comment "KvK nummer van Stichting SETU."@nl ;
-  rdfs:label "34279048" ;
-  skos:prefLabel "34279048" ;
-.
-nhr:KvkNummer
-  rdf:type rdfs:Class ;
-  rdfs:comment "Betreft het identificerende gegeven voor de Maatschappelijke Activiteit, het KvK-nummer."@nl ;
-  rdfs:comment "The unique official company identifier."@en ;
-  rdfs:label "Kvk nummer"@nl ;
-  rdfs:subClassOf adms:Identifier ;
-  skos:prefLabel "Kvk nummer"@nl ;
-.
 nhr:LidVanHetBesturendOrgaan
   rdf:type owl:Class ;
   rdfs:comment "Een persoon die een bestuursfunctie heeft bij een Europese naamloze vennootschap (SE) of Europese coöperatieve vennootschap (SCE) indien de SE of SCE is ingericht volgens het monistisch stelsel."@nl ;
@@ -475,9 +460,8 @@ nhr:MaatschappelijkeActiviteit
   rdfs:subClassOf skos:Concept ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:onDataRange nhr:KvkNummer ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
       owl:onProperty nhr:kvkNummer ;
-      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -657,7 +641,6 @@ nhr:SETU_Standaarden
   nhr:heeftPostadres nhr:PostlocatieABU ;
   nhr:heeftStatus nhr:Actief ;
   nhr:isActiviteitVan nhr:Stichting_SETU ;
-  nhr:kvkNummer nhr:KvK_34279048 ;
   nhr:naamMaatschappelijkeActiviteit "SETU Standaarden"@nl ;
   nhr:wordtGeleidVanuit nhr:VestigingABU ;
 .
@@ -754,7 +737,6 @@ nhr:Vestiging
 Onderneming of Rechtspersoon plaatsvindt."""@nl ;
   rdfs:label "Vestiging"@nl ;
   rdfs:subClassOf skos:Concept ;
-  rdfs:subClassOf <http://www.w3.org/ns/org#Site> ;
   skos:prefLabel "Vestiging"@nl ;
 .
 nhr:VestigingABU
@@ -883,8 +865,7 @@ nhr:heeftPostadres
 .
 nhr:heeftRechtsvorm
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "De rechtsvorm van de maatschappelijke activiteit."@nl ;
-  rdfs:comment "The legal type of the company."@en ;
+  rdfs:comment "De rechtsvorm van de rechtspersoon."@nl ;
   rdfs:domain nhr:Rechtspersoon ;
   rdfs:label "heeft rechtsvorm"@nl ;
   rdfs:range nhr:RechtsvormRechtspersoon ;
@@ -963,8 +944,7 @@ nhr:kvkNummer
   rdfs:comment "Alle bedrijven krijgen bij inschrijving bij de Kamer van Koophandel een KvK-nummer. Bij een bedrijfsoverdracht krijgen ondernemingen een nieuw KvK-nummer, zodat het duidelijk is dat er sprake is van een nieuwe eigenaar. U moet het nieuwe KvK-nummer vermelden op uw bedrijfscorrespondentie, zoals brieven, orders, facturen en offertes. "@nl ;
   rdfs:domain nhr:MaatschappelijkeActiviteit ;
   rdfs:label "kvk nummer"@nl ;
-  rdfs:range nhr:KvkNummer ;
-  rdfs:subPropertyOf skos:notation ;
+  rdfs:range rdfs:Literal ;
   skos:prefLabel "kvk nummer"@nl ;
 .
 nhr:land
@@ -990,7 +970,7 @@ nhr:naamMaatschappelijkeActiviteit
   rdfs:comment "The official current company name as stored in the business register."@en ;
   rdfs:domain nhr:MaatschappelijkeActiviteit ;
   rdfs:label "naam maatschappelijke activiteit"@nl ;
-  rdfs:subPropertyOf <http://www.w3.org/ns/regorg#legalName> ;
+  rdfs:subPropertyOf <http://toop.eu/organization#companyName> ;
   skos:prefLabel "naam maatschappelijke activiteit"@nl ;
 .
 nhr:nummerCommunicatienummer
@@ -1093,7 +1073,6 @@ nhr:wordtGeleidVanuit
   rdfs:domain nhr:MaatschappelijkeActiviteit ;
   rdfs:label "wordt geleid vanuit"@nl ;
   rdfs:range nhr:Vestiging ;
-  rdfs:subPropertyOf <http://www.w3.org/ns/org#hasPrimarySite> ;
   skos:prefLabel "wordt geleid vanuit"@nl ;
 .
 [
