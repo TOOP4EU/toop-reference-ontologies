@@ -17,11 +17,6 @@
   owl:imports <https://www.w3.org/2009/08/skos-reference/skos.rdf> ;
   owl:versionInfo "Created with TopBraid Composer" ;
 .
-elobr:Address
-  rdf:type owl:Class ;
-  rdfs:comment "The postal address and/or the visiting address of a physical site of the company, or, an virtual address, i.e., an URL."@en ;
-  rdfs:label "Company address"@en ;
-.
 elobr:Company
   rdf:type owl:Class ;
   rdfs:comment "A company is an organisation with a business character with a goal to make profit by producing products or providing services."@en ;
@@ -34,14 +29,15 @@ elobr:Company
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
 .
-elobr:CompanyName
-  rdf:type owl:DatatypeProperty ;
-  rdfs:comment "All companies have to provide an Elonia company name upon registration at the Elonia business register." ;
-  rdfs:domain elobr:Company ;
-  rdfs:label "has company name"@en ;
-  rdfs:range xsd:string ;
-  rdfs:subPropertyOf skos:notation ;
-  skos:prefLabel "has company name"@en ;
+elobr:EloniaActivityDeclaration
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The description of the main activity of the company as free text description recorded on the registry. This tag should be used to give a description of the company activity in the local language. This should be used in conjunction with the CompanyNaceCode."@en ;
+  rdfs:label "Elonia activity declaration"@en ;
+.
+elobr:EloniaAddress
+  rdf:type owl:Class ;
+  rdfs:comment "The postal address and/or the visiting address of a physical site of the company, or, an virtual address, i.e., an URL."@en ;
+  rdfs:label "Company address"@en ;
 .
 elobr:EloniaBusinessCode
   rdf:type rdfs:Class ;
@@ -49,6 +45,53 @@ elobr:EloniaBusinessCode
   rdfs:label "Elonia business code"@en ;
   rdfs:subClassOf adms:Identifier ;
   skos:prefLabel "Elonia business code" ;
+.
+elobr:EloniaCompanyNaceCode
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The description of the main activity of the company as free text description recorded on the registry. This tag should be used to give a description of the company activity in the local language. This should be used in conjunction with the CompanyNaceCode"@en ;
+  rdfs:label "Elonia company NACE Code"@en ;
+.
+elobr:EloniaCompanyName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "All companies have to provide an Elonia company name upon registration at the Elonia business register." ;
+  rdfs:domain elobr:Company ;
+  rdfs:label "company name"@en ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf skos:notation ;
+  skos:prefLabel "company name"@en ;
+.
+elobr:EloniaCompanyType
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The legal type of the company_"@en ;
+  rdfs:domain elobr:Company ;
+  rdfs:label "company type"@en ;
+.
+elobr:EloniaRegistrationAuthority
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The reference to the official register that has registered the company"@en ;
+  rdfs:domain elobr:EloniaBusinessCode ;
+  rdfs:label "registration authority"@en ;
+.
+elobr:EloniaRegistrationDate
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Represents the date at which the company started."@en ;
+  rdfs:label "Elonia registration date"@en ;
+  rdfs:range xsd:date ;
+.
+elobr:EloniaRegistrationNumber
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The number of the company as recorded on the register. In some jurisdictions, the number on the register may be different from the official company number. This field must be populated in all service requests even when the RegistrationNumber is the same as the CompanyCode"@en ;
+  rdfs:label "Elonia registration number"@en ;
+.
+elobr:SSNumber
+  rdf:type rdfs:Class ;
+  rdfs:comment "The social security number of the company_"@en ;
+  rdfs:label "Social security number"@en ;
+.
+elobr:VATNumber
+  rdf:type rdfs:Class ;
+  rdfs:comment "The value added tax number of the company"@en ;
+  rdfs:label "VAT number"@en ;
 .
 elobr:hasBusinessCode
   rdf:type owl:DatatypeProperty ;
