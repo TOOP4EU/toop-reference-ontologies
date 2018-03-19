@@ -90,6 +90,10 @@ toop:CompanyCode
   owl:equivalentClass <http://example.register.fre/freedonia-business-register#FreedoniaBusinessCode> ;
   skos:prefLabel "Company code" ;
 .
+toop:CompanyContactNumber
+  rdf:type rdfs:Class ;
+  rdfs:subClassOf owl:Thing ;
+.
 toop:CompanyTypeScheme
   rdf:type rdfs:Class ;
   rdf:type owl:Class ;
@@ -426,6 +430,11 @@ toop:companyCode
   rdfs:range toop:CompanyCode ;
   skos:prefLabel "company code" ;
 .
+toop:companyContactNumber
+  rdf:type owl:ObjectProperty ;
+  rdfs:range toop:CompanyContactNumber ;
+  owl:equivalentProperty vcard:hasTelephone ;
+.
 toop:companyNaceCode
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The description of the main activity of the company as free text description recorded on the registry. This tag should be used to give a description of the company activity in the local language. This should be used in conjunction with the CompanyNaceCode"@en ;
@@ -458,6 +467,11 @@ toop:companyType
   owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaCompanyType> ;
   owl:equivalentProperty rov:orgType ;
   skos:prefLabel "company type" ;
+.
+toop:contactType
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain toop:CompanyContactNumber ;
+  rdfs:range vcard:TelephoneType ;
 .
 toop:countryName
   rdf:type owl:DatatypeProperty ;
@@ -531,6 +545,10 @@ toop:locality
   rdfs:domain toop:Address ;
   rdfs:label "locality" ;
   owl:equivalentProperty vcard:locality ;
+.
+toop:numberCompanyContactNumber
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain toop:CompanyContactNumber ;
 .
 toop:postalCode
   rdf:type owl:DatatypeProperty ;
