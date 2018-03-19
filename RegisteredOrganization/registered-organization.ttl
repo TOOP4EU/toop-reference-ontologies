@@ -65,8 +65,8 @@ nhr:wordtGeleidVanuit
 .
 toop:Address
   rdf:type owl:Class ;
-  rdfs:comment "The postal address and/or the visiting address of a physical site of the company, or, an virtual address, i.e., an URL."@en ;
-  rdfs:label "Physical or virtual address_"@en ;
+  rdfs:comment "The postal address and/or the visiting address of a physical site of the company"@en ;
+  rdfs:label "Physical address_"@en ;
   owl:equivalentClass <http://example.register.elo/elonia-business-register#EloniaAddress> ;
   owl:equivalentClass <http://example.register.fre/freedonia-business-register#FreedoniaAddress> ;
   owl:equivalentClass vcard:Address ;
@@ -91,7 +91,11 @@ toop:CompanyCode
   skos:prefLabel "Company code" ;
 .
 toop:CompanyContactNumber
-  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  rdfs:subClassOf owl:Thing ;
+.
+toop:CompanyEmailAddress
+  rdf:type owl:Class ;
   rdfs:subClassOf owl:Thing ;
 .
 toop:CompanyTypeScheme
@@ -412,6 +416,10 @@ toop:activityDeclaration
   owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaActivityDeclaration> ;
   skos:prefLabel "activity declaration" ;
 .
+toop:addressCompanyEmailAddress
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain toop:CompanyEmailAddress ;
+.
 toop:age
   rdf:type owl:DatatypeProperty ;
   rdfs:domain toop:Person ;
@@ -432,8 +440,15 @@ toop:companyCode
 .
 toop:companyContactNumber
   rdf:type owl:ObjectProperty ;
+  rdfs:domain toop:RegisteredOrganization ;
   rdfs:range toop:CompanyContactNumber ;
   owl:equivalentProperty vcard:hasTelephone ;
+.
+toop:companyEmailAddress
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:range toop:CompanyEmailAddress ;
+  owl:equivalentProperty vcard:hasEmail ;
 .
 toop:companyNaceCode
   rdf:type owl:ObjectProperty ;
