@@ -34,8 +34,29 @@
 nhr:Adres
   rdfs:subClassOf toop:Address ;
 .
+nhr:NatuurlijkPersoon
+  rdfs:subClassOf toop:Person ;
+.
 nhr:SETU_Standaarden
   nhr:kvkNummer "34279048" ;
+.
+nhr:heeftRechtsvorm
+  rdfs:subPropertyOf toop:companyType ;
+.
+nhr:land
+  rdfs:subPropertyOf toop:countryName ;
+.
+nhr:plaats
+  rdfs:subPropertyOf toop:locality ;
+.
+nhr:postcode
+  rdfs:subPropertyOf toop:postalCode ;
+.
+nhr:regio
+  rdfs:subPropertyOf toop:region ;
+.
+nhr:straatHuisnummer
+  rdfs:subPropertyOf toop:streetAddress ;
 .
 nhr:wordtGeleidVanuit
   rdfs:subPropertyOf toop:hasMainSite ;
