@@ -31,6 +31,12 @@
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+<http://example.register.elo/elonia-business-register#EloniaBusinessCode>
+  rdfs:subClassOf toop:CompanyCode ;
+.
+<http://example.register.fre/freedonia-business-register#FreedoniaBusinessCode>
+  rdfs:subClassOf toop:CompanyCode ;
+.
 nhr:Adres
   rdfs:subClassOf toop:Address ;
 .
@@ -107,8 +113,6 @@ toop:CompanyCode
   rdfs:comment "The unique official company identifier_ "@en ;
   rdfs:label "Company code_"@en ;
   rdfs:subClassOf adms:Identifier ;
-  owl:equivalentClass <http://example.register.elo/elonia-business-register#EloniaBusinessCode> ;
-  owl:equivalentClass <http://example.register.fre/freedonia-business-register#FreedoniaBusinessCode> ;
   skos:prefLabel "Company code" ;
 .
 toop:CompanyContactNumber
