@@ -24,6 +24,11 @@ elobr:Company
   rdfs:subClassOf skos:Concept ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty elobr:EloniaCompanyName ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
       owl:onDataRange elobr:EloniaBusinessCode ;
       owl:onProperty elobr:hasBusinessCode ;
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -56,7 +61,6 @@ elobr:EloniaCompanyName
   rdfs:domain elobr:Company ;
   rdfs:label "company name"@en ;
   rdfs:range xsd:string ;
-  rdfs:subPropertyOf skos:notation ;
   skos:prefLabel "company name"@en ;
 .
 elobr:EloniaCompanyType

@@ -24,6 +24,11 @@ freebr:Company
   rdfs:subClassOf skos:Concept ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty freebr:FreedoniaCompanyName ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
       owl:onDataRange freebr:FreedoniaBusinessCode ;
       owl:onProperty freebr:hasBusinessCode ;
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -57,7 +62,6 @@ freebr:FreedoniaCompanyName
   rdfs:domain freebr:Company ;
   rdfs:label "company name"@en ;
   rdfs:range xsd:string ;
-  rdfs:subPropertyOf skos:notation ;
 .
 freebr:FreedoniaCompanyType
   rdf:type owl:ObjectProperty ;

@@ -34,11 +34,17 @@
 <http://example.register.elo/elonia-business-register#EloniaBusinessCode>
   rdfs:subClassOf toop:CompanyCode ;
 .
+<http://example.register.elo/elonia-business-register#EloniaCompanyName>
+  rdfs:subPropertyOf toop:companyName ;
+.
 <http://example.register.elo/elonia-business-register#hasBusinessCode>
   rdfs:subPropertyOf toop:hasCompanyCode ;
 .
 <http://example.register.fre/freedonia-business-register#FreedoniaBusinessCode>
   rdfs:subClassOf toop:CompanyCode ;
+.
+<http://example.register.fre/freedonia-business-register#FreedoniaCompanyName>
+  rdfs:subPropertyOf toop:companyName ;
 .
 <http://example.register.fre/freedonia-business-register#hasBusinessCode>
   rdfs:subPropertyOf toop:hasCompanyCode ;
@@ -489,9 +495,7 @@ toop:companyName
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "The official current company name as stored in the business register_"@en ;
   rdfs:label "company name" ;
-  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaCompanyName> ;
-  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaCompanyName> ;
-  owl:equivalentProperty rov:legalName ;
+  rdfs:subPropertyOf rov:legalName ;
 .
 toop:companyType
   rdf:type rdf:Property ;
