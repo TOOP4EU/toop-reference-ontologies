@@ -43,7 +43,6 @@ elobr:EloniaBusinessCode
   rdf:type rdfs:Class ;
   rdfs:comment "The unique official company identifier_"@en ;
   rdfs:label "Elonia business code"@en ;
-  rdfs:subClassOf adms:Identifier ;
   skos:prefLabel "Elonia business code" ;
 .
 elobr:EloniaCompanyNaceCode
@@ -94,11 +93,10 @@ elobr:VATNumber
   rdfs:label "VAT number"@en ;
 .
 elobr:hasBusinessCode
-  rdf:type owl:DatatypeProperty ;
+  rdf:type owl:ObjectProperty ;
   rdfs:comment "All companies get an Elonia Business Code uponregistration at the Elonia business register." ;
   rdfs:domain elobr:Company ;
   rdfs:label "has business code"@en ;
   rdfs:range elobr:EloniaBusinessCode ;
-  rdfs:subPropertyOf skos:notation ;
   skos:prefLabel "has business code"@en ;
 .

@@ -34,8 +34,14 @@
 <http://example.register.elo/elonia-business-register#EloniaBusinessCode>
   rdfs:subClassOf toop:CompanyCode ;
 .
+<http://example.register.elo/elonia-business-register#hasBusinessCode>
+  rdfs:subPropertyOf toop:hasCompanyCode ;
+.
 <http://example.register.fre/freedonia-business-register#FreedoniaBusinessCode>
   rdfs:subClassOf toop:CompanyCode ;
+.
+<http://example.register.fre/freedonia-business-register#hasBusinessCode>
+  rdfs:subPropertyOf toop:hasCompanyCode ;
 .
 nhr:Adres
   rdfs:subClassOf toop:Address ;
@@ -114,6 +120,9 @@ toop:CompanyCode
   rdfs:label "Company code_"@en ;
   rdfs:subClassOf adms:Identifier ;
   skos:prefLabel "Company code" ;
+.
+toop:CompanyCode_1
+  rdf:type toop:CompanyCode ;
 .
 toop:CompanyContactNumber
   rdf:type owl:Class ;
@@ -542,9 +551,8 @@ toop:hasAddress
 toop:hasCompanyCode
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The property of a registered organization of having a main code that is the unique identifier recorded in the registry. This tag should be used to give an identifier of the company in the local language. It should be used in conjunction with the CompanyNaceCode."@en ;
-  rdfs:domain toop:RegisteredOrganization ;
   rdfs:label "company code"@en ;
-  rdfs:range toop:CompanyCode ;
+  rdfs:subPropertyOf rov:registration ;
   skos:prefLabel "company code" ;
 .
 toop:hasMainSite

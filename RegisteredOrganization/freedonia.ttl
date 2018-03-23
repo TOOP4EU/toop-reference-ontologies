@@ -44,7 +44,6 @@ freebr:FreedoniaBusinessCode
   rdf:type rdfs:Class ;
   rdfs:comment "The unique official company identifier_"@en ;
   rdfs:label "Elonia business code"@en ;
-  rdfs:subClassOf adms:Identifier ;
   skos:prefLabel "Freedonia business code" ;
 .
 freebr:FreedoniaCompanyNaceCode
@@ -94,11 +93,10 @@ freebr:VATNumber
   rdfs:label "VAT number"@en ;
 .
 freebr:hasBusinessCode
-  rdf:type owl:DatatypeProperty ;
+  rdf:type owl:ObjectProperty ;
   rdfs:comment "All companies get an Freedonia Business Code uponregistration at the Freedonia business register." ;
   rdfs:domain freebr:Company ;
   rdfs:label "has business code"@en ;
   rdfs:range freebr:FreedoniaBusinessCode ;
-  rdfs:subPropertyOf skos:notation ;
   skos:prefLabel "has business code"@en ;
 .
