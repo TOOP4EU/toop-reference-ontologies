@@ -86,12 +86,12 @@ elobr:EloniaRegistrationNumber
   rdfs:comment "The number of the company as recorded on the register. In some jurisdictions, the number on the register may be different from the official company number. This field must be populated in all service requests even when the RegistrationNumber is the same as the CompanyCode"@en ;
   rdfs:label "Elonia registration number"@en ;
 .
-elobr:SSNumber
+elobr:EloniaSSNumber
   rdf:type rdfs:Class ;
   rdfs:comment "The social security number of the company_"@en ;
   rdfs:label "Social security number"@en ;
 .
-elobr:VATNumber
+elobr:EloniaVATNumber
   rdf:type rdfs:Class ;
   rdfs:comment "The value added tax number of the company"@en ;
   rdfs:label "VAT number"@en ;

@@ -125,6 +125,8 @@ toop:CompanyCode
   rdfs:comment "The unique official company identifier_ "@en ;
   rdfs:label "Company code_"@en ;
   rdfs:subClassOf adms:Identifier ;
+  owl:equivalentClass <http://example.register.elo/elonia-business-register#EloniaBusinessCode> ;
+  owl:equivalentClass <http://example.register.fre/freedonia-business-register#FreedoniaBusinessCode> ;
   skos:prefLabel "Company code" ;
 .
 toop:CompanyCode_1
@@ -434,8 +436,8 @@ toop:SSNumber
   rdfs:comment "The social security number of the company_"@en ;
   rdfs:label "SSNumber"@en ;
   rdfs:subClassOf adms:Identifier ;
-  owl:equivalentClass <http://example.register.elo/elonia-business-register#SSNumber> ;
-  owl:equivalentClass <http://example.register.fre/freedonia-business-register#SSNumber> ;
+  owl:equivalentClass <http://example.register.elo/elonia-business-register#EloniaSSNumber> ;
+  owl:equivalentClass <http://example.register.fre/freedonia-business-register#FreedoniaSSNumber> ;
   skos:prefLabel "SSNumber" ;
 .
 toop:VATNumber
@@ -443,8 +445,8 @@ toop:VATNumber
   rdfs:comment "The value added tax number of the company"@en ;
   rdfs:label "VATNumber"@en ;
   rdfs:subClassOf adms:Identifier ;
-  owl:equivalentClass <http://example.register.elo/elonia-business-register#VATNumber> ;
-  owl:equivalentClass <http://example.register.fre/freedonia-business-register#VATNumber> ;
+  owl:equivalentClass <http://example.register.elo/elonia-business-register#EloniaVATNumber> ;
+  owl:equivalentClass <http://example.register.fre/freedonia-business-register#FreedoniaVATNumber> ;
   skos:prefLabel "VATNumber" ;
 .
 toop:activityDeclaration
@@ -496,6 +498,8 @@ toop:companyName
   rdfs:comment "The official current company name as stored in the business register_"@en ;
   rdfs:label "company name" ;
   rdfs:subPropertyOf rov:legalName ;
+  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaCompanyName> ;
+  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaCompanyName> ;
 .
 toop:companyType
   rdf:type rdf:Property ;
@@ -642,7 +646,7 @@ toop:registrationNumber
   rdfs:comment "The number of the company as recorded on the register. In some jurisdictions, the number on the register may be different from the official company number. This field must be populated in all service requests even when the RegistrationNumber is the same as the CompanyCode "@en ;
   rdfs:label "registration number"@en ;
   owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaRegistrationNumber> ;
-  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreeodinaRegistrationNumber> ;
+  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaRegistrationNumber> ;
   owl:equivalentProperty org:identifier ;
   skos:prefLabel "registration number" ;
 .
