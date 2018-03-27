@@ -587,12 +587,24 @@ toop:legalRepresentativeOf
   rdfs:range toop:RegisteredOrganization ;
   rdfs:subPropertyOf org:memberOf ;
 .
+toop:legalStatus
+  rdf:type rdf:Property ;
+  rdfs:comment "The current legal status of a company (active, ended, ...)"@en ;
+  rdfs:domain toop:CompanyCode ;
+  rdfs:label "legal status"@en ;
+  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaLegalStatus> ;
+  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaLegalStatus> ;
+  owl:equivalentProperty rov:orgStatus ;
+  skos:prefLabel "legal status" ;
+.
 toop:legalStatusEffectiveDate
   rdf:type rdf:Property ;
   rdfs:comment "The date at which the current legal status became effective_"@en ;
   rdfs:domain toop:CompanyCode ;
   rdfs:label "legal status effective date"@en ;
   rdfs:subPropertyOf dcterms:issued ;
+  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaLegalEffectiveDate> ;
+  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaLegalEffectiveDate> ;
   skos:prefLabel "legal status effective date" ;
 .
 toop:locality
