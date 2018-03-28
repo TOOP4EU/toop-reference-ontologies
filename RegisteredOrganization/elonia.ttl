@@ -69,17 +69,17 @@ elobr:EloniaCompanyType
   rdfs:domain elobr:Company ;
   rdfs:label "company type"@en ;
 .
-elobr:EloniaLegalEffectiveDate
-  rdf:type owl:ObjectProperty ;
-  rdfs:comment "The date at which the current legal status became effective_"@en ;
-  rdfs:domain elobr:Company ;
-  rdfs:label "Elonia legal effective date"@en ;
-.
 elobr:EloniaLegalStatus
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The legal status of the company"@en ;
   rdfs:domain elobr:Company ;
   rdfs:label "company legal status"@en ;
+.
+elobr:EloniaLegalStatusEffectiveDate
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The date at which the current legal status became effective_"@en ;
+  rdfs:domain elobr:Company ;
+  rdfs:label "Elonia legal status effective date"@en ;
 .
 elobr:EloniaRegistrationAuthority
   rdf:type owl:ObjectProperty ;

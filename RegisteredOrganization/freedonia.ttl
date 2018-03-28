@@ -69,17 +69,17 @@ freebr:FreedoniaCompanyType
   rdfs:domain freebr:Company ;
   rdfs:label "company type"@en ;
 .
-freebr:FreedoniaLegalEffectiveDate
-  rdf:type owl:ObjectProperty ;
-  rdfs:comment "The date at which the current legal status became effective_"@en ;
-  rdfs:domain freebr:Company ;
-  rdfs:label "Freedonia legal effective date"@en ;
-.
 freebr:FreedoniaLegalStatus
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The legal status of the company"@en ;
   rdfs:domain freebr:Company ;
   rdfs:label "company legal status"@en ;
+.
+freebr:FreedoniaLegalStatusEffectiveDate
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The date at which the current legal status became effective_"@en ;
+  rdfs:domain freebr:Company ;
+  rdfs:label "Freedonia legal status effective date"@en ;
 .
 freebr:FreedoniaRegistrationAuthority
   rdf:type owl:ObjectProperty ;

@@ -603,8 +603,8 @@ toop:legalStatusEffectiveDate
   rdfs:domain toop:CompanyCode ;
   rdfs:label "legal status effective date"@en ;
   rdfs:subPropertyOf dcterms:issued ;
-  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaLegalEffectiveDate> ;
-  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaLegalEffectiveDate> ;
+  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaLegalStatusEffectiveDate> ;
+  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaLegalStatusEffectiveDate> ;
   skos:prefLabel "legal status effective date" ;
 .
 toop:locality
