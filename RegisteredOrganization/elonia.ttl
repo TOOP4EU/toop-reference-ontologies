@@ -24,6 +24,11 @@ elobr:Company
   rdfs:subClassOf skos:Concept ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty elobr:EloniaCompanyName ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
       owl:onDataRange elobr:EloniaBusinessCode ;
       owl:onProperty elobr:hasBusinessCode ;
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -43,7 +48,6 @@ elobr:EloniaBusinessCode
   rdf:type rdfs:Class ;
   rdfs:comment "The unique official company identifier_"@en ;
   rdfs:label "Elonia business code"@en ;
-  rdfs:subClassOf adms:Identifier ;
   skos:prefLabel "Elonia business code" ;
 .
 elobr:EloniaCompanyNaceCode
@@ -57,7 +61,6 @@ elobr:EloniaCompanyName
   rdfs:domain elobr:Company ;
   rdfs:label "company name"@en ;
   rdfs:range xsd:string ;
-  rdfs:subPropertyOf skos:notation ;
   skos:prefLabel "company name"@en ;
 .
 elobr:EloniaCompanyType
@@ -65,6 +68,18 @@ elobr:EloniaCompanyType
   rdfs:comment "The legal type of the company_"@en ;
   rdfs:domain elobr:Company ;
   rdfs:label "company type"@en ;
+.
+elobr:EloniaLegalStatus
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The legal status of the company"@en ;
+  rdfs:domain elobr:Company ;
+  rdfs:label "company legal status"@en ;
+.
+elobr:EloniaLegalStatusEffectiveDate
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The date at which the current legal status became effective_"@en ;
+  rdfs:domain elobr:Company ;
+  rdfs:label "Elonia legal status effective date"@en ;
 .
 elobr:EloniaRegistrationAuthority
   rdf:type owl:ObjectProperty ;
@@ -83,22 +98,21 @@ elobr:EloniaRegistrationNumber
   rdfs:comment "The number of the company as recorded on the register. In some jurisdictions, the number on the register may be different from the official company number. This field must be populated in all service requests even when the RegistrationNumber is the same as the CompanyCode"@en ;
   rdfs:label "Elonia registration number"@en ;
 .
-elobr:SSNumber
+elobr:EloniaSSNumber
   rdf:type rdfs:Class ;
   rdfs:comment "The social security number of the company_"@en ;
   rdfs:label "Social security number"@en ;
 .
-elobr:VATNumber
+elobr:EloniaVATNumber
   rdf:type rdfs:Class ;
   rdfs:comment "The value added tax number of the company"@en ;
   rdfs:label "VAT number"@en ;
 .
 elobr:hasBusinessCode
-  rdf:type owl:DatatypeProperty ;
+  rdf:type owl:ObjectProperty ;
   rdfs:comment "All companies get an Elonia Business Code uponregistration at the Elonia business register." ;
   rdfs:domain elobr:Company ;
   rdfs:label "has business code"@en ;
   rdfs:range elobr:EloniaBusinessCode ;
-  rdfs:subPropertyOf skos:notation ;
   skos:prefLabel "has business code"@en ;
 .

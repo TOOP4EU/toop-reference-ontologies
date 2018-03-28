@@ -32,13 +32,6 @@
   owl:imports <https://www.w3.org/2009/08/skos-reference/skos.rdf> ;
   owl:versionInfo "Created with TopBraid Composer" ;
 .
-nhr:Actief
-  rdf:type owl:Class ;
-  rdfs:comment "De organisatie bestaat en is actief."@nl ;
-  rdfs:label "Actief"@nl ;
-  rdfs:subClassOf nhr:Status ;
-  skos:prefLabel "Actief"@nl ;
-.
 nhr:Adres
   rdf:type owl:Class ;
   rdfs:comment "Het adres van een locatie."@nl ;
@@ -93,13 +86,6 @@ nhr:BezoeklocatieABU
   rdfs:comment "De bezoeklocatie van ABU."@nl ;
   rdfs:label "Bezoeklocatie ABU"@nl ;
   skos:prefLabel "Bezoeklocatie ABU"@nl ;
-.
-nhr:Beëindigd
-  rdf:type owl:Class ;
-  rdfs:comment "De organisatievorm is opgehouden te bestaan."@nl ;
-  rdfs:label "Beëindigd"@nl ;
-  rdfs:subClassOf nhr:Status ;
-  skos:prefLabel "Beëindigd"@nl ;
 .
 nhr:BinnenlandsAdres
   rdf:type owl:Class ;
@@ -497,7 +483,6 @@ nhr:NatuurlijkPersoon
   rdfs:comment "Een {NatuurlijkPersoon} is een mens."@nl ;
   rdfs:label "Natuurlijk persoon"@nl ;
   rdfs:subClassOf nhr:Persoon ;
-  rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:cardinality "1"^^xsd:nonNegativeInteger ;
@@ -639,7 +624,6 @@ nhr:SETU_Standaarden
   nhr:heeftBezoekadres nhr:BezoeklocatieABU ;
   nhr:heeftCommunicatiegegevens nhr:CommunicatiegegevensSETU ;
   nhr:heeftPostadres nhr:PostlocatieABU ;
-  nhr:heeftStatus nhr:Actief ;
   nhr:isActiviteitVan nhr:Stichting_SETU ;
   nhr:naamMaatschappelijkeActiviteit "SETU Standaarden"@nl ;
   nhr:wordtGeleidVanuit nhr:VestigingABU ;
@@ -656,14 +640,6 @@ nhr:Samenwerkingsverband
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
   skos:prefLabel "Samenwerkingsverband"@nl ;
-.
-nhr:Status
-  rdf:type owl:Class ;
-  rdfs:comment "De status van de organisatie."@nl ;
-  rdfs:comment "The legal status of the company."@en ;
-  rdfs:label "Status"@nl ;
-  rdfs:subClassOf skos:Concept ;
-  skos:prefLabel "Status"@nl ;
 .
 nhr:Stichting
   rdf:type owl:Class ;
@@ -801,7 +777,6 @@ nhr:geslachtsnaam
   rdfs:domain nhr:NatuurlijkPersoon ;
   rdfs:label "geslachtsnaam"@nl ;
   rdfs:range xsd:string ;
-  rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/familyName> ;
   skos:prefLabel "geslachtsnaam"@nl ;
 .
 nhr:heeftBezoekadres
@@ -869,17 +844,7 @@ nhr:heeftRechtsvorm
   rdfs:domain nhr:Rechtspersoon ;
   rdfs:label "heeft rechtsvorm"@nl ;
   rdfs:range nhr:RechtsvormRechtspersoon ;
-  rdfs:subPropertyOf <http://www.w3.org/ns/regorg#orgType> ;
   skos:prefLabel "heeft rechtsvorm"@nl ;
-.
-nhr:heeftStatus
-  rdf:type owl:ObjectProperty ;
-  rdfs:comment "De huidige formele status van de organisatie. "@nl ;
-  rdfs:domain nhr:MaatschappelijkeActiviteit ;
-  rdfs:label "heeft status"@nl ;
-  rdfs:range nhr:Status ;
-  rdfs:subPropertyOf <http://www.w3.org/ns/regorg#orgStatus> ;
-  skos:prefLabel "heeft status"@nl ;
 .
 nhr:heeftVolledigAdres
   rdf:type owl:ObjectProperty ;
@@ -887,7 +852,6 @@ nhr:heeftVolledigAdres
   rdfs:domain nhr:Locatie ;
   rdfs:label "heeft volledig adres"@nl ;
   rdfs:range nhr:Adres ;
-  rdfs:subPropertyOf <http://www.w3.org/ns/org#siteAddress> ;
   skos:prefLabel "heeft volledig adres"@nl ;
 .
 nhr:heeftVolledigeNaam
@@ -936,7 +900,6 @@ nhr:isEigenaarVan
   rdfs:domain nhr:Persoon ;
   rdfs:label "is eigenaar van"@nl ;
   rdfs:range nhr:MaatschappelijkeActiviteit ;
-  rdfs:subPropertyOf <http://www.w3.org/ns/org#memberOf> ;
   skos:prefLabel "is eigenaar van"@nl ;
 .
 nhr:kvkNummer
@@ -953,7 +916,6 @@ nhr:land
   rdfs:domain nhr:BuitenlandsAdres ;
   rdfs:label "land"@nl ;
   rdfs:range xsd:string ;
-  rdfs:subPropertyOf <http://www.w3.org/2006/vcard/ns#country-name> ;
   skos:prefLabel "land"@nl ;
 .
 nhr:naamDomeinnaam
@@ -987,7 +949,6 @@ nhr:plaats
   rdfs:domain nhr:BinnenlandsAdres ;
   rdfs:label "plaats"@nl ;
   rdfs:range xsd:string ;
-  rdfs:subPropertyOf <http://www.w3.org/2006/vcard/ns#locality> ;
   skos:prefLabel "plaats"@nl ;
 .
 nhr:postbusnummer
@@ -1005,7 +966,6 @@ postcode - bestaande uit vier cijfers - identificeert een woonplaats of een gede
   rdfs:domain nhr:BinnenlandsAdres ;
   rdfs:label "postcode"@nl ;
   rdfs:range xsd:string ;
-  rdfs:subPropertyOf <http://www.w3.org/2006/vcard/ns#postal-code> ;
   skos:prefLabel "postcode"@nl ;
 .
 nhr:postcodeWoonplaats
@@ -1022,7 +982,6 @@ nhr:regio
   rdfs:domain nhr:BuitenlandsAdres ;
   rdfs:label "regio"@nl ;
   rdfs:range xsd:string ;
-  rdfs:subPropertyOf <http://www.w3.org/2006/vcard/ns#region> ;
   skos:prefLabel "regio"@nl ;
 .
 nhr:soortCommunicatienummer
@@ -1039,7 +998,6 @@ nhr:straatHuisnummer
   rdfs:domain nhr:BuitenlandsAdres ;
   rdfs:label "straat huisnummer"@nl ;
   rdfs:range xsd:string ;
-  rdfs:subPropertyOf <http://www.w3.org/2006/vcard/ns#street-address> ;
   skos:prefLabel "straat huisnummer"@nl ;
 .
 nhr:straatnaam
@@ -1064,7 +1022,6 @@ nhr:voornamen
   rdfs:domain nhr:NatuurlijkPersoon ;
   rdfs:label "voornamen"@nl ;
   rdfs:range xsd:string ;
-  rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/givenName> ;
   skos:prefLabel "voornamen"@nl ;
 .
 nhr:wordtGeleidVanuit

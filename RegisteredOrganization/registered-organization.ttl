@@ -31,11 +31,50 @@
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+<http://example.register.elo/elonia-business-register#EloniaBusinessCode>
+  rdfs:subClassOf toop:CompanyCode ;
+.
+<http://example.register.elo/elonia-business-register#EloniaCompanyName>
+  rdfs:subPropertyOf toop:companyName ;
+.
+<http://example.register.elo/elonia-business-register#hasBusinessCode>
+  rdfs:subPropertyOf toop:hasCompanyCode ;
+.
+<http://example.register.fre/freedonia-business-register#FreedoniaBusinessCode>
+  rdfs:subClassOf toop:CompanyCode ;
+.
+<http://example.register.fre/freedonia-business-register#FreedoniaCompanyName>
+  rdfs:subPropertyOf toop:companyName ;
+.
+<http://example.register.fre/freedonia-business-register#hasBusinessCode>
+  rdfs:subPropertyOf toop:hasCompanyCode ;
+.
 nhr:Adres
   rdfs:subClassOf toop:Address ;
 .
+nhr:NatuurlijkPersoon
+  rdfs:subClassOf toop:Person ;
+.
 nhr:SETU_Standaarden
   nhr:kvkNummer "34279048" ;
+.
+nhr:heeftRechtsvorm
+  rdfs:subPropertyOf toop:companyType ;
+.
+nhr:land
+  rdfs:subPropertyOf toop:countryName ;
+.
+nhr:plaats
+  rdfs:subPropertyOf toop:locality ;
+.
+nhr:postcode
+  rdfs:subPropertyOf toop:postalCode ;
+.
+nhr:regio
+  rdfs:subPropertyOf toop:region ;
+.
+nhr:straatHuisnummer
+  rdfs:subPropertyOf toop:streetAddress ;
 .
 nhr:wordtGeleidVanuit
   rdfs:subPropertyOf toop:hasMainSite ;
@@ -65,8 +104,8 @@ nhr:wordtGeleidVanuit
 .
 toop:Address
   rdf:type owl:Class ;
-  rdfs:comment "The postal address and/or the visiting address of a physical site of the company, or, an virtual address, i.e., an URL."@en ;
-  rdfs:label "Physical or virtual address_"@en ;
+  rdfs:comment "The postal address and/or the visiting address of a physical site of the company"@en ;
+  rdfs:label "Physical address_"@en ;
   owl:equivalentClass <http://example.register.elo/elonia-business-register#EloniaAddress> ;
   owl:equivalentClass <http://example.register.fre/freedonia-business-register#FreedoniaAddress> ;
   owl:equivalentClass vcard:Address ;
@@ -89,6 +128,17 @@ toop:CompanyCode
   owl:equivalentClass <http://example.register.elo/elonia-business-register#EloniaBusinessCode> ;
   owl:equivalentClass <http://example.register.fre/freedonia-business-register#FreedoniaBusinessCode> ;
   skos:prefLabel "Company code" ;
+.
+toop:CompanyCode_1
+  rdf:type toop:CompanyCode ;
+.
+toop:CompanyContactNumber
+  rdf:type owl:Class ;
+  rdfs:subClassOf owl:Thing ;
+.
+toop:CompanyEmailAddress
+  rdf:type owl:Class ;
+  rdfs:subClassOf owl:Thing ;
 .
 toop:CompanyTypeScheme
   rdf:type rdfs:Class ;
@@ -359,7 +409,7 @@ toop:RegisteredOrganization
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:onProperty toop:companyCode ;
+      owl:onProperty toop:hasCompanyCode ;
       owl:someValuesFrom toop:CompanyCode ;
     ] ;
   rdfs:subClassOf [
@@ -386,8 +436,8 @@ toop:SSNumber
   rdfs:comment "The social security number of the company_"@en ;
   rdfs:label "SSNumber"@en ;
   rdfs:subClassOf adms:Identifier ;
-  owl:equivalentClass <http://example.register.elo/elonia-business-register#SSNumber> ;
-  owl:equivalentClass <http://example.register.fre/freedonia-business-register#SSNumber> ;
+  owl:equivalentClass <http://example.register.elo/elonia-business-register#EloniaSSNumber> ;
+  owl:equivalentClass <http://example.register.fre/freedonia-business-register#FreedoniaSSNumber> ;
   skos:prefLabel "SSNumber" ;
 .
 toop:VATNumber
@@ -395,8 +445,8 @@ toop:VATNumber
   rdfs:comment "The value added tax number of the company"@en ;
   rdfs:label "VATNumber"@en ;
   rdfs:subClassOf adms:Identifier ;
-  owl:equivalentClass <http://example.register.elo/elonia-business-register#VATNumber> ;
-  owl:equivalentClass <http://example.register.fre/freedonia-business-register#VATNumber> ;
+  owl:equivalentClass <http://example.register.elo/elonia-business-register#EloniaVATNumber> ;
+  owl:equivalentClass <http://example.register.fre/freedonia-business-register#FreedoniaVATNumber> ;
   skos:prefLabel "VATNumber" ;
 .
 toop:activityDeclaration
@@ -408,6 +458,10 @@ toop:activityDeclaration
   owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaActivityDeclaration> ;
   skos:prefLabel "activity declaration" ;
 .
+toop:addressCompanyEmailAddress
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain toop:CompanyEmailAddress ;
+.
 toop:age
   rdf:type owl:DatatypeProperty ;
   rdfs:domain toop:Person ;
@@ -418,13 +472,17 @@ toop:birthday
   rdfs:domain toop:Person ;
   owl:equivalentProperty <http://xmlns.com/foaf/0.1/birthday> ;
 .
-toop:companyCode
+toop:companyContactNumber
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "The description of the main code of the company as unique identifier recorded in the registry. This tag should be used to give an identifier of the company in the local language. This should be used in conjunction with the CompanyNaceCode"@en ;
   rdfs:domain toop:RegisteredOrganization ;
-  rdfs:label "company code"@en ;
-  rdfs:range toop:CompanyCode ;
-  skos:prefLabel "company code" ;
+  rdfs:range toop:CompanyContactNumber ;
+  owl:equivalentProperty vcard:hasTelephone ;
+.
+toop:companyEmailAddress
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:range toop:CompanyEmailAddress ;
+  owl:equivalentProperty vcard:hasEmail ;
 .
 toop:companyNaceCode
   rdf:type owl:ObjectProperty ;
@@ -439,9 +497,9 @@ toop:companyName
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "The official current company name as stored in the business register_"@en ;
   rdfs:label "company name" ;
+  rdfs:subPropertyOf rov:legalName ;
   owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaCompanyName> ;
   owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaCompanyName> ;
-  owl:equivalentProperty rov:legalName ;
 .
 toop:companyType
   rdf:type rdf:Property ;
@@ -458,6 +516,11 @@ toop:companyType
   owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaCompanyType> ;
   owl:equivalentProperty rov:orgType ;
   skos:prefLabel "company type" ;
+.
+toop:contactType
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain toop:CompanyContactNumber ;
+  rdfs:range vcard:TelephoneType ;
 .
 toop:countryName
   rdf:type owl:DatatypeProperty ;
@@ -493,6 +556,13 @@ toop:hasAddress
   rdfs:subPropertyOf org:siteAddress ;
   skos:prefLabel "has address" ;
 .
+toop:hasCompanyCode
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The property of a registered organization of having a main code that is the unique identifier recorded in the registry. This tag should be used to give an identifier of the company in the local language. It should be used in conjunction with the CompanyNaceCode."@en ;
+  rdfs:label "company code"@en ;
+  rdfs:subPropertyOf rov:registration ;
+  skos:prefLabel "company code" ;
+.
 toop:hasMainSite
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The main site of the company."@en ;
@@ -517,12 +587,24 @@ toop:legalRepresentativeOf
   rdfs:range toop:RegisteredOrganization ;
   rdfs:subPropertyOf org:memberOf ;
 .
+toop:legalStatus
+  rdf:type rdf:Property ;
+  rdfs:comment "The current legal status of a company (active, ended, ...)"@en ;
+  rdfs:domain toop:CompanyCode ;
+  rdfs:label "legal status"@en ;
+  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaLegalStatus> ;
+  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaLegalStatus> ;
+  owl:equivalentProperty rov:orgStatus ;
+  skos:prefLabel "legal status" ;
+.
 toop:legalStatusEffectiveDate
   rdf:type rdf:Property ;
   rdfs:comment "The date at which the current legal status became effective_"@en ;
   rdfs:domain toop:CompanyCode ;
   rdfs:label "legal status effective date"@en ;
   rdfs:subPropertyOf dcterms:issued ;
+  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaLegalStatusEffectiveDate> ;
+  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaLegalStatusEffectiveDate> ;
   skos:prefLabel "legal status effective date" ;
 .
 toop:locality
@@ -531,6 +613,10 @@ toop:locality
   rdfs:domain toop:Address ;
   rdfs:label "locality" ;
   owl:equivalentProperty vcard:locality ;
+.
+toop:numberCompanyContactNumber
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain toop:CompanyContactNumber ;
 .
 toop:postalCode
   rdf:type owl:DatatypeProperty ;
@@ -572,7 +658,7 @@ toop:registrationNumber
   rdfs:comment "The number of the company as recorded on the register. In some jurisdictions, the number on the register may be different from the official company number. This field must be populated in all service requests even when the RegistrationNumber is the same as the CompanyCode "@en ;
   rdfs:label "registration number"@en ;
   owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaRegistrationNumber> ;
-  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreeodinaRegistrationNumber> ;
+  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaRegistrationNumber> ;
   owl:equivalentProperty org:identifier ;
   skos:prefLabel "registration number" ;
 .

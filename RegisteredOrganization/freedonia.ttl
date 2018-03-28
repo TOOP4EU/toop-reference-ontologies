@@ -24,6 +24,11 @@ freebr:Company
   rdfs:subClassOf skos:Concept ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty freebr:FreedoniaCompanyName ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
       owl:onDataRange freebr:FreedoniaBusinessCode ;
       owl:onProperty freebr:hasBusinessCode ;
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -44,7 +49,6 @@ freebr:FreedoniaBusinessCode
   rdf:type rdfs:Class ;
   rdfs:comment "The unique official company identifier_"@en ;
   rdfs:label "Elonia business code"@en ;
-  rdfs:subClassOf adms:Identifier ;
   skos:prefLabel "Freedonia business code" ;
 .
 freebr:FreedoniaCompanyNaceCode
@@ -58,13 +62,24 @@ freebr:FreedoniaCompanyName
   rdfs:domain freebr:Company ;
   rdfs:label "company name"@en ;
   rdfs:range xsd:string ;
-  rdfs:subPropertyOf skos:notation ;
 .
 freebr:FreedoniaCompanyType
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The legal type of the company_"@en ;
   rdfs:domain freebr:Company ;
   rdfs:label "company type"@en ;
+.
+freebr:FreedoniaLegalStatus
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The legal status of the company"@en ;
+  rdfs:domain freebr:Company ;
+  rdfs:label "company legal status"@en ;
+.
+freebr:FreedoniaLegalStatusEffectiveDate
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The date at which the current legal status became effective_"@en ;
+  rdfs:domain freebr:Company ;
+  rdfs:label "Freedonia legal status effective date"@en ;
 .
 freebr:FreedoniaRegistrationAuthority
   rdf:type owl:ObjectProperty ;
@@ -78,27 +93,26 @@ freebr:FreedoniaRegistrationDate
   rdfs:label "Freedonia registration date"@en ;
   rdfs:range xsd:date ;
 .
-freebr:FreeodinaRegistrationNumber
+freebr:FreedoniaRegistrationNumber
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "The number of the company as recorded on the register. In some jurisdictions, the number on the register may be different from the official company number. This field must be populated in all service requests even when the RegistrationNumber is the same as the CompanyCode"@en ;
   rdfs:label "Freeodina registration number"@en ;
 .
-freebr:SSNumber
+freebr:FreedoniaSSNumber
   rdf:type rdfs:Class ;
   rdfs:comment "The social security number of the company_"@en ;
   rdfs:label "Social security number"@en ;
 .
-freebr:VATNumber
+freebr:FreedoniaVATNumber
   rdf:type rdfs:Class ;
   rdfs:comment "The value added tax number of the company"@en ;
   rdfs:label "VAT number"@en ;
 .
 freebr:hasBusinessCode
-  rdf:type owl:DatatypeProperty ;
+  rdf:type owl:ObjectProperty ;
   rdfs:comment "All companies get an Freedonia Business Code uponregistration at the Freedonia business register." ;
   rdfs:domain freebr:Company ;
   rdfs:label "has business code"@en ;
   rdfs:range freebr:FreedoniaBusinessCode ;
-  rdfs:subPropertyOf skos:notation ;
   skos:prefLabel "has business code"@en ;
 .
