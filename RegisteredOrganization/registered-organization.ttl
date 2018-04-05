@@ -472,12 +472,6 @@ toop:birthday
   rdfs:domain toop:Person ;
   owl:equivalentProperty <http://xmlns.com/foaf/0.1/birthday> ;
 .
-toop:companyContactNumber
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain toop:RegisteredOrganization ;
-  rdfs:range toop:CompanyContactNumber ;
-  owl:equivalentProperty vcard:hasTelephone ;
-.
 toop:companyEmailAddress
   rdf:type owl:ObjectProperty ;
   rdfs:domain toop:RegisteredOrganization ;
@@ -562,6 +556,12 @@ toop:hasCompanyCode
   rdfs:label "company code"@en ;
   rdfs:subPropertyOf rov:registration ;
   skos:prefLabel "company code" ;
+.
+toop:hasCompanyContactNumber
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:range toop:CompanyContactNumber ;
+  owl:equivalentProperty vcard:hasTelephone ;
 .
 toop:hasMainSite
   rdf:type owl:ObjectProperty ;
