@@ -37,6 +37,12 @@
 <http://example.register.elo/elonia-business-register#EloniaCompanyName>
   rdfs:subPropertyOf toop:companyName ;
 .
+<http://example.register.elo/elonia-business-register#EloniaCompanyType>
+  rdfs:subPropertyOf toop:companyType ;
+.
+<http://example.register.elo/elonia-business-register#EloniaLegalStatus>
+  rdfs:subPropertyOf toop:hasLegalStatus ;
+.
 <http://example.register.elo/elonia-business-register#hasBusinessCode>
   rdfs:subPropertyOf toop:hasCompanyCode ;
 .
@@ -45,6 +51,12 @@
 .
 <http://example.register.fre/freedonia-business-register#FreedoniaCompanyName>
   rdfs:subPropertyOf toop:companyName ;
+.
+<http://example.register.fre/freedonia-business-register#FreedoniaCompanyType>
+  rdfs:subPropertyOf toop:companyType ;
+.
+<http://example.register.fre/freedonia-business-register#FreedoniaLegalStatus>
+  rdfs:subPropertyOf toop:hasLegalStatus ;
 .
 <http://example.register.fre/freedonia-business-register#hasBusinessCode>
   rdfs:subPropertyOf toop:hasCompanyCode ;
@@ -145,7 +157,7 @@ toop:CompanyTypeScheme
   rdf:type owl:Class ;
   rdfs:comment "Represents the member states' recognized company types, expressed in a consistent manner in a SKOS Concept Scheme"@en ;
   rdfs:label "CompanyTypeScheme"@en ;
-  owl:equivalentClass skos:ConceptScheme ;
+  rdfs:subClassOf skos:ConceptScheme ;
   skos:prefLabel "CompanyTypeScheme" ;
 .
 toop:DocumentType
@@ -492,7 +504,6 @@ toop:companyName
   rdfs:comment "The official current company name as stored in the business register_"@en ;
   rdfs:label "company name" ;
   rdfs:subPropertyOf rov:legalName ;
-  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaCompanyName> ;
   owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaCompanyName> ;
 .
 toop:companyType
@@ -506,9 +517,7 @@ toop:companyType
       owl:onProperty skos:inScheme ;
       owl:someValuesFrom toop:CompanyTypeScheme ;
     ] ;
-  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaCompanyType> ;
-  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaCompanyType> ;
-  owl:equivalentProperty rov:orgType ;
+  rdfs:subPropertyOf rov:orgType ;
   skos:prefLabel "company type" ;
 .
 toop:contactType
@@ -563,6 +572,13 @@ toop:hasCompanyContactNumber
   rdfs:range toop:CompanyContactNumber ;
   owl:equivalentProperty vcard:hasTelephone ;
 .
+toop:hasLegalStatus
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The current legal status of a company (active, ended, ...)"@en ;
+  rdfs:label "legal status"@en ;
+  rdfs:subPropertyOf rov:orgStatus ;
+  skos:prefLabel "legal status" ;
+.
 toop:hasMainSite
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The main site of the company."@en ;
@@ -586,16 +602,6 @@ toop:legalRepresentativeOf
   rdfs:domain toop:Person ;
   rdfs:range toop:RegisteredOrganization ;
   rdfs:subPropertyOf org:memberOf ;
-.
-toop:legalStatus
-  rdf:type owl:ObjectProperty ;
-  rdfs:comment "The current legal status of a company (active, ended, ...)"@en ;
-  rdfs:domain toop:CompanyCode ;
-  rdfs:label "legal status"@en ;
-  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaLegalStatus> ;
-  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaLegalStatus> ;
-  owl:equivalentProperty rov:orgStatus ;
-  skos:prefLabel "legal status" ;
 .
 toop:legalStatusEffectiveDate
   rdf:type owl:ObjectProperty ;
