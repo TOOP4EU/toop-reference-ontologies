@@ -289,6 +289,30 @@ toop:Person
   rdf:type owl:Class ;
   rdfs:comment "This is the person" ;
   rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange xsd:date ;
+      owl:onProperty toop:birthday ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange xsd:integer ;
+      owl:onProperty toop:age ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange xsd:string ;
+      owl:onProperty toop:familyName ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange xsd:string ;
+      owl:onProperty toop:givenName ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
 .
 toop:RegisteredOrganization
   rdf:type rdfs:Class ;
@@ -496,6 +520,12 @@ toop:RegisteredOrganization
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
+      owl:onClass toop:Person ;
+      owl:onProperty toop:hasLegalRepresentative ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
       owl:onClass toop:Registration ;
       owl:onProperty toop:hasRegistration ;
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -564,12 +594,14 @@ toop:addressCompanyEmailAddress
 toop:age
   rdf:type owl:DatatypeProperty ;
   rdfs:domain toop:Person ;
-  owl:equivalentProperty <http://xmlns.com/foaf/0.1/age> ;
+  rdfs:range xsd:integer ;
+  rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/age> ;
 .
 toop:birthday
   rdf:type owl:DatatypeProperty ;
   rdfs:domain toop:Person ;
-  owl:equivalentProperty <http://xmlns.com/foaf/0.1/birthday> ;
+  rdfs:range xsd:date ;
+  rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/birthday> ;
 .
 toop:companyNaceCode
   rdf:type owl:ObjectProperty ;
@@ -600,7 +632,8 @@ toop:countryName
 toop:familyName
   rdf:type owl:DatatypeProperty ;
   rdfs:domain toop:Person ;
-  owl:equivalentProperty <http://xmlns.com/foaf/0.1/familyName> ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/familyName> ;
 .
 toop:foundationDate
   rdf:type owl:DatatypeProperty ;
@@ -613,7 +646,8 @@ toop:foundationDate
 toop:givenName
   rdf:type owl:DatatypeProperty ;
   rdfs:domain toop:Person ;
-  owl:equivalentProperty <http://xmlns.com/foaf/0.1/givenName> ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/givenName> ;
 .
 toop:hasAddress
   rdf:type owl:ObjectProperty ;
@@ -664,6 +698,12 @@ toop:hasContactType
   rdfs:domain toop:CompanyContactNumber ;
   rdfs:range vcard:TelephoneType ;
 .
+toop:hasLegalRepresentative
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:range toop:Person ;
+  rdfs:subPropertyOf org:hasMember ;
+.
 toop:hasLegalStatus
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The current legal status of a company (active, ended, ...)"@en ;
@@ -694,12 +734,6 @@ toop:hasRegistration
   rdfs:label "has registration"@en ;
   rdfs:range toop:Registration ;
   skos:prefLabel "has registration"@en ;
-.
-toop:legalRepresentativeOf
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain toop:Person ;
-  rdfs:range toop:RegisteredOrganization ;
-  rdfs:subPropertyOf org:memberOf ;
 .
 toop:legalStatusEffectiveDate
   rdf:type owl:ObjectProperty ;
