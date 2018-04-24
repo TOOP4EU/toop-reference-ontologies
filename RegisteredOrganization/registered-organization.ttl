@@ -79,6 +79,56 @@ nhr:SETU_Standaarden
 nhr:heeftRechtsvorm
   rdfs:subPropertyOf toop:hasCompanyType ;
 .
+nhr:kvkNummer
+  spin:query [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object nhr:MaatschappelijkeActiviteit ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "ro" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "ccvalue" ;
+              ] ;
+            sp:predicate nhr:kvkNummer ;
+            sp:subject [
+                sp:varName "ro" ;
+              ] ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object toop:RegisteredOrganization ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "ro" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "cc" ;
+              ] ;
+            sp:predicate toop:hasCompanyCode ;
+            sp:subject [
+                sp:varName "ro" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "ccvalue" ;
+              ] ;
+            sp:predicate skos:notation ;
+            sp:subject [
+                sp:varName "cc" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+.
 nhr:land
   rdfs:subPropertyOf toop:countryName ;
 .
@@ -170,6 +220,7 @@ toop:CompanyCode
 .
 toop:CompanyCode_1
   rdf:type toop:CompanyCode ;
+  skos:notation "2345135" ;
 .
 toop:CompanyContactNumber
   rdf:type owl:Class ;
@@ -273,6 +324,7 @@ toop:MyOrganization_2
 toop:MyRegOrg_1
   rdf:type toop:RegisteredOrganization ;
   toop:companyName "My Own Company (legal name)" ;
+  toop:hasCompanyCode toop:CompanyCode_1 ;
   toop:hasMainSite toop:MyHasMainSite ;
   rdfs:comment "My organization as instance from the toop:RegisteredOrganization Class" ;
   rdfs:label "Mijn reg org klas 1_"@nl ;
@@ -660,6 +712,55 @@ toop:hasAddress
 .
 toop:hasCompanyCode
   rdf:type owl:ObjectProperty ;
+  spin:query [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object toop:RegisteredOrganization ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "ma" ;
+              ] ;
+          ]
+          [
+            sp:object toop:CompanyCode ;
+            sp:predicate rdf:type ;
+            sp:subject _:b66790 ;
+          ]
+          [
+            sp:object _:b66790 ;
+            sp:predicate toop:hasCompanyCode ;
+            sp:subject [
+                sp:varName "ma" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "kvknummer" ;
+              ] ;
+            sp:predicate skos:notation ;
+            sp:subject _:b66790 ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object nhr:MaatschappelijkeActiviteit ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "ma" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "kvknummer" ;
+              ] ;
+            sp:predicate nhr:kvkNummer ;
+            sp:subject [
+                sp:varName "ma" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
   rdfs:comment "The property of a registered organization of having a main code that is the unique identifier recorded in the registry. This tag should be used to give an identifier of the company in the local language. It should be used in conjunction with the CompanyNaceCode."@en ;
   rdfs:domain toop:RegisteredOrganization ;
   rdfs:label "company code"@en ;
