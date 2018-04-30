@@ -112,6 +112,14 @@ nhr:BinnenlandseNietNatuurlijkPersoon
   rdfs:subClassOf nhr:NietNatuurlijkPersoon ;
   skos:prefLabel "Binnenlandse niet natuurlijk persoon"@nl ;
 .
+nhr:BuitenlandBezoeklocatieABU
+  rdf:type nhr:Locatie-Vestiging ;
+  nhr:heeftVolledigAdres nhr:BuitenlandsBezoekadresABU ;
+.
+nhr:BuitenlandVestigingABU
+  rdf:type nhr:Vestiging ;
+  nhr:heeftBezoekadres nhr:BuitenlandBezoeklocatieABU ;
+.
 nhr:BuitenlandsAdres
   rdf:type owl:Class ;
   rdfs:comment "Een adres buiten Nederland."@nl ;
@@ -134,6 +142,13 @@ nhr:BuitenlandsAdres
     ] ;
   owl:disjointWith nhr:BinnenlandsAdres ;
   skos:prefLabel "Buitenlands adres"@nl ;
+.
+nhr:BuitenlandsBezoekadresABU
+  rdf:type nhr:BuitenlandsAdres ;
+  nhr:land "The Netherlands " ;
+  nhr:postcodeWoonplaats "1175RA Lijnden" ;
+  nhr:regio "Noord Holland" ;
+  nhr:straatHuisnummer "Kuala Lumpurlaan 1" ;
 .
 nhr:BuitenlandseVennootschap
   rdf:type owl:Class ;
@@ -563,6 +578,7 @@ nhr:PostadresABU
 .
 nhr:PostlocatieABU
   rdf:type nhr:Locatie-Vestiging ;
+  nhr:heeftVolledigAdres nhr:PostadresABU ;
   rdfs:comment "De postlocatie van ABU."@nl ;
   rdfs:label "Postlocatie ABU"@nl ;
   skos:prefLabel "Postlocatie ABU"@nl ;

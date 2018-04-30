@@ -79,6 +79,178 @@ nhr:SETU_Standaarden
 nhr:heeftRechtsvorm
   rdfs:subPropertyOf toop:hasCompanyType ;
 .
+nhr:heeftVolledigAdres
+  spin:query [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object nhr:Vestiging ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "site" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "bezadres" ;
+              ] ;
+            sp:predicate nhr:heeftBezoekadres ;
+            sp:subject [
+                sp:varName "site" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "address" ;
+              ] ;
+            sp:predicate nhr:heeftVolledigAdres ;
+            sp:subject [
+                sp:varName "bezadres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "countryname" ;
+              ] ;
+            sp:predicate nhr:land ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "region" ;
+              ] ;
+            sp:predicate nhr:regio ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "streetaddress" ;
+              ] ;
+            sp:predicate nhr:straatHuisnummer ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "postcodewoonplaats" ;
+              ] ;
+            sp:predicate nhr:postcodeWoonplaats ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object toop:MainSite ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "site" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:uri ;
+                sp:arg1 [
+                    rdf:type sp:concat ;
+                    sp:arg1 "http://example.register.nl/nationaalhandelsregister#" ;
+                    sp:arg2 "Bezoekadres" ;
+                    sp:arg3 [
+                        rdf:type sp:replace ;
+                        sp:arg1 [
+                            rdf:type sp:str ;
+                            sp:arg1 [
+                                sp:varName "site" ;
+                              ] ;
+                          ] ;
+                        sp:arg2 "http://toop.eu/organization#" ;
+                        sp:arg3 "_" ;
+                      ] ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "bezadres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "address" ;
+              ] ;
+            sp:predicate toop:hasAddress ;
+            sp:subject [
+                sp:varName "site" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "streetaddress" ;
+              ] ;
+            sp:predicate toop:streetAddress ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "countryname" ;
+              ] ;
+            sp:predicate toop:countryName ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "locality" ;
+              ] ;
+            sp:predicate toop:locality ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "postalcode" ;
+              ] ;
+            sp:predicate toop:postalCode ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:concat ;
+                sp:arg1 [
+                    sp:varName "postalcode" ;
+                  ] ;
+                sp:arg2 " " ;
+                sp:arg3 [
+                    sp:varName "locality" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "postcodewoonplaats" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "region" ;
+              ] ;
+            sp:predicate toop:region ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+.
 nhr:kvkNummer
   spin:query [
       rdf:type sp:Construct ;
@@ -201,10 +373,6 @@ toop:Address
       owl:someValuesFrom xsd:string ;
     ] ;
 .
-toop:Address_1
-  rdf:type toop:Address ;
-  toop:countryName "Nederland" ;
-.
 toop:Address_card1
   rdf:type vcard:Address ;
   rdfs:comment "" ;
@@ -289,6 +457,14 @@ toop:MainSite
     ] ;
   skos:prefLabel "Site" ;
 .
+toop:MyAddress
+  rdf:type toop:Address ;
+  toop:countryName "Nederland" ;
+  toop:locality "Soesterberg" ;
+  toop:postalCode "1234AB" ;
+  toop:region "Utrecht" ;
+  toop:streetAddress "Kampweg 55" ;
+.
 toop:MyCompCode-Id123456
   rdf:type adms:Identifier ;
   toop:legalStatusEffectiveDate "2017-10-23"^^xsd:date ;
@@ -297,11 +473,12 @@ toop:MyCompCode-Id123456
   rdfs:label "MyCompCode-Id123456_"@en ;
   adms:schemeAgency "NL-KvK Kamer van Koophandel"@nl ;
 .
-toop:MyHasMainSite
+toop:MyMainSite
   rdf:type toop:MainSite ;
+  toop:hasAddress toop:MyAddress ;
   rdfs:comment "" ;
-  rdfs:label "MyHasMainSite"@nl ;
-  skos:prefLabel "MyHasMainSite" ;
+  rdfs:label "MyMainSite"@nl ;
+  skos:prefLabel "MyMainSite" ;
 .
 toop:MyOrganization_0
   rdf:type vcard:Organization ;
@@ -325,7 +502,7 @@ toop:MyRegOrg_1
   rdf:type toop:RegisteredOrganization ;
   toop:companyName "My Own Company (legal name)" ;
   toop:hasCompanyCode toop:CompanyCode_1 ;
-  toop:hasMainSite toop:MyHasMainSite ;
+  toop:hasMainSite toop:MyMainSite ;
   rdfs:comment "My organization as instance from the toop:RegisteredOrganization Class" ;
   rdfs:label "Mijn reg org klas 1_"@nl ;
   skos:prefLabel "My organization as instance from the toop:RegisteredOrganization Class" ;
@@ -703,6 +880,430 @@ toop:givenName
 .
 toop:hasAddress
   rdf:type owl:ObjectProperty ;
+  spin:query [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object org:Site ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "adres" ;
+              ] ;
+            sp:predicate toop:hasAddress ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object toop:Address ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "land" ;
+              ] ;
+            sp:predicate toop:countryName ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "plaats" ;
+              ] ;
+            sp:predicate toop:locality ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "postcode" ;
+              ] ;
+            sp:predicate toop:postalCode ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "straatadres" ;
+              ] ;
+            sp:predicate toop:streetAddress ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object nhr:Vestiging ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "bezadres" ;
+              ] ;
+            sp:predicate nhr:heeftBezoekadres ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "adres" ;
+              ] ;
+            sp:predicate nhr:heeftVolledigAdres ;
+            sp:subject [
+                sp:varName "bezadres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "plaats" ;
+              ] ;
+            sp:predicate nhr:plaats ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "postcode" ;
+              ] ;
+            sp:predicate nhr:postcode ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "huisnummer" ;
+              ] ;
+            sp:predicate nhr:huisnummer ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "straatnaam" ;
+              ] ;
+            sp:predicate nhr:straatnaam ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:concat ;
+                sp:arg1 [
+                    sp:varName "straatnaam" ;
+                  ] ;
+                sp:arg2 " " ;
+                sp:arg3 [
+                    rdf:type xsd:string ;
+                    sp:arg1 [
+                        sp:varName "huisnummer" ;
+                      ] ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "straatadres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "type" ;
+              ] ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:if ;
+                sp:arg1 [
+                    rdf:type sp:eq ;
+                    sp:arg1 [
+                        sp:varName "type" ;
+                      ] ;
+                    sp:arg2 nhr:BinnenlandsAdres ;
+                  ] ;
+                sp:arg2 "Nederland" ;
+                sp:arg3 "" ;
+              ] ;
+            sp:variable [
+                sp:varName "land" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  spin:query [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object org:Site ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "adres" ;
+              ] ;
+            sp:predicate toop:hasAddress ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object toop:Address ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "land" ;
+              ] ;
+            sp:predicate toop:countryName ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "regio" ;
+              ] ;
+            sp:predicate toop:region ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "straathuisnummer" ;
+              ] ;
+            sp:predicate toop:streetAddress ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "woonplaats" ;
+              ] ;
+            sp:predicate toop:locality ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "postcode" ;
+              ] ;
+            sp:predicate toop:postalCode ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object nhr:Vestiging ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "bezadres" ;
+              ] ;
+            sp:predicate nhr:heeftBezoekadres ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "adres" ;
+              ] ;
+            sp:predicate nhr:heeftVolledigAdres ;
+            sp:subject [
+                sp:varName "bezadres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "land" ;
+              ] ;
+            sp:predicate nhr:land ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "regio" ;
+              ] ;
+            sp:predicate nhr:regio ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "straathuisnummer" ;
+              ] ;
+            sp:predicate nhr:straatHuisnummer ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "postcodewoonplaats" ;
+              ] ;
+            sp:predicate nhr:postcodeWoonplaats ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:strbefore ;
+                sp:arg1 [
+                    sp:varName "postcodewoonplaats" ;
+                  ] ;
+                sp:arg2 " " ;
+              ] ;
+            sp:variable [
+                sp:varName "postcode" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:strafter ;
+                sp:arg1 [
+                    sp:varName "postcodewoonplaats" ;
+                  ] ;
+                sp:arg2 " " ;
+              ] ;
+            sp:variable [
+                sp:varName "woonplaats" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  spin:query [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object org:Site ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "volbezadres" ;
+              ] ;
+            sp:predicate toop:hasAddress ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "volpostadres" ;
+              ] ;
+            sp:predicate toop:hasAddress ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object toop:Address ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "volbezadres" ;
+              ] ;
+          ]
+          [
+            sp:object toop:Address ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "volpostadres" ;
+              ] ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object nhr:Vestiging ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "bezadres" ;
+              ] ;
+            sp:predicate nhr:heeftBezoekadres ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "postadres" ;
+              ] ;
+            sp:predicate nhr:heeftPostadres ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "volbezadres" ;
+              ] ;
+            sp:predicate nhr:heeftVolledigAdres ;
+            sp:subject [
+                sp:varName "bezadres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "volpostadres" ;
+              ] ;
+            sp:predicate nhr:heeftVolledigAdres ;
+            sp:subject [
+                sp:varName "postadres" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
   rdfs:comment "Represents a pointer to physical or virtual address of the company."@en ;
   rdfs:domain org:Site ;
   rdfs:label "has address_"@en ;
