@@ -73,9 +73,6 @@ nhr:Adres
 nhr:NatuurlijkPersoon
   rdfs:subClassOf toop:Person ;
 .
-nhr:SETU_Standaarden
-  nhr:kvkNummer "34279048" ;
-.
 nhr:heeftRechtsvorm
   rdfs:subPropertyOf toop:hasCompanyType ;
 .
@@ -373,6 +370,13 @@ toop:Address
       owl:someValuesFrom xsd:string ;
     ] ;
 .
+toop:Address_DanmarksTekniskeUniversitet
+  rdf:type toop:Address ;
+  toop:countryName "Danmark" ;
+  toop:locality "Kongens Lyngby" ;
+  toop:postalCode "2800" ;
+  toop:streetAddress "Anker Engelunds Vej 1 Bygning 101A" ;
+.
 toop:Address_card1
   rdf:type vcard:Address ;
   rdfs:comment "" ;
@@ -389,6 +393,13 @@ toop:CompanyCode
 toop:CompanyCode_1
   rdf:type toop:CompanyCode ;
   skos:notation "2345135" ;
+.
+toop:CompanyCode_DanmarksTekniskeUniversitet
+  rdf:type toop:CompanyCode ;
+  rdfs:comment "The company code of the Technical University of Denmark."@en ;
+  rdfs:label "Company code Danmarks tekniske universitet" ;
+  skos:notation "30060946" ;
+  skos:prefLabel "Company code Danmarks tekniske universitet" ;
 .
 toop:CompanyContactNumber
   rdf:type owl:Class ;
@@ -420,6 +431,15 @@ toop:CompanyTypeScheme
   rdfs:label "CompanyTypeScheme"@en ;
   rdfs:subClassOf skos:ConceptScheme ;
   skos:prefLabel "CompanyTypeScheme" ;
+.
+toop:DanmarksTekniskeUniversitet
+  rdf:type toop:RegisteredOrganization ;
+  toop:companyName "Danmarks Tekniske Universitet" ;
+  toop:hasCompanyCode toop:CompanyCode_DanmarksTekniskeUniversitet ;
+  toop:hasMainSite toop:MainSite_DanmarksTekniskeUniversitet ;
+  rdfs:comment "Technical University of Denmark"@en ;
+  rdfs:label "Danmarks tekniske universitet"@dk ;
+  skos:prefLabel "Danmarks tekniske universitet"@dk ;
 .
 toop:DocumentType
   rdf:type owl:Class ;
@@ -456,6 +476,13 @@ toop:MainSite
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
   skos:prefLabel "Site" ;
+.
+toop:MainSite_DanmarksTekniskeUniversitet
+  rdf:type toop:MainSite ;
+  toop:hasAddress toop:Address_DanmarksTekniskeUniversitet ;
+  rdfs:comment "The main site of the Technical University of Denmark."@en ;
+  rdfs:label "Main site Danmarks tekniske universitet" ;
+  skos:prefLabel "Main site Danmarks tekniske universitet" ;
 .
 toop:MyAddress
   rdf:type toop:Address ;
@@ -1161,13 +1188,18 @@ toop:hasAddress
               ] ;
           ]
           [
-            sp:object [
-                sp:varName "regio" ;
-              ] ;
-            sp:predicate nhr:regio ;
-            sp:subject [
-                sp:varName "adres" ;
-              ] ;
+            rdf:type sp:Optional ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "regio" ;
+                    ] ;
+                  sp:predicate nhr:regio ;
+                  sp:subject [
+                      sp:varName "adres" ;
+                    ] ;
+                ]
+              ) ;
           ]
           [
             sp:object [
