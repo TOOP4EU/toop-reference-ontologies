@@ -388,6 +388,11 @@ toop:CompanyCode
   rdfs:comment "The unique official company identifier_ "@en ;
   rdfs:label "Company code_"@en ;
   rdfs:subClassOf adms:Identifier ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty skos:notation ;
+    ] ;
   skos:prefLabel "Company code" ;
 .
 toop:CompanyCode_1
@@ -875,7 +880,6 @@ toop:companyName
   rdfs:label "company name" ;
   rdfs:range xsd:string ;
   rdfs:subPropertyOf rov:legalName ;
-  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaCompanyName> ;
 .
 toop:countryName
   rdf:type owl:DatatypeProperty ;
