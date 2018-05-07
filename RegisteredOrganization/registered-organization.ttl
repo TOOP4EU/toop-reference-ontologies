@@ -806,9 +806,20 @@ toop:RegisteredSite
   rdfs:subClassOf org:Site ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
+      owl:onClass toop:CompanyEmailAddress ;
+      owl:onProperty toop:hasCompanyEmailAddress ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
       owl:onClass toop:PhysicalAddress ;
       owl:onProperty toop:hasPhysicalAddress ;
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty toop:hasCompanyContactNumber ;
+      owl:someValuesFrom toop:CompanyContactNumber ;
     ] ;
   skos:prefLabel "Site" ;
 .
