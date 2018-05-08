@@ -237,13 +237,18 @@ nhr:heeftVolledigAdres
               ] ;
           ]
           [
-            sp:object [
-                sp:varName "region" ;
-              ] ;
-            sp:predicate toop:region ;
-            sp:subject [
-                sp:varName "address" ;
-              ] ;
+            rdf:type sp:Optional ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "region" ;
+                    ] ;
+                  sp:predicate toop:region ;
+                  sp:subject [
+                      sp:varName "address" ;
+                    ] ;
+                ]
+              ) ;
           ]
         ) ;
     ] ;
