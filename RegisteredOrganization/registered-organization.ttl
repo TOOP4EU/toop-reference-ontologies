@@ -4,6 +4,7 @@
 # imports: http://example.register.fre/freedonia-business-register
 # imports: http://example.register.nl/nationaalhandelsregister
 # imports: http://spinrdf.org/spin
+# imports: http://toop.eu/mapping
 # imports: http://www.w3.org/2004/02/skos/core
 # imports: http://www.w3.org/2006/vcard/ns
 # imports: http://www.w3.org/ns/org.ttl
@@ -18,6 +19,7 @@
 @prefix adms: <http://www.w3.org/ns/adms#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix mapping: <http://toop.eu/mapping#> .
 @prefix nhr: <http://example.register.nl/nationaalhandelsregister#> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -68,10 +70,23 @@
   rdfs:subPropertyOf toop:hasCompanyCode ;
 .
 nhr:Adres
+  mapping:mapsTo toop:PhysicalAddress ;
   rdfs:subClassOf toop:PhysicalAddress ;
+.
+nhr:Locatie
+  mapping:mapsTo toop:hasPhysicalAddress ;
 .
 nhr:NatuurlijkPersoon
   rdfs:subClassOf toop:Person ;
+.
+nhr:Vestiging
+  mapping:mapsTo org:Site ;
+.
+nhr:heeftBezoekadres
+  mapping:mapsTo toop:hasPhysicalAddress ;
+.
+nhr:heeftPostadres
+  mapping:mapsTo toop:hasPhysicalAddress ;
 .
 nhr:heeftRechtsvorm
   rdfs:subPropertyOf toop:hasCompanyType ;
@@ -252,6 +267,10 @@ nhr:heeftVolledigAdres
           ]
         ) ;
     ] ;
+  mapping:mapsTo toop:hasPhysicalAddress ;
+.
+nhr:huisnummer
+  mapping:mapsTo toop:streetAddress ;
 .
 nhr:kvkNummer
   spin:query [
@@ -302,24 +321,200 @@ nhr:kvkNummer
           ]
         ) ;
     ] ;
+  spin:query [
+      rdf:type sp:Select ;
+      sp:resultVariables (
+          [
+            sp:varName "kvk" ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "kvk" ;
+              ] ;
+            sp:predicate [
+                sp:varName "relatie" ;
+              ] ;
+            sp:subject [
+                sp:varName "bedrijf" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "relatie" ;
+              ] ;
+            sp:predicate mapping:mapsTo ;
+            sp:subject nhr:kvkNummer ;
+          ]
+          [
+            rdf:type sp:SubQuery ;
+            sp:query [
+                rdf:type sp:Select ;
+                sp:resultVariables (
+                    [
+                      sp:varName "bedrijf" ;
+                    ]
+                  ) ;
+                sp:where (
+                    [
+                      sp:object [
+                          sp:varName "naam" ;
+                        ] ;
+                      sp:predicate [
+                          sp:varName "naamrelatie" ;
+                        ] ;
+                      sp:subject [
+                          sp:varName "bedrijf" ;
+                        ] ;
+                    ]
+                    [
+                      sp:object [
+                          sp:varName "naamrelatie" ;
+                        ] ;
+                      sp:predicate mapping:mapsTo ;
+                      sp:subject nhr:naamMaatschappelijkeActiviteit ;
+                    ]
+                    [
+                      rdf:type sp:Filter ;
+                      sp:expression [
+                          rdf:type sp:regex ;
+                          sp:arg1 [
+                              sp:varName "naam" ;
+                            ] ;
+                          sp:arg2 "Danmarks Tekniske Universitet" ;
+                        ] ;
+                    ]
+                  ) ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  spin:query [
+      rdf:type sp:Select ;
+      sp:resultVariables (
+          [
+            sp:varName "kvk" ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "kvk" ;
+              ] ;
+            sp:predicate [
+                sp:varName "relatie" ;
+              ] ;
+            sp:subject [
+                sp:varName "bedrijf" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "relatie" ;
+              ] ;
+            sp:predicate mapping:mapsTo ;
+            sp:subject nhr:kvkNummer ;
+          ]
+          [
+            sp:object owl:DatatypeProperty ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "relatie" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  mapping:mapsTo toop:CompanyCode ;
+  mapping:mapsTo toop:hasCompanyCode ;
+  mapping:mapsTo skos:notation ;
 .
 nhr:land
+  mapping:mapsTo toop:countryName ;
   rdfs:subPropertyOf toop:countryName ;
 .
+nhr:naamMaatschappelijkeActiviteit
+  spin:query [
+      rdf:type sp:Select ;
+      sp:resultVariables (
+          [
+            sp:varName "bedrijf" ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "naam" ;
+              ] ;
+            sp:predicate [
+                sp:varName "naamrelatie" ;
+              ] ;
+            sp:subject [
+                sp:varName "bedrijf" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "naamrelatie" ;
+              ] ;
+            sp:predicate mapping:mapsTo ;
+            sp:subject nhr:naamMaatschappelijkeActiviteit ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:regex ;
+                sp:arg1 [
+                    sp:varName "naam" ;
+                  ] ;
+                sp:arg2 "Danmarks Tekniske Universitet" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  mapping:mapsTo toop:companyName ;
+.
 nhr:plaats
+  mapping:mapsTo toop:locality ;
   rdfs:subPropertyOf toop:locality ;
 .
 nhr:postcode
+  mapping:mapsTo toop:postalCode ;
   rdfs:subPropertyOf toop:postalCode ;
 .
+nhr:postcodeWoonplaats
+  mapping:mapsTo toop:locality ;
+  mapping:mapsTo toop:postalCode ;
+.
 nhr:regio
+  mapping:mapsTo toop:region ;
   rdfs:subPropertyOf toop:region ;
 .
 nhr:straatHuisnummer
+  mapping:mapsTo toop:streetAddress ;
   rdfs:subPropertyOf toop:streetAddress ;
+.
+nhr:straatnaam
+  mapping:mapsTo toop:streetAddress ;
 .
 nhr:wordtGeleidVanuit
   rdfs:subPropertyOf toop:hasRegisteredSite ;
+.
+mapping:mapsTo
+  spin:query [
+      rdf:type sp:Select ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "ietsanders" ;
+              ] ;
+            sp:predicate mapping:mapsTo ;
+            sp:subject [
+                sp:varName "iets" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
 .
 <http://toop.eu/organization>
   rdf:type owl:Ontology ;
@@ -332,6 +527,7 @@ nhr:wordtGeleidVanuit
   owl:imports <http://example.register.fre/freedonia-business-register> ;
   owl:imports <http://example.register.nl/nationaalhandelsregister> ;
   owl:imports <http://spinrdf.org/spin> ;
+  owl:imports <http://toop.eu/mapping> ;
   owl:imports <http://www.w3.org/2004/02/skos/core> ;
   owl:imports <http://www.w3.org/2006/vcard/ns> ;
   owl:imports <http://www.w3.org/ns/org.ttl> ;
