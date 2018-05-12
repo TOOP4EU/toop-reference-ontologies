@@ -1,4 +1,4 @@
-# baseURI: http://toop.eu/organization
+# baseURI: http://toop.eu/registered-organization
 # imports: http://dublincore.org/2012/06/14/dcterms.rdf
 # imports: http://example.register.elo/elonia-business-register
 # imports: http://example.register.fre/freedonia-business-register
@@ -29,7 +29,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix sp: <http://spinrdf.org/sp#> .
 @prefix spin: <http://spinrdf.org/spin#> .
-@prefix toop: <http://toop.eu/organization#> .
+@prefix toop: <http://toop.eu/registered-organization#> .
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
@@ -229,7 +229,7 @@ nhr:heeftVolledigAdres
                                 sp:varName "site" ;
                               ] ;
                           ] ;
-                        sp:arg2 "http://toop.eu/organization#" ;
+                        sp:arg2 "http://toop.eu/registered-organization#" ;
                         sp:arg3 "_" ;
                       ] ;
                   ] ;
@@ -564,7 +564,7 @@ mapping:mapsTo
         ) ;
     ] ;
 .
-<http://toop.eu/organization>
+<http://toop.eu/registered-organization>
   rdf:type owl:Ontology ;
   spin:imports <http://topbraid.org/spin/owlrl-all> ;
   spin:imports <http://topbraid.org/spin/rdfsplus> ;
@@ -857,7 +857,7 @@ toop:RegisteredOrganization
                         sp:varName "s" ;
                       ] ;
                   ] ;
-                sp:arg2 "http://toop.eu/organization#" ;
+                sp:arg2 "http://toop.eu/registered-organization#" ;
               ] ;
           ]
           [
@@ -1350,7 +1350,7 @@ toop:hasCompanyCode
                 rdf:type sp:uri ;
                 sp:arg1 [
                     rdf:type sp:concat ;
-                    sp:arg1 "http://toop.eu/organization#" ;
+                    sp:arg1 "http://toop.eu/registered-organization#" ;
                     sp:arg2 "CompanyCode" ;
                     sp:arg3 [
                         rdf:type sp:replace ;
