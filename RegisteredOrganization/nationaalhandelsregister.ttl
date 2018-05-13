@@ -80,12 +80,62 @@ nhr:BezoekadresABU
   rdfs:label "Bezoekadres ABU"@nl ;
   skos:prefLabel "Bezoekadres ABU"@nl ;
 .
+nhr:BezoekadresTNOBrussel
+  rdf:type nhr:BuitenlandsAdres ;
+  nhr:land "België" ;
+  nhr:postcodeWoonplaats "B-1050 Brussel" ;
+  nhr:straatHuisnummer "Aarlenstraat 22" ;
+  rdfs:comment "Het bezoekadres van TNO in Brussel (België)."@nl ;
+  rdfs:label "Bezoekadres TNO Brussel"@nl ;
+  skos:prefLabel "Bezoekadres TNO Brussel"@nl ;
+.
+nhr:BezoekadresTNODenHaagNewBabylon
+  rdf:type nhr:BinnenlandsAdres ;
+  nhr:huisnummer 1 ;
+  nhr:plaats "Den Haag" ;
+  nhr:postcode "2595DA" ;
+  nhr:straatnaam "Anna van Buerenplein" ;
+  rdfs:comment "Het bezoekadres van TNO Den Haag - New Babylon."@nl ;
+  rdfs:label "Bezoekadres TNO Den Haag New Babylon"@nl ;
+  skos:prefLabel "Bezoekadres TNO Den Haag New Babylon"@nl ;
+.
+nhr:BezoekadresTNOSoesterberg
+  rdf:type nhr:BinnenlandsAdres ;
+  nhr:huisnummer 55 ;
+  nhr:plaats "Soesterberg" ;
+  nhr:postcode "3769DE" ;
+  nhr:straatnaam "Kampweg" ;
+  rdfs:comment "Het bezoekadres van TNO Soesterberg."@nl ;
+  rdfs:label "Bezoekadres TNO Soesterberg"@nl ;
+  skos:prefLabel "Bezoekadres TNO Soesterberg"@nl ;
+.
 nhr:BezoeklocatieABU
   rdf:type nhr:Locatie-Vestiging ;
   nhr:heeftVolledigAdres nhr:BezoekadresABU ;
   rdfs:comment "De bezoeklocatie van ABU."@nl ;
   rdfs:label "Bezoeklocatie ABU"@nl ;
   skos:prefLabel "Bezoeklocatie ABU"@nl ;
+.
+nhr:BezoeklocatieTNOBrussel
+  rdf:type nhr:Locatie-Vestiging ;
+  nhr:heeftVolledigAdres nhr:BezoekadresTNOBrussel ;
+  rdfs:comment "De bezoeklocatie van TNO in Brussel (België)."@nl ;
+  rdfs:label "Bezoeklocatie TNO Brussel"@nl ;
+  skos:prefLabel "Bezoeklocatie TNO Brussel"@nl ;
+.
+nhr:BezoeklocatieTNODenHaagNewBabylon
+  rdf:type nhr:Locatie-Vestiging ;
+  nhr:heeftVolledigAdres nhr:BezoekadresTNODenHaagNewBabylon ;
+  rdfs:comment "De bezoeklocatie van TNO in Den Haag - New Babylon."@nl ;
+  rdfs:label "Bezoeklocatie TNO Den Haag New Babylon"@nl ;
+  skos:prefLabel "Bezoeklocatie TNO Den Haag New Babylon"@nl ;
+.
+nhr:BezoeklocatieTNOSoesterberg
+  rdf:type nhr:Locatie-Vestiging ;
+  nhr:heeftVolledigAdres nhr:BezoekadresTNOSoesterberg ;
+  rdfs:comment "De bezoeklocatie van TNO Soesterberg."@nl ;
+  rdfs:label "Bezoeklocatie TNO Soesterberg"@nl ;
+  skos:prefLabel "Bezoeklocatie TNO Soesterberg"@nl ;
 .
 nhr:BinnenlandsAdres
   rdf:type owl:Class ;
@@ -112,6 +162,14 @@ nhr:BinnenlandseNietNatuurlijkPersoon
   rdfs:subClassOf nhr:NietNatuurlijkPersoon ;
   skos:prefLabel "Binnenlandse niet natuurlijk persoon"@nl ;
 .
+nhr:BuitenlandBezoeklocatieABU
+  rdf:type nhr:Locatie-Vestiging ;
+  nhr:heeftVolledigAdres nhr:BuitenlandsBezoekadresABU ;
+.
+nhr:BuitenlandVestigingABU
+  rdf:type nhr:Vestiging ;
+  nhr:heeftBezoekadres nhr:BuitenlandBezoeklocatieABU ;
+.
 nhr:BuitenlandsAdres
   rdf:type owl:Class ;
   rdfs:comment "Een adres buiten Nederland."@nl ;
@@ -135,6 +193,13 @@ nhr:BuitenlandsAdres
   owl:disjointWith nhr:BinnenlandsAdres ;
   skos:prefLabel "Buitenlands adres"@nl ;
 .
+nhr:BuitenlandsBezoekadresABU
+  rdf:type nhr:BuitenlandsAdres ;
+  nhr:land "The Netherlands " ;
+  nhr:postcodeWoonplaats "1175RA Lijnden" ;
+  nhr:regio "Noord Holland" ;
+  nhr:straatHuisnummer "Kuala Lumpurlaan 1" ;
+.
 nhr:BuitenlandseVennootschap
   rdf:type owl:Class ;
   rdfs:comment "Een {BuitenlandseVennootschap} is opgericht naar buitenlands recht."@nl ;
@@ -150,6 +215,14 @@ nhr:CommanditaireVennootschap
   skos:altLabel "CV"@nl ;
   skos:inScheme nhr:RechtsvormSamenwerkingsverband ;
   skos:prefLabel "Commanditaire Vennootschap"@nl ;
+.
+nhr:CommerciëleVestiging
+  rdf:type owl:Class ;
+  rdfs:comment "Een classificatie van de Vestiging van de Onderneming."@nl ;
+  rdfs:label "Commerciële vestiging"@nl ;
+  rdfs:subClassOf nhr:Vestiging ;
+  owl:disjointWith nhr:NietCommerciëleVestiging ;
+  skos:prefLabel "Commerciële vestiging"@nl ;
 .
 nhr:Communicatiegegeven
   rdf:type owl:Class ;
@@ -506,6 +579,13 @@ nhr:NatuurlijkPersoon_1
   rdfs:label "Natuurlijk persoon 1"@nl ;
   skos:prefLabel "Natuurlijk persoon 1"@nl ;
 .
+nhr:NietCommerciëleVestiging
+  rdf:type owl:Class ;
+  rdfs:comment "Een classificatie van de Vestiging van de Maatschappelijke Activiteit, niet zijnde de Onderneming."@nl ;
+  rdfs:label "Niet commerciële vestiging"@nl ;
+  rdfs:subClassOf nhr:Vestiging ;
+  skos:prefLabel "Niet commerciële vestiging"@nl ;
+.
 nhr:NietNatuurlijkPersoon
   rdf:type owl:Class ;
   rdfs:comment "Een {NietNatuurlijkPersoon} is een {Persoon} met rechten en plichten die geen {NatuurlijkPersoon} is."@nl ;
@@ -526,7 +606,13 @@ nhr:Onderneming
   rdf:type owl:Class ;
   rdfs:comment "Een Onderderming is een organisatie met winstoogmerk. "@nl ;
   rdfs:label "Onderneming"@nl ;
-  rdfs:subClassOf nhr:MaatschappelijkeActiviteit ;
+  rdfs:subClassOf skos:Concept ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass nhr:CommerciëleVestiging ;
+      owl:onProperty nhr:wordtUitgeoefendIn ;
+    ] ;
 .
 nhr:OverigePrivaatrechtelijkeRechtspersoon
   rdf:type owl:Class ;
@@ -561,11 +647,60 @@ nhr:PostadresABU
   rdfs:label "Postadres ABU"@nl ;
   skos:prefLabel "Postadres ABU"@nl ;
 .
+nhr:PostadresTNOBrussel
+  rdf:type nhr:BuitenlandsAdres ;
+  nhr:land "België" ;
+  nhr:postcodeWoonplaats "B-1050 Brussel" ;
+  nhr:straatHuisnummer "Aarlenstraat 22" ;
+  rdfs:comment "Het postadres van TNO in Brussel (België)."@nl ;
+  rdfs:label "Postadres TNO Brussel"@nl ;
+  skos:prefLabel "Postadres TNO Brussel"@nl ;
+.
+nhr:PostadresTNODenHaagNewBabylon
+  rdf:type nhr:BinnenlandsAdres ;
+  nhr:plaats "Den Haag" ;
+  nhr:postbusnummer 96800 ;
+  nhr:postcode "2509JE" ;
+  rdfs:comment "Het postadres van TNO Den Haag - New Babylon."@nl ;
+  rdfs:label "Postadres TNO Den Haag New Babylon"@nl ;
+  skos:prefLabel "Postadres TNO Den Haag New Babylon"@nl ;
+.
+nhr:PostadresTNOSoesterberg
+  rdf:type nhr:BinnenlandsAdres ;
+  nhr:plaats "Soesterberg" ;
+  nhr:postbusnummer 23 ;
+  nhr:postcode "3769ZG" ;
+  rdfs:comment "Het postadres van TNO Soesterberg."@nl ;
+  rdfs:label "Postadres TNO Soesterberg"@nl ;
+  skos:prefLabel "Postadres TNO Soesterberg"@nl ;
+.
 nhr:PostlocatieABU
   rdf:type nhr:Locatie-Vestiging ;
+  nhr:heeftVolledigAdres nhr:PostadresABU ;
   rdfs:comment "De postlocatie van ABU."@nl ;
   rdfs:label "Postlocatie ABU"@nl ;
   skos:prefLabel "Postlocatie ABU"@nl ;
+.
+nhr:PostlocatieTNOBrussel
+  rdf:type nhr:Locatie-Vestiging ;
+  nhr:heeftVolledigAdres nhr:PostadresTNOBrussel ;
+  rdfs:comment "De postlocatie van TNO in Brussel (België)."@nl ;
+  rdfs:label "Postlocatie TNO Brussel"@nl ;
+  skos:prefLabel "Postlocatie TNO Brussel"@nl ;
+.
+nhr:PostlocatieTNODenHaagNewBabylon
+  rdf:type nhr:Locatie-Vestiging ;
+  nhr:heeftVolledigAdres nhr:PostadresTNODenHaagNewBabylon ;
+  rdfs:comment "De postlocatie van TNO in Den Haag - New Babylon."@nl ;
+  rdfs:label "Postlocatie TNO Den Haag New Babylon"@nl ;
+  skos:prefLabel "Postlocatie TNO Den Haag New Babylon"@nl ;
+.
+nhr:PostlocatieTNOSoesterberg
+  rdf:type nhr:Locatie-Vestiging ;
+  nhr:heeftVolledigAdres nhr:PostadresTNOSoesterberg ;
+  rdfs:comment "De postlocatie van TNO Soesterberg."@nl ;
+  rdfs:label "Postlocatie TNO Soesterberg"@nl ;
+  skos:prefLabel "Postlocatie TNO Soesterberg"@nl ;
 .
 nhr:PubliekrechtelijkeRechtspersoon
   rdf:type owl:Class ;
@@ -625,6 +760,7 @@ nhr:SETU_Standaarden
   nhr:heeftCommunicatiegegevens nhr:CommunicatiegegevensSETU ;
   nhr:heeftPostadres nhr:PostlocatieABU ;
   nhr:isActiviteitVan nhr:Stichting_SETU ;
+  nhr:kvkNummer "34279048" ;
   nhr:naamMaatschappelijkeActiviteit "SETU Standaarden"@nl ;
   nhr:wordtGeleidVanuit nhr:VestigingABU ;
 .
@@ -656,6 +792,15 @@ nhr:Stichting_SETU
   nhr:heeftRechtsvorm nhr:Stichting ;
   nhr:heeftVolledigeNaam "Stichting Elektronische Transacties Uitzendbranche"@nl ;
   rdfs:comment "Stichting SETU zorgt voor standaardisatie van elektronisch berichtenverkeer in de branche voor flexibele arbeid."@nl ;
+.
+nhr:TNO
+  rdf:type nhr:MaatschappelijkeActiviteit ;
+  nhr:kvkNummer "27376655" ;
+  nhr:naamMaatschappelijkeActiviteit "TNO"@nl ;
+  nhr:wordtUitgeoefendIn nhr:VestigingTNOSoesterberg ;
+  rdfs:comment "" ;
+  rdfs:label "TNO" ;
+  skos:prefLabel "TNO" ;
 .
 nhr:TypeBestuurder
   rdf:type owl:Class ;
@@ -722,6 +867,30 @@ nhr:VestigingABU
   rdfs:comment "De vestiging van de ABU."@nl ;
   rdfs:label "Vestiging ABU"@nl ;
   skos:prefLabel "Vestiging ABU"@nl ;
+.
+nhr:VestigingTNOBrussel
+  rdf:type nhr:Vestiging ;
+  nhr:heeftBezoekadres nhr:BezoeklocatieTNOBrussel ;
+  nhr:heeftPostadres nhr:PostlocatieTNOBrussel ;
+  rdfs:comment "De vestiging van TNO in Brussel (België)."@nl ;
+  rdfs:label "Vestiging TNO Brussel"@nl ;
+  skos:prefLabel "Vestiging TNO Brussel"@nl ;
+.
+nhr:VestigingTNODenHaagNewBabylon
+  rdf:type nhr:Vestiging ;
+  nhr:heeftBezoekadres nhr:BezoeklocatieTNODenHaagNewBabylon ;
+  nhr:heeftPostadres nhr:PostlocatieTNODenHaagNewBabylon ;
+  rdfs:comment "De vestiging van TNO in Den Haag - New Babylon."@nl ;
+  rdfs:label "Vestiging TNO Den Haag New Babylon"@nl ;
+  skos:prefLabel "Vestiging TNO Den Haag New Babylon"@nl ;
+.
+nhr:VestigingTNOSoesterberg
+  rdf:type nhr:Vestiging ;
+  nhr:heeftBezoekadres nhr:BezoeklocatieTNOSoesterberg ;
+  nhr:heeftPostadres nhr:PostlocatieTNOSoesterberg ;
+  rdfs:comment "De vestiging van TNO in Soesterberg."@nl ;
+  rdfs:label "Vestiging TNO Soesterberg"@nl ;
+  skos:prefLabel "Vestiging TNO Soesterberg"@nl ;
 .
 nhr:aanduidingBijHuisnummer
   rdf:type owl:DatatypeProperty ;
@@ -918,6 +1087,14 @@ nhr:land
   rdfs:range xsd:string ;
   skos:prefLabel "land"@nl ;
 .
+nhr:manifesteertZichAls
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Een MaatschappelijkeActiviteit manifesteert zich als een Onderneming."@nl ;
+  rdfs:domain nhr:MaatschappelijkeActiviteit ;
+  rdfs:label "manifesteert zich als"@nl ;
+  rdfs:range nhr:Onderneming ;
+  skos:prefLabel "manifesteert zich als"@nl ;
+.
 nhr:naamDomeinnaam
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "Het internetadres (URL)."@nl ;
@@ -1031,6 +1208,14 @@ nhr:wordtGeleidVanuit
   rdfs:label "wordt geleid vanuit"@nl ;
   rdfs:range nhr:Vestiging ;
   skos:prefLabel "wordt geleid vanuit"@nl ;
+.
+nhr:wordtUitgeoefendIn
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Een MaatschappelijkeActiviteit wordt uitgeoefend in een NietCommerciëleVestiging."@nl ;
+  rdfs:domain nhr:MaatschappelijkeActiviteit ;
+  rdfs:label "wordt uitgeoefend in"@nl ;
+  rdfs:range nhr:NietCommerciëleVestiging ;
+  skos:prefLabel "wordt uitgeoefend in"@nl ;
 .
 [
   rdf:type owl:Class ;

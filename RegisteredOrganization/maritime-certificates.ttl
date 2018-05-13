@@ -1,0 +1,37 @@
+# baseURI: http://toop.eu/maritime-certificates
+# imports: http://www.w3.org/2004/02/skos/core
+# prefix: toop-mc
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix toop-mc: <http://toop.eu/maritime-certificates#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://toop.eu/maritime-certificates>
+  rdf:type owl:Ontology ;
+  owl:imports <http://www.w3.org/2004/02/skos/core> ;
+  owl:versionInfo "Created with TopBraid Composer" ;
+.
+toop-mc:CertificateIssuer
+  rdf:type owl:Class ;
+  rdfs:comment "this class represents the set of organizations that can issue certificates for ships and crews"@en ;
+  rdfs:label "Certificate issuer "@en ;
+  rdfs:subClassOf owl:Thing ;
+  skos:prefLabel "Certificate issuer "@en ;
+.
+toop-mc:Ship
+  rdf:type owl:Class ;
+  rdfs:comment "this class represents a ship and a few important particulars of the ship in the context of certificates"@en ;
+  rdfs:label "Ship "@en ;
+  rdfs:subClassOf owl:Thing ;
+  skos:prefLabel "Ship "@en ;
+.
+toop-mc:ShipCertificate
+  rdf:type owl:Class ;
+  rdfs:comment "this class represents the set of ship certificates that are used by maritime organizations to keep track of the status of a ship"@en ;
+  rdfs:label "ship certificate"@en ;
+  rdfs:subClassOf owl:Thing ;
+  skos:prefLabel "ship certificate"@en ;
+.

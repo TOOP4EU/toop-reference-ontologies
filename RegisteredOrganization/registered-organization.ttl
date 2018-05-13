@@ -1,9 +1,10 @@
-# baseURI: http://toop.eu/organization
+# baseURI: http://toop.eu/registered-organization
 # imports: http://dublincore.org/2012/06/14/dcterms.rdf
 # imports: http://example.register.elo/elonia-business-register
 # imports: http://example.register.fre/freedonia-business-register
 # imports: http://example.register.nl/nationaalhandelsregister
 # imports: http://spinrdf.org/spin
+# imports: http://toop.eu/mapping
 # imports: http://www.w3.org/2004/02/skos/core
 # imports: http://www.w3.org/2006/vcard/ns
 # imports: http://www.w3.org/ns/org.ttl
@@ -18,6 +19,7 @@
 @prefix adms: <http://www.w3.org/ns/adms#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix mapping: <http://toop.eu/mapping#> .
 @prefix nhr: <http://example.register.nl/nationaalhandelsregister#> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -27,59 +29,542 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix sp: <http://spinrdf.org/sp#> .
 @prefix spin: <http://spinrdf.org/spin#> .
-@prefix toop: <http://toop.eu/organization#> .
+@prefix toop: <http://toop.eu/registered-organization#> .
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+<http://example.register.elo/elonia-business-register#EloniaActivityDeclaration>
+  rdfs:subPropertyOf toop:_activityDeclaration ;
+.
+<http://example.register.elo/elonia-business-register#EloniaAddress>
+  rdfs:subClassOf toop:PhysicalAddress ;
+.
 <http://example.register.elo/elonia-business-register#EloniaBusinessCode>
   rdfs:subClassOf toop:CompanyCode ;
+.
+<http://example.register.elo/elonia-business-register#EloniaCompanyNaceCode>
+  rdfs:subPropertyOf toop:_companyNaceCode ;
 .
 <http://example.register.elo/elonia-business-register#EloniaCompanyName>
   rdfs:subPropertyOf toop:companyName ;
 .
+<http://example.register.elo/elonia-business-register#EloniaCompanyType>
+  rdfs:subPropertyOf toop:hasCompanyType ;
+.
+<http://example.register.elo/elonia-business-register#EloniaLegalStatus>
+  rdfs:subPropertyOf toop:hasLegalStatus ;
+.
+<http://example.register.elo/elonia-business-register#EloniaLegalStatusEffectiveDate>
+  rdfs:subPropertyOf toop:_legalStatusEffectiveDate ;
+.
+<http://example.register.elo/elonia-business-register#EloniaRegistrationAuthority>
+  rdfs:subPropertyOf toop:_registrationAuthority ;
+.
+<http://example.register.elo/elonia-business-register#EloniaRegistrationDate>
+  rdfs:subPropertyOf toop:_registrationDate ;
+.
+<http://example.register.elo/elonia-business-register#EloniaRegistrationNumber>
+  rdfs:subPropertyOf toop:_registrationNumber ;
+.
+<http://example.register.elo/elonia-business-register#EloniaSSNumber>
+  rdfs:subClassOf toop:_SSNumber ;
+.
+<http://example.register.elo/elonia-business-register#EloniaVATNumber>
+  rdfs:subClassOf toop:_VATNumber ;
+.
 <http://example.register.elo/elonia-business-register#hasBusinessCode>
   rdfs:subPropertyOf toop:hasCompanyCode ;
+.
+<http://example.register.fre/freedonia-business-register#FreedoniaActivityDeclaration>
+  rdfs:subPropertyOf toop:_activityDeclaration ;
+.
+<http://example.register.fre/freedonia-business-register#FreedoniaAddress>
+  rdfs:subClassOf toop:PhysicalAddress ;
 .
 <http://example.register.fre/freedonia-business-register#FreedoniaBusinessCode>
   rdfs:subClassOf toop:CompanyCode ;
 .
+<http://example.register.fre/freedonia-business-register#FreedoniaCompanyNaceCode>
+  rdfs:subPropertyOf toop:_companyNaceCode ;
+.
 <http://example.register.fre/freedonia-business-register#FreedoniaCompanyName>
   rdfs:subPropertyOf toop:companyName ;
+.
+<http://example.register.fre/freedonia-business-register#FreedoniaCompanyType>
+  rdfs:subPropertyOf toop:hasCompanyType ;
+.
+<http://example.register.fre/freedonia-business-register#FreedoniaLegalStatus>
+  rdfs:subPropertyOf toop:hasLegalStatus ;
+.
+<http://example.register.fre/freedonia-business-register#FreedoniaLegalStatusEffectiveDate>
+  rdfs:subPropertyOf toop:_legalStatusEffectiveDate ;
+.
+<http://example.register.fre/freedonia-business-register#FreedoniaRegistrationAuthority>
+  rdfs:subPropertyOf toop:_registrationAuthority ;
+.
+<http://example.register.fre/freedonia-business-register#FreedoniaRegistrationDate>
+  rdfs:subPropertyOf toop:_registrationDate ;
+.
+<http://example.register.fre/freedonia-business-register#FreedoniaRegistrationNumber>
+  rdfs:subPropertyOf toop:_registrationNumber ;
+.
+<http://example.register.fre/freedonia-business-register#FreedoniaSSNumber>
+  rdfs:subClassOf toop:_SSNumber ;
+.
+<http://example.register.fre/freedonia-business-register#FreedoniaVATNumber>
+  rdfs:subClassOf toop:_VATNumber ;
 .
 <http://example.register.fre/freedonia-business-register#hasBusinessCode>
   rdfs:subPropertyOf toop:hasCompanyCode ;
 .
 nhr:Adres
-  rdfs:subClassOf toop:Address ;
+  mapping:mapsTo toop:PhysicalAddress ;
+  rdfs:subClassOf toop:PhysicalAddress ;
+.
+nhr:Locatie
+  mapping:mapsTo toop:hasPhysicalAddress ;
 .
 nhr:NatuurlijkPersoon
   rdfs:subClassOf toop:Person ;
 .
-nhr:SETU_Standaarden
-  nhr:kvkNummer "34279048" ;
+nhr:Vestiging
+  mapping:mapsTo org:Site ;
+.
+nhr:heeftBezoekadres
+  mapping:mapsTo toop:hasPhysicalAddress ;
+.
+nhr:heeftPostadres
+  mapping:mapsTo toop:hasPhysicalAddress ;
 .
 nhr:heeftRechtsvorm
-  rdfs:subPropertyOf toop:companyType ;
+  rdfs:subPropertyOf toop:hasCompanyType ;
+.
+nhr:heeftVolledigAdres
+  spin:query [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object nhr:Vestiging ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "site" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "bezadres" ;
+              ] ;
+            sp:predicate nhr:heeftBezoekadres ;
+            sp:subject [
+                sp:varName "site" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "address" ;
+              ] ;
+            sp:predicate nhr:heeftVolledigAdres ;
+            sp:subject [
+                sp:varName "bezadres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "countryname" ;
+              ] ;
+            sp:predicate nhr:land ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "region" ;
+              ] ;
+            sp:predicate nhr:regio ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "streetaddress" ;
+              ] ;
+            sp:predicate nhr:straatHuisnummer ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "postcodewoonplaats" ;
+              ] ;
+            sp:predicate nhr:postcodeWoonplaats ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object toop:RegisteredSite ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "site" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:uri ;
+                sp:arg1 [
+                    rdf:type sp:concat ;
+                    sp:arg1 "http://example.register.nl/nationaalhandelsregister#" ;
+                    sp:arg2 "Bezoekadres" ;
+                    sp:arg3 [
+                        rdf:type sp:replace ;
+                        sp:arg1 [
+                            rdf:type sp:str ;
+                            sp:arg1 [
+                                sp:varName "site" ;
+                              ] ;
+                          ] ;
+                        sp:arg2 "http://toop.eu/registered-organization#" ;
+                        sp:arg3 "_" ;
+                      ] ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "bezadres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "address" ;
+              ] ;
+            sp:predicate toop:hasPhysicalAddress ;
+            sp:subject [
+                sp:varName "site" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "streetaddress" ;
+              ] ;
+            sp:predicate toop:streetAddress ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "countryname" ;
+              ] ;
+            sp:predicate toop:countryName ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "locality" ;
+              ] ;
+            sp:predicate toop:locality ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "postalcode" ;
+              ] ;
+            sp:predicate toop:postalCode ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:concat ;
+                sp:arg1 [
+                    sp:varName "postalcode" ;
+                  ] ;
+                sp:arg2 " " ;
+                sp:arg3 [
+                    sp:varName "locality" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "postcodewoonplaats" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Optional ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "region" ;
+                    ] ;
+                  sp:predicate toop:region ;
+                  sp:subject [
+                      sp:varName "address" ;
+                    ] ;
+                ]
+              ) ;
+          ]
+        ) ;
+    ] ;
+  mapping:mapsTo toop:hasPhysicalAddress ;
+.
+nhr:huisnummer
+  mapping:mapsTo toop:streetAddress ;
+.
+nhr:kvkNummer
+  spin:query [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object nhr:MaatschappelijkeActiviteit ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "ro" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "ccvalue" ;
+              ] ;
+            sp:predicate nhr:kvkNummer ;
+            sp:subject [
+                sp:varName "ro" ;
+              ] ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object toop:RegisteredOrganization ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "ro" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "cc" ;
+              ] ;
+            sp:predicate toop:hasCompanyCode ;
+            sp:subject [
+                sp:varName "ro" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "ccvalue" ;
+              ] ;
+            sp:predicate skos:notation ;
+            sp:subject [
+                sp:varName "cc" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  spin:query [
+      rdf:type sp:Select ;
+      sp:resultVariables (
+          [
+            sp:varName "kvk" ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "kvk" ;
+              ] ;
+            sp:predicate [
+                sp:varName "relatie" ;
+              ] ;
+            sp:subject [
+                sp:varName "bedrijf" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "relatie" ;
+              ] ;
+            sp:predicate mapping:mapsTo ;
+            sp:subject nhr:kvkNummer ;
+          ]
+          [
+            rdf:type sp:SubQuery ;
+            sp:query [
+                rdf:type sp:Select ;
+                sp:resultVariables (
+                    [
+                      sp:varName "bedrijf" ;
+                    ]
+                  ) ;
+                sp:where (
+                    [
+                      sp:object [
+                          sp:varName "naam" ;
+                        ] ;
+                      sp:predicate [
+                          sp:varName "naamrelatie" ;
+                        ] ;
+                      sp:subject [
+                          sp:varName "bedrijf" ;
+                        ] ;
+                    ]
+                    [
+                      sp:object [
+                          sp:varName "naamrelatie" ;
+                        ] ;
+                      sp:predicate mapping:mapsTo ;
+                      sp:subject nhr:naamMaatschappelijkeActiviteit ;
+                    ]
+                    [
+                      rdf:type sp:Filter ;
+                      sp:expression [
+                          rdf:type sp:regex ;
+                          sp:arg1 [
+                              sp:varName "naam" ;
+                            ] ;
+                          sp:arg2 "Danmarks Tekniske Universitet" ;
+                        ] ;
+                    ]
+                  ) ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  spin:query [
+      rdf:type sp:Select ;
+      sp:resultVariables (
+          [
+            sp:varName "kvk" ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "kvk" ;
+              ] ;
+            sp:predicate [
+                sp:varName "relatie" ;
+              ] ;
+            sp:subject [
+                sp:varName "bedrijf" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "relatie" ;
+              ] ;
+            sp:predicate mapping:mapsTo ;
+            sp:subject nhr:kvkNummer ;
+          ]
+          [
+            sp:object owl:DatatypeProperty ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "relatie" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  mapping:mapsTo toop:CompanyCode ;
+  mapping:mapsTo toop:hasCompanyCode ;
+  mapping:mapsTo skos:notation ;
 .
 nhr:land
+  mapping:mapsTo toop:countryName ;
   rdfs:subPropertyOf toop:countryName ;
 .
+nhr:naamMaatschappelijkeActiviteit
+  spin:query [
+      rdf:type sp:Select ;
+      sp:resultVariables (
+          [
+            sp:varName "bedrijf" ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "naam" ;
+              ] ;
+            sp:predicate [
+                sp:varName "naamrelatie" ;
+              ] ;
+            sp:subject [
+                sp:varName "bedrijf" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "naamrelatie" ;
+              ] ;
+            sp:predicate mapping:mapsTo ;
+            sp:subject nhr:naamMaatschappelijkeActiviteit ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:regex ;
+                sp:arg1 [
+                    sp:varName "naam" ;
+                  ] ;
+                sp:arg2 "Danmarks Tekniske Universitet" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  mapping:mapsTo toop:companyName ;
+.
 nhr:plaats
+  mapping:mapsTo toop:locality ;
   rdfs:subPropertyOf toop:locality ;
 .
 nhr:postcode
+  mapping:mapsTo toop:postalCode ;
   rdfs:subPropertyOf toop:postalCode ;
 .
+nhr:postcodeWoonplaats
+  mapping:mapsTo toop:locality ;
+  mapping:mapsTo toop:postalCode ;
+.
 nhr:regio
+  mapping:mapsTo toop:region ;
   rdfs:subPropertyOf toop:region ;
 .
 nhr:straatHuisnummer
+  mapping:mapsTo toop:streetAddress ;
   rdfs:subPropertyOf toop:streetAddress ;
 .
-nhr:wordtGeleidVanuit
-  rdfs:subPropertyOf toop:hasMainSite ;
+nhr:straatnaam
+  mapping:mapsTo toop:streetAddress ;
 .
-<http://toop.eu/organization>
+nhr:wordtGeleidVanuit
+  rdfs:subPropertyOf toop:hasRegisteredSite ;
+.
+mapping:mapsTo
+  spin:query [
+      rdf:type sp:Select ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "ietsanders" ;
+              ] ;
+            sp:predicate mapping:mapsTo ;
+            sp:subject [
+                sp:varName "iets" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+.
+<http://toop.eu/registered-organization>
   rdf:type owl:Ontology ;
   spin:imports <http://topbraid.org/spin/owlrl-all> ;
   spin:imports <http://topbraid.org/spin/rdfsplus> ;
@@ -90,6 +575,7 @@ nhr:wordtGeleidVanuit
   owl:imports <http://example.register.fre/freedonia-business-register> ;
   owl:imports <http://example.register.nl/nationaalhandelsregister> ;
   owl:imports <http://spinrdf.org/spin> ;
+  owl:imports <http://toop.eu/mapping> ;
   owl:imports <http://www.w3.org/2004/02/skos/core> ;
   owl:imports <http://www.w3.org/2006/vcard/ns> ;
   owl:imports <http://www.w3.org/ns/org.ttl> ;
@@ -102,17 +588,12 @@ nhr:wordtGeleidVanuit
   owl:versionIRI <http://ec.toop.org/ns/2017/12/organization> ;
   owl:versionInfo "$Date: 2017/12/27 16:31:41$" ;
 .
-toop:Address
-  rdf:type owl:Class ;
-  rdfs:comment "The postal address and/or the visiting address of a physical site of the company"@en ;
-  rdfs:label "Physical address_"@en ;
-  owl:equivalentClass <http://example.register.elo/elonia-business-register#EloniaAddress> ;
-  owl:equivalentClass <http://example.register.fre/freedonia-business-register#FreedoniaAddress> ;
-  owl:equivalentClass vcard:Address ;
-.
-toop:Address_1
-  rdf:type toop:Address ;
-  toop:countryName "Nederland" ;
+toop:Address_DanmarksTekniskeUniversitet
+  rdf:type toop:PhysicalAddress ;
+  toop:countryName "Danmark" ;
+  toop:locality "Kongens Lyngby" ;
+  toop:postalCode "2800" ;
+  toop:streetAddress "Anker Engelunds Vej 1 Bygning 101A" ;
 .
 toop:Address_card1
   rdf:type vcard:Address ;
@@ -121,68 +602,110 @@ toop:Address_card1
   skos:prefLabel "Address card1" ;
 .
 toop:CompanyCode
+  rdf:type rdfs:Class ;
   rdf:type owl:Class ;
   rdfs:comment "The unique official company identifier_ "@en ;
   rdfs:label "Company code_"@en ;
   rdfs:subClassOf adms:Identifier ;
-  owl:equivalentClass <http://example.register.elo/elonia-business-register#EloniaBusinessCode> ;
-  owl:equivalentClass <http://example.register.fre/freedonia-business-register#FreedoniaBusinessCode> ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty skos:notation ;
+    ] ;
   skos:prefLabel "Company code" ;
 .
 toop:CompanyCode_1
   rdf:type toop:CompanyCode ;
+  skos:notation "2345135" ;
 .
-toop:CompanyContactNumber
-  rdf:type owl:Class ;
-  rdfs:subClassOf owl:Thing ;
-.
-toop:CompanyEmailAddress
-  rdf:type owl:Class ;
-  rdfs:subClassOf owl:Thing ;
+toop:CompanyCode_DanmarksTekniskeUniversitet
+  rdf:type toop:CompanyCode ;
+  rdfs:comment "The company code of the Technical University of Denmark."@en ;
+  rdfs:label "Company code Danmarks tekniske universitet" ;
+  skos:notation "30060946" ;
+  skos:prefLabel "Company code Danmarks tekniske universitet" ;
 .
 toop:CompanyTypeScheme
   rdf:type rdfs:Class ;
   rdf:type owl:Class ;
   rdfs:comment "Represents the member states' recognized company types, expressed in a consistent manner in a SKOS Concept Scheme"@en ;
   rdfs:label "CompanyTypeScheme"@en ;
-  owl:equivalentClass skos:ConceptScheme ;
+  rdfs:subClassOf skos:ConceptScheme ;
   skos:prefLabel "CompanyTypeScheme" ;
 .
-toop:DocumentType
-  rdf:type owl:Class ;
-  rdfs:comment "The document type represents a grouping of concepts into a single document, e.g. company registration document, birth certificate document, mandate evidence document etc." ;
-  rdfs:label "Document type" ;
-  rdfs:subClassOf owl:Thing ;
-.
-toop:Foundation
+toop:ContactNumber
   rdf:type rdfs:Class ;
   rdf:type owl:Class ;
-  rdfs:comment "Represents the event that resulted in the foundation of the organization "@en ;
-  rdfs:label "Foundation"@en ;
-  rdfs:subClassOf org:ChangeEvent ;
-  skos:prefLabel "Foundation" ;
+  rdfs:comment "The main contact numbers of the company."@en ;
+  rdfs:label "Contact number"@en ;
+  rdfs:subClassOf vcard:Tel ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty toop:contactNumberValue ;
+    ] ;
 .
-toop:MainSite
+toop:ContactNumber_1
+  rdf:type toop:ContactNumber ;
+.
+toop:DanmarksTekniskeUniversitet
+  rdf:type toop:RegisteredOrganization ;
+  toop:companyName "Danmarks Tekniske Universitet" ;
+  toop:hasCompanyCode toop:CompanyCode_DanmarksTekniskeUniversitet ;
+  toop:hasRegisteredSite toop:MainSite_DanmarksTekniskeUniversitet ;
+  rdfs:comment "Technical University of Denmark"@en ;
+  rdfs:label "Danmarks tekniske universitet"@dk ;
+  skos:prefLabel "Danmarks tekniske universitet"@dk ;
+.
+toop:EmailAddress
   rdf:type rdfs:Class ;
   rdf:type owl:Class ;
-  rdfs:comment "Represents the main office and/or premise at which the organization is located. Many organizations are spread across multiple sites and many sites will host multiple locations."@en ;
-  rdfs:label "Site"@en ;
-  rdfs:subClassOf org:Site ;
-  skos:prefLabel "Site" ;
+  rdfs:comment "The email-address of the registered site of the company."@en ;
+  rdfs:label "Email address"@en ;
+  rdfs:subClassOf vcard:Email ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty toop:emailAddressValue ;
+    ] ;
+.
+toop:LegalStatusScheme
+  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  rdfs:comment "Represents the member states' recognized legal statuses for companies, expressed in a consistent manner in a SKOS Concept Scheme"@en ;
+  rdfs:label "LegalStatusScheme"@en ;
+  rdfs:subClassOf skos:ConceptScheme ;
+  skos:prefLabel "LegalStatusScheme" ;
+.
+toop:MainSite_DanmarksTekniskeUniversitet
+  rdf:type toop:RegisteredSite ;
+  toop:hasPhysicalAddress toop:Address_DanmarksTekniskeUniversitet ;
+  rdfs:comment "The main site of the Technical University of Denmark."@en ;
+  rdfs:label "Main site Danmarks tekniske universitet" ;
+  skos:prefLabel "Main site Danmarks tekniske universitet" ;
+.
+toop:MyAddress
+  rdf:type toop:PhysicalAddress ;
+  toop:countryName "Nederland" ;
+  toop:locality "Soesterberg" ;
+  toop:postalCode "1234AB" ;
+  toop:region "Utrecht" ;
+  toop:streetAddress "Kampweg 55" ;
 .
 toop:MyCompCode-Id123456
   rdf:type adms:Identifier ;
-  toop:legalStatusEffectiveDate "2017-10-23"^^xsd:date ;
-  toop:registrationAuthority toop:NL-KvK ;
+  toop:_legalStatusEffectiveDate "2017-10-23"^^xsd:date ;
+  toop:_registrationAuthority toop:NL-KvK ;
   rdfs:comment "My company code, as instance of toop:CompanyCode class, representing the unique official company identifier as laid down by the registration authority_"@en ;
   rdfs:label "MyCompCode-Id123456_"@en ;
   adms:schemeAgency "NL-KvK Kamer van Koophandel"@nl ;
 .
-toop:MyHasMainSite
-  rdf:type toop:MainSite ;
+toop:MyMainSite
+  rdf:type toop:RegisteredSite ;
+  toop:hasPhysicalAddress toop:MyAddress ;
   rdfs:comment "" ;
-  rdfs:label "MyHasMainSite"@nl ;
-  skos:prefLabel "MyHasMainSite" ;
+  rdfs:label "MyMainSite"@nl ;
+  skos:prefLabel "MyMainSite" ;
 .
 toop:MyOrganization_0
   rdf:type vcard:Organization ;
@@ -205,7 +728,8 @@ toop:MyOrganization_2
 toop:MyRegOrg_1
   rdf:type toop:RegisteredOrganization ;
   toop:companyName "My Own Company (legal name)" ;
-  toop:hasMainSite toop:MyHasMainSite ;
+  toop:hasCompanyCode toop:CompanyCode_1 ;
+  toop:hasRegisteredSite toop:MyMainSite ;
   rdfs:comment "My organization as instance from the toop:RegisteredOrganization Class" ;
   rdfs:label "Mijn reg org klas 1_"@nl ;
   skos:prefLabel "My organization as instance from the toop:RegisteredOrganization Class" ;
@@ -219,14 +743,71 @@ toop:NL-KvK
 toop:Person
   rdf:type rdfs:Class ;
   rdf:type owl:Class ;
-  rdfs:comment "This is the person" ;
-  owl:equivalentClass <http://xmlns.com/foaf/0.1/Person> ;
+  rdfs:comment "A human person that can have a role in the context of a company."@en ;
+  rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange xsd:date ;
+      owl:onProperty toop:birthday ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange xsd:integer ;
+      owl:onProperty toop:age ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange xsd:string ;
+      owl:onProperty toop:familyName ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange xsd:string ;
+      owl:onProperty toop:givenName ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+toop:PhysicalAddress
+  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  rdfs:comment "The postal address and/or the visiting address of a physical site of the company"@en ;
+  rdfs:label "Physical address_"@en ;
+  rdfs:subClassOf vcard:Address ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty toop:countryName ;
+      owl:someValuesFrom xsd:string ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty toop:locality ;
+      owl:someValuesFrom xsd:string ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty toop:postalCode ;
+      owl:someValuesFrom xsd:string ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty toop:region ;
+      owl:someValuesFrom xsd:string ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty toop:streetAddress ;
+      owl:someValuesFrom xsd:string ;
+    ] ;
 .
 toop:RegisteredOrganization
   rdf:type rdfs:Class ;
   rdf:type owl:Class ;
   spin:query [
       rdf:type sp:Select ;
+      sp:distinct "true"^^xsd:boolean ;
       sp:resultVariables (
           [
             sp:varName "s" ;
@@ -256,141 +837,68 @@ toop:RegisteredOrganization
                     sp:arg1 [
                         sp:varName "p" ;
                       ] ;
-                    sp:arg2 owl:equivalentClass ;
+                    sp:arg2 rdfs:subClassOf ;
                   ] ;
                 sp:arg2 [
                     rdf:type sp:eq ;
                     sp:arg1 [
                         sp:varName "p" ;
                       ] ;
-                    sp:arg2 owl:equivalentProperty ;
+                    sp:arg2 rdfs:subPropertyOf ;
                   ] ;
               ] ;
           ]
           [
             rdf:type sp:Filter ;
             sp:expression [
-                rdf:type sp:strstarts ;
+                rdf:type sp:or ;
                 sp:arg1 [
-                    rdf:type sp:str ;
+                    rdf:type sp:and ;
                     sp:arg1 [
-                        sp:varName "s" ;
+                        rdf:type sp:strstarts ;
+                        sp:arg1 [
+                            rdf:type sp:str ;
+                            sp:arg1 [
+                                sp:varName "s" ;
+                              ] ;
+                          ] ;
+                        sp:arg2 "http://example.register.elo/elonia-business-register#" ;
+                      ] ;
+                    sp:arg2 [
+                        rdf:type sp:strstarts ;
+                        sp:arg1 [
+                            rdf:type sp:str ;
+                            sp:arg1 [
+                                sp:varName "o" ;
+                              ] ;
+                          ] ;
+                        sp:arg2 "http://toop.eu/registered-organization#" ;
                       ] ;
                   ] ;
-                sp:arg2 "http://toop.eu/organization#" ;
-              ] ;
-          ]
-          [
-            rdf:type sp:Filter ;
-            sp:expression [
-                rdf:type sp:strstarts ;
-                sp:arg1 [
-                    rdf:type sp:str ;
+                sp:arg2 [
+                    rdf:type sp:and ;
                     sp:arg1 [
-                        sp:varName "o" ;
+                        rdf:type sp:strstarts ;
+                        sp:arg1 [
+                            rdf:type sp:str ;
+                            sp:arg1 [
+                                sp:varName "s" ;
+                              ] ;
+                          ] ;
+                        sp:arg2 "http://toop.eu/registered-organization#" ;
+                      ] ;
+                    sp:arg2 [
+                        rdf:type sp:strstarts ;
+                        sp:arg1 [
+                            rdf:type sp:str ;
+                            sp:arg1 [
+                                sp:varName "o" ;
+                              ] ;
+                          ] ;
+                        sp:arg2 "http://example.register.elo/elonia-business-register#" ;
                       ] ;
                   ] ;
-                sp:arg2 "http://example.register.elo/elonia-business-register#" ;
               ] ;
-          ]
-        ) ;
-    ] ;
-  spin:query [
-      rdf:type sp:Select ;
-      sp:resultVariables (
-          [
-            sp:varName "s" ;
-          ]
-          [
-            sp:varName "p" ;
-          ]
-          [
-            sp:varName "v" ;
-          ]
-        ) ;
-      sp:where (
-          [
-            rdf:type sp:Union ;
-            sp:elements (
-                (
-                  [
-                    sp:object [
-                        sp:varName "o" ;
-                      ] ;
-                    sp:predicate rdfs:subClassOf ;
-                    sp:subject [
-                        sp:varName "s" ;
-                      ] ;
-                  ]
-                  [
-                    rdf:type sp:Filter ;
-                    sp:expression [
-                        rdf:type sp:eq ;
-                        sp:arg1 [
-                            sp:varName "s" ;
-                          ] ;
-                        sp:arg2 toop:RegisteredOrganization ;
-                      ] ;
-                  ]
-                  [
-                    sp:object [
-                        sp:varName "p" ;
-                      ] ;
-                    sp:predicate owl:onProperty ;
-                    sp:subject [
-                        sp:varName "o" ;
-                      ] ;
-                  ]
-                  [
-                    sp:object [
-                        sp:varName "v" ;
-                      ] ;
-                    sp:predicate owl:someValuesFrom ;
-                    sp:subject [
-                        sp:varName "o" ;
-                      ] ;
-                  ]
-                )
-                (
-                  [
-                    sp:object [
-                        sp:varName "o" ;
-                      ] ;
-                    sp:predicate rdfs:subClassOf ;
-                    sp:subject [
-                        sp:varName "s" ;
-                      ] ;
-                  ]
-                  [
-                    rdf:type sp:Filter ;
-                    sp:expression [
-                        rdf:type sp:eq ;
-                        sp:arg1 [
-                            sp:varName "s" ;
-                          ] ;
-                        sp:arg2 toop:RegisteredOrganization ;
-                      ] ;
-                  ]
-                  [
-                    sp:object [
-                        sp:varName "p" ;
-                      ] ;
-                    sp:predicate owl:onProperty ;
-                    sp:subject [
-                        sp:varName "o" ;
-                      ] ;
-                  ]
-                  [
-                    sp:object [
-                        sp:varName "v" ;
-                      ] ;
-                    sp:predicate owl:cardinality ;
-                    sp:subject [
-                        sp:varName "o" ;
-                      ] ;
-                  ]
-                )
-              ) ;
           ]
         ) ;
     ] ;
@@ -404,26 +912,102 @@ toop:RegisteredOrganization
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty toop:companyType ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass toop:ContactNumber ;
+      owl:onProperty toop:hasContactNumber ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
+      owl:onClass toop:CompanyCode ;
       owl:onProperty toop:hasCompanyCode ;
-      owl:someValuesFrom toop:CompanyCode ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:onProperty toop:hasMainSite ;
-      owl:someValuesFrom toop:MainSite ;
+      owl:onClass toop:EmailAddress ;
+      owl:onProperty toop:hasEmailAddress ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:onProperty toop:hasRegistration ;
-      owl:someValuesFrom toop:Registration ;
+      owl:onClass toop:Person ;
+      owl:onProperty toop:hasLegalRepresentative ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass toop:RegisteredSite ;
+      owl:onProperty toop:hasRegisteredSite ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass toop:_Registration ;
+      owl:onProperty toop:_hasRegistration ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass [
+          rdf:type owl:Restriction ;
+          owl:onProperty skos:inScheme ;
+          owl:someValuesFrom toop:CompanyTypeScheme ;
+        ] ;
+      owl:onProperty toop:hasCompanyType ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass [
+          rdf:type owl:Restriction ;
+          owl:onProperty skos:inScheme ;
+          owl:someValuesFrom toop:LegalStatusScheme ;
+        ] ;
+      owl:onProperty toop:hasLegalStatus ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
 .
-toop:Registration
+toop:RegisteredSite
+  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  rdfs:comment "Represents the main office and/or premise at which the organization is located. Many organizations are spread across multiple sites and many sites will host multiple locations."@en ;
+  rdfs:label "Registered site"@en ;
+  rdfs:subClassOf org:Site ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass toop:EmailAddress ;
+      owl:onProperty toop:hasEmailAddress ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass toop:PhysicalAddress ;
+      owl:onProperty toop:hasPhysicalAddress ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty toop:hasContactNumber ;
+      owl:someValuesFrom toop:ContactNumber ;
+    ] ;
+  skos:prefLabel "Registered site" ;
+.
+toop:_DocumentType
+  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  rdfs:comment "The document type represents a grouping of concepts into a single document, e.g. company registration document, birth certificate document, mandate evidence document etc." ;
+  rdfs:label "Document type" ;
+  rdfs:subClassOf owl:Thing ;
+.
+toop:_Foundation
+  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  rdfs:comment "Represents the event that resulted in the foundation of the organization "@en ;
+  rdfs:label "Foundation"@en ;
+  rdfs:subClassOf org:ChangeEvent ;
+  skos:prefLabel "Foundation" ;
+.
+toop:_Registration
   rdf:type rdfs:Class ;
   rdf:type owl:Class ;
   rdfs:comment "Represents the event that resulted in the registration of the organization."@en ;
@@ -431,262 +1015,826 @@ toop:Registration
   rdfs:subClassOf org:ChangeEvent ;
   skos:prefLabel "Registration" ;
 .
-toop:SSNumber
+toop:_SSNumber
   rdf:type rdfs:Class ;
   rdfs:comment "The social security number of the company_"@en ;
   rdfs:label "SSNumber"@en ;
   rdfs:subClassOf adms:Identifier ;
-  owl:equivalentClass <http://example.register.elo/elonia-business-register#EloniaSSNumber> ;
-  owl:equivalentClass <http://example.register.fre/freedonia-business-register#FreedoniaSSNumber> ;
   skos:prefLabel "SSNumber" ;
 .
-toop:VATNumber
+toop:_VATNumber
   rdf:type rdfs:Class ;
   rdfs:comment "The value added tax number of the company"@en ;
   rdfs:label "VATNumber"@en ;
   rdfs:subClassOf adms:Identifier ;
-  owl:equivalentClass <http://example.register.elo/elonia-business-register#EloniaVATNumber> ;
-  owl:equivalentClass <http://example.register.fre/freedonia-business-register#FreedoniaVATNumber> ;
   skos:prefLabel "VATNumber" ;
 .
-toop:activityDeclaration
-  rdf:type rdf:Property ;
+toop:_activityDeclaration
+  rdf:type owl:ObjectProperty ;
   rdfs:comment "The description of the main activity of the company as free text description recorded on the registry. This tag should be used to give a description of the company activity in the local language. This should be used in conjunction with the CompanyNaceCode."@en ;
   rdfs:label "activity declaration"@en ;
   rdfs:subPropertyOf dcterms:description ;
-  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaActivityDeclaration> ;
-  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaActivityDeclaration> ;
   skos:prefLabel "activity declaration" ;
 .
-toop:addressCompanyEmailAddress
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain toop:CompanyEmailAddress ;
-.
-toop:age
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain toop:Person ;
-  owl:equivalentProperty <http://xmlns.com/foaf/0.1/age> ;
-.
-toop:birthday
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain toop:Person ;
-  owl:equivalentProperty <http://xmlns.com/foaf/0.1/birthday> ;
-.
-toop:companyContactNumber
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain toop:RegisteredOrganization ;
-  rdfs:range toop:CompanyContactNumber ;
-  owl:equivalentProperty vcard:hasTelephone ;
-.
-toop:companyEmailAddress
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain toop:RegisteredOrganization ;
-  rdfs:range toop:CompanyEmailAddress ;
-  owl:equivalentProperty vcard:hasEmail ;
-.
-toop:companyNaceCode
+toop:_companyNaceCode
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The description of the main activity of the company as free text description recorded on the registry. This tag should be used to give a description of the company activity in the local language. This should be used in conjunction with the CompanyNaceCode"@en ;
   rdfs:label "company NACE code"@en ;
   rdfs:subPropertyOf rov:orgActivity ;
-  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaCompanyNaceCode> ;
-  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaCompanyNaceCode> ;
   skos:prefLabel "company NACE code" ;
 .
-toop:companyName
-  rdf:type owl:DatatypeProperty ;
-  rdfs:comment "The official current company name as stored in the business register_"@en ;
-  rdfs:label "company name" ;
-  rdfs:subPropertyOf rov:legalName ;
-  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaCompanyName> ;
-  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaCompanyName> ;
-.
-toop:companyType
-  rdf:type rdf:Property ;
-  rdf:type owl:ObjectProperty ;
-  rdfs:comment "The legal type of the company_"@en ;
-  rdfs:domain toop:RegisteredOrganization ;
-  rdfs:label "company type"@en ;
-  rdfs:range [
-      rdf:type owl:Restriction ;
-      owl:onProperty skos:inScheme ;
-      owl:someValuesFrom toop:CompanyTypeScheme ;
-    ] ;
-  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaCompanyType> ;
-  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaCompanyType> ;
-  owl:equivalentProperty rov:orgType ;
-  skos:prefLabel "company type" ;
-.
-toop:contactType
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain toop:CompanyContactNumber ;
-  rdfs:range vcard:TelephoneType ;
-.
-toop:countryName
-  rdf:type owl:DatatypeProperty ;
-  rdfs:comment "The country name associated with the address of the organization."@en ;
-  rdfs:domain toop:Address ;
-  rdfs:label "country name" ;
-  owl:equivalentProperty vcard:country-name ;
-.
-toop:familyName
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain toop:Person ;
-  owl:equivalentProperty <http://xmlns.com/foaf/0.1/familyName> ;
-.
-toop:foundationDate
+toop:_foundationDate
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "Represents the date at which the company started. "@en ;
-  rdfs:domain toop:Foundation ;
+  rdfs:domain toop:_Foundation ;
   rdfs:label "foundation date"@en ;
   rdfs:subPropertyOf <http://www.w3.org/ns/prov#startedAtTime> ;
   skos:prefLabel "foundation date" ;
 .
-toop:givenName
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain toop:Person ;
-  owl:equivalentProperty <http://xmlns.com/foaf/0.1/givenName> ;
-.
-toop:hasAddress
+toop:_hasRegistration
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "Represents a pointer to physical or virtual address of the company."@en ;
-  rdfs:domain org:Site ;
-  rdfs:label "has address_"@en ;
-  rdfs:range toop:Address ;
-  rdfs:subPropertyOf org:siteAddress ;
-  skos:prefLabel "has address" ;
-.
-toop:hasCompanyCode
-  rdf:type owl:ObjectProperty ;
-  rdfs:comment "The property of a registered organization of having a main code that is the unique identifier recorded in the registry. This tag should be used to give an identifier of the company in the local language. It should be used in conjunction with the CompanyNaceCode."@en ;
-  rdfs:label "company code"@en ;
-  rdfs:subPropertyOf rov:registration ;
-  skos:prefLabel "company code" ;
-.
-toop:hasMainSite
-  rdf:type owl:ObjectProperty ;
-  rdfs:comment "The main site of the company."@en ;
-  rdfs:domain toop:RegisteredOrganization ;
-  rdfs:label "has main site"@nl ;
-  rdfs:range toop:MainSite ;
-  owl:equivalentProperty org:hasPrimarySite ;
-  owl:inverseOf toop:siteOf ;
-  skos:prefLabel "has main site" ;
-.
-toop:hasRegistration
-  rdf:type rdf:Property ;
   rdfs:comment "This is the property that makes the link between a registered organization and the registration event." ;
   rdfs:domain toop:RegisteredOrganization ;
   rdfs:label "has registration"@en ;
-  rdfs:range toop:Registration ;
+  rdfs:range toop:_Registration ;
   skos:prefLabel "has registration"@en ;
 .
-toop:legalRepresentativeOf
+toop:_legalStatusEffectiveDate
   rdf:type owl:ObjectProperty ;
-  rdfs:domain toop:Person ;
-  rdfs:range toop:RegisteredOrganization ;
-  rdfs:subPropertyOf org:memberOf ;
-.
-toop:legalStatus
-  rdf:type rdf:Property ;
-  rdfs:comment "The current legal status of a company (active, ended, ...)"@en ;
-  rdfs:domain toop:CompanyCode ;
-  rdfs:label "legal status"@en ;
-  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaLegalStatus> ;
-  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaLegalStatus> ;
-  owl:equivalentProperty rov:orgStatus ;
-  skos:prefLabel "legal status" ;
-.
-toop:legalStatusEffectiveDate
-  rdf:type rdf:Property ;
   rdfs:comment "The date at which the current legal status became effective_"@en ;
   rdfs:domain toop:CompanyCode ;
-  rdfs:label "legal status effective date"@en ;
+  rdfs:label "has legal status effective date"@en ;
   rdfs:subPropertyOf dcterms:issued ;
-  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaLegalStatusEffectiveDate> ;
-  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaLegalStatusEffectiveDate> ;
-  skos:prefLabel "legal status effective date" ;
+  skos:prefLabel "has legal status effective date" ;
 .
-toop:locality
-  rdf:type owl:DatatypeProperty ;
-  rdfs:comment "The locality (e.g. city or town) associated with the address of the organization."@en ;
-  rdfs:domain toop:Address ;
-  rdfs:label "locality" ;
-  owl:equivalentProperty vcard:locality ;
-.
-toop:numberCompanyContactNumber
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain toop:CompanyContactNumber ;
-.
-toop:postalCode
-  rdf:type owl:DatatypeProperty ;
-  rdfs:comment "The postal code associated with the address of the organization."@en ;
-  rdfs:domain toop:Address ;
-  rdfs:label "postal code" ;
-  owl:equivalentProperty vcard:postal-code ;
-.
-toop:region
-  rdf:type owl:DatatypeProperty ;
-  rdfs:comment "The region (e.g. state or province) associated with the address of the organization."@en ;
-  rdfs:domain toop:Address ;
-  rdfs:label "region" ;
-  owl:equivalentProperty vcard:region ;
-.
-toop:registrationAuthority
+toop:_registrationAuthority
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The reference to the official register that has registered the company"@en ;
   rdfs:domain toop:CompanyCode ;
-  rdfs:label "registration authority"@en ;
-  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaRegistrationAuthority> ;
-  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaRegistrationAuthority> ;
-  owl:equivalentProperty dcterms:creator ;
-  skos:prefLabel "registration authority" ;
+  rdfs:label "has registration authority"@en ;
+  rdfs:subPropertyOf dcterms:creator ;
+  skos:prefLabel "has registration authority" ;
 .
-toop:registrationDate
+toop:_registrationDate
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "Represents the date at which the company started. "@en ;
-  rdfs:domain toop:Registration ;
+  rdfs:domain toop:_Registration ;
   rdfs:label "registration date"@en ;
   rdfs:range xsd:date ;
   rdfs:subPropertyOf <http://www.w3.org/ns/prov#startedAtTime> ;
-  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaRegistrationDate> ;
-  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaRegistrationDate> ;
   skos:prefLabel "registration date" ;
 .
-toop:registrationNumber
+toop:_registrationNumber
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "The number of the company as recorded on the register. In some jurisdictions, the number on the register may be different from the official company number. This field must be populated in all service requests even when the RegistrationNumber is the same as the CompanyCode "@en ;
   rdfs:label "registration number"@en ;
-  owl:equivalentProperty <http://example.register.elo/elonia-business-register#EloniaRegistrationNumber> ;
-  owl:equivalentProperty <http://example.register.fre/freedonia-business-register#FreedoniaRegistrationNumber> ;
-  owl:equivalentProperty org:identifier ;
+  rdfs:subPropertyOf org:identifier ;
   skos:prefLabel "registration number" ;
 .
-toop:siteOf
-  rdf:type owl:ObjectProperty ;
-  rdfs:comment "A virtual or physical site is the site of a registered organization"@en ;
-  rdfs:label "site of_"@en ;
-  owl:equivalentProperty org:siteOf ;
-.
-toop:streetAddress
-  rdf:type owl:DatatypeProperty ;
-  rdfs:comment "The street address associated with the address of the organization."@en ;
-  rdfs:domain toop:Address ;
-  rdfs:label "street address" ;
-  owl:equivalentProperty vcard:street-address ;
-.
-toop:websiteURL
+toop:_websiteURL
   rdf:type owl:ObjectProperty ;
   rdfs:comment "ISSUE: currently, TBC's local import for vcard seems incomplete - vcard:has* are missing"@en ;
   rdfs:comment "Represents the website URL of the company."@en ;
   rdfs:comment "Represents the website address of the company."@en ;
-  rdfs:domain toop:MainSite ;
+  rdfs:domain toop:RegisteredSite ;
   rdfs:label "websiteAddress"@en ;
   rdfs:label "websiteURL"@en ;
   rdfs:range dcterms:URI ;
   rdfs:subPropertyOf org:siteAddress ;
   skos:prefLabel "websiteAddress" ;
   skos:prefLabel "websiteURL" ;
+.
+toop:age
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The age of a person"@en ;
+  rdfs:domain toop:Person ;
+  rdfs:label "age"@en ;
+  rdfs:range xsd:integer ;
+  rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/age> ;
+.
+toop:birthday
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The day of birth of a person"@en ;
+  rdfs:domain toop:Person ;
+  rdfs:label "birthday"@en ;
+  rdfs:range xsd:gMonthDay ;
+  rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/birthday> ;
+.
+toop:companyName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The official current company name as stored in the business register_"@en ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:label "company name" ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf rov:legalName ;
+.
+toop:contactNumberValue
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The actual value of the contact number."@en ;
+  rdfs:domain toop:ContactNumber ;
+  rdfs:label "contact number value" ;
+  rdfs:range xsd:integer ;
+  rdfs:subPropertyOf vcard:value ;
+.
+toop:countryName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The country name associated with the address of the organization."@en ;
+  rdfs:domain toop:PhysicalAddress ;
+  rdfs:label "country name" ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf vcard:country-name ;
+.
+toop:emailAddressValue
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The actual value of the email address"@en ;
+  rdfs:domain toop:EmailAddress ;
+  rdfs:label "email address value"@en ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf vcard:value ;
+.
+toop:familyName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The family name of a person"@en ;
+  rdfs:domain toop:Person ;
+  rdfs:label "family name"@en ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/familyName> ;
+.
+toop:givenName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The given name of a person"@en ;
+  rdfs:domain toop:Person ;
+  rdfs:label "given name"@en ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/givenName> ;
+.
+toop:hasCompanyCode
+  rdf:type owl:ObjectProperty ;
+  spin:query [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object toop:RegisteredOrganization ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "ma" ;
+              ] ;
+          ]
+          [
+            sp:object toop:CompanyCode ;
+            sp:predicate rdf:type ;
+            sp:subject _:b66790 ;
+          ]
+          [
+            sp:object _:b66790 ;
+            sp:predicate toop:hasCompanyCode ;
+            sp:subject [
+                sp:varName "ma" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "kvknummer" ;
+              ] ;
+            sp:predicate skos:notation ;
+            sp:subject _:b66790 ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object nhr:MaatschappelijkeActiviteit ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "ma" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "kvknummer" ;
+              ] ;
+            sp:predicate nhr:kvkNummer ;
+            sp:subject [
+                sp:varName "ma" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  spin:query [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object toop:RegisteredOrganization ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "ma" ;
+              ] ;
+          ]
+          [
+            sp:object toop:CompanyCode ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "cc" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "cc" ;
+              ] ;
+            sp:predicate toop:hasCompanyCode ;
+            sp:subject [
+                sp:varName "ma" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "kvknummer" ;
+              ] ;
+            sp:predicate skos:notation ;
+            sp:subject [
+                sp:varName "cc" ;
+              ] ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object nhr:MaatschappelijkeActiviteit ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "ma" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "kvknummer" ;
+              ] ;
+            sp:predicate nhr:kvkNummer ;
+            sp:subject [
+                sp:varName "ma" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:uri ;
+                sp:arg1 [
+                    rdf:type sp:concat ;
+                    sp:arg1 "http://toop.eu/registered-organization#" ;
+                    sp:arg2 "CompanyCode" ;
+                    sp:arg3 [
+                        rdf:type sp:replace ;
+                        sp:arg1 [
+                            rdf:type sp:str ;
+                            sp:arg1 [
+                                sp:varName "ma" ;
+                              ] ;
+                          ] ;
+                        sp:arg2 "http://example.register.nl/nationaalhandelsregister#" ;
+                        sp:arg3 "_" ;
+                      ] ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "cc" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  rdfs:comment "The property of a registered organization of having a main code that is the unique identifier recorded in the registry. This tag should be used to give an identifier of the company in the local language. It should be used in conjunction with the CompanyNaceCode."@en ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:label "has company code"@en ;
+  rdfs:range toop:CompanyCode ;
+  rdfs:subPropertyOf rov:registration ;
+  skos:prefLabel "has company code" ;
+.
+toop:hasCompanyType
+  rdf:type rdf:Property ;
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The legal type of the company as part of the CompanyTypeScheme_"@en ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:label "has company type"@en ;
+  rdfs:range [
+      rdf:type owl:Restriction ;
+      owl:onProperty skos:inScheme ;
+      owl:someValuesFrom toop:CompanyTypeScheme ;
+    ] ;
+  rdfs:subPropertyOf rov:orgType ;
+  skos:prefLabel "has company type" ;
+.
+toop:hasContactNumber
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "A pointer to a contact number of the company."@en ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:label "has contact number"@en ;
+  rdfs:range toop:ContactNumber ;
+  rdfs:subPropertyOf org:siteAddress ;
+.
+toop:hasEmailAddress
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "A pointer to the email address of the company"@en ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:label "has email address"@en ;
+  rdfs:range toop:EmailAddress ;
+  rdfs:subPropertyOf org:siteAddress ;
+.
+toop:hasLegalRepresentative
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The pointer to a legal representative of the company."@en ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:label "has legal representative"@en ;
+  rdfs:range toop:Person ;
+  rdfs:subPropertyOf org:hasMember ;
+.
+toop:hasLegalStatus
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The legal status of the company (active, ended,...) as part of the LegalStatusScheme"@en ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:label "has legal status"@en ;
+  rdfs:range [
+      rdf:type owl:Restriction ;
+      owl:onProperty skos:inScheme ;
+      owl:someValuesFrom toop:LegalStatusScheme ;
+    ] ;
+  rdfs:subPropertyOf rov:orgStatus ;
+  skos:prefLabel "has legal status" ;
+.
+toop:hasPhysicalAddress
+  rdf:type owl:ObjectProperty ;
+  spin:query [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object org:Site ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "adres" ;
+              ] ;
+            sp:predicate toop:hasPhysicalAddress ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object toop:PhysicalAddress ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "land" ;
+              ] ;
+            sp:predicate toop:countryName ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "plaats" ;
+              ] ;
+            sp:predicate toop:locality ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "postcode" ;
+              ] ;
+            sp:predicate toop:postalCode ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "straatadres" ;
+              ] ;
+            sp:predicate toop:streetAddress ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object nhr:Vestiging ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "bezadres" ;
+              ] ;
+            sp:predicate nhr:heeftBezoekadres ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "adres" ;
+              ] ;
+            sp:predicate nhr:heeftVolledigAdres ;
+            sp:subject [
+                sp:varName "bezadres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "plaats" ;
+              ] ;
+            sp:predicate nhr:plaats ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "postcode" ;
+              ] ;
+            sp:predicate nhr:postcode ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "huisnummer" ;
+              ] ;
+            sp:predicate nhr:huisnummer ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "straatnaam" ;
+              ] ;
+            sp:predicate nhr:straatnaam ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:concat ;
+                sp:arg1 [
+                    sp:varName "straatnaam" ;
+                  ] ;
+                sp:arg2 " " ;
+                sp:arg3 [
+                    rdf:type xsd:string ;
+                    sp:arg1 [
+                        sp:varName "huisnummer" ;
+                      ] ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "straatadres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "type" ;
+              ] ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:if ;
+                sp:arg1 [
+                    rdf:type sp:eq ;
+                    sp:arg1 [
+                        sp:varName "type" ;
+                      ] ;
+                    sp:arg2 nhr:BinnenlandsAdres ;
+                  ] ;
+                sp:arg2 "Nederland" ;
+                sp:arg3 "" ;
+              ] ;
+            sp:variable [
+                sp:varName "land" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  spin:query [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object org:Site ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "adres" ;
+              ] ;
+            sp:predicate toop:hasPhysicalAddress ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object toop:PhysicalAddress ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "land" ;
+              ] ;
+            sp:predicate toop:countryName ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "regio" ;
+              ] ;
+            sp:predicate toop:region ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "straathuisnummer" ;
+              ] ;
+            sp:predicate toop:streetAddress ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "woonplaats" ;
+              ] ;
+            sp:predicate toop:locality ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "postcode" ;
+              ] ;
+            sp:predicate toop:postalCode ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object nhr:Vestiging ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "bezadres" ;
+              ] ;
+            sp:predicate nhr:heeftBezoekadres ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "adres" ;
+              ] ;
+            sp:predicate nhr:heeftVolledigAdres ;
+            sp:subject [
+                sp:varName "bezadres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "land" ;
+              ] ;
+            sp:predicate nhr:land ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Optional ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "regio" ;
+                    ] ;
+                  sp:predicate nhr:regio ;
+                  sp:subject [
+                      sp:varName "adres" ;
+                    ] ;
+                ]
+              ) ;
+          ]
+          [
+            sp:object [
+                sp:varName "straathuisnummer" ;
+              ] ;
+            sp:predicate nhr:straatHuisnummer ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "postcodewoonplaats" ;
+              ] ;
+            sp:predicate nhr:postcodeWoonplaats ;
+            sp:subject [
+                sp:varName "adres" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:strbefore ;
+                sp:arg1 [
+                    sp:varName "postcodewoonplaats" ;
+                  ] ;
+                sp:arg2 " " ;
+              ] ;
+            sp:variable [
+                sp:varName "postcode" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:strafter ;
+                sp:arg1 [
+                    sp:varName "postcodewoonplaats" ;
+                  ] ;
+                sp:arg2 " " ;
+              ] ;
+            sp:variable [
+                sp:varName "woonplaats" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  spin:query [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object org:Site ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "volbezadres" ;
+              ] ;
+            sp:predicate toop:hasPhysicalAddress ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "volpostadres" ;
+              ] ;
+            sp:predicate toop:hasPhysicalAddress ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object toop:PhysicalAddress ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "volbezadres" ;
+              ] ;
+          ]
+          [
+            sp:object toop:PhysicalAddress ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "volpostadres" ;
+              ] ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object nhr:Vestiging ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "bezadres" ;
+              ] ;
+            sp:predicate nhr:heeftBezoekadres ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "postadres" ;
+              ] ;
+            sp:predicate nhr:heeftPostadres ;
+            sp:subject [
+                sp:varName "vest" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "volbezadres" ;
+              ] ;
+            sp:predicate nhr:heeftVolledigAdres ;
+            sp:subject [
+                sp:varName "bezadres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "volpostadres" ;
+              ] ;
+            sp:predicate nhr:heeftVolledigAdres ;
+            sp:subject [
+                sp:varName "postadres" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  rdfs:comment "Represents a pointer to the physical address of the company."@en ;
+  rdfs:domain org:Site ;
+  rdfs:label "has physical address_"@en ;
+  rdfs:range toop:PhysicalAddress ;
+  rdfs:subPropertyOf org:siteAddress ;
+  skos:prefLabel "has physical address" ;
+.
+toop:hasRegisteredSite
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Represents a pointer to the registered site of the company."@en ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:label "has registered site"@en ;
+  rdfs:range toop:RegisteredSite ;
+  rdfs:subPropertyOf org:hasRegisteredSite ;
+  skos:prefLabel "has registered site" ;
+.
+toop:locality
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The locality (e.g. city or town) associated with the address of the organization."@en ;
+  rdfs:domain toop:PhysicalAddress ;
+  rdfs:label "locality" ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf vcard:locality ;
+.
+toop:postalCode
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The postal code associated with the address of the organization."@en ;
+  rdfs:domain toop:PhysicalAddress ;
+  rdfs:label "postal code" ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf vcard:postal-code ;
+.
+toop:region
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The region (e.g. state or province) associated with the address of the organization."@en ;
+  rdfs:domain toop:PhysicalAddress ;
+  rdfs:label "region" ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf vcard:region ;
+.
+toop:streetAddress
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The street address associated with the address of the organization."@en ;
+  rdfs:domain toop:PhysicalAddress ;
+  rdfs:label "street address" ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf vcard:street-address ;
 .
 rov:legalName
   rdfs:domain org:FormalOrganization ;
