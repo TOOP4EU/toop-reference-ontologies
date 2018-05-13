@@ -807,6 +807,7 @@ toop:RegisteredOrganization
   rdf:type owl:Class ;
   spin:query [
       rdf:type sp:Select ;
+      sp:distinct "true"^^xsd:boolean ;
       sp:resultVariables (
           [
             sp:varName "s" ;
@@ -836,141 +837,68 @@ toop:RegisteredOrganization
                     sp:arg1 [
                         sp:varName "p" ;
                       ] ;
-                    sp:arg2 owl:equivalentClass ;
+                    sp:arg2 rdfs:subClassOf ;
                   ] ;
                 sp:arg2 [
                     rdf:type sp:eq ;
                     sp:arg1 [
                         sp:varName "p" ;
                       ] ;
-                    sp:arg2 owl:equivalentProperty ;
+                    sp:arg2 rdfs:subPropertyOf ;
                   ] ;
               ] ;
           ]
           [
             rdf:type sp:Filter ;
             sp:expression [
-                rdf:type sp:strstarts ;
+                rdf:type sp:or ;
                 sp:arg1 [
-                    rdf:type sp:str ;
+                    rdf:type sp:and ;
                     sp:arg1 [
-                        sp:varName "s" ;
+                        rdf:type sp:strstarts ;
+                        sp:arg1 [
+                            rdf:type sp:str ;
+                            sp:arg1 [
+                                sp:varName "s" ;
+                              ] ;
+                          ] ;
+                        sp:arg2 "http://example.register.elo/elonia-business-register#" ;
+                      ] ;
+                    sp:arg2 [
+                        rdf:type sp:strstarts ;
+                        sp:arg1 [
+                            rdf:type sp:str ;
+                            sp:arg1 [
+                                sp:varName "o" ;
+                              ] ;
+                          ] ;
+                        sp:arg2 "http://toop.eu/registered-organization#" ;
                       ] ;
                   ] ;
-                sp:arg2 "http://toop.eu/registered-organization#" ;
-              ] ;
-          ]
-          [
-            rdf:type sp:Filter ;
-            sp:expression [
-                rdf:type sp:strstarts ;
-                sp:arg1 [
-                    rdf:type sp:str ;
+                sp:arg2 [
+                    rdf:type sp:and ;
                     sp:arg1 [
-                        sp:varName "o" ;
+                        rdf:type sp:strstarts ;
+                        sp:arg1 [
+                            rdf:type sp:str ;
+                            sp:arg1 [
+                                sp:varName "s" ;
+                              ] ;
+                          ] ;
+                        sp:arg2 "http://toop.eu/registered-organization#" ;
+                      ] ;
+                    sp:arg2 [
+                        rdf:type sp:strstarts ;
+                        sp:arg1 [
+                            rdf:type sp:str ;
+                            sp:arg1 [
+                                sp:varName "o" ;
+                              ] ;
+                          ] ;
+                        sp:arg2 "http://example.register.elo/elonia-business-register#" ;
                       ] ;
                   ] ;
-                sp:arg2 "http://example.register.elo/elonia-business-register#" ;
               ] ;
-          ]
-        ) ;
-    ] ;
-  spin:query [
-      rdf:type sp:Select ;
-      sp:resultVariables (
-          [
-            sp:varName "s" ;
-          ]
-          [
-            sp:varName "p" ;
-          ]
-          [
-            sp:varName "v" ;
-          ]
-        ) ;
-      sp:where (
-          [
-            rdf:type sp:Union ;
-            sp:elements (
-                (
-                  [
-                    sp:object [
-                        sp:varName "o" ;
-                      ] ;
-                    sp:predicate rdfs:subClassOf ;
-                    sp:subject [
-                        sp:varName "s" ;
-                      ] ;
-                  ]
-                  [
-                    rdf:type sp:Filter ;
-                    sp:expression [
-                        rdf:type sp:eq ;
-                        sp:arg1 [
-                            sp:varName "s" ;
-                          ] ;
-                        sp:arg2 toop:RegisteredOrganization ;
-                      ] ;
-                  ]
-                  [
-                    sp:object [
-                        sp:varName "p" ;
-                      ] ;
-                    sp:predicate owl:onProperty ;
-                    sp:subject [
-                        sp:varName "o" ;
-                      ] ;
-                  ]
-                  [
-                    sp:object [
-                        sp:varName "v" ;
-                      ] ;
-                    sp:predicate owl:someValuesFrom ;
-                    sp:subject [
-                        sp:varName "o" ;
-                      ] ;
-                  ]
-                )
-                (
-                  [
-                    sp:object [
-                        sp:varName "o" ;
-                      ] ;
-                    sp:predicate rdfs:subClassOf ;
-                    sp:subject [
-                        sp:varName "s" ;
-                      ] ;
-                  ]
-                  [
-                    rdf:type sp:Filter ;
-                    sp:expression [
-                        rdf:type sp:eq ;
-                        sp:arg1 [
-                            sp:varName "s" ;
-                          ] ;
-                        sp:arg2 toop:RegisteredOrganization ;
-                      ] ;
-                  ]
-                  [
-                    sp:object [
-                        sp:varName "p" ;
-                      ] ;
-                    sp:predicate owl:onProperty ;
-                    sp:subject [
-                        sp:varName "o" ;
-                      ] ;
-                  ]
-                  [
-                    sp:object [
-                        sp:varName "v" ;
-                      ] ;
-                    sp:predicate owl:cardinality ;
-                    sp:subject [
-                        sp:varName "o" ;
-                      ] ;
-                  ]
-                )
-              ) ;
           ]
         ) ;
     ] ;
