@@ -521,6 +521,7 @@ nhr:naamMaatschappelijkeActiviteit
         ) ;
     ] ;
   mapping:mapsTo toop:companyName ;
+  rdfs:subPropertyOf toop:companyName ;
 .
 nhr:plaats
   mapping:mapsTo toop:locality ;
