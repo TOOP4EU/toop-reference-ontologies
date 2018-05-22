@@ -82,7 +82,17 @@
   rdfs:subClassOf toop:PhysicalAddress ;
 .
 <http://example.register.fre/freedonia-business-register#FreedoniaBusinessCode>
+  mapping:mapsToConcept toop:CompanyCode ;
+  mapping:mapsToValue skos:notation ;
   rdfs:subClassOf toop:CompanyCode ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty skos:notation ;
+    ] ;
+.
+<http://example.register.fre/freedonia-business-register#FreedoniaBusinessCode_1>
+  skos:notation "123456" ;
 .
 <http://example.register.fre/freedonia-business-register#FreedoniaCompanyNaceCode>
   rdfs:subPropertyOf toop:_companyNaceCode ;
@@ -118,23 +128,23 @@
   rdfs:subPropertyOf toop:hasCompanyCode ;
 .
 nhr:Adres
-  mapping:mapsTo toop:PhysicalAddress ;
+  mapping:mapsToConcept toop:PhysicalAddress ;
   rdfs:subClassOf toop:PhysicalAddress ;
 .
 nhr:Locatie
-  mapping:mapsTo toop:hasPhysicalAddress ;
+  mapping:mapsToConcept toop:hasPhysicalAddress ;
 .
 nhr:NatuurlijkPersoon
   rdfs:subClassOf toop:Person ;
 .
 nhr:Vestiging
-  mapping:mapsTo org:Site ;
+  mapping:mapsToConcept org:Site ;
 .
 nhr:heeftBezoekadres
-  mapping:mapsTo toop:hasPhysicalAddress ;
+  mapping:mapsToConcept toop:hasPhysicalAddress ;
 .
 nhr:heeftPostadres
-  mapping:mapsTo toop:hasPhysicalAddress ;
+  mapping:mapsToConcept toop:hasPhysicalAddress ;
 .
 nhr:heeftRechtsvorm
   rdfs:subPropertyOf toop:hasCompanyType ;
@@ -315,10 +325,10 @@ nhr:heeftVolledigAdres
           ]
         ) ;
     ] ;
-  mapping:mapsTo toop:hasPhysicalAddress ;
+  mapping:mapsToConcept toop:hasPhysicalAddress ;
 .
 nhr:huisnummer
-  mapping:mapsTo toop:streetAddress ;
+  mapping:mapsToConcept toop:streetAddress ;
 .
 nhr:kvkNummer
   spin:query [
@@ -392,7 +402,7 @@ nhr:kvkNummer
             sp:object [
                 sp:varName "relatie" ;
               ] ;
-            sp:predicate mapping:mapsTo ;
+            sp:predicate mapping:mapsToConcept ;
             sp:subject nhr:kvkNummer ;
           ]
           [
@@ -420,7 +430,7 @@ nhr:kvkNummer
                       sp:object [
                           sp:varName "naamrelatie" ;
                         ] ;
-                      sp:predicate mapping:mapsTo ;
+                      sp:predicate mapping:mapsToConcept ;
                       sp:subject nhr:naamMaatschappelijkeActiviteit ;
                     ]
                     [
@@ -461,7 +471,7 @@ nhr:kvkNummer
             sp:object [
                 sp:varName "relatie" ;
               ] ;
-            sp:predicate mapping:mapsTo ;
+            sp:predicate mapping:mapsToConcept ;
             sp:subject nhr:kvkNummer ;
           ]
           [
@@ -473,12 +483,12 @@ nhr:kvkNummer
           ]
         ) ;
     ] ;
-  mapping:mapsTo toop:CompanyCode ;
-  mapping:mapsTo toop:hasCompanyCode ;
-  mapping:mapsTo skos:notation ;
+  mapping:mapsToConcept toop:CompanyCode ;
+  mapping:mapsToConcept toop:hasCompanyCode ;
+  mapping:mapsToConcept skos:notation ;
 .
 nhr:land
-  mapping:mapsTo toop:countryName ;
+  mapping:mapsToConcept toop:countryName ;
   rdfs:subPropertyOf toop:countryName ;
 .
 nhr:naamMaatschappelijkeActiviteit
@@ -505,7 +515,7 @@ nhr:naamMaatschappelijkeActiviteit
             sp:object [
                 sp:varName "naamrelatie" ;
               ] ;
-            sp:predicate mapping:mapsTo ;
+            sp:predicate mapping:mapsToConcept ;
             sp:subject nhr:naamMaatschappelijkeActiviteit ;
           ]
           [
@@ -520,36 +530,36 @@ nhr:naamMaatschappelijkeActiviteit
           ]
         ) ;
     ] ;
-  mapping:mapsTo toop:companyName ;
+  mapping:mapsToConcept toop:companyName ;
   rdfs:subPropertyOf toop:companyName ;
 .
 nhr:plaats
-  mapping:mapsTo toop:locality ;
+  mapping:mapsToConcept toop:locality ;
   rdfs:subPropertyOf toop:locality ;
 .
 nhr:postcode
-  mapping:mapsTo toop:postalCode ;
+  mapping:mapsToConcept toop:postalCode ;
   rdfs:subPropertyOf toop:postalCode ;
 .
 nhr:postcodeWoonplaats
-  mapping:mapsTo toop:locality ;
-  mapping:mapsTo toop:postalCode ;
+  mapping:mapsToConcept toop:locality ;
+  mapping:mapsToConcept toop:postalCode ;
 .
 nhr:regio
-  mapping:mapsTo toop:region ;
+  mapping:mapsToConcept toop:region ;
   rdfs:subPropertyOf toop:region ;
 .
 nhr:straatHuisnummer
-  mapping:mapsTo toop:streetAddress ;
+  mapping:mapsToConcept toop:streetAddress ;
   rdfs:subPropertyOf toop:streetAddress ;
 .
 nhr:straatnaam
-  mapping:mapsTo toop:streetAddress ;
+  mapping:mapsToConcept toop:streetAddress ;
 .
 nhr:wordtGeleidVanuit
   rdfs:subPropertyOf toop:hasRegisteredSite ;
 .
-mapping:mapsTo
+mapping:mapsToConcept
   spin:query [
       rdf:type sp:Select ;
       sp:where (
@@ -557,7 +567,7 @@ mapping:mapsTo
             sp:object [
                 sp:varName "ietsanders" ;
               ] ;
-            sp:predicate mapping:mapsTo ;
+            sp:predicate mapping:mapsToConcept ;
             sp:subject [
                 sp:varName "iets" ;
               ] ;
