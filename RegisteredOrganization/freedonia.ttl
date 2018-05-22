@@ -49,7 +49,22 @@ freebr:FreedoniaBusinessCode
   rdf:type rdfs:Class ;
   rdfs:comment "The unique official company identifier_"@en ;
   rdfs:label "Elonia business code"@en ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty skos:notation ;
+    ] ;
   skos:prefLabel "Freedonia business code" ;
+.
+freebr:FreedoniaBusinessCode_1
+  rdf:type freebr:FreedoniaBusinessCode ;
+  rdfs:label "Freedonia business code 1" ;
+  skos:notation "123456" ;
+.
+freebr:FreedoniaBusinessCode_2
+  rdf:type freebr:FreedoniaBusinessCode ;
+  rdfs:label "Freedonia business code 2" ;
+  skos:notation "987654" ;
 .
 freebr:FreedoniaCompanyNaceCode
   rdf:type owl:ObjectProperty ;
