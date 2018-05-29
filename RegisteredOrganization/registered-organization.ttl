@@ -574,6 +574,84 @@ mapping:mapsToConcept
           ]
         ) ;
     ] ;
+  spin:query [
+      rdf:type sp:Select ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "toopconcept" ;
+              ] ;
+            sp:predicate mapping:mapsToConcept ;
+            sp:subject [
+                sp:varName "kvk" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:strstarts ;
+                sp:arg1 [
+                    rdf:type sp:str ;
+                    sp:arg1 [
+                        sp:varName "kvk" ;
+                      ] ;
+                  ] ;
+                sp:arg2 "http://example.register.nl/nationaalhandelsregister#" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "toopconcept" ;
+              ] ;
+            sp:predicate mapping:mapsToConcept ;
+            sp:subject [
+                sp:varName "freedonia" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:strstarts ;
+                sp:arg1 [
+                    rdf:type sp:str ;
+                    sp:arg1 [
+                        sp:varName "freedonia" ;
+                      ] ;
+                  ] ;
+                sp:arg2 "http://example.register.fre/freedonia-business-register#" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "valueterm" ;
+              ] ;
+            sp:predicate mapping:mapsToValue ;
+            sp:subject [
+                sp:varName "freedonia" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "freedonia" ;
+              ] ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "instance" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "value" ;
+              ] ;
+            sp:predicate [
+                sp:varName "valueterm" ;
+              ] ;
+            sp:subject [
+                sp:varName "instance" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
 .
 <http://toop.eu/registered-organization>
   rdf:type owl:Ontology ;
@@ -1841,7 +1919,7 @@ toop:region
 .
 toop:streetAddress
   rdf:type owl:DatatypeProperty ;
-  rdfs:comment "The street address associated with the address of the organization."@en ;
+  rdfs:comment "The street address associated with the address of the organization including both streetname and housenumber."@en ;
   rdfs:domain toop:PhysicalAddress ;
   rdfs:label "street address" ;
   rdfs:range xsd:string ;

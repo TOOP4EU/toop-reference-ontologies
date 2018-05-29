@@ -34,6 +34,12 @@ freebr:Company
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
 .
+freebr:Company_1
+  rdf:type freebr:Company ;
+  freebr:FreedoniaCompanyName "Pietje" ;
+  freebr:hasBusinessCode freebr:FreedoniaBusinessCode_1 ;
+  rdfs:label "Company 1" ;
+.
 freebr:FreedoniaActivityDeclaration
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The description of the main activity of the company as free text description recorded on the registry. This tag should be used to give a description of the company activity in the local language. This should be used in conjunction with the CompanyNaceCode."@en ;
