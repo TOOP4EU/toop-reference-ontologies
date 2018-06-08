@@ -42,9 +42,6 @@
 <http://example.register.elo/elonia-business-register#EloniaBusinessCode>
   rdfs:subClassOf toop:CompanyCode ;
 .
-<http://example.register.elo/elonia-business-register#EloniaCompanyNaceCode>
-  rdfs:subPropertyOf toop:_companyNaceCode ;
-.
 <http://example.register.elo/elonia-business-register#EloniaCompanyName>
   rdfs:subPropertyOf toop:companyName ;
 .
@@ -58,19 +55,16 @@
   rdfs:subPropertyOf toop:_legalStatusEffectiveDate ;
 .
 <http://example.register.elo/elonia-business-register#EloniaRegistrationAuthority>
-  rdfs:subPropertyOf toop:_registrationAuthority ;
+  rdfs:subPropertyOf toop:hasRegistrationAuthority ;
 .
 <http://example.register.elo/elonia-business-register#EloniaRegistrationDate>
   rdfs:subPropertyOf toop:_registrationDate ;
 .
-<http://example.register.elo/elonia-business-register#EloniaRegistrationNumber>
-  rdfs:subPropertyOf toop:_registrationNumber ;
-.
 <http://example.register.elo/elonia-business-register#EloniaSSNumber>
-  rdfs:subClassOf toop:_SSNumber ;
+  rdfs:subClassOf toop:SSNumber ;
 .
 <http://example.register.elo/elonia-business-register#EloniaVATNumber>
-  rdfs:subClassOf toop:_VATNumber ;
+  rdfs:subClassOf toop:VATNumber ;
 .
 <http://example.register.elo/elonia-business-register#hasBusinessCode>
   rdfs:subPropertyOf toop:hasCompanyCode ;
@@ -94,9 +88,6 @@
 <http://example.register.fre/freedonia-business-register#FreedoniaBusinessCode_1>
   skos:notation "123456" ;
 .
-<http://example.register.fre/freedonia-business-register#FreedoniaCompanyNaceCode>
-  rdfs:subPropertyOf toop:_companyNaceCode ;
-.
 <http://example.register.fre/freedonia-business-register#FreedoniaCompanyName>
   rdfs:subPropertyOf toop:companyName ;
 .
@@ -110,19 +101,16 @@
   rdfs:subPropertyOf toop:_legalStatusEffectiveDate ;
 .
 <http://example.register.fre/freedonia-business-register#FreedoniaRegistrationAuthority>
-  rdfs:subPropertyOf toop:_registrationAuthority ;
+  rdfs:subPropertyOf toop:hasRegistrationAuthority ;
 .
 <http://example.register.fre/freedonia-business-register#FreedoniaRegistrationDate>
   rdfs:subPropertyOf toop:_registrationDate ;
 .
-<http://example.register.fre/freedonia-business-register#FreedoniaRegistrationNumber>
-  rdfs:subPropertyOf toop:_registrationNumber ;
-.
 <http://example.register.fre/freedonia-business-register#FreedoniaSSNumber>
-  rdfs:subClassOf toop:_SSNumber ;
+  rdfs:subClassOf toop:SSNumber ;
 .
 <http://example.register.fre/freedonia-business-register#FreedoniaVATNumber>
-  rdfs:subClassOf toop:_VATNumber ;
+  rdfs:subClassOf toop:VATNumber ;
 .
 <http://example.register.fre/freedonia-business-register#hasBusinessCode>
   rdfs:subPropertyOf toop:hasCompanyCode ;
@@ -784,7 +772,7 @@ toop:MyAddress
 toop:MyCompCode-Id123456
   rdf:type adms:Identifier ;
   toop:_legalStatusEffectiveDate "2017-10-23"^^xsd:date ;
-  toop:_registrationAuthority toop:NL-KvK ;
+  toop:hasRegistrationAuthority toop:NL-KvK ;
   rdfs:comment "My company code, as instance of toop:CompanyCode class, representing the unique official company identifier as laid down by the registration authority_"@en ;
   rdfs:label "MyCompCode-Id123456_"@en ;
   adms:schemeAgency "NL-KvK Kamer van Koophandel"@nl ;
@@ -822,6 +810,14 @@ toop:MyRegOrg_1
   rdfs:comment "My organization as instance from the toop:RegisteredOrganization Class" ;
   rdfs:label "Mijn reg org klas 1_"@nl ;
   skos:prefLabel "My organization as instance from the toop:RegisteredOrganization Class" ;
+.
+toop:NACECodeScheme
+  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  rdfs:comment "Represents the NACE codes, expressed in a consistent manner in a SKOS Concept Scheme"@en ;
+  rdfs:label "NACECodeScheme"@en ;
+  rdfs:subClassOf skos:ConceptScheme ;
+  skos:prefLabel "NACECodeScheme" ;
 .
 toop:NL-KvK
   rdf:type dcterms:Agent ;
@@ -1001,20 +997,8 @@ toop:RegisteredOrganization
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onClass toop:ContactNumber ;
-      owl:onProperty toop:hasContactNumber ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
       owl:onClass toop:CompanyCode ;
       owl:onProperty toop:hasCompanyCode ;
-      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:onClass toop:EmailAddress ;
-      owl:onProperty toop:hasEmailAddress ;
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
   rdfs:subClassOf [
@@ -1027,6 +1011,18 @@ toop:RegisteredOrganization
       rdf:type owl:Restriction ;
       owl:onClass toop:RegisteredSite ;
       owl:onProperty toop:hasRegisteredSite ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass toop:SSNumber ;
+      owl:onProperty toop:hasSSNumber ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass toop:VATNumber ;
+      owl:onProperty toop:hasVATNumber ;
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
   rdfs:subClassOf [
@@ -1055,6 +1051,16 @@ toop:RegisteredOrganization
       owl:onProperty toop:hasLegalStatus ;
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass [
+          rdf:type owl:Restriction ;
+          owl:onProperty skos:inScheme ;
+          owl:someValuesFrom toop:NACECodeScheme ;
+        ] ;
+      owl:onProperty toop:hasNACECode ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
 .
 toop:RegisteredSite
   rdf:type rdfs:Class ;
@@ -1081,6 +1087,53 @@ toop:RegisteredSite
     ] ;
   skos:prefLabel "Registered site" ;
 .
+toop:RegistrationAuthority
+  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  rdfs:subClassOf dcterms:Agent ;
+.
+toop:RegistrationNumber
+  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  rdfs:comment "The number of the company as recorded on the register. In some jurisdictions, the number on the register may be different from the official company number. This field must be populated in all service requests even when the RegistrationNumber is the same as the CompanyCode"@en ;
+  rdfs:label "Registration number"@en ;
+  rdfs:subClassOf adms:Identifier ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty toop:hasRegistrationAuthority ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty skos:notation ;
+    ] ;
+  skos:prefLabel "Registration number" ;
+.
+toop:SSNumber
+  rdf:type rdfs:Class ;
+  rdfs:comment "The social security number of the company_"@en ;
+  rdfs:label "SSNumber"@en ;
+  rdfs:subClassOf adms:Identifier ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty skos:notation ;
+    ] ;
+  skos:prefLabel "SSNumber" ;
+.
+toop:VATNumber
+  rdf:type rdfs:Class ;
+  rdfs:comment "The value added tax number of the company"@en ;
+  rdfs:label "VATNumber"@en ;
+  rdfs:subClassOf adms:Identifier ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty skos:notation ;
+    ] ;
+  skos:prefLabel "VATNumber" ;
+.
 toop:_DocumentType
   rdf:type rdfs:Class ;
   rdf:type owl:Class ;
@@ -1104,33 +1157,12 @@ toop:_Registration
   rdfs:subClassOf org:ChangeEvent ;
   skos:prefLabel "Registration" ;
 .
-toop:_SSNumber
-  rdf:type rdfs:Class ;
-  rdfs:comment "The social security number of the company_"@en ;
-  rdfs:label "SSNumber"@en ;
-  rdfs:subClassOf adms:Identifier ;
-  skos:prefLabel "SSNumber" ;
-.
-toop:_VATNumber
-  rdf:type rdfs:Class ;
-  rdfs:comment "The value added tax number of the company"@en ;
-  rdfs:label "VATNumber"@en ;
-  rdfs:subClassOf adms:Identifier ;
-  skos:prefLabel "VATNumber" ;
-.
 toop:_activityDeclaration
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The description of the main activity of the company as free text description recorded on the registry. This tag should be used to give a description of the company activity in the local language. This should be used in conjunction with the CompanyNaceCode."@en ;
   rdfs:label "activity declaration"@en ;
   rdfs:subPropertyOf dcterms:description ;
   skos:prefLabel "activity declaration" ;
-.
-toop:_companyNaceCode
-  rdf:type owl:ObjectProperty ;
-  rdfs:comment "The description of the main activity of the company as free text description recorded on the registry. This tag should be used to give a description of the company activity in the local language. This should be used in conjunction with the CompanyNaceCode"@en ;
-  rdfs:label "company NACE code"@en ;
-  rdfs:subPropertyOf rov:orgActivity ;
-  skos:prefLabel "company NACE code" ;
 .
 toop:_foundationDate
   rdf:type owl:DatatypeProperty ;
@@ -1156,14 +1188,6 @@ toop:_legalStatusEffectiveDate
   rdfs:subPropertyOf dcterms:issued ;
   skos:prefLabel "has legal status effective date" ;
 .
-toop:_registrationAuthority
-  rdf:type owl:ObjectProperty ;
-  rdfs:comment "The reference to the official register that has registered the company"@en ;
-  rdfs:domain toop:CompanyCode ;
-  rdfs:label "has registration authority"@en ;
-  rdfs:subPropertyOf dcterms:creator ;
-  skos:prefLabel "has registration authority" ;
-.
 toop:_registrationDate
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "Represents the date at which the company started. "@en ;
@@ -1172,13 +1196,6 @@ toop:_registrationDate
   rdfs:range xsd:date ;
   rdfs:subPropertyOf <http://www.w3.org/ns/prov#startedAtTime> ;
   skos:prefLabel "registration date" ;
-.
-toop:_registrationNumber
-  rdf:type owl:DatatypeProperty ;
-  rdfs:comment "The number of the company as recorded on the register. In some jurisdictions, the number on the register may be different from the official company number. This field must be populated in all service requests even when the RegistrationNumber is the same as the CompanyCode "@en ;
-  rdfs:label "registration number"@en ;
-  rdfs:subPropertyOf org:identifier ;
-  skos:prefLabel "registration number" ;
 .
 toop:_websiteURL
   rdf:type owl:ObjectProperty ;
@@ -1392,7 +1409,7 @@ toop:hasCompanyCode
   rdfs:domain toop:RegisteredOrganization ;
   rdfs:label "has company code"@en ;
   rdfs:range toop:CompanyCode ;
-  rdfs:subPropertyOf rov:registration ;
+  rdfs:subPropertyOf adms:identifier ;
   skos:prefLabel "has company code" ;
 .
 toop:hasCompanyType
@@ -1445,6 +1462,19 @@ toop:hasLegalStatus
     ] ;
   rdfs:subPropertyOf rov:orgStatus ;
   skos:prefLabel "has legal status" ;
+.
+toop:hasNACECode
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The NACE code of the company as part of the NACECodeScheme_"@en ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:label "has NACE code"@en ;
+  rdfs:range [
+      rdf:type owl:Restriction ;
+      owl:onProperty skos:inScheme ;
+      owl:someValuesFrom toop:NACECodeScheme ;
+    ] ;
+  rdfs:subPropertyOf rov:orgActivity ;
+  skos:prefLabel "has NACE code" ;
 .
 toop:hasPhysicalAddress
   rdf:type owl:ObjectProperty ;
@@ -1892,6 +1922,33 @@ toop:hasRegisteredSite
   rdfs:range toop:RegisteredSite ;
   rdfs:subPropertyOf org:hasRegisteredSite ;
   skos:prefLabel "has registered site" ;
+.
+toop:hasRegistrationAuthority
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The reference to the official register that has registered the company"@en ;
+  rdfs:domain toop:RegistrationNumber ;
+  rdfs:label "has registration authority"@en ;
+  rdfs:range toop:RegistrationAuthority ;
+  rdfs:subPropertyOf dcterms:creator ;
+  skos:prefLabel "has registration authority" ;
+.
+toop:hasRegistrationNumber
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:range toop:RegistrationNumber ;
+  rdfs:subPropertyOf rov:registration ;
+.
+toop:hasSSNumber
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:range toop:SSNumber ;
+  rdfs:subPropertyOf adms:identifier ;
+.
+toop:hasVATNumber
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:range toop:VATNumber ;
+  rdfs:subPropertyOf adms:identifier ;
 .
 toop:locality
   rdf:type owl:DatatypeProperty ;
