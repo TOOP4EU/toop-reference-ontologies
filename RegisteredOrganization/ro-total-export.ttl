@@ -2979,8 +2979,8 @@ toop:Address_card1
 toop:CompanyCode
   rdf:type rdfs:Class ;
   rdf:type owl:Class ;
-  rdfs:comment "The unique official company identifier_ "@en ;
-  rdfs:label "Company code_"@en ;
+  rdfs:comment "The unique official company identifier."@en ;
+  rdfs:label "Company code"@en ;
   rdfs:subClassOf adms:Identifier ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -3003,7 +3003,7 @@ toop:CompanyCode_DanmarksTekniskeUniversitet
 toop:CompanyTypeScheme
   rdf:type rdfs:Class ;
   rdf:type owl:Class ;
-  rdfs:comment "Represents the member states' recognized company types, expressed in a consistent manner in a SKOS Concept Scheme"@en ;
+  rdfs:comment "Represents the member states' recognized company types, expressed in a consistent manner in a SKOS Concept Scheme."@en ;
   rdfs:label "CompanyTypeScheme"@en ;
   rdfs:subClassOf skos:ConceptScheme ;
   skos:prefLabel "CompanyTypeScheme" ;
