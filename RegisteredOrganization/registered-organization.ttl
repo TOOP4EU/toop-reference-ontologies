@@ -34,7 +34,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://example.register.elo/elonia-business-register#EloniaActivityDeclaration>
-  rdfs:subPropertyOf toop:_activityDeclaration ;
+  rdfs:subPropertyOf toop:activityDescription ;
 .
 <http://example.register.elo/elonia-business-register#EloniaAddress>
   rdfs:subClassOf toop:PhysicalAddress ;
@@ -70,7 +70,7 @@
   rdfs:subPropertyOf toop:hasCompanyCode ;
 .
 <http://example.register.fre/freedonia-business-register#FreedoniaActivityDeclaration>
-  rdfs:subPropertyOf toop:_activityDeclaration ;
+  rdfs:subPropertyOf toop:activityDescription ;
 .
 <http://example.register.fre/freedonia-business-register#FreedoniaAddress>
   rdfs:subClassOf toop:PhysicalAddress ;
@@ -678,6 +678,13 @@ toop:Address_card1
   rdfs:label "Address card1_"@nl ;
   skos:prefLabel "Address card1" ;
 .
+toop:CapitalTypeScheme
+  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  rdfs:comment "Represents the type of capital invested in the organzation, expressed in a consistent manner in a SKOS Concept Scheme."@en ;
+  rdfs:label "capital type scheme"@en ;
+  rdfs:subClassOf skos:ConceptScheme ;
+.
 toop:CompanyCode
   rdf:type rdfs:Class ;
   rdf:type owl:Class ;
@@ -705,7 +712,7 @@ toop:CompanyCode_DanmarksTekniskeUniversitet
 toop:CompanyTypeScheme
   rdf:type rdfs:Class ;
   rdf:type owl:Class ;
-  rdfs:comment "Represents the member states' recognized company types, expressed in a consistent manner in a SKOS Concept Scheme"@en ;
+  rdfs:comment "Represents the member states' recognized company types, expressed in a consistent manner in a SKOS Concept Scheme."@en ;
   rdfs:label "CompanyTypeScheme"@en ;
   rdfs:subClassOf skos:ConceptScheme ;
   skos:prefLabel "CompanyTypeScheme" ;
@@ -749,7 +756,7 @@ toop:EmailAddress
 toop:LegalStatusScheme
   rdf:type rdfs:Class ;
   rdf:type owl:Class ;
-  rdfs:comment "Represents the member states' recognized legal statuses for companies, expressed in a consistent manner in a SKOS Concept Scheme"@en ;
+  rdfs:comment "Represents the member states' recognized legal statuses for companies, expressed in a consistent manner in a SKOS Concept Scheme."@en ;
   rdfs:label "LegalStatusScheme"@en ;
   rdfs:subClassOf skos:ConceptScheme ;
   skos:prefLabel "LegalStatusScheme" ;
@@ -829,6 +836,7 @@ toop:Person
   rdf:type rdfs:Class ;
   rdf:type owl:Class ;
   rdfs:comment "A human person that can have a role in the context of a company."@en ;
+  rdfs:label "Person"@en ;
   rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -858,8 +866,8 @@ toop:Person
 toop:PhysicalAddress
   rdf:type rdfs:Class ;
   rdf:type owl:Class ;
-  rdfs:comment "The postal address and/or the visiting address of a physical site of the company"@en ;
-  rdfs:label "Physical address_"@en ;
+  rdfs:comment "The postal address and/or the visiting address of a physical site of the company."@en ;
+  rdfs:label "Physical address"@en ;
   rdfs:subClassOf vcard:Address ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -992,11 +1000,6 @@ toop:RegisteredOrganization
   rdfs:subClassOf rov:RegisteredOrganization ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty toop:companyName ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
       owl:onClass toop:CompanyCode ;
       owl:onProperty toop:hasCompanyCode ;
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -1036,6 +1039,16 @@ toop:RegisteredOrganization
       owl:onClass [
           rdf:type owl:Restriction ;
           owl:onProperty skos:inScheme ;
+          owl:someValuesFrom toop:CapitalTypeScheme ;
+        ] ;
+      owl:onProperty toop:hasCapitalType ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass [
+          rdf:type owl:Restriction ;
+          owl:onProperty skos:inScheme ;
           owl:someValuesFrom toop:CompanyTypeScheme ;
         ] ;
       owl:onProperty toop:hasCompanyType ;
@@ -1060,6 +1073,16 @@ toop:RegisteredOrganization
         ] ;
       owl:onProperty toop:hasNACECode ;
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty toop:activityDescription ;
+      owl:someValuesFrom xsd:string ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty toop:companyName ;
+      owl:someValuesFrom xsd:string ;
     ] ;
 .
 toop:RegisteredSite
@@ -1112,27 +1135,27 @@ toop:RegistrationNumber
 .
 toop:SSNumber
   rdf:type rdfs:Class ;
-  rdfs:comment "The social security number of the company_"@en ;
-  rdfs:label "SSNumber"@en ;
+  rdfs:comment "The social security number of the company."@en ;
+  rdfs:label "SS number"@en ;
   rdfs:subClassOf adms:Identifier ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:cardinality "1"^^xsd:nonNegativeInteger ;
       owl:onProperty skos:notation ;
     ] ;
-  skos:prefLabel "SSNumber" ;
+  skos:prefLabel "SS number" ;
 .
 toop:VATNumber
   rdf:type rdfs:Class ;
-  rdfs:comment "The value added tax number of the company"@en ;
-  rdfs:label "VATNumber"@en ;
+  rdfs:comment "The value added tax number of the company."@en ;
+  rdfs:label "VAT number"@en ;
   rdfs:subClassOf adms:Identifier ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:cardinality "1"^^xsd:nonNegativeInteger ;
       owl:onProperty skos:notation ;
     ] ;
-  skos:prefLabel "VATNumber" ;
+  skos:prefLabel "VAT number" ;
 .
 toop:_DocumentType
   rdf:type rdfs:Class ;
@@ -1156,13 +1179,6 @@ toop:_Registration
   rdfs:label "Registration"@en ;
   rdfs:subClassOf org:ChangeEvent ;
   skos:prefLabel "Registration" ;
-.
-toop:_activityDeclaration
-  rdf:type owl:ObjectProperty ;
-  rdfs:comment "The description of the main activity of the company as free text description recorded on the registry. This tag should be used to give a description of the company activity in the local language. This should be used in conjunction with the CompanyNaceCode."@en ;
-  rdfs:label "activity declaration"@en ;
-  rdfs:subPropertyOf dcterms:description ;
-  skos:prefLabel "activity declaration" ;
 .
 toop:_foundationDate
   rdf:type owl:DatatypeProperty ;
@@ -1210,9 +1226,18 @@ toop:_websiteURL
   skos:prefLabel "websiteAddress" ;
   skos:prefLabel "websiteURL" ;
 .
+toop:activityDescription
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The description of the main activity of the company as free text description recorded on the registry. This tag should be used to give a description of the company activity in the local language. This should be used in conjunction with the CompanyNaceCode."@en ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:label "activity description"@en ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf dcterms:description ;
+  skos:prefLabel "activity description" ;
+.
 toop:age
   rdf:type owl:DatatypeProperty ;
-  rdfs:comment "The age of a person"@en ;
+  rdfs:comment "The age of a person."@en ;
   rdfs:domain toop:Person ;
   rdfs:label "age"@en ;
   rdfs:range xsd:integer ;
@@ -1220,7 +1245,7 @@ toop:age
 .
 toop:birthday
   rdf:type owl:DatatypeProperty ;
-  rdfs:comment "The day of birth of a person"@en ;
+  rdfs:comment "The day of birth of a person."@en ;
   rdfs:domain toop:Person ;
   rdfs:label "birthday"@en ;
   rdfs:range xsd:gMonthDay ;
@@ -1228,9 +1253,9 @@ toop:birthday
 .
 toop:companyName
   rdf:type owl:DatatypeProperty ;
-  rdfs:comment "The official current company name as stored in the business register_"@en ;
+  rdfs:comment "The official current company name as stored in the business register."@en ;
   rdfs:domain toop:RegisteredOrganization ;
-  rdfs:label "company name" ;
+  rdfs:label "company name"@en ;
   rdfs:range xsd:string ;
   rdfs:subPropertyOf rov:legalName ;
 .
@@ -1238,7 +1263,7 @@ toop:contactNumberValue
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "The actual value of the contact number."@en ;
   rdfs:domain toop:ContactNumber ;
-  rdfs:label "contact number value" ;
+  rdfs:label "contact number value"@en ;
   rdfs:range xsd:integer ;
   rdfs:subPropertyOf vcard:value ;
 .
@@ -1246,13 +1271,13 @@ toop:countryName
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "The country name associated with the address of the organization."@en ;
   rdfs:domain toop:PhysicalAddress ;
-  rdfs:label "country name" ;
+  rdfs:label "country name {en}" ;
   rdfs:range xsd:string ;
   rdfs:subPropertyOf vcard:country-name ;
 .
 toop:emailAddressValue
   rdf:type owl:DatatypeProperty ;
-  rdfs:comment "The actual value of the email address"@en ;
+  rdfs:comment "The actual value of the email address."@en ;
   rdfs:domain toop:EmailAddress ;
   rdfs:label "email address value"@en ;
   rdfs:range xsd:string ;
@@ -1260,7 +1285,7 @@ toop:emailAddressValue
 .
 toop:familyName
   rdf:type owl:DatatypeProperty ;
-  rdfs:comment "The family name of a person"@en ;
+  rdfs:comment "The family name of a person."@en ;
   rdfs:domain toop:Person ;
   rdfs:label "family name"@en ;
   rdfs:range xsd:string ;
@@ -1268,11 +1293,22 @@ toop:familyName
 .
 toop:givenName
   rdf:type owl:DatatypeProperty ;
-  rdfs:comment "The given name of a person"@en ;
+  rdfs:comment "The given name of a person."@en ;
   rdfs:domain toop:Person ;
   rdfs:label "given name"@en ;
   rdfs:range xsd:string ;
   rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/givenName> ;
+.
+toop:hasCapitalType
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The capital type of the company (subscribed, shared, paid-up, ,...) as part of the CapitalTypeScheme."@en ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:label "has capital type"@en ;
+  rdfs:range [
+      rdf:type owl:Restriction ;
+      owl:onProperty skos:inScheme ;
+      owl:someValuesFrom toop:CapitalTypeScheme ;
+    ] ;
 .
 toop:hasCompanyCode
   rdf:type owl:ObjectProperty ;
@@ -1413,9 +1449,8 @@ toop:hasCompanyCode
   skos:prefLabel "has company code" ;
 .
 toop:hasCompanyType
-  rdf:type rdf:Property ;
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "The legal type of the company as part of the CompanyTypeScheme_"@en ;
+  rdfs:comment "The legal type of the company as part of the CompanyTypeScheme."@en ;
   rdfs:domain toop:RegisteredOrganization ;
   rdfs:label "has company type"@en ;
   rdfs:range [
@@ -1436,7 +1471,7 @@ toop:hasContactNumber
 .
 toop:hasEmailAddress
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "A pointer to the email address of the company"@en ;
+  rdfs:comment "A pointer to the email address of the company."@en ;
   rdfs:domain toop:RegisteredOrganization ;
   rdfs:label "has email address"@en ;
   rdfs:range toop:EmailAddress ;
@@ -1452,7 +1487,7 @@ toop:hasLegalRepresentative
 .
 toop:hasLegalStatus
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "The legal status of the company (active, ended,...) as part of the LegalStatusScheme"@en ;
+  rdfs:comment "The legal status of the company (active, ended,...) as part of the LegalStatusScheme."@en ;
   rdfs:domain toop:RegisteredOrganization ;
   rdfs:label "has legal status"@en ;
   rdfs:range [
@@ -1465,7 +1500,7 @@ toop:hasLegalStatus
 .
 toop:hasNACECode
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "The NACE code of the company as part of the NACECodeScheme_"@en ;
+  rdfs:comment "The NACE code of the company as part of the NACECodeScheme."@en ;
   rdfs:domain toop:RegisteredOrganization ;
   rdfs:label "has NACE code"@en ;
   rdfs:range [
@@ -1907,9 +1942,9 @@ toop:hasPhysicalAddress
           ]
         ) ;
     ] ;
-  rdfs:comment "Represents a pointer to the physical address of the company."@en ;
+  rdfs:comment "Represents a pointer to the physical/visiting address of the company."@en ;
   rdfs:domain org:Site ;
-  rdfs:label "has physical address_"@en ;
+  rdfs:label "has physical address"@en ;
   rdfs:range toop:PhysicalAddress ;
   rdfs:subPropertyOf org:siteAddress ;
   skos:prefLabel "has physical address" ;
@@ -1954,7 +1989,7 @@ toop:locality
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "The locality (e.g. city or town) associated with the address of the organization."@en ;
   rdfs:domain toop:PhysicalAddress ;
-  rdfs:label "locality" ;
+  rdfs:label "locality"@en ;
   rdfs:range xsd:string ;
   rdfs:subPropertyOf vcard:locality ;
 .
@@ -1962,7 +1997,7 @@ toop:postalCode
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "The postal code associated with the address of the organization."@en ;
   rdfs:domain toop:PhysicalAddress ;
-  rdfs:label "postal code" ;
+  rdfs:label "postal code"@en ;
   rdfs:range xsd:string ;
   rdfs:subPropertyOf vcard:postal-code ;
 .
@@ -1970,7 +2005,7 @@ toop:region
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "The region (e.g. state or province) associated with the address of the organization."@en ;
   rdfs:domain toop:PhysicalAddress ;
-  rdfs:label "region" ;
+  rdfs:label "region"@en ;
   rdfs:range xsd:string ;
   rdfs:subPropertyOf vcard:region ;
 .
@@ -1978,7 +2013,7 @@ toop:streetAddress
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "The street address associated with the address of the organization including both streetname and housenumber."@en ;
   rdfs:domain toop:PhysicalAddress ;
-  rdfs:label "street address" ;
+  rdfs:label "street address"@en ;
   rdfs:range xsd:string ;
   rdfs:subPropertyOf vcard:street-address ;
 .
