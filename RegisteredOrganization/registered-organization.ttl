@@ -52,13 +52,13 @@
   rdfs:subPropertyOf toop:hasLegalStatus ;
 .
 <http://example.register.elo/elonia-business-register#EloniaLegalStatusEffectiveDate>
-  rdfs:subPropertyOf toop:_legalStatusEffectiveDate ;
+  rdfs:subPropertyOf toop:legalStatusEffectiveDate ;
 .
 <http://example.register.elo/elonia-business-register#EloniaRegistrationAuthority>
   rdfs:subPropertyOf toop:hasRegistrationAuthority ;
 .
 <http://example.register.elo/elonia-business-register#EloniaRegistrationDate>
-  rdfs:subPropertyOf toop:_registrationDate ;
+  rdfs:subPropertyOf toop:registrationDate ;
 .
 <http://example.register.elo/elonia-business-register#EloniaSSNumber>
   rdfs:subClassOf toop:SSNumber ;
@@ -98,13 +98,13 @@
   rdfs:subPropertyOf toop:hasLegalStatus ;
 .
 <http://example.register.fre/freedonia-business-register#FreedoniaLegalStatusEffectiveDate>
-  rdfs:subPropertyOf toop:_legalStatusEffectiveDate ;
+  rdfs:subPropertyOf toop:legalStatusEffectiveDate ;
 .
 <http://example.register.fre/freedonia-business-register#FreedoniaRegistrationAuthority>
   rdfs:subPropertyOf toop:hasRegistrationAuthority ;
 .
 <http://example.register.fre/freedonia-business-register#FreedoniaRegistrationDate>
-  rdfs:subPropertyOf toop:_registrationDate ;
+  rdfs:subPropertyOf toop:registrationDate ;
 .
 <http://example.register.fre/freedonia-business-register#FreedoniaSSNumber>
   rdfs:subClassOf toop:SSNumber ;
@@ -778,8 +778,8 @@ toop:MyAddress
 .
 toop:MyCompCode-Id123456
   rdf:type adms:Identifier ;
-  toop:_legalStatusEffectiveDate "2017-10-23"^^xsd:date ;
   toop:hasRegistrationAuthority toop:NL-KvK ;
+  toop:legalStatusEffectiveDate "2017-10-23"^^xsd:date ;
   rdfs:comment "My company code, as instance of toop:CompanyCode class, representing the unique official company identifier as laid down by the registration authority_"@en ;
   rdfs:label "MyCompCode-Id123456_"@en ;
   adms:schemeAgency "NL-KvK Kamer van Koophandel"@nl ;
@@ -1000,6 +1000,16 @@ toop:RegisteredOrganization
   rdfs:subClassOf rov:RegisteredOrganization ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty toop:foundationDate ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty toop:legalStatusEffectiveDate ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
       owl:onClass toop:CompanyCode ;
       owl:onProperty toop:hasCompanyCode ;
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -1026,12 +1036,6 @@ toop:RegisteredOrganization
       rdf:type owl:Restriction ;
       owl:onClass toop:VATNumber ;
       owl:onProperty toop:hasVATNumber ;
-      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-    ] ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:onClass toop:_Registration ;
-      owl:onProperty toop:_hasRegistration ;
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
   rdfs:subClassOf [
@@ -1124,12 +1128,18 @@ toop:RegistrationNumber
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty toop:hasRegistrationAuthority ;
+      owl:onProperty toop:registrationDate ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:cardinality "1"^^xsd:nonNegativeInteger ;
       owl:onProperty skos:notation ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onClass toop:RegistrationAuthority ;
+      owl:onProperty toop:hasRegistrationAuthority ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
   skos:prefLabel "Registration number" ;
 .
@@ -1156,75 +1166,6 @@ toop:VATNumber
       owl:onProperty skos:notation ;
     ] ;
   skos:prefLabel "VAT number" ;
-.
-toop:_DocumentType
-  rdf:type rdfs:Class ;
-  rdf:type owl:Class ;
-  rdfs:comment "The document type represents a grouping of concepts into a single document, e.g. company registration document, birth certificate document, mandate evidence document etc." ;
-  rdfs:label "Document type" ;
-  rdfs:subClassOf owl:Thing ;
-.
-toop:_Foundation
-  rdf:type rdfs:Class ;
-  rdf:type owl:Class ;
-  rdfs:comment "Represents the event that resulted in the foundation of the organization "@en ;
-  rdfs:label "Foundation"@en ;
-  rdfs:subClassOf org:ChangeEvent ;
-  skos:prefLabel "Foundation" ;
-.
-toop:_Registration
-  rdf:type rdfs:Class ;
-  rdf:type owl:Class ;
-  rdfs:comment "Represents the event that resulted in the registration of the organization."@en ;
-  rdfs:label "Registration"@en ;
-  rdfs:subClassOf org:ChangeEvent ;
-  skos:prefLabel "Registration" ;
-.
-toop:_foundationDate
-  rdf:type owl:DatatypeProperty ;
-  rdfs:comment "Represents the date at which the company started. "@en ;
-  rdfs:domain toop:_Foundation ;
-  rdfs:label "foundation date"@en ;
-  rdfs:subPropertyOf <http://www.w3.org/ns/prov#startedAtTime> ;
-  skos:prefLabel "foundation date" ;
-.
-toop:_hasRegistration
-  rdf:type owl:ObjectProperty ;
-  rdfs:comment "This is the property that makes the link between a registered organization and the registration event." ;
-  rdfs:domain toop:RegisteredOrganization ;
-  rdfs:label "has registration"@en ;
-  rdfs:range toop:_Registration ;
-  skos:prefLabel "has registration"@en ;
-.
-toop:_legalStatusEffectiveDate
-  rdf:type owl:ObjectProperty ;
-  rdfs:comment "The date at which the current legal status became effective_"@en ;
-  rdfs:domain toop:CompanyCode ;
-  rdfs:label "has legal status effective date"@en ;
-  rdfs:subPropertyOf dcterms:issued ;
-  skos:prefLabel "has legal status effective date" ;
-.
-toop:_registrationDate
-  rdf:type owl:DatatypeProperty ;
-  rdfs:comment "Represents the date at which the company started. "@en ;
-  rdfs:domain toop:_Registration ;
-  rdfs:label "registration date"@en ;
-  rdfs:range xsd:date ;
-  rdfs:subPropertyOf <http://www.w3.org/ns/prov#startedAtTime> ;
-  skos:prefLabel "registration date" ;
-.
-toop:_websiteURL
-  rdf:type owl:ObjectProperty ;
-  rdfs:comment "ISSUE: currently, TBC's local import for vcard seems incomplete - vcard:has* are missing"@en ;
-  rdfs:comment "Represents the website URL of the company."@en ;
-  rdfs:comment "Represents the website address of the company."@en ;
-  rdfs:domain toop:RegisteredSite ;
-  rdfs:label "websiteAddress"@en ;
-  rdfs:label "websiteURL"@en ;
-  rdfs:range dcterms:URI ;
-  rdfs:subPropertyOf org:siteAddress ;
-  skos:prefLabel "websiteAddress" ;
-  skos:prefLabel "websiteURL" ;
 .
 toop:activityDescription
   rdf:type owl:DatatypeProperty ;
@@ -1290,6 +1231,14 @@ toop:familyName
   rdfs:label "family name"@en ;
   rdfs:range xsd:string ;
   rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/familyName> ;
+.
+toop:foundationDate
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The date at which the company started."@en ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:label "foundation date"@en ;
+  rdfs:range xsd:date ;
+  rdfs:subPropertyOf dcterms:created ;
 .
 toop:givenName
   rdf:type owl:DatatypeProperty ;
@@ -1985,6 +1934,15 @@ toop:hasVATNumber
   rdfs:range toop:VATNumber ;
   rdfs:subPropertyOf adms:identifier ;
 .
+toop:legalStatusEffectiveDate
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The date at which the current legal status became effective."@en ;
+  rdfs:domain toop:RegisteredOrganization ;
+  rdfs:label "legal status effective date"@en ;
+  rdfs:range xsd:date ;
+  rdfs:subPropertyOf dcterms:date ;
+  skos:prefLabel "legal status effective date" ;
+.
 toop:locality
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "The locality (e.g. city or town) associated with the address of the organization."@en ;
@@ -2008,6 +1966,15 @@ toop:region
   rdfs:label "region"@en ;
   rdfs:range xsd:string ;
   rdfs:subPropertyOf vcard:region ;
+.
+toop:registrationDate
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Represents the date at which the company is registered."@en ;
+  rdfs:domain toop:RegistrationNumber ;
+  rdfs:label "registration date"@en ;
+  rdfs:range xsd:date ;
+  rdfs:subPropertyOf dcterms:issued ;
+  skos:prefLabel "registration date" ;
 .
 toop:streetAddress
   rdf:type owl:DatatypeProperty ;
