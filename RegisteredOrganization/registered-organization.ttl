@@ -1,10 +1,10 @@
 # baseURI: http://toop.eu/registered-organization
 # imports: http://dublincore.org/2012/06/14/dcterms.rdf
-# imports: http://example.register.elo/elonia-business-register
-# imports: http://example.register.fre/freedonia-business-register
-# imports: http://example.register.nl/nationaalhandelsregister
 # imports: http://spinrdf.org/spin
+# imports: http://toop.elo/elonia-business-register
 # imports: http://toop.eu/mapping
+# imports: http://toop.fre/freedonia-business-register
+# imports: http://toop.nl/nationaalhandelsregister
 # imports: http://www.w3.org/2004/02/skos/core
 # imports: http://www.w3.org/2006/vcard/ns
 # imports: http://www.w3.org/ns/org.ttl
@@ -20,7 +20,7 @@
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix mapping: <http://toop.eu/mapping#> .
-@prefix nhr: <http://example.register.nl/nationaalhandelsregister#> .
+@prefix nhr: <http://toop.nl/nationaalhandelsregister#> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -33,519 +33,41 @@
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://example.register.elo/elonia-business-register#EloniaActivityDeclaration>
+<http://toop.elo/elonia-business-register#EloniaActivityDeclaration>
   rdfs:subPropertyOf toop:activityDescription ;
 .
-<http://example.register.elo/elonia-business-register#EloniaAddress>
+<http://toop.elo/elonia-business-register#EloniaAddress>
   rdfs:subClassOf toop:PhysicalAddress ;
 .
-<http://example.register.elo/elonia-business-register#EloniaBusinessCode>
+<http://toop.elo/elonia-business-register#EloniaBusinessCode>
   rdfs:subClassOf toop:CompanyCode ;
 .
-<http://example.register.elo/elonia-business-register#EloniaCompanyName>
+<http://toop.elo/elonia-business-register#EloniaCompanyName>
   rdfs:subPropertyOf toop:companyName ;
 .
-<http://example.register.elo/elonia-business-register#EloniaCompanyType>
+<http://toop.elo/elonia-business-register#EloniaCompanyType>
   rdfs:subPropertyOf toop:hasCompanyType ;
 .
-<http://example.register.elo/elonia-business-register#EloniaLegalStatus>
+<http://toop.elo/elonia-business-register#EloniaLegalStatus>
   rdfs:subPropertyOf toop:hasLegalStatus ;
 .
-<http://example.register.elo/elonia-business-register#EloniaLegalStatusEffectiveDate>
+<http://toop.elo/elonia-business-register#EloniaLegalStatusEffectiveDate>
   rdfs:subPropertyOf toop:legalStatusEffectiveDate ;
 .
-<http://example.register.elo/elonia-business-register#EloniaRegistrationAuthority>
+<http://toop.elo/elonia-business-register#EloniaRegistrationAuthority>
   rdfs:subPropertyOf toop:hasRegistrationAuthority ;
 .
-<http://example.register.elo/elonia-business-register#EloniaRegistrationDate>
+<http://toop.elo/elonia-business-register#EloniaRegistrationDate>
   rdfs:subPropertyOf toop:registrationDate ;
 .
-<http://example.register.elo/elonia-business-register#EloniaSSNumber>
+<http://toop.elo/elonia-business-register#EloniaSSNumber>
   rdfs:subClassOf toop:SSNumber ;
 .
-<http://example.register.elo/elonia-business-register#EloniaVATNumber>
+<http://toop.elo/elonia-business-register#EloniaVATNumber>
   rdfs:subClassOf toop:VATNumber ;
 .
-<http://example.register.elo/elonia-business-register#hasBusinessCode>
+<http://toop.elo/elonia-business-register#hasBusinessCode>
   rdfs:subPropertyOf toop:hasCompanyCode ;
-.
-<http://example.register.fre/freedonia-business-register#FreedoniaActivityDeclaration>
-  rdfs:subPropertyOf toop:activityDescription ;
-.
-<http://example.register.fre/freedonia-business-register#FreedoniaAddress>
-  rdfs:subClassOf toop:PhysicalAddress ;
-.
-<http://example.register.fre/freedonia-business-register#FreedoniaBusinessCode>
-  mapping:mapsToConcept toop:CompanyCode ;
-  mapping:mapsToValue skos:notation ;
-  rdfs:subClassOf toop:CompanyCode ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:cardinality "1"^^xsd:nonNegativeInteger ;
-      owl:onProperty skos:notation ;
-    ] ;
-.
-<http://example.register.fre/freedonia-business-register#FreedoniaBusinessCode_1>
-  skos:notation "123456" ;
-.
-<http://example.register.fre/freedonia-business-register#FreedoniaCompanyName>
-  rdfs:subPropertyOf toop:companyName ;
-.
-<http://example.register.fre/freedonia-business-register#FreedoniaCompanyType>
-  rdfs:subPropertyOf toop:hasCompanyType ;
-.
-<http://example.register.fre/freedonia-business-register#FreedoniaLegalStatus>
-  rdfs:subPropertyOf toop:hasLegalStatus ;
-.
-<http://example.register.fre/freedonia-business-register#FreedoniaLegalStatusEffectiveDate>
-  rdfs:subPropertyOf toop:legalStatusEffectiveDate ;
-.
-<http://example.register.fre/freedonia-business-register#FreedoniaRegistrationAuthority>
-  rdfs:subPropertyOf toop:hasRegistrationAuthority ;
-.
-<http://example.register.fre/freedonia-business-register#FreedoniaRegistrationDate>
-  rdfs:subPropertyOf toop:registrationDate ;
-.
-<http://example.register.fre/freedonia-business-register#FreedoniaSSNumber>
-  rdfs:subClassOf toop:SSNumber ;
-.
-<http://example.register.fre/freedonia-business-register#FreedoniaVATNumber>
-  rdfs:subClassOf toop:VATNumber ;
-.
-<http://example.register.fre/freedonia-business-register#hasBusinessCode>
-  rdfs:subPropertyOf toop:hasCompanyCode ;
-.
-nhr:Adres
-  mapping:mapsToConcept toop:PhysicalAddress ;
-  rdfs:subClassOf toop:PhysicalAddress ;
-.
-nhr:Locatie
-  mapping:mapsToConcept toop:hasPhysicalAddress ;
-.
-nhr:NatuurlijkPersoon
-  rdfs:subClassOf toop:Person ;
-.
-nhr:Vestiging
-  mapping:mapsToConcept org:Site ;
-.
-nhr:heeftBezoekadres
-  mapping:mapsToConcept toop:hasPhysicalAddress ;
-.
-nhr:heeftPostadres
-  mapping:mapsToConcept toop:hasPhysicalAddress ;
-.
-nhr:heeftRechtsvorm
-  rdfs:subPropertyOf toop:hasCompanyType ;
-.
-nhr:heeftVolledigAdres
-  spin:query [
-      rdf:type sp:Construct ;
-      sp:templates (
-          [
-            sp:object nhr:Vestiging ;
-            sp:predicate rdf:type ;
-            sp:subject [
-                sp:varName "site" ;
-              ] ;
-          ]
-          [
-            sp:object [
-                sp:varName "bezadres" ;
-              ] ;
-            sp:predicate nhr:heeftBezoekadres ;
-            sp:subject [
-                sp:varName "site" ;
-              ] ;
-          ]
-          [
-            sp:object [
-                sp:varName "address" ;
-              ] ;
-            sp:predicate nhr:heeftVolledigAdres ;
-            sp:subject [
-                sp:varName "bezadres" ;
-              ] ;
-          ]
-          [
-            sp:object [
-                sp:varName "countryname" ;
-              ] ;
-            sp:predicate nhr:land ;
-            sp:subject [
-                sp:varName "address" ;
-              ] ;
-          ]
-          [
-            sp:object [
-                sp:varName "region" ;
-              ] ;
-            sp:predicate nhr:regio ;
-            sp:subject [
-                sp:varName "address" ;
-              ] ;
-          ]
-          [
-            sp:object [
-                sp:varName "streetaddress" ;
-              ] ;
-            sp:predicate nhr:straatHuisnummer ;
-            sp:subject [
-                sp:varName "address" ;
-              ] ;
-          ]
-          [
-            sp:object [
-                sp:varName "postcodewoonplaats" ;
-              ] ;
-            sp:predicate nhr:postcodeWoonplaats ;
-            sp:subject [
-                sp:varName "address" ;
-              ] ;
-          ]
-        ) ;
-      sp:where (
-          [
-            sp:object toop:RegisteredSite ;
-            sp:predicate rdf:type ;
-            sp:subject [
-                sp:varName "site" ;
-              ] ;
-          ]
-          [
-            rdf:type sp:Bind ;
-            sp:expression [
-                rdf:type sp:uri ;
-                sp:arg1 [
-                    rdf:type sp:concat ;
-                    sp:arg1 "http://example.register.nl/nationaalhandelsregister#" ;
-                    sp:arg2 "Bezoekadres" ;
-                    sp:arg3 [
-                        rdf:type sp:replace ;
-                        sp:arg1 [
-                            rdf:type sp:str ;
-                            sp:arg1 [
-                                sp:varName "site" ;
-                              ] ;
-                          ] ;
-                        sp:arg2 "http://toop.eu/registered-organization#" ;
-                        sp:arg3 "_" ;
-                      ] ;
-                  ] ;
-              ] ;
-            sp:variable [
-                sp:varName "bezadres" ;
-              ] ;
-          ]
-          [
-            sp:object [
-                sp:varName "address" ;
-              ] ;
-            sp:predicate toop:hasPhysicalAddress ;
-            sp:subject [
-                sp:varName "site" ;
-              ] ;
-          ]
-          [
-            sp:object [
-                sp:varName "streetaddress" ;
-              ] ;
-            sp:predicate toop:streetAddress ;
-            sp:subject [
-                sp:varName "address" ;
-              ] ;
-          ]
-          [
-            sp:object [
-                sp:varName "countryname" ;
-              ] ;
-            sp:predicate toop:countryName ;
-            sp:subject [
-                sp:varName "address" ;
-              ] ;
-          ]
-          [
-            sp:object [
-                sp:varName "locality" ;
-              ] ;
-            sp:predicate toop:locality ;
-            sp:subject [
-                sp:varName "address" ;
-              ] ;
-          ]
-          [
-            sp:object [
-                sp:varName "postalcode" ;
-              ] ;
-            sp:predicate toop:postalCode ;
-            sp:subject [
-                sp:varName "address" ;
-              ] ;
-          ]
-          [
-            rdf:type sp:Bind ;
-            sp:expression [
-                rdf:type sp:concat ;
-                sp:arg1 [
-                    sp:varName "postalcode" ;
-                  ] ;
-                sp:arg2 " " ;
-                sp:arg3 [
-                    sp:varName "locality" ;
-                  ] ;
-              ] ;
-            sp:variable [
-                sp:varName "postcodewoonplaats" ;
-              ] ;
-          ]
-          [
-            rdf:type sp:Optional ;
-            sp:elements (
-                [
-                  sp:object [
-                      sp:varName "region" ;
-                    ] ;
-                  sp:predicate toop:region ;
-                  sp:subject [
-                      sp:varName "address" ;
-                    ] ;
-                ]
-              ) ;
-          ]
-        ) ;
-    ] ;
-  mapping:mapsToConcept toop:hasPhysicalAddress ;
-.
-nhr:huisnummer
-  mapping:mapsToConcept toop:streetAddress ;
-.
-nhr:kvkNummer
-  spin:query [
-      rdf:type sp:Construct ;
-      sp:templates (
-          [
-            sp:object nhr:MaatschappelijkeActiviteit ;
-            sp:predicate rdf:type ;
-            sp:subject [
-                sp:varName "ro" ;
-              ] ;
-          ]
-          [
-            sp:object [
-                sp:varName "ccvalue" ;
-              ] ;
-            sp:predicate nhr:kvkNummer ;
-            sp:subject [
-                sp:varName "ro" ;
-              ] ;
-          ]
-        ) ;
-      sp:where (
-          [
-            sp:object toop:RegisteredOrganization ;
-            sp:predicate rdf:type ;
-            sp:subject [
-                sp:varName "ro" ;
-              ] ;
-          ]
-          [
-            sp:object [
-                sp:varName "cc" ;
-              ] ;
-            sp:predicate toop:hasCompanyCode ;
-            sp:subject [
-                sp:varName "ro" ;
-              ] ;
-          ]
-          [
-            sp:object [
-                sp:varName "ccvalue" ;
-              ] ;
-            sp:predicate skos:notation ;
-            sp:subject [
-                sp:varName "cc" ;
-              ] ;
-          ]
-        ) ;
-    ] ;
-  spin:query [
-      rdf:type sp:Select ;
-      sp:resultVariables (
-          [
-            sp:varName "kvk" ;
-          ]
-        ) ;
-      sp:where (
-          [
-            sp:object [
-                sp:varName "kvk" ;
-              ] ;
-            sp:predicate [
-                sp:varName "relatie" ;
-              ] ;
-            sp:subject [
-                sp:varName "bedrijf" ;
-              ] ;
-          ]
-          [
-            sp:object [
-                sp:varName "relatie" ;
-              ] ;
-            sp:predicate mapping:mapsToConcept ;
-            sp:subject nhr:kvkNummer ;
-          ]
-          [
-            rdf:type sp:SubQuery ;
-            sp:query [
-                rdf:type sp:Select ;
-                sp:resultVariables (
-                    [
-                      sp:varName "bedrijf" ;
-                    ]
-                  ) ;
-                sp:where (
-                    [
-                      sp:object [
-                          sp:varName "naam" ;
-                        ] ;
-                      sp:predicate [
-                          sp:varName "naamrelatie" ;
-                        ] ;
-                      sp:subject [
-                          sp:varName "bedrijf" ;
-                        ] ;
-                    ]
-                    [
-                      sp:object [
-                          sp:varName "naamrelatie" ;
-                        ] ;
-                      sp:predicate mapping:mapsToConcept ;
-                      sp:subject nhr:naamMaatschappelijkeActiviteit ;
-                    ]
-                    [
-                      rdf:type sp:Filter ;
-                      sp:expression [
-                          rdf:type sp:regex ;
-                          sp:arg1 [
-                              sp:varName "naam" ;
-                            ] ;
-                          sp:arg2 "Danmarks Tekniske Universitet" ;
-                        ] ;
-                    ]
-                  ) ;
-              ] ;
-          ]
-        ) ;
-    ] ;
-  spin:query [
-      rdf:type sp:Select ;
-      sp:resultVariables (
-          [
-            sp:varName "kvk" ;
-          ]
-        ) ;
-      sp:where (
-          [
-            sp:object [
-                sp:varName "kvk" ;
-              ] ;
-            sp:predicate [
-                sp:varName "relatie" ;
-              ] ;
-            sp:subject [
-                sp:varName "bedrijf" ;
-              ] ;
-          ]
-          [
-            sp:object [
-                sp:varName "relatie" ;
-              ] ;
-            sp:predicate mapping:mapsToConcept ;
-            sp:subject nhr:kvkNummer ;
-          ]
-          [
-            sp:object owl:DatatypeProperty ;
-            sp:predicate rdf:type ;
-            sp:subject [
-                sp:varName "relatie" ;
-              ] ;
-          ]
-        ) ;
-    ] ;
-  mapping:mapsToConcept toop:CompanyCode ;
-  mapping:mapsToConcept toop:hasCompanyCode ;
-  mapping:mapsToConcept skos:notation ;
-.
-nhr:land
-  mapping:mapsToConcept toop:countryName ;
-  rdfs:subPropertyOf toop:countryName ;
-.
-nhr:naamMaatschappelijkeActiviteit
-  spin:query [
-      rdf:type sp:Select ;
-      sp:resultVariables (
-          [
-            sp:varName "bedrijf" ;
-          ]
-        ) ;
-      sp:where (
-          [
-            sp:object [
-                sp:varName "naam" ;
-              ] ;
-            sp:predicate [
-                sp:varName "naamrelatie" ;
-              ] ;
-            sp:subject [
-                sp:varName "bedrijf" ;
-              ] ;
-          ]
-          [
-            sp:object [
-                sp:varName "naamrelatie" ;
-              ] ;
-            sp:predicate mapping:mapsToConcept ;
-            sp:subject nhr:naamMaatschappelijkeActiviteit ;
-          ]
-          [
-            rdf:type sp:Filter ;
-            sp:expression [
-                rdf:type sp:regex ;
-                sp:arg1 [
-                    sp:varName "naam" ;
-                  ] ;
-                sp:arg2 "Danmarks Tekniske Universitet" ;
-              ] ;
-          ]
-        ) ;
-    ] ;
-  mapping:mapsToConcept toop:companyName ;
-  rdfs:subPropertyOf toop:companyName ;
-.
-nhr:plaats
-  mapping:mapsToConcept toop:locality ;
-  rdfs:subPropertyOf toop:locality ;
-.
-nhr:postcode
-  mapping:mapsToConcept toop:postalCode ;
-  rdfs:subPropertyOf toop:postalCode ;
-.
-nhr:postcodeWoonplaats
-  mapping:mapsToConcept toop:locality ;
-  mapping:mapsToConcept toop:postalCode ;
-.
-nhr:regio
-  mapping:mapsToConcept toop:region ;
-  rdfs:subPropertyOf toop:region ;
-.
-nhr:straatHuisnummer
-  mapping:mapsToConcept toop:streetAddress ;
-  rdfs:subPropertyOf toop:streetAddress ;
-.
-nhr:straatnaam
-  mapping:mapsToConcept toop:streetAddress ;
-.
-nhr:wordtGeleidVanuit
-  rdfs:subPropertyOf toop:hasRegisteredSite ;
 .
 mapping:mapsToConcept
   spin:query [
@@ -648,11 +170,11 @@ mapping:mapsToConcept
   spin:imports <http://topbraid.org/spin/skosspin> ;
   spin:imports <http://topbraid.org/spin/spinowl> ;
   owl:imports <http://dublincore.org/2012/06/14/dcterms.rdf> ;
-  owl:imports <http://example.register.elo/elonia-business-register> ;
-  owl:imports <http://example.register.fre/freedonia-business-register> ;
-  owl:imports <http://example.register.nl/nationaalhandelsregister> ;
   owl:imports <http://spinrdf.org/spin> ;
+  owl:imports <http://toop.elo/elonia-business-register> ;
   owl:imports <http://toop.eu/mapping> ;
+  owl:imports <http://toop.fre/freedonia-business-register> ;
+  owl:imports <http://toop.nl/nationaalhandelsregister> ;
   owl:imports <http://www.w3.org/2004/02/skos/core> ;
   owl:imports <http://www.w3.org/2006/vcard/ns> ;
   owl:imports <http://www.w3.org/ns/org.ttl> ;
@@ -1983,6 +1505,484 @@ toop:streetAddress
   rdfs:label "street address"@en ;
   rdfs:range xsd:string ;
   rdfs:subPropertyOf vcard:street-address ;
+.
+<http://toop.fre/freedonia-business-register#FreedoniaActivityDeclaration>
+  rdfs:subPropertyOf toop:activityDescription ;
+.
+<http://toop.fre/freedonia-business-register#FreedoniaAddress>
+  rdfs:subClassOf toop:PhysicalAddress ;
+.
+<http://toop.fre/freedonia-business-register#FreedoniaBusinessCode>
+  mapping:mapsToConcept toop:CompanyCode ;
+  mapping:mapsToValue skos:notation ;
+  rdfs:subClassOf toop:CompanyCode ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty skos:notation ;
+    ] ;
+.
+<http://toop.fre/freedonia-business-register#FreedoniaBusinessCode_1>
+  skos:notation "123456" ;
+.
+<http://toop.fre/freedonia-business-register#FreedoniaCompanyName>
+  rdfs:subPropertyOf toop:companyName ;
+.
+<http://toop.fre/freedonia-business-register#FreedoniaCompanyType>
+  rdfs:subPropertyOf toop:hasCompanyType ;
+.
+<http://toop.fre/freedonia-business-register#FreedoniaLegalStatus>
+  rdfs:subPropertyOf toop:hasLegalStatus ;
+.
+<http://toop.fre/freedonia-business-register#FreedoniaLegalStatusEffectiveDate>
+  rdfs:subPropertyOf toop:legalStatusEffectiveDate ;
+.
+<http://toop.fre/freedonia-business-register#FreedoniaRegistrationAuthority>
+  rdfs:subPropertyOf toop:hasRegistrationAuthority ;
+.
+<http://toop.fre/freedonia-business-register#FreedoniaRegistrationDate>
+  rdfs:subPropertyOf toop:registrationDate ;
+.
+<http://toop.fre/freedonia-business-register#FreedoniaSSNumber>
+  rdfs:subClassOf toop:SSNumber ;
+.
+<http://toop.fre/freedonia-business-register#FreedoniaVATNumber>
+  rdfs:subClassOf toop:VATNumber ;
+.
+<http://toop.fre/freedonia-business-register#hasBusinessCode>
+  rdfs:subPropertyOf toop:hasCompanyCode ;
+.
+nhr:Adres
+  mapping:mapsToConcept toop:PhysicalAddress ;
+  rdfs:subClassOf toop:PhysicalAddress ;
+.
+nhr:Locatie
+  mapping:mapsToConcept toop:hasPhysicalAddress ;
+.
+nhr:NatuurlijkPersoon
+  rdfs:subClassOf toop:Person ;
+.
+nhr:Vestiging
+  mapping:mapsToConcept org:Site ;
+.
+nhr:heeftBezoekadres
+  mapping:mapsToConcept toop:hasPhysicalAddress ;
+.
+nhr:heeftPostadres
+  mapping:mapsToConcept toop:hasPhysicalAddress ;
+.
+nhr:heeftRechtsvorm
+  rdfs:subPropertyOf toop:hasCompanyType ;
+.
+nhr:heeftVolledigAdres
+  spin:query [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object nhr:Vestiging ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "site" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "bezadres" ;
+              ] ;
+            sp:predicate nhr:heeftBezoekadres ;
+            sp:subject [
+                sp:varName "site" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "address" ;
+              ] ;
+            sp:predicate nhr:heeftVolledigAdres ;
+            sp:subject [
+                sp:varName "bezadres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "countryname" ;
+              ] ;
+            sp:predicate nhr:land ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "region" ;
+              ] ;
+            sp:predicate nhr:regio ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "streetaddress" ;
+              ] ;
+            sp:predicate nhr:straatHuisnummer ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "postcodewoonplaats" ;
+              ] ;
+            sp:predicate nhr:postcodeWoonplaats ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object toop:RegisteredSite ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "site" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:uri ;
+                sp:arg1 [
+                    rdf:type sp:concat ;
+                    sp:arg1 "http://example.register.nl/nationaalhandelsregister#" ;
+                    sp:arg2 "Bezoekadres" ;
+                    sp:arg3 [
+                        rdf:type sp:replace ;
+                        sp:arg1 [
+                            rdf:type sp:str ;
+                            sp:arg1 [
+                                sp:varName "site" ;
+                              ] ;
+                          ] ;
+                        sp:arg2 "http://toop.eu/registered-organization#" ;
+                        sp:arg3 "_" ;
+                      ] ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "bezadres" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "address" ;
+              ] ;
+            sp:predicate toop:hasPhysicalAddress ;
+            sp:subject [
+                sp:varName "site" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "streetaddress" ;
+              ] ;
+            sp:predicate toop:streetAddress ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "countryname" ;
+              ] ;
+            sp:predicate toop:countryName ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "locality" ;
+              ] ;
+            sp:predicate toop:locality ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "postalcode" ;
+              ] ;
+            sp:predicate toop:postalCode ;
+            sp:subject [
+                sp:varName "address" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:concat ;
+                sp:arg1 [
+                    sp:varName "postalcode" ;
+                  ] ;
+                sp:arg2 " " ;
+                sp:arg3 [
+                    sp:varName "locality" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "postcodewoonplaats" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Optional ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "region" ;
+                    ] ;
+                  sp:predicate toop:region ;
+                  sp:subject [
+                      sp:varName "address" ;
+                    ] ;
+                ]
+              ) ;
+          ]
+        ) ;
+    ] ;
+  mapping:mapsToConcept toop:hasPhysicalAddress ;
+.
+nhr:huisnummer
+  mapping:mapsToConcept toop:streetAddress ;
+.
+nhr:kvkNummer
+  spin:query [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object nhr:MaatschappelijkeActiviteit ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "ro" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "ccvalue" ;
+              ] ;
+            sp:predicate nhr:kvkNummer ;
+            sp:subject [
+                sp:varName "ro" ;
+              ] ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object toop:RegisteredOrganization ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "ro" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "cc" ;
+              ] ;
+            sp:predicate toop:hasCompanyCode ;
+            sp:subject [
+                sp:varName "ro" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "ccvalue" ;
+              ] ;
+            sp:predicate skos:notation ;
+            sp:subject [
+                sp:varName "cc" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  spin:query [
+      rdf:type sp:Select ;
+      sp:resultVariables (
+          [
+            sp:varName "kvk" ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "kvk" ;
+              ] ;
+            sp:predicate [
+                sp:varName "relatie" ;
+              ] ;
+            sp:subject [
+                sp:varName "bedrijf" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "relatie" ;
+              ] ;
+            sp:predicate mapping:mapsToConcept ;
+            sp:subject nhr:kvkNummer ;
+          ]
+          [
+            rdf:type sp:SubQuery ;
+            sp:query [
+                rdf:type sp:Select ;
+                sp:resultVariables (
+                    [
+                      sp:varName "bedrijf" ;
+                    ]
+                  ) ;
+                sp:where (
+                    [
+                      sp:object [
+                          sp:varName "naam" ;
+                        ] ;
+                      sp:predicate [
+                          sp:varName "naamrelatie" ;
+                        ] ;
+                      sp:subject [
+                          sp:varName "bedrijf" ;
+                        ] ;
+                    ]
+                    [
+                      sp:object [
+                          sp:varName "naamrelatie" ;
+                        ] ;
+                      sp:predicate mapping:mapsToConcept ;
+                      sp:subject nhr:naamMaatschappelijkeActiviteit ;
+                    ]
+                    [
+                      rdf:type sp:Filter ;
+                      sp:expression [
+                          rdf:type sp:regex ;
+                          sp:arg1 [
+                              sp:varName "naam" ;
+                            ] ;
+                          sp:arg2 "Danmarks Tekniske Universitet" ;
+                        ] ;
+                    ]
+                  ) ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  spin:query [
+      rdf:type sp:Select ;
+      sp:resultVariables (
+          [
+            sp:varName "kvk" ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "kvk" ;
+              ] ;
+            sp:predicate [
+                sp:varName "relatie" ;
+              ] ;
+            sp:subject [
+                sp:varName "bedrijf" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "relatie" ;
+              ] ;
+            sp:predicate mapping:mapsToConcept ;
+            sp:subject nhr:kvkNummer ;
+          ]
+          [
+            sp:object owl:DatatypeProperty ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "relatie" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  mapping:mapsToConcept toop:CompanyCode ;
+  mapping:mapsToConcept toop:hasCompanyCode ;
+  mapping:mapsToConcept skos:notation ;
+.
+nhr:land
+  mapping:mapsToConcept toop:countryName ;
+  rdfs:subPropertyOf toop:countryName ;
+.
+nhr:naamMaatschappelijkeActiviteit
+  spin:query [
+      rdf:type sp:Select ;
+      sp:resultVariables (
+          [
+            sp:varName "bedrijf" ;
+          ]
+        ) ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "naam" ;
+              ] ;
+            sp:predicate [
+                sp:varName "naamrelatie" ;
+              ] ;
+            sp:subject [
+                sp:varName "bedrijf" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "naamrelatie" ;
+              ] ;
+            sp:predicate mapping:mapsToConcept ;
+            sp:subject nhr:naamMaatschappelijkeActiviteit ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:regex ;
+                sp:arg1 [
+                    sp:varName "naam" ;
+                  ] ;
+                sp:arg2 "Danmarks Tekniske Universitet" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  mapping:mapsToConcept toop:companyName ;
+  rdfs:subPropertyOf toop:companyName ;
+.
+nhr:plaats
+  mapping:mapsToConcept toop:locality ;
+  rdfs:subPropertyOf toop:locality ;
+.
+nhr:postcode
+  mapping:mapsToConcept toop:postalCode ;
+  rdfs:subPropertyOf toop:postalCode ;
+.
+nhr:postcodeWoonplaats
+  mapping:mapsToConcept toop:locality ;
+  mapping:mapsToConcept toop:postalCode ;
+.
+nhr:regio
+  mapping:mapsToConcept toop:region ;
+  rdfs:subPropertyOf toop:region ;
+.
+nhr:straatHuisnummer
+  mapping:mapsToConcept toop:streetAddress ;
+  rdfs:subPropertyOf toop:streetAddress ;
+.
+nhr:straatnaam
+  mapping:mapsToConcept toop:streetAddress ;
+.
+nhr:wordtGeleidVanuit
+  rdfs:subPropertyOf toop:hasRegisteredSite ;
 .
 rov:legalName
   rdfs:domain org:FormalOrganization ;

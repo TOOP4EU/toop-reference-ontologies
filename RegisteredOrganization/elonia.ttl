@@ -1,17 +1,17 @@
-# baseURI: http://example.register.elo/elonia-business-register
+# baseURI: http://toop.elo/elonia-business-register
 # imports: http://www.w3.org/ns/adms.rdf
 # imports: https://www.w3.org/2009/08/skos-reference/skos.rdf
 # prefix: elobr
 
 @prefix adms: <http://www.w3.org/ns/adms#> .
-@prefix elobr: <http://example.register.elo/elonia-business-register#> .
+@prefix elobr: <http://toop.elo/elonia-business-register#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://example.register.elo/elonia-business-register>
+<http://toop.elo/elonia-business-register>
   rdf:type owl:Ontology ;
   owl:imports <http://www.w3.org/ns/adms.rdf> ;
   owl:imports <https://www.w3.org/2009/08/skos-reference/skos.rdf> ;
