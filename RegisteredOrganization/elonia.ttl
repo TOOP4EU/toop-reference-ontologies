@@ -88,6 +88,11 @@ elobr:EloniaRegistrationDate
   rdfs:label "Elonia registration date"@en ;
   rdfs:range xsd:date ;
 .
+elobr:EloniaRegistrationNumber
+  rdf:type rdfs:Class ;
+  rdfs:comment "The registration number of the company_"@en ;
+  rdfs:label "Registration number"@en ;
+.
 elobr:EloniaSSNumber
   rdf:type rdfs:Class ;
   rdfs:comment "The social security number of the company_"@en ;

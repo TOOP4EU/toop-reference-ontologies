@@ -60,6 +60,9 @@
 <http://toop.elo/elonia-business-register#EloniaRegistrationDate>
   rdfs:subPropertyOf toop:registrationDate ;
 .
+<http://toop.elo/elonia-business-register#EloniaRegistrationNumber>
+  rdfs:subClassOf toop:RegistrationNumber ;
+.
 <http://toop.elo/elonia-business-register#EloniaSSNumber>
   rdfs:subClassOf toop:SSNumber ;
 .
@@ -1542,6 +1545,9 @@ toop:streetAddress
 .
 <http://toop.fre/freedonia-business-register#FreedoniaRegistrationDate>
   rdfs:subPropertyOf toop:registrationDate ;
+.
+<http://toop.fre/freedonia-business-register#FreedoniaRegistrationNumber>
+  rdfs:subClassOf toop:RegistrationNumber ;
 .
 <http://toop.fre/freedonia-business-register#FreedoniaSSNumber>
   rdfs:subClassOf toop:SSNumber ;

@@ -109,6 +109,11 @@ freebr:FreedoniaRegistrationDate
   rdfs:label "Freedonia registration date"@en ;
   rdfs:range xsd:date ;
 .
+freebr:FreedoniaRegistrationNumber
+  rdf:type rdfs:Class ;
+  rdfs:comment "The registration number of the company_"@en ;
+  rdfs:label "Registration number"@en ;
+.
 freebr:FreedoniaSSNumber
   rdf:type rdfs:Class ;
   rdfs:comment "The social security number of the company_"@en ;
