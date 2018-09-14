@@ -106,7 +106,7 @@ mapping:mapsToConcept
                         sp:varName "kvk" ;
                       ] ;
                   ] ;
-                sp:arg2 "http://example.register.nl/nationaalhandelsregister#" ;
+                sp:arg2 "http://toop.nl/nationaalhandelsregister#" ;
               ] ;
           ]
           [
@@ -128,7 +128,7 @@ mapping:mapsToConcept
                         sp:varName "freedonia" ;
                       ] ;
                   ] ;
-                sp:arg2 "http://example.register.fre/freedonia-business-register#" ;
+                sp:arg2 "http://toop.fre/freedonia-business-register#" ;
               ] ;
           ]
           [
@@ -477,7 +477,7 @@ toop:RegisteredOrganization
                                 sp:varName "s" ;
                               ] ;
                           ] ;
-                        sp:arg2 "http://example.register.elo/elonia-business-register#" ;
+                        sp:arg2 "http://toop.elo/elonia-business-register#" ;
                       ] ;
                     sp:arg2 [
                         rdf:type sp:strstarts ;
@@ -510,7 +510,7 @@ toop:RegisteredOrganization
                                 sp:varName "o" ;
                               ] ;
                           ] ;
-                        sp:arg2 "http://example.register.elo/elonia-business-register#" ;
+                        sp:arg2 "http://toop.elo/elonia-business-register#" ;
                       ] ;
                   ] ;
               ] ;
@@ -901,7 +901,7 @@ toop:hasCompanyCode
                                 sp:varName "ma" ;
                               ] ;
                           ] ;
-                        sp:arg2 "http://example.register.nl/nationaalhandelsregister#" ;
+                        sp:arg2 "http://toop.nl/nationaalhandelsregister#" ;
                         sp:arg3 "_" ;
                       ] ;
                   ] ;
@@ -1654,7 +1654,7 @@ nhr:heeftVolledigAdres
                 rdf:type sp:uri ;
                 sp:arg1 [
                     rdf:type sp:concat ;
-                    sp:arg1 "http://example.register.nl/nationaalhandelsregister#" ;
+                    sp:arg1 "http://toop.nl/nationaalhandelsregister#" ;
                     sp:arg2 "Bezoekadres" ;
                     sp:arg3 [
                         rdf:type sp:replace ;
