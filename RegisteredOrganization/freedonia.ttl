@@ -72,6 +72,13 @@ freebr:FreedoniaBusinessCode_2
   rdfs:label "Freedonia business code 2" ;
   skos:notation "987654" ;
 .
+freebr:FreedoniaCompanyNACECode
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "All companies have to provide an Freedonia company NACE code upon registration at the Frreedonia business register." ;
+  rdfs:domain freebr:Company ;
+  rdfs:label "company nace code"@en ;
+  rdfs:range xsd:string ;
+.
 freebr:FreedoniaCompanyName
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "All companies have to provide an Freedonia company name upon registration at the Frreedonia business register." ;

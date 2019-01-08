@@ -42,6 +42,9 @@
 <http://toop.elo/elonia-business-register#EloniaBusinessCode>
   rdfs:subClassOf toop:CompanyCode ;
 .
+<http://toop.elo/elonia-business-register#EloniaCompanyNACECode>
+  rdfs:subPropertyOf toop:hasNACECode ;
+.
 <http://toop.elo/elonia-business-register#EloniaCompanyName>
   rdfs:subPropertyOf toop:companyName ;
 .
@@ -1527,6 +1530,9 @@ toop:streetAddress
 .
 <http://toop.fre/freedonia-business-register#FreedoniaBusinessCode_1>
   skos:notation "123456" ;
+.
+<http://toop.fre/freedonia-business-register#FreedoniaCompanyNACECode>
+  rdfs:subPropertyOf toop:hasNACECode ;
 .
 <http://toop.fre/freedonia-business-register#FreedoniaCompanyName>
   rdfs:subPropertyOf toop:companyName ;

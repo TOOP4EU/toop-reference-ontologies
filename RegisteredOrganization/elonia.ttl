@@ -50,6 +50,14 @@ elobr:EloniaBusinessCode
   rdfs:label "Elonia business code"@en ;
   skos:prefLabel "Elonia business code" ;
 .
+elobr:EloniaCompanyNACECode
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "All companies have to provide an Elonia company NACE code upon registration at the Elonia business register." ;
+  rdfs:domain elobr:Company ;
+  rdfs:label "company nace code"@en ;
+  rdfs:range xsd:string ;
+  skos:prefLabel "company nace code"@en ;
+.
 elobr:EloniaCompanyName
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "All companies have to provide an Elonia company name upon registration at the Elonia business register." ;
