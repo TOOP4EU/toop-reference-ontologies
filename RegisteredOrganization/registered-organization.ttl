@@ -42,8 +42,8 @@
 <http://toop.elo/elonia-business-register#EloniaBusinessCode>
   rdfs:subClassOf toop:CompanyCode ;
 .
-<http://toop.elo/elonia-business-register#EloniaCompanyNACECode>
-  rdfs:subPropertyOf toop:hasNACECode ;
+<http://toop.elo/elonia-business-register#EloniaCompanyNaceCode>
+  rdfs:subPropertyOf toop:hasNaceCode ;
 .
 <http://toop.elo/elonia-business-register#EloniaCompanyName>
   rdfs:subPropertyOf toop:companyName ;
@@ -603,7 +603,7 @@ toop:RegisteredOrganization
           owl:onProperty skos:inScheme ;
           owl:someValuesFrom toop:NACECodeScheme ;
         ] ;
-      owl:onProperty toop:hasNACECode ;
+      owl:onProperty toop:hasNaceCode ;
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
   rdfs:subClassOf [
@@ -975,7 +975,7 @@ toop:hasLegalStatus
   rdfs:subPropertyOf rov:orgStatus ;
   skos:prefLabel "has legal status" ;
 .
-toop:hasNACECode
+toop:hasNaceCode
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The NACE code of the company as part of the NACECodeScheme."@en ;
   rdfs:domain toop:RegisteredOrganization ;
@@ -1531,8 +1531,8 @@ toop:streetAddress
 <http://toop.fre/freedonia-business-register#FreedoniaBusinessCode_1>
   skos:notation "123456" ;
 .
-<http://toop.fre/freedonia-business-register#FreedoniaCompanyNACECode>
-  rdfs:subPropertyOf toop:hasNACECode ;
+<http://toop.fre/freedonia-business-register#FreedoniaCompanyNaceCode>
+  rdfs:subPropertyOf toop:hasNaceCode ;
 .
 <http://toop.fre/freedonia-business-register#FreedoniaCompanyName>
   rdfs:subPropertyOf toop:companyName ;
