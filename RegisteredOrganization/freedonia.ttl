@@ -4,6 +4,8 @@
 # prefix: freebr
 
 @prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix freebr: <http://toop.fre/freedonia-business-register#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -29,6 +31,12 @@ freebr:Company
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass freebr:FreedoniaCitizen ;
+      owl:onProperty freebr:isRepresentedBy ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
       owl:onDataRange freebr:FreedoniaBusinessCode ;
       owl:onProperty freebr:hasBusinessCode ;
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -36,9 +44,18 @@ freebr:Company
 .
 freebr:Company_1
   rdf:type freebr:Company ;
-  freebr:FreedoniaCompanyName "Pietje" ;
+  freebr:FreedoniaCompanyName "Pietje's Fietsenfabriek" ;
   freebr:hasBusinessCode freebr:FreedoniaBusinessCode_1 ;
+  rdfs:comment "This is an individual Company in Freedonia"@en ;
   rdfs:label "Company 1" ;
+.
+freebr:Company_2
+  rdf:type freebr:Company ;
+  freebr:FreedoniaCompanyName "Free University of Donia" ;
+  freebr:isRepresentedBy freebr:FreedoniaCitizen_1 ;
+  rdfs:comment "This is an individual Company in Freedonia"@en ;
+  rdfs:label "FUD"@en ;
+  skos:prefLabel "FUD" ;
 .
 freebr:FreedoniaActivityDeclaration
   rdf:type owl:ObjectProperty ;
@@ -71,6 +88,39 @@ freebr:FreedoniaBusinessCode_2
   rdf:type freebr:FreedoniaBusinessCode ;
   rdfs:label "Freedonia business code 2" ;
   skos:notation "987654" ;
+.
+freebr:FreedoniaCitizen
+  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  rdfs:comment "A human person that can have a role in the context of a company."@en ;
+  rdfs:subClassOf foaf:Person ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange xsd:date ;
+      owl:onProperty freebr:birthday ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange xsd:string ;
+      owl:onProperty freebr:givenName ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange xsd:string ;
+      owl:onProperty freebr:surName ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+freebr:FreedoniaCitizen_1
+  rdf:type freebr:FreedoniaCitizen ;
+  freebr:birthday "1991-05-08"^^xsd:date ;
+  freebr:givenName "Pjetr-Pjotr" ;
+  freebr:surName "Swinskovsky" ;
+  rdfs:comment "This represents Pjetr Swinskovsky, a brave citizen of Freedonia"@en ;
+  rdfs:label "Pjetr Swinskovsky, a brave citizen of Freedonia"^^rdf:langString ;
+  skos:prefLabel "Freedonia citizen 1" ;
 .
 freebr:FreedoniaCompanyNaceCode
   rdf:type owl:DatatypeProperty ;
@@ -131,6 +181,29 @@ freebr:FreedoniaVATNumber
   rdfs:comment "The value added tax number of the company"@en ;
   rdfs:label "VAT number"@en ;
 .
+freebr:Repository
+  rdf:type adms:AssetRepository ;
+  dcterms:created "2018-05-28"^^xsd:date ;
+  dcterms:description "This repository describes Freedonia's business register in accordance to the defined ontological concepts"@en ;
+  dcterms:publisher <http://toop.fre/fbr> ;
+  dcterms:title "Freedonia's Business Register"@en ;
+.
+freebr:birthday
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The day of birth of a person"@en ;
+  rdfs:domain freebr:FreedoniaCitizen ;
+  rdfs:label "birthday"@en ;
+  rdfs:range xsd:date ;
+  rdfs:subPropertyOf foaf:birthday ;
+.
+freebr:givenName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The given name of a person"@en ;
+  rdfs:domain freebr:FreedoniaCitizen ;
+  rdfs:label "given name"@en ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf foaf:givenName ;
+.
 freebr:hasBusinessCode
   rdf:type owl:ObjectProperty ;
   rdfs:comment "All companies get an Freedonia Business Code uponregistration at the Freedonia business register." ;
@@ -138,4 +211,19 @@ freebr:hasBusinessCode
   rdfs:label "has business code"@en ;
   rdfs:range freebr:FreedoniaBusinessCode ;
   skos:prefLabel "has business code"@en ;
+.
+freebr:isRepresentedBy
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The pointer to the person acting as legal representative of the company."@en ;
+  rdfs:domain freebr:Company ;
+  rdfs:label "has legal representative"@en ;
+  rdfs:range freebr:FreedoniaCitizen ;
+.
+freebr:surName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The family name of a person"@en ;
+  rdfs:domain freebr:FreedoniaCitizen ;
+  rdfs:label "family name"@en ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf foaf:familyName ;
 .

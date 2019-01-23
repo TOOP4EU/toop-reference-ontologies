@@ -5,6 +5,8 @@
 
 @prefix adms: <http://www.w3.org/ns/adms#> .
 @prefix elobr: <http://toop.elo/elonia-business-register#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -16,6 +18,37 @@
   owl:imports <http://www.w3.org/ns/adms.rdf> ;
   owl:imports <https://www.w3.org/2009/08/skos-reference/skos.rdf> ;
   owl:versionInfo "Created with TopBraid Composer" ;
+.
+elobr:Repository
+  rdf:type adms:AssetRepository ;
+  dcterms:created "2018-04-05"^^xsd:date ;
+  dcterms:description "This repository describes Elonia's business register in accordance to the defined ontological concepts"@en ;
+  dcterms:publisher <http://toop.elo/ebr> ;
+  dcterms:title "Elonia's Business Register"@en ;
+.
+elobr:Citizen
+  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  rdfs:comment "A human person that can have a role in the context of a company."@en ;
+  rdfs:subClassOf foaf:Person ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange xsd:date ;
+      owl:onProperty elobr:birthday ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange xsd:string ;
+      owl:onProperty elobr:givenName ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange xsd:string ;
+      owl:onProperty elobr:surName ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
 .
 elobr:Company
   rdf:type owl:Class ;
@@ -32,6 +65,12 @@ elobr:Company
       owl:onDataRange elobr:EloniaBusinessCode ;
       owl:onProperty elobr:hasBusinessCode ;
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass elobr:Citizen ;
+      owl:onProperty elobr:hasLegalRepresentationBy ;
     ] ;
 .
 elobr:EloniaActivityDeclaration
@@ -118,4 +157,52 @@ elobr:hasBusinessCode
   rdfs:label "has business code"@en ;
   rdfs:range elobr:EloniaBusinessCode ;
   skos:prefLabel "has business code"@en ;
+.
+elobr:hasLegalRepresentationBy
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The pointer to the person acting as legal representative of the company."@en ;
+  rdfs:domain elobr:Company ;
+  rdfs:label "has legal representative"@en ;
+  rdfs:range elobr:Citizen ;
+.
+elobr:birthday
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The day of birth of a person"@en ;
+  rdfs:domain elobr:Citizen ;
+  rdfs:label "birthday"@en ;
+  rdfs:range xsd:date ;
+  rdfs:subPropertyOf foaf:birthday ;
+.
+elobr:givenName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The given name of a person"@en ;
+  rdfs:domain elobr:Citizen ;
+  rdfs:label "given name"@en ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf foaf:givenName ;
+.
+elobr:surName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The family name of a person"@en ;
+  rdfs:domain elobr:Citizen ;
+  rdfs:label "family name"@en ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf foaf:familyName ;
+.
+elobr:Company_1
+  rdf:type elobr:Company ;
+  elobr:EloniaCompanyName "A of Elonia" ;
+  elobr:hasLegalRepresentationBy elobr:Citizen_1 ;
+  rdfs:comment "The A-company, pride of Elonia"@en ;
+  rdfs:label "Company 1_"@en ;
+  skos:prefLabel "Company 1" ;
+.
+elobr:Citizen_1
+  rdf:type elobr:Citizen ;
+  elobr:birthday "1994-03-24"^^xsd:date ;
+  elobr:givenName "Czitekiniosis Jehoin" ;
+  elobr:surName "din Aldest" ;
+  rdfs:comment "A brave citizen of Elonia"@en ;
+  rdfs:label "Citizen 1_"@en ;
+  skos:prefLabel "Czitek din Aldest" ;
 .

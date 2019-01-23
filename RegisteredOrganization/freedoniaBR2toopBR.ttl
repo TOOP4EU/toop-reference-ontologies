@@ -1,0 +1,66 @@
+# baseURI: file:/C:/Users/brandtp/OneDrive%20-%20TNO/workspace/TBCworkspace/TOOP_DomainCSM/RegisteredOrganization/freedoniaBR2toopBR.ttl
+
+@prefix freebr: <http://toop.fre/freedonia-business-register#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix toop: <http://toop.eu/registered-organization#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+freebr:Company
+  rdfs:subClassOf toop:RegisteredOrganization ;
+.
+freebr:FreedoniaActivityDeclaration
+  rdfs:subPropertyOf toop:_activityDeclaration ;
+.
+freebr:FreedoniaAddress
+  rdfs:subClassOf toop:PhysicalAddress ;
+.
+freebr:FreedoniaBusinessCode
+  rdfs:subClassOf toop:CompanyCode ;
+.
+freebr:FreedoniaCitizen
+  rdfs:subClassOf toop:Person ;
+.
+freebr:FreedoniaCompanyNaceCode
+  rdfs:subPropertyOf toop:_companyNaceCode ;
+.
+freebr:FreedoniaCompanyName
+  rdfs:subPropertyOf toop:companyName ;
+.
+freebr:FreedoniaCompanyType
+  rdfs:subPropertyOf toop:hasCompanyType ;
+.
+freebr:FreedoniaLegalStatus
+  rdfs:subPropertyOf toop:hasLegalStatus ;
+.
+freebr:FreedoniaLegalStatusEffectiveDate
+  rdfs:subPropertyOf toop:_legalStatusEffectiveDate ;
+.
+freebr:FreedoniaRegistrationAuthority
+  rdfs:subPropertyOf toop:_registrationAuthority ;
+.
+freebr:FreedoniaRegistrationDate
+  rdfs:subPropertyOf toop:_registrationDate ;
+.
+freebr:FreedoniaRegistrationNumber
+  rdfs:subPropertyOf toop:_registrationNumber ;
+.
+freebr:FreedoniaSSNumber
+  rdfs:subClassOf toop:_SSNumber ;
+.
+freebr:FreedoniaVATNumber
+  rdfs:subClassOf toop:_VATNumber ;
+.
+freebr:givenName
+  rdfs:subPropertyOf toop:givenName ;
+.
+freebr:hasBusinessCode
+  rdfs:subPropertyOf toop:hasCompanyCode ;
+.
+freebr:isRepresentedBy
+  rdfs:subPropertyOf toop:hasLegalRepresentative ;
+.
+freebr:surName
+  rdfs:subPropertyOf toop:familyName ;
+.

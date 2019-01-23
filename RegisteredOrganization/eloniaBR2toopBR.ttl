@@ -1,0 +1,66 @@
+# baseURI: file:/C:/Users/brandtp/OneDrive%20-%20TNO/workspace/TBCworkspace/TOOP_DomainCSM/RegisteredOrganization/eloniaBR2toopBR.ttl
+
+@prefix elobr: <http://toop.elo/elonia-business-register#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix toop: <http://toop.eu/registered-organization#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+elobr:Citizen
+  rdfs:subClassOf toop:Person ;
+.
+elobr:Company
+  rdfs:subClassOf toop:RegisteredOrganization ;
+.
+elobr:EloniaActivityDeclaration
+  rdfs:subPropertyOf toop:_activityDeclaration ;
+.
+elobr:EloniaAddress
+  rdfs:subClassOf toop:PhysicalAddress ;
+.
+elobr:EloniaBusinessCode
+  rdfs:subClassOf toop:CompanyCode ;
+.
+elobr:EloniaCompanyNaceCode
+  rdfs:subPropertyOf toop:_companyNaceCode ;
+.
+elobr:EloniaCompanyName
+  rdfs:subPropertyOf toop:companyName ;
+.
+elobr:EloniaCompanyType
+  rdfs:subPropertyOf toop:hasCompanyType ;
+.
+elobr:EloniaLegalStatus
+  rdfs:subPropertyOf toop:hasLegalStatus ;
+.
+elobr:EloniaLegalStatusEffectiveDate
+  rdfs:subPropertyOf toop:_legalStatusEffectiveDate ;
+.
+elobr:EloniaRegistrationAuthority
+  rdfs:subPropertyOf toop:_registrationAuthority ;
+.
+elobr:EloniaRegistrationDate
+  rdfs:subPropertyOf toop:_registrationDate ;
+.
+elobr:EloniaRegistrationNumber
+  rdfs:subPropertyOf toop:_registrationNumber ;
+.
+elobr:EloniaSSNumber
+  rdfs:subClassOf toop:_SSNumber ;
+.
+elobr:EloniaVATNumber
+  rdfs:subClassOf toop:_VATNumber ;
+.
+elobr:givenName
+  rdfs:subPropertyOf toop:givenName ;
+.
+elobr:hasBusinessCode
+  rdfs:subPropertyOf toop:hasCompanyCode ;
+.
+elobr:hasLegalRepresentationBy
+  rdfs:subPropertyOf toop:hasLegalRepresentative ;
+.
+elobr:surName
+  rdfs:subPropertyOf toop:familyName ;
+.
