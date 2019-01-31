@@ -32,6 +32,7 @@
 @prefix toop: <http://toop.eu/registered-organization#> .
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix itdp: <http://toop.it/registroimprese#> .
 
 <http://toop.elo/elonia-business-register#EloniaActivityDeclaration>
   rdfs:subPropertyOf toop:activityDescription ;
@@ -1999,3 +2000,39 @@ nhr:wordtGeleidVanuit
 rov:legalName
   rdfs:domain org:FormalOrganization ;
 .
+
+itdp:DescrizioneAttivita
+  rdfs:subPropertyOf toop:activityDescription.
+
+itdp:Indirizzo
+  rdfs:subClassOf toop:PhysicalAddress.
+    
+itdp:CodiceFiscale
+  rdfs:subClassOf toop:CompanyCode.
+    
+itdp:CodiceNACE
+  rdfs:subPropertyOf toop:hasNaceCode.
+  
+itdp:Denominazione
+  rdfs:subPropertyOf toop:companyName.
+  
+itdp:FormaGiuridica
+  rdfs:subPropertyOf toop:hasCompanyType.
+    
+itdp:StatoAttivita
+  rdfs:subPropertyOf toop:hasLegalStatus.
+  
+itdp:AutoritaDiRegistrazione
+  rdfs:subPropertyOf toop:hasRegistrationAuthority.
+  
+itdp:DataDiIscrizione
+  rdfs:subPropertyOf toop:registrationDate.
+    
+itdp:CodiceImpresa
+  rdfs:subClassOf toop:RegistrationNumber.
+  
+itdp:PartitaIVA
+  rdfs:subClassOf toop:VATNumber.
+  
+itdp:hasCodiceFiscale
+  rdfs:subPropertyOf toop:hasCompanyCode.
