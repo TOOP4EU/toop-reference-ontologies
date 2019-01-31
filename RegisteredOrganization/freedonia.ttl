@@ -53,6 +53,7 @@ freebr:Company_2
   rdf:type freebr:Company ;
   freebr:FreedoniaCompanyName "Free University of Donia" ;
   freebr:isRepresentedBy freebr:FreedoniaCitizen_1 ;
+  freebr:isRepresentedBy freebr:FreedoniaCitizen_2 ;
   rdfs:comment "This is an individual Company in Freedonia"@en ;
   rdfs:label "FUD"@en ;
   skos:prefLabel "FUD" ;
@@ -226,4 +227,14 @@ freebr:surName
   rdfs:label "family name"@en ;
   rdfs:range xsd:string ;
   rdfs:subPropertyOf foaf:familyName ;
+.
+
+freebr:FreedoniaCitizen_2
+  rdf:type freebr:FreedoniaCitizen ;
+  freebr:birthday "1990-01-01"^^xsd:date ;
+  freebr:givenName "Dimitris" ;
+  freebr:surName "Zeginis" ;
+  rdfs:comment "This represents Dimitris Zeginis, a brave citizen of Freedonia"@en ;
+  rdfs:label "This represents Dimitris Zeginis, a brave citizen of Freedonia"^^rdf:langString ;
+  skos:prefLabel "Freedonia citizen 2" ;
 .
