@@ -4,6 +4,7 @@
 # imports: http://toop.elo/elonia-business-register
 # imports: http://toop.eu/mapping
 # imports: http://toop.fre/freedonia-business-register
+# imports: http://toop.it/registroimprese
 # imports: http://toop.nl/nationaalhandelsregister
 # imports: http://www.w3.org/2004/02/skos/core
 # imports: http://www.w3.org/2006/vcard/ns
@@ -19,6 +20,7 @@
 @prefix adms: <http://www.w3.org/ns/adms#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix itdp: <http://toop.it/registroimprese#> .
 @prefix mapping: <http://toop.eu/mapping#> .
 @prefix nhr: <http://toop.nl/nationaalhandelsregister#> .
 @prefix org: <http://www.w3.org/ns/org#> .
@@ -32,7 +34,6 @@
 @prefix toop: <http://toop.eu/registered-organization#> .
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix itdp: <http://toop.it/registroimprese#> .
 
 <http://toop.elo/elonia-business-register#EloniaActivityDeclaration>
   rdfs:subPropertyOf toop:activityDescription ;
@@ -181,6 +182,7 @@ mapping:mapsToConcept
   owl:imports <http://toop.elo/elonia-business-register> ;
   owl:imports <http://toop.eu/mapping> ;
   owl:imports <http://toop.fre/freedonia-business-register> ;
+  owl:imports <http://toop.it/registroimprese> ;
   owl:imports <http://toop.nl/nationaalhandelsregister> ;
   owl:imports <http://www.w3.org/2004/02/skos/core> ;
   owl:imports <http://www.w3.org/2006/vcard/ns> ;
@@ -1565,6 +1567,42 @@ toop:streetAddress
 <http://toop.fre/freedonia-business-register#hasBusinessCode>
   rdfs:subPropertyOf toop:hasCompanyCode ;
 .
+itdp:AutoritaDiRegistrazione
+  rdfs:subPropertyOf toop:hasRegistrationAuthority ;
+.
+itdp:CodiceFiscale
+  rdfs:subClassOf toop:CompanyCode ;
+.
+itdp:CodiceImpresa
+  rdfs:subClassOf toop:RegistrationNumber ;
+.
+itdp:CodiceNACE
+  rdfs:subPropertyOf toop:hasNaceCode ;
+.
+itdp:DataDiIscrizione
+  rdfs:subPropertyOf toop:registrationDate ;
+.
+itdp:Denominazione
+  rdfs:subPropertyOf toop:companyName ;
+.
+itdp:DescrizioneAttivita
+  rdfs:subPropertyOf toop:activityDescription ;
+.
+itdp:FormaGiuridica
+  rdfs:subPropertyOf toop:hasCompanyType ;
+.
+itdp:Indirizzo
+  rdfs:subClassOf toop:PhysicalAddress ;
+.
+itdp:PartitaIVA
+  rdfs:subClassOf toop:VATNumber ;
+.
+itdp:StatoAttivita
+  rdfs:subPropertyOf toop:hasLegalStatus ;
+.
+itdp:hasCodiceFiscale
+  rdfs:subPropertyOf toop:hasCompanyCode ;
+.
 nhr:Adres
   mapping:mapsToConcept toop:PhysicalAddress ;
   rdfs:subClassOf toop:PhysicalAddress ;
@@ -2000,39 +2038,3 @@ nhr:wordtGeleidVanuit
 rov:legalName
   rdfs:domain org:FormalOrganization ;
 .
-
-itdp:DescrizioneAttivita
-  rdfs:subPropertyOf toop:activityDescription.
-
-itdp:Indirizzo
-  rdfs:subClassOf toop:PhysicalAddress.
-    
-itdp:CodiceFiscale
-  rdfs:subClassOf toop:CompanyCode.
-    
-itdp:CodiceNACE
-  rdfs:subPropertyOf toop:hasNaceCode.
-  
-itdp:Denominazione
-  rdfs:subPropertyOf toop:companyName.
-  
-itdp:FormaGiuridica
-  rdfs:subPropertyOf toop:hasCompanyType.
-    
-itdp:StatoAttivita
-  rdfs:subPropertyOf toop:hasLegalStatus.
-  
-itdp:AutoritaDiRegistrazione
-  rdfs:subPropertyOf toop:hasRegistrationAuthority.
-  
-itdp:DataDiIscrizione
-  rdfs:subPropertyOf toop:registrationDate.
-    
-itdp:CodiceImpresa
-  rdfs:subClassOf toop:RegistrationNumber.
-  
-itdp:PartitaIVA
-  rdfs:subClassOf toop:VATNumber.
-  
-itdp:hasCodiceFiscale
-  rdfs:subPropertyOf toop:hasCompanyCode.
