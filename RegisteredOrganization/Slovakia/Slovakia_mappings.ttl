@@ -1,0 +1,21 @@
+@prefix skbr: <http://toop.sk/slovakia-business-register#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix toop: <http://toop.eu/registered-organization#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+skbr:Názov rdfs:subPropertyOf toop:companyName.
+skbr:PrávnaForma rdfs:subPropertyOf toop:companyType .
+skbr:Identifikátor rdfs:subClassOf toop:RegistrationNumber .
+skbr:IČO rdfs:subClassOf toop:CompanyCode .
+skbr:DátumVzniku rdfs:subPropertyOf toop:foundationDate.
+skbr:PrávnyStav rdfs:subPropertyOf toop:legalStatus .
+skbr:SKNACE rdfs:subPropertyOf toop:naceCode .
+skbr:UlicaČíslo rdfs:subPropertyOf toop:streetAddress  .
+skbr:PSČ rdfs:subPropertyOf toop:postalCode   .
+skbr:Mesto rdfs:subPropertyOf toop:locality   .
+skbr:Štát rdfs:subPropertyOf toop:countryName   .
+skbr:EmailováAdresa rdfs:subClassOf toop:EmailAddress  .
+skbr:FaxovéČíslo rdfs:subClassOf toop:FaxNumber   .
+skbr:TelefónneČíslo rdfs:subClassOf toop:TelephoneNumber   .
