@@ -155,7 +155,7 @@ freebr:FreedoniaLegalStatusEffectiveDate
   rdfs:domain freebr:Company ;
   rdfs:label "Freedonia legal status effective date"@en ;
 .
-freebr:FreedoniaRegistrationAuthority
+freebr:FreedoniaHasRegistrationAuthority
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The reference to the official register that has registered the company"@en ;
   rdfs:domain freebr:FreedoniaBusinessCode ;
