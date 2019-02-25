@@ -1,0 +1,13 @@
+@prefix esbr: <http://toop.es/sweden-business-register#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix toop: <http://toop.eu/registered-organization#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+esbr:Företagsnamn rdfs:subPropertyOf toop:companyName.
+esbr:Företagsform rdfs:subPropertyOf toop:companyType .
+esbr:FöretagetsRegistreringsdatum rdfs:subPropertyOf toop:registrationDate .
+esbr:Organisationsnummer  rdfs:subClassOf toop:CompanyCode .
+esbr:Status rdfs:subPropertyOf toop:legalStatus .
+esbr:Postadress rdfs:subPropertyOf toop:streetAddress  .
