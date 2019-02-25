@@ -123,7 +123,7 @@ elobr:EloniaLegalStatusEffectiveDate
   rdfs:domain elobr:Company ;
   rdfs:label "Elonia legal status effective date"@en ;
 .
-elobr:EloniaRegistrationAuthority
+elobr:EloniaHasRegistrationAuthority
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The reference to the official register that has registered the company"@en ;
   rdfs:domain elobr:EloniaBusinessCode ;
