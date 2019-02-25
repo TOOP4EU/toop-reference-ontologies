@@ -1,0 +1,33 @@
+@prefix toop: <http://toop.eu/registered-organization#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix itdp: <http://toop.it/registroimprese#> .
+
+itdp:Denominazione rdfs:subPropertyOf toop:companyName.
+itdp:FormaGiuridica rdfs:subPropertyOf toop:companyType .
+itdp:CodiceImpresa rdfs:subClassOf toop:RegistrationNumber.
+itdp:AutoritaDiRegistrazione rdfs:subClassOf toop:RegistrationAuthority . 
+itdp:DataDiIscrizione rdfs:subPropertyOf toop:registrationDate .
+itdp:CodiceFiscale rdfs:subClassOf toop:CompanyCode .
+itdp:DataDiCostituzione rdfs:subPropertyOf toop:foundationDate.
+itdp:PartitaIVA rdfs:subClassOf toop:VATNumber .
+itdp:StatoAttivita rdfs:subPropertyOf toop:legalStatus .
+itdp:DescrizioneAttivita rdfs:subPropertyOf toop:activityDescription .
+itdp:CodiceNACE rdfs:subPropertyOf toop:naceCode .
+itdp:Indirizzo rdfs:subPropertyOf toop:streetAddress  .
+itdp:CAP rdfs:subPropertyOf toop:postalCode   .
+itdp:Comune rdfs:subPropertyOf toop:locality   .
+itdp:Provincia rdfs:subPropertyOf toop:region   .
+itdp:Email rdfs:subClassOf toop:EmailAddress  .
+itdp:Fax rdfs:subClassOf toop:FaxNumber   .
+itdp:Telefono rdfs:subClassOf toop:TelephoneNumber   .
+itdp:Cognome rdfs:subPropertyOf toop:familyName .
+itdp:Nome rdfs:subPropertyOf toop:givenName .
+itdp:DataDiNascita rdfs:subPropertyOf toop:birthDate .
+
+
+
+
+
+
+
+
