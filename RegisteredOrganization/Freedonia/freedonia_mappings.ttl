@@ -5,24 +5,24 @@
 @prefix toop: <http://toop.eu/registered-organization#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-freebr:Company rdfs:subClassOf toop:RegisteredOrganization .
-freebr:FreedoniaCitizen rdfs:subClassOf toop:Person .
-freebr:isRepresentedBy rdfs:subPropertyOf toop:hasLegalRepresentative .
+freebr:FreedoniaRegisteredOrganization rdfs:subClassOf toop:RegisteredOrganization .
+freebr:FreedoniaPerson rdfs:subClassOf toop:Person .
+freebr:FreedoniaHasLegalRepresentative rdfs:subPropertyOf toop:hasLegalRepresentative .
 
 freebr:FreedoniaCompanyName rdfs:subPropertyOf toop:companyName .
 freebr:FreedoniaCompanyType rdfs:subPropertyOf toop:companyType .
 freebr:FreedoniaRegistrationNumber rdfs:subClassOf toop:RegistrationNumber.
 freebr:FreedoniaRegistrationAuthority rdfs:subClassOf toop:RegistrationAuthority . 
 freebr:FreedoniaRegistrationDate rdfs:subPropertyOf toop:registrationDate .
-freebr:FreedoniaBusinessCode rdfs:subClassOf toop:CompanyCode .
+freebr:FreedoniaCompanyCode rdfs:subClassOf toop:CompanyCode .
 freebr:FreedoniaFoundationDate rdfs:subPropertyOf toop:foundationDate.
 freebr:FreedoniaVATNumber rdfs:subClassOf toop:VATNumber .
 freebr:FreedoniaSSNumber rdfs:subClassOf toop:SSNumber .
 freebr:FreedoniaCapitalType rdfs:subPropertyOf toop:capitalType.
 freebr:FreedoniaLegalStatus rdfs:subPropertyOf toop:legalStatus .
 freebr:FreedoniaLegalStatusEffectiveDate rdfs:subPropertyOf toop:legalStatusEffectiveDate .
-freebr:FreedoniaActivityDeclaration rdfs:subPropertyOf toop:activityDescription .
-freebr:FreedoniaCompanyNaceCode rdfs:subPropertyOf toop:naceCode .
+freebr:FreedoniaActivityDescription rdfs:subPropertyOf toop:activityDescription .
+freebr:FreedoniaNaceCode rdfs:subPropertyOf toop:naceCode .
 freebr:FreedoniaStreetAddress rdfs:subPropertyOf toop:streetAddress  .
 freebr:FreedoniaPostalCode rdfs:subPropertyOf toop:postalCode   .
 freebr:FreedoniaLocality rdfs:subPropertyOf toop:locality   .
@@ -31,6 +31,6 @@ freebr:FreedoniaCountryName rdfs:subPropertyOf toop:countryName   .
 freebr:FreedoniaEmailAddress rdfs:subClassOf toop:EmailAddress  .
 freebr:FreedoniaFaxNumber rdfs:subClassOf toop:FaxNumber   .
 freebr:FreedoniaTelephoneNumber rdfs:subClassOf toop:TelephoneNumber   .
-freebr:surName rdfs:subPropertyOf toop:familyName .
-freebr:givenName rdfs:subPropertyOf toop:givenName .
-freebr:birthdate rdfs:subPropertyOf toop:birthDate .
+freebr:FreedoniaFamilyName rdfs:subPropertyOf toop:familyName .
+freebr:FreedoniaGivenName rdfs:subPropertyOf toop:givenName .
+freebr:FreedoniaBirthDate rdfs:subPropertyOf toop:birthDate .
