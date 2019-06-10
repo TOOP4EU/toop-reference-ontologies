@@ -23,6 +23,7 @@ itdp:Telefono rdfs:subClassOf toop:TelephoneNumber   .
 itdp:Cognome rdfs:subPropertyOf toop:familyName .
 itdp:Nome rdfs:subPropertyOf toop:givenName .
 itdp:DataDiNascita rdfs:subPropertyOf toop:birthDate .
+itdp:ITSSNumber rdfs:subClassOf toop:SSNumber .
 
 
 
