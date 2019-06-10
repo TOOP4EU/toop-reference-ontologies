@@ -116,4 +116,8 @@ esbr:Organisationsnummer  rdfs:subClassOf toop:CompanyCode .
 esbr:Status rdfs:subPropertyOf toop:legalStatus .
 esbr:Postadress rdfs:subPropertyOf toop:streetAddress  .
 
-toop:Person   rdf:type rdfs:Class.
+skbr:test a skbr:Identifikátor.
+esbr:test a esbr:Organisationsnummer.
+itdp:test a itdp:CodiceImpresa.
+elobr:test a elobr:EloniaBusinessCode.
+freebr:test a freebr:FreedoniaBusinessCode.
