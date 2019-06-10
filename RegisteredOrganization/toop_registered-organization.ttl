@@ -330,7 +330,7 @@ toop:Person
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:onDataRange xsd:date ;
-      owl:onProperty toop:birthday ;
+      owl:onProperty toop:birthDate ;
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
   rdfs:subClassOf [
@@ -534,7 +534,7 @@ toop:RegisteredOrganization
           owl:onProperty skos:inScheme ;
           owl:someValuesFrom toop:CapitalTypeScheme ;
         ] ;
-      owl:onProperty toop:hasCapitalType ;
+      owl:onProperty toop:capitalType ;
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
   rdfs:subClassOf [
@@ -544,7 +544,7 @@ toop:RegisteredOrganization
           owl:onProperty skos:inScheme ;
           owl:someValuesFrom toop:CompanyTypeScheme ;
         ] ;
-      owl:onProperty toop:hasCompanyType ;
+      owl:onProperty toop:companyType ;
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
   rdfs:subClassOf [
@@ -554,7 +554,7 @@ toop:RegisteredOrganization
           owl:onProperty skos:inScheme ;
           owl:someValuesFrom toop:LegalStatusScheme ;
         ] ;
-      owl:onProperty toop:hasLegalStatus ;
+      owl:onProperty toop:legalStatus ;
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
   rdfs:subClassOf [
@@ -564,7 +564,7 @@ toop:RegisteredOrganization
           owl:onProperty skos:inScheme ;
           owl:someValuesFrom toop:NACECodeScheme ;
         ] ;
-      owl:onProperty toop:hasNaceCode ;
+      owl:onProperty toop:naceCode ;
       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
     ] ;
   rdfs:subClassOf [
@@ -673,7 +673,7 @@ toop:age
   rdfs:range xsd:integer ;
   rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/age> ;
 .
-toop:birthday
+toop:birthDate
   rdf:type owl:DatatypeProperty ;
   rdfs:comment "The day of birth of a person."@en ;
   rdfs:domain toop:Person ;
@@ -737,7 +737,7 @@ toop:givenName
   rdfs:range xsd:string ;
   rdfs:subPropertyOf <http://xmlns.com/foaf/0.1/givenName> ;
 .
-toop:hasCapitalType
+toop:capitalType
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The capital type of the company (subscribed, shared, paid-up, ,...) as part of the CapitalTypeScheme."@en ;
   rdfs:domain toop:RegisteredOrganization ;
@@ -886,7 +886,7 @@ toop:hasCompanyCode
   rdfs:subPropertyOf adms:identifier ;
   skos:prefLabel "has company code" ;
 .
-toop:hasCompanyType
+toop:companyType
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The legal type of the company as part of the CompanyTypeScheme."@en ;
   rdfs:domain toop:RegisteredOrganization ;
@@ -923,7 +923,7 @@ toop:hasLegalRepresentative
   rdfs:range toop:Person ;
   rdfs:subPropertyOf org:hasMember ;
 .
-toop:hasLegalStatus
+toop:legalStatus
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The legal status of the company (active, ended,...) as part of the LegalStatusScheme."@en ;
   rdfs:domain toop:RegisteredOrganization ;
@@ -936,7 +936,7 @@ toop:hasLegalStatus
   rdfs:subPropertyOf rov:orgStatus ;
   skos:prefLabel "has legal status" ;
 .
-toop:hasNaceCode
+toop:naceCode
   rdf:type owl:ObjectProperty ;
   rdfs:comment "The NACE code of the company as part of the NACECodeScheme."@en ;
   rdfs:domain toop:RegisteredOrganization ;
