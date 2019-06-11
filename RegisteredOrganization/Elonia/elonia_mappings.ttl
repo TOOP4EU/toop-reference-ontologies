@@ -1,0 +1,36 @@
+@prefix elobr: <http://toop.elo/elonia-business-register#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix toop: <http://toop.eu/registered-organization#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+elobr:EloniaPerson rdfs:subClassOf toop:Person.
+elobr:EloniaRegisteredOrganization rdfs:subClassOf toop:RegisteredOrganization.
+elobr:EloniaHasLegalRepresentative rdfs:subPropertyOf toop:hasLegalRepresentative .
+
+elobr:EloniaCompanyName rdfs:subPropertyOf toop:companyName.
+elobr:EloniaCompanyType rdfs:subPropertyOf toop:companyType .
+elobr:EloniaRegistrationNumber rdfs:subClassOf toop:RegistrationNumber .
+elobr:EloniaRegistrationAuthority rdfs:subClassOf toop:RegistrationAuthority . 
+elobr:EloniaRegistrationDate rdfs:subPropertyOf toop:registrationDate .
+elobr:EloniaCompanyCode  rdfs:subClassOf toop:CompanyCode .
+elobr:EloniaFoundationDate rdfs:subPropertyOf toop:foundationDate.
+elobr:EloniaVATNumber rdfs:subClassOf toop:VATNumber .
+elobr:EloniaSSNumber rdfs:subClassOf toop:SSNumber .
+elobr:EloniaCapitalType rdfs:subPropertyOf toop:capitalType.
+elobr:EloniaLegalStatus rdfs:subPropertyOf toop:legalStatus .
+elobr:EloniaLegalStatusEffectiveDate rdfs:subPropertyOf toop:legalStatusEffectiveDate .
+elobr:EloniaActivityDescription rdfs:subPropertyOf toop:activityDescription.
+elobr:EloniaNaceCode rdfs:subPropertyOf toop:naceCode .
+elobr:EloniaStreetAddress rdfs:subPropertyOf toop:streetAddress  .
+elobr:EloniaPostalCode rdfs:subPropertyOf toop:postalCode   .
+elobr:EloniaLocality rdfs:subPropertyOf toop:locality   .
+elobr:EloniaRegion rdfs:subPropertyOf toop:region   .
+elobr:EloniaCountryName rdfs:subPropertyOf toop:countryName   .
+elobr:EloniaEmailAddress rdfs:subClassOf toop:EmailAddress  .
+elobr:EloniaFaxNumber rdfs:subClassOf toop:FaxNumber   .
+elobr:EloniaTelephoneNumber rdfs:subClassOf toop:TelephoneNumber   .
+elobr:EloniaFamilyName rdfs:subPropertyOf toop:familyName .
+elobr:EloniaGivenName rdfs:subPropertyOf toop:givenName .
+elobr:EloniaBirthDate rdfs:subPropertyOf toop:birthDate .

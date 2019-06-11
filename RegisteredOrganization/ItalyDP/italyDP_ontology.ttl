@@ -1,0 +1,184 @@
+
+@prefix itdp: <http://toop.it/registroimprese#> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://toop.it/registroimprese>
+  rdf:type owl:Ontology ;
+  owl:imports <http://www.w3.org/ns/adms.rdf> ;
+  owl:imports <https://www.w3.org/2009/08/skos-reference/skos.rdf> ;
+  owl:versionInfo "Created with TopBraid Composer" ;
+.
+itdp:Persona
+  rdf:type rdfs:Class ;
+  rdf:type owl:Class ;
+  rdfs:comment "A human person that can have a role in the context of a company."@en ;
+  rdfs:subClassOf foaf:Person ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange xsd:date ;
+      owl:onProperty itdp:DataDiNascita ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange xsd:string ;
+      owl:onProperty itdp:Nome ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange xsd:string ;
+      owl:onProperty itdp:Cognome ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+
+itdp:Azienda
+  rdf:type owl:Class ;
+  rdfs:comment "A company is an organisation with a business character with a goal to make profit by producing products or providing services."@en ;
+  rdfs:label "Company"@en ;
+  rdfs:subClassOf skos:Concept ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty itdp:Denominazione ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass itdp:Citizen ;
+      owl:onProperty itdp:hasLegalRepresentative ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onDataRange itdp:CodiceFiscale ;
+      owl:onProperty itdp:hasCodiceFiscale ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    ] ;
+.
+
+itdp:DescrizioneAttivita
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The description of the main activity of the company as free text description recorded on the registry. This tag should be used to give a description of the company activity in the local language. This should be used in conjunction with the CompanyNaceCode."@en ;
+  rdfs:label "Italy DP activity declaration"@en ;
+.
+itdp:Indirizzo
+  rdf:type owl:Class ;
+  rdfs:comment "The postal address and/or the visiting address of a physical site of the company, or, an virtual address, i.e., an URL."@en ;
+  rdfs:label "Company address"@en ;
+.
+itdp:CodiceFiscale
+  rdf:type rdfs:Class ;
+  rdfs:comment "The unique official company identifier_"@en ;
+  rdfs:label "Business code"@en ;
+  skos:prefLabel "Italy DP business code" ;
+.
+itdp:CodiceNACE
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The description of the main activity of the company as free text description recorded on the registry. This tag should be used to give a description of the company activity in the local language. This should be used in conjunction with the CompanyNaceCode"@en ;
+  rdfs:label "Italy DP company NACE Code"@en ;
+.
+itdp:Denominazione
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "All companies have to provide a company name upon registration at the business register." ;
+  rdfs:domain itdp:Azienda ;
+  rdfs:label "company name"@en ;
+  rdfs:range xsd:string ;
+  skos:prefLabel "company name"@en ;
+.
+itdp:FormaGiuridica
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The legal type of the company"@en ;
+  rdfs:domain itdp:Azienda ;
+  rdfs:label "company type"@en ;
+.
+itdp:StatoAttivita
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The legal status of the company"@en ;
+  rdfs:domain itdp:Azienda ;
+  rdfs:label "company legal status"@en ;
+.
+
+itdp:AutoritaDiRegistrazione
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The reference to the official register that has registered the company"@en ;
+  rdfs:domain itdp:CodiceFiscale ;
+  rdfs:label "registration authority"@en ;
+.
+itdp:DataDiIscrizione
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Represents the date at which the company started."@en ;
+  rdfs:label "Registration date"@en ;
+  rdfs:range xsd:date ;
+.
+
+itdp:DataDiCostituzione
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Represents the date at which the company was founded."@en ;
+  rdfs:label "Foundation date"@en ;
+  rdfs:range xsd:date ;
+.
+itdp:CodiceImpresa
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The number of the company as recorded on the register. In some jurisdictions, the number on the register may be different from the official company number. This field must be populated in all service requests even when the RegistrationNumber is the same as the CompanyCode"@en ;
+  rdfs:label "Registration number"@en ;
+.
+
+itdp:PartitaIVA
+  rdf:type rdfs:Class ;
+  rdfs:comment "The value added tax number of the company"@en ;
+  rdfs:label "VAT number"@en ;
+.
+itdp:Repository
+  rdf:type adms:AssetRepository ;
+  dcterms:created "2019-01-28"^^xsd:date ;
+  dcterms:description "This repository describes Ialy DP business register in accordance to the defined ontological concepts"@en ;
+  dcterms:publisher <http://example.register.it/org> ;
+  dcterms:title "Italy DP Business Register"@en ;
+.
+itdp:DataDiNascita
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The day of birth of a person"@en ;
+  rdfs:domain itdp:Persona ;
+  rdfs:label "birthday"@en ;
+  rdfs:range xsd:date ;
+  rdfs:subPropertyOf foaf:birthday ;
+.
+itdp:Nome
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The given name of a person"@en ;
+  rdfs:domain itdp:Persona ;
+  rdfs:label "given name"@en ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf foaf:givenName ;
+.
+itdp:hasCodiceFiscale
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "All companies get a Business Code upon registration at the business register." ;
+  rdfs:domain itdp:Azienda ;
+  rdfs:label "has business code"@en ;
+  rdfs:range itdp:CodiceFiscale ;
+  skos:prefLabel "has business code"@en ;
+.
+itdp:hasLegalRepresentative
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The pointer to the person acting as legal representative of the company."@en ;
+  rdfs:domain itdp:Azienda ;
+  rdfs:label "has legal representative"@en ;
+  rdfs:range itdp:Persona ;
+.
+itdp:Cognome
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The family name of a person"@en ;
+  rdfs:domain itdp:Persona ;
+  rdfs:label "family name"@en ;
+  rdfs:range xsd:string ;
+  rdfs:subPropertyOf foaf:familyName ;
+.

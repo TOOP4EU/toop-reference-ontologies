@@ -1,0 +1,123 @@
+@prefix elobr: <http://toop.elo/elonia-business-register#> .
+@prefix freebr: <http://toop.fre/freedonia-business-register#> .
+@prefix itdp: <http://toop.it/registroimprese#> .
+@prefix skbr: <http://toop.sk/slovakia-business-register#> .
+@prefix esbr: <http://toop.es/sweden-business-register#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix toop: <http://toop.eu/registered-organization#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+elobr:EloniaPerson rdfs:subClassOf toop:Person.
+elobr:EloniaRegisteredOrganization rdfs:subClassOf toop:RegisteredOrganization.
+elobr:EloniaHasLegalRepresentative rdfs:subPropertyOf toop:hasLegalRepresentative .
+elobr:EloniaCompanyName rdfs:subPropertyOf toop:companyName.
+elobr:EloniaCompanyType rdfs:subPropertyOf toop:companyType .
+elobr:EloniaRegistrationNumber rdfs:subClassOf toop:RegistrationNumber .
+elobr:EloniaRegistrationAuthority rdfs:subClassOf toop:RegistrationAuthority . 
+elobr:EloniaRegistrationDate rdfs:subPropertyOf toop:registrationDate .
+elobr:EloniaCompanyCode  rdfs:subClassOf toop:CompanyCode .
+elobr:EloniaFoundationDate rdfs:subPropertyOf toop:foundationDate.
+elobr:EloniaVATNumber rdfs:subClassOf toop:VATNumber .
+elobr:EloniaSSNumber rdfs:subClassOf toop:SSNumber .
+elobr:EloniaCapitalType rdfs:subPropertyOf toop:capitalType.
+elobr:EloniaLegalStatus rdfs:subPropertyOf toop:legalStatus .
+elobr:EloniaLegalStatusEffectiveDate rdfs:subPropertyOf toop:legalStatusEffectiveDate .
+elobr:EloniaActivityDescription rdfs:subPropertyOf toop:activityDescription.
+elobr:EloniaNaceCode rdfs:subPropertyOf toop:naceCode .
+elobr:EloniaStreetAddress rdfs:subPropertyOf toop:streetAddress  .
+elobr:EloniaPostalCode rdfs:subPropertyOf toop:postalCode   .
+elobr:EloniaLocality rdfs:subPropertyOf toop:locality   .
+elobr:EloniaRegion rdfs:subPropertyOf toop:region   .
+elobr:EloniaCountryName rdfs:subPropertyOf toop:countryName   .
+elobr:EloniaEmailAddress rdfs:subClassOf toop:EmailAddress  .
+elobr:EloniaFaxNumber rdfs:subClassOf toop:FaxNumber   .
+elobr:EloniaTelephoneNumber rdfs:subClassOf toop:TelephoneNumber   .
+elobr:EloniaFamilyName rdfs:subPropertyOf toop:familyName .
+elobr:EloniaGivenName rdfs:subPropertyOf toop:givenName .
+elobr:EloniaBirthDate rdfs:subPropertyOf toop:birthDate .
+
+
+freebr:FreedoniaRegisteredOrganization rdfs:subClassOf toop:RegisteredOrganization .
+freebr:FreedoniaPerson rdfs:subClassOf toop:Person .
+freebr:FreedoniaHasLegalRepresentative rdfs:subPropertyOf toop:hasLegalRepresentative .
+freebr:FreedoniaCompanyName rdfs:subPropertyOf toop:companyName .
+freebr:FreedoniaCompanyType rdfs:subPropertyOf toop:companyType .
+freebr:FreedoniaRegistrationNumber rdfs:subClassOf toop:RegistrationNumber.
+freebr:FreedoniaRegistrationAuthority rdfs:subClassOf toop:RegistrationAuthority . 
+freebr:FreedoniaRegistrationDate rdfs:subPropertyOf toop:registrationDate .
+freebr:FreedoniaCompanyCode rdfs:subClassOf toop:CompanyCode .
+freebr:FreedoniaFoundationDate rdfs:subPropertyOf toop:foundationDate.
+freebr:FreedoniaVATNumber rdfs:subClassOf toop:VATNumber .
+freebr:FreedoniaSSNumber rdfs:subClassOf toop:SSNumber .
+freebr:FreedoniaCapitalType rdfs:subPropertyOf toop:capitalType.
+freebr:FreedoniaLegalStatus rdfs:subPropertyOf toop:legalStatus .
+freebr:FreedoniaLegalStatusEffectiveDate rdfs:subPropertyOf toop:legalStatusEffectiveDate .
+freebr:FreedoniaActivityDescription rdfs:subPropertyOf toop:activityDescription .
+freebr:FreedoniaNaceCode rdfs:subPropertyOf toop:naceCode .
+freebr:FreedoniaStreetAddress rdfs:subPropertyOf toop:streetAddress  .
+freebr:FreedoniaPostalCode rdfs:subPropertyOf toop:postalCode   .
+freebr:FreedoniaLocality rdfs:subPropertyOf toop:locality   .
+freebr:FreedoniaRegion rdfs:subPropertyOf toop:region   .
+freebr:FreedoniaCountryName rdfs:subPropertyOf toop:countryName   .
+freebr:FreedoniaEmailAddress rdfs:subClassOf toop:EmailAddress  .
+freebr:FreedoniaFaxNumber rdfs:subClassOf toop:FaxNumber   .
+freebr:FreedoniaTelephoneNumber rdfs:subClassOf toop:TelephoneNumber   .
+freebr:FreedoniaFamilyName rdfs:subPropertyOf toop:familyName .
+freebr:FreedoniaGivenName rdfs:subPropertyOf toop:givenName .
+freebr:FreedoniaBirthDate rdfs:subPropertyOf toop:birthDate .
+
+
+itdp:Denominazione rdfs:subPropertyOf toop:companyName.
+itdp:FormaGiuridica rdfs:subPropertyOf toop:companyType .
+itdp:CodiceImpresa rdfs:subClassOf toop:RegistrationNumber.
+itdp:AutoritaDiRegistrazione rdfs:subClassOf toop:RegistrationAuthority . 
+itdp:DataDiIscrizione rdfs:subPropertyOf toop:registrationDate .
+itdp:CodiceFiscale rdfs:subClassOf toop:CompanyCode .
+itdp:DataDiCostituzione rdfs:subPropertyOf toop:foundationDate.
+itdp:PartitaIVA rdfs:subClassOf toop:VATNumber .
+itdp:StatoAttivita rdfs:subPropertyOf toop:legalStatus .
+itdp:DescrizioneAttivita rdfs:subPropertyOf toop:activityDescription .
+itdp:CodiceNACE rdfs:subPropertyOf toop:naceCode .
+itdp:Indirizzo rdfs:subPropertyOf toop:streetAddress  .
+itdp:CAP rdfs:subPropertyOf toop:postalCode   .
+itdp:Comune rdfs:subPropertyOf toop:locality   .
+itdp:Provincia rdfs:subPropertyOf toop:region   .
+itdp:Email rdfs:subClassOf toop:EmailAddress  .
+itdp:Fax rdfs:subClassOf toop:FaxNumber   .
+itdp:Telefono rdfs:subClassOf toop:TelephoneNumber   .
+itdp:Cognome rdfs:subPropertyOf toop:familyName .
+itdp:Nome rdfs:subPropertyOf toop:givenName .
+itdp:DataDiNascita rdfs:subPropertyOf toop:birthDate .
+itdp:ITSSNumber rdfs:subClassOf toop:SSNumber .
+
+
+skbr:Názov rdfs:subPropertyOf toop:companyName.
+skbr:PrávnaForma rdfs:subPropertyOf toop:companyType .
+skbr:Identifikátor rdfs:subClassOf toop:RegistrationNumber .
+skbr:IČO rdfs:subClassOf toop:CompanyCode .
+skbr:DátumVzniku rdfs:subPropertyOf toop:foundationDate.
+skbr:PrávnyStav rdfs:subPropertyOf toop:legalStatus .
+skbr:SKNACE rdfs:subPropertyOf toop:naceCode .
+skbr:UlicaČíslo rdfs:subPropertyOf toop:streetAddress  .
+skbr:PSČ rdfs:subPropertyOf toop:postalCode   .
+skbr:Mesto rdfs:subPropertyOf toop:locality   .
+skbr:Štát rdfs:subPropertyOf toop:countryName   .
+skbr:EmailováAdresa rdfs:subClassOf toop:EmailAddress  .
+skbr:FaxovéČíslo rdfs:subClassOf toop:FaxNumber   .
+skbr:TelefónneČíslo rdfs:subClassOf toop:TelephoneNumber   .
+
+
+esbr:Företagsnamn rdfs:subPropertyOf toop:companyName.
+esbr:Företagsform rdfs:subPropertyOf toop:companyType .
+esbr:FöretagetsRegistreringsdatum rdfs:subPropertyOf toop:registrationDate .
+esbr:Organisationsnummer  rdfs:subClassOf toop:CompanyCode .
+esbr:Status rdfs:subPropertyOf toop:legalStatus .
+esbr:Postadress rdfs:subPropertyOf toop:streetAddress  .
+
+skbr:test a skbr:Identifikátor.
+esbr:test a esbr:Organisationsnummer.
+itdp:test a itdp:CodiceImpresa.
+elobr:test a elobr:EloniaBusinessCode.
+freebr:test a freebr:FreedoniaBusinessCode.
